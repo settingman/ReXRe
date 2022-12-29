@@ -37,11 +37,11 @@ public class ProductController {
 	
 	//Controller에서 서비스 호출
 	@GetMapping("/productList")
-	public void productList(Model model)
+	public String productList(Model model)
 	{
 		log.info("productList");
 		model.addAttribute("productList", productService.getList());
-		//return "/product/productList";
+		return "product/productList";
 	}
 	
 	@ResponseBody

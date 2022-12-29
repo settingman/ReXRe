@@ -382,94 +382,89 @@ var google_alanytics_id = 'UA-166260789-1';
 
 
 							<!--// 상품정렬 JSP 적용 -->
-							<c:forEach items="${productList}" var="productList"></c:forEach>
-							<ul class="prd_basic col3">
-								<li><div class="box ">
-										<div class="img">
-											<div class="prdimg img1226">
-												<a
-													href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012"><img
-													src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg"
-													width="380" height="466"></a>
-											</div>
-											<!-- 상품품절 영역 -->
-											<div class="soldout"
-												onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012'">SOLD
-												OUT</div>
-											<!-- //상품품절 영역 -->
-										</div>
-										<div class="info">
-											<ul class="quick" style="display: none;">
-												<li class="preview"><a
-													href="javascript:quickDetailPopup(this, 596, '1012');">상품팝업</a></li>
-												<li class="wish"><a href="#"
-													onclick="wishPartCartAjax(&quot;B2EEB7362EF83DEFF5C7813A67E14F0A&quot;, this); return false;">관심상품
-														담기</a></li>
-												<li class="cart"><a href="#"
-													onclick="cartPartCartAjax(&quot;B2EEB7362EF83DEFF5C7813A67E14F0A&quot;, &quot;리바이리 콤부차 배리옴 스킨케어 5종 기획&quot;, &quot;170,000&quot;); return false;">장바구니
-														담기</a></li>
-											</ul>
-
-											<span class="hashtag">#클렌저 #토너 #앰플 #크림 #마스크</span>
-
-											<p class="name name1226">
-												<a
-													href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012">
-													<c:out value="${productList.productName}" /> <!-- 상품명 -->
-												</a>
-											</p>
-
-											<div class="summary">건강한 피부를 위해 리바이리가 제안하는 비건 스킨케어 5종</div>
-
-											<div class="price">
-												<div class="price_boxY">
-
-													<p class="consumer dn"><c:out value="${productList.productPrice}" /></p>
-
-													<p class="sell">
-														<strong><c:out value="${productList.productPrice}" /></strong>원
-													</p>
-
+							<c:forEach items="${productList}" var="productList">
+								<ul class="prd_basic col3">
+									<li><div class="box ">
+											<div class="img">
+												<div class="prdimg img1226">
+													<a
+														href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012"><img
+														src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg"
+														width="380" height="466"></a>
 												</div>
-												<div class="price_box">
+												<!-- 상품품절 영역 -->
+												<div class="soldout"
+													onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012'">SOLD
+													OUT</div>
+												<!-- //상품품절 영역 -->
+											</div>
+											<div class="info">
+												<ul class="quick" style="display: none;">
+													<li class="preview"><a
+														href="javascript:quickDetailPopup(this, 596, '1012');">상품팝업</a></li>
+													<li class="wish"><a href="#"
+														onclick="wishPartCartAjax(&quot;B2EEB7362EF83DEFF5C7813A67E14F0A&quot;, this); return false;">관심상품
+															담기</a></li>
+													<li class="cart"><a href="#"
+														onclick="cartPartCartAjax(&quot;B2EEB7362EF83DEFF5C7813A67E14F0A&quot;, &quot;리바이리 콤부차 배리옴 스킨케어 5종 기획&quot;, &quot;170,000&quot;); return false;">장바구니
+															담기</a></li>
+												</ul>
+
+												<span class="hashtag">#클렌저 #토너 #앰플 #크림 #마스크</span>
+
+
+												<p class="name name1226">
+													<a href=""> <c:out value="${productList.product_name}" />
+														<!-- 상품명 -->
+													</a>
+												</p>
+
+												<div class="summary">건강한 피부를 위해 리바이리가 제안하는 비건 스킨케어 5종</div>
+
+												<div class="price">
+													<div class="price_boxY">
+
+														<p class="consumer dn">
+															<c:out value="${productList.product_price}" />
+														</p>
+
+														<p class="sell">
+															<strong><c:out
+																	value="${productList.product_price}" /></strong>원
+														</p>
+
+													</div>
+													<div class="price_box">
 
 
 
-													<p class="consumer dn"></p>
-													<p class="sell">
-														<strong><c:out value="${productList.productPrice}" /></strong>원
-													</p>
+														<p class="consumer dn"></p>
+														<p class="sell">
+															<strong><c:out
+																	value="${productList.product_price}" /></strong>원
+														</p>
 
+													</div>
 												</div>
+												<ul class="count" style="display: none;">
+													<li>Wish 1</li>
+													<li>Review 5</li>
+													<li>Q&amp;A 0</li>
+												</ul>
+
+												<div class="icon">
+													<img
+														src="https://skbiolandmall.wisacdn.com/_data/icon/3f38de1f731a1956e2e8a0cee0642b7d.gif"
+														align="absmiddle">
+												</div>
+
+
+
 											</div>
-											<ul class="count" style="display: none;">
-												<li>Wish 1</li>
-												<li>Review 5</li>
-												<li>Q&amp;A 0</li>
-											</ul>
-
-											<div class="icon">
-												<img
-													src="https://skbiolandmall.wisacdn.com/_data/icon/3f38de1f731a1956e2e8a0cee0642b7d.gif"
-													align="absmiddle">
-											</div>
-
-
-
-										</div>
-									</div>
-								</li>
-							</ul> <!-- 상품 jsplist -->
-
-
-
-
-
-
-
-
-
-
+										</div></li>
+								</ul>
+								<!-- 상품 jsplist -->
+							</c:forEach>
 
 
 
