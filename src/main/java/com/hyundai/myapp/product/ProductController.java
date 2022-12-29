@@ -66,4 +66,11 @@ public class ProductController {
 		log.info("cartModal");
 		return "product/cartModal";
 	}
+	
+	@GetMapping("/header")
+	public String headerTest()
+	{
+		log.info("header");
+		return "header/header";
+	}
 }

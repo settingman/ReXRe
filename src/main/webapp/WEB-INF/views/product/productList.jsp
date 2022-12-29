@@ -186,6 +186,8 @@ var google_alanytics_id = 'UA-166260789-1';
 	content="A9+ldib+sKhGj2FcIjq5GnvBZFuIiXID0+NkE6k7cEk71MhaHFGqo3wUlUFmZ6d9w0KPwx9UxGiCTYWtRnTGDQkAAACAeyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5uZXQ6NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY4MDY1Mjc5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
 <meta http-equiv="origin-trial"
 	content="AzLNuh8GFzfIOcwvhEg7Ymr7YCzlYVTKeD7i2iETABbRf+sL2FAx+r+HlTtxSi1zgUFxBlJVoxgLjuhqiwTjAw4AAACAeyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5jb206NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY4MDY1Mjc5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
+
+
 </head>
 
 
@@ -197,6 +199,10 @@ var google_alanytics_id = 'UA-166260789-1';
 <!--mkt script '카카오모먼트' scr_header end-->
 
 <body>
+<%@ include file="/WEB-INF/views/header/header.jsp" %>
+
+
+
 	<iframe name="hidden1672276487" src="about:blank" width="0" height="0"
 		scrolling="no" frameborder="0" style="display: none"></iframe>
 
