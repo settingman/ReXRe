@@ -7,8 +7,8 @@ public class test {
 	
 	
 	@Test
-	void test() {
-		System.out.println();
+	public void test2() {
+		System.out.println("hi");
 	}
 
 }

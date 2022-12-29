@@ -35,20 +35,6 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/cos.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/gson-2.8.6.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/lombok.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc11.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ojdbc8.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/oraclepki.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/orai18n.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/osdt_cert.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/osdt_core.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/taglibs-standard-compat-1.2.5.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/taglibs-standard-impl-1.2.5.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/taglibs-standard-jstlel-1.2.5.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ucp.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xdb6.jar"/>
+	<classpathentry kind="lib" path="C:/dev64/workspace-sts/libs/ojdbc11 (1).jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
