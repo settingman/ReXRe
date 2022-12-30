@@ -4,7 +4,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-
 <body>
 <%@ include file="/WEB-INF/views/include/header.jsp" %>
 
@@ -225,10 +224,10 @@
 
 												<span class="hashtag">#클렌저 #토너 #앰플 #크림 #마스크</span>
 
-
+												<!-- 상품명 -->
 												<p class="name name1226">
 													<a href=""> <c:out value="${productList.product_name}" />
-														<!-- 상품명 -->
+														
 													</a>
 												</p>
 
