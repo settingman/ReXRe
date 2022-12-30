@@ -1,5 +1,6 @@
 package com.hyundai.mapper;
 
+<<<<<<< HEAD
 import static org.junit.Assert.fail;
 
 import java.sql.Connection;
@@ -7,14 +8,21 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+=======
+import java.util.List;
+
+>>>>>>> upstream/main
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+<<<<<<< HEAD
 import com.hyundai.domain.productVO;
 
+=======
+>>>>>>> upstream/main
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -25,6 +33,7 @@ import lombok.extern.log4j.Log4j;
 @NoArgsConstructor
 public class ProductMapperTests {
 
+<<<<<<< HEAD
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
 
@@ -46,3 +55,26 @@ public class ProductMapperTests {
 	}
 
 }
+=======
+   @Setter(onMethod_ = @Autowired)
+   private CartMapper mapper;
+
+
+   @Test
+   public void testGetList() {
+      log.info("helloooo");
+      List<Integer> list = mapper.find();
+      log.info(list.isEmpty());
+      log.info(list.size());
+//
+//      log.info(list.get(0));
+//
+//      log.info(list);
+
+      list.forEach(product -> log.info(product));
+      // assertEquals(0, 0);
+      // mapper.getList().forEach(product -> log.info(product));
+   }
+
+}
+>>>>>>> upstream/main
