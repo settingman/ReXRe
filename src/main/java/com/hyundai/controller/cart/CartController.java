@@ -60,7 +60,7 @@ public class CartController {
 		model.addAttribute("cartItems", cartItems);
 		
 		
-		return "cart";
+		return "cart/cart";
 		
 		
 		
