@@ -35,7 +35,7 @@ public class CartController {
 	@GetMapping("/find")
 	public void findbno() {
 		
-		System.out.println("¾È´ë");
+		System.out.println("ï¿½È´ï¿½");
 		
 		log.info("cartcontroller");
 		
@@ -46,7 +46,7 @@ public class CartController {
 	}
 	
 	
-	// ±è¿µÇÑ È¸¿ø°¡ÀÔ ÆäÀÌÁö, ¾ÆÀÌÅÛ »ó¼¼Á¤º¸ Controller È®ÀÎ
+	// ï¿½è¿µï¿½ï¿½ È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Controller È®ï¿½ï¿½
 	@GetMapping("/shop/cart")
 	public String showCart(Model model, HttpServletRequest requset) {
 		
@@ -67,7 +67,10 @@ public class CartController {
 	}
 	
 	
-	
+	@GetMapping("/headerTest")
+	public String headerTest() {
+		return "products/productList";
+	}
 	
 	
 	                   

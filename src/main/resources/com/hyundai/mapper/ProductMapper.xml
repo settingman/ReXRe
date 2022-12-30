@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper	
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hyundai.mapper.ProductMapper">
+	
+	<!-- getList SELECT 부분 -->
+	<select id="getList" resultType="com.hyundai.domain.productVO">
+	<![CDATA[
+		SELECT product_id, product_name,product_price,product_volume,
+			product_from,product_duration, product_manu, product_regdate
+		FROM PRODUCTS WHERE ROWNUM < 10
+	]]>
+	</select>
+	
+</mapper>
