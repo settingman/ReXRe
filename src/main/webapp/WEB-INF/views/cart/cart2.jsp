@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -177,18 +178,8 @@
 			<!-- 중앙 -->
 			<div id="cnt">
 				<div class="cntbody">
-					<!-- 서브 타이틀 텍스트(일반페이지) 사용자코드 -->
 
 					<h2 class="subtitle">장바구니</h2>
-
-					<!-- //서브 타이틀 텍스트(일반페이지) 사용자코드 -->
-					<!-- 서브 타이틀 텍스트(카테고리) 사용자코드 -->
-
-					<!-- //서브 타이틀 텍스트(카테고리) 사용자코드 -->
-					<!-- 서브 타이틀 텍스트(게시판) 사용자코드 -->
-
-					<!-- //서브 타이틀 텍스트(게시판) 사용자코드 -->
-					<!-- 주문스텝 사용자코드 -->
 
 					<ul id="order_step" class="order_step">
 						<li class="active">
@@ -205,13 +196,6 @@
 						</li>
 					</ul>
 
-					<!-- //주문스텝 사용자코드 -->
-					<!-- 마이페이지 메뉴 -->
-
-					<!-- //마이페이지 메뉴 -->
-					<!-- 타이틀이미지 -->
-
-					<!-- //타이틀이미지 -->
 
 					<div id="cart">
 						<form name="cartFrm" method="post"
@@ -248,109 +232,63 @@
 										<th scope="col"><input type="checkbox"
 											onclick="cartCheckAll(this.checked)" /></th>
 										<th scope="col" colspan="2">상품명</th>
-										<th scope="col">옵션</th>
-										<th scope="col">추가금액</th>
+										<th scope="col"></th>
+										<th scope="col"></th>
 										<th scope="col">수량</th>
 										<th scope="col">총금액</th>
-										<th scope="col">적립금</th>
+										<th scope="col"></th>
 										<th scope="col">삭제</th>
 									</tr>
 								</thead>
 								<tbody>
+								
+									 <c:forEach var="cartItem" items="${cartItems}" varStatus="status">
 									<tr class="checked">
 										<td><input type="checkbox" name="cno[]" id="cno"
-											value="7260" class="con_7260" /></td>
-										<td><a
-											href="/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A"><img
-												src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg"
-												width="82" height="100" barder="0" /></a></td>
-										<td class="name tal"><a
-											href="/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A">리바이리
-												콤부차 배리옴 스킨케어 5종 기획</a></td>
-										<td>
-											<div></div> <span class="btn_edit"><a href="#"
-												onclick="cartChgOption(7260); return false;"
-												class="changeCartOption">변경</a></span>
-										</td>
-										<td class="prc"><strong>0</strong>원</td>
-										<td class="qty">
-											<div class="box_qty">
-												<input type="text" name="buy_ea[]" value="3" id="buy_ea7260"
-													class="form_input" isplaceholderinited="true" />
-												<div class="btn_ea">
-													<a href="#"
-														onclick="cartEaChg(this, 1, 7260); return false;"
-														class="ea_up"></a> <a href="#"
-														onclick="cartEaChg(this, -1, 7260); return false;"
-														class="ea_down"></a>
-												</div>
-											</div>
-											<p class="btn_edit">
-												<a href="javascript:updateCart(document.cartFrm);">변경</a>
-											</p>
-										</td>
-										<td class="prc cart_prc">
-											<p class="before">
-												<strong>459,000</strong>원
-											</p>
-											<p class="after">
-												<strong>459,000</strong>원
-											</p>
-										</td>
-										<td class="prc"><strong>22,950</strong>원</td>
-										<td class="delete_wish"><span
-											class="box_btn w79 h29 gray fs13 light kor"><a
-												href="#"
-												onclick="deletePartCartAjax(7260, 0); return false;">삭제</a></span>
-										</td>
-									</tr>
-									<tr class="checked">
-										<td><input type="checkbox" name="cno[]" id="cno"
-											value="7264" class="con_7264" /></td>
+											value="${status.count}" class="con_${status.count}" /></td>
 										<td><a
 											href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
-												src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/9d67faf5de5906f682b3bb52fef7a3dc.jpg"
+												src="${cartItem.product_img}"
 												width="82" height="100" barder="0" /></a></td>
 										<td class="name tal"><a
-											href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087">리바이리
-												콤부차 배리옴 릴리프 마스크 1매</a></td>
+											href="상품디테일주소뿌려주기">${cartItem.product_name}</a></td>
 										<td>
-											<div></div> <span class="btn_edit"><a href="#"
-												onclick="cartChgOption(7264); return false;"
-												class="changeCartOption">변경</a></span>
+											<div></div> 
 										</td>
-										<td class="prc"><strong>0</strong>원</td>
+										<td class="prc"></td>
 										<td class="qty">
 											<div class="box_qty">
-												<input type="text" name="buy_ea[]" value="2" id="buy_ea7264"
+												<input type="text" name="buy_ea[]" value="${cartItem.cart_quantity}" id="buy_ea${status.count}"
 													class="form_input" isplaceholderinited="true" />
 												<div class="btn_ea">
 													<a href="#"
-														onclick="cartEaChg(this, 1, 7264); return false;"
-														class="ea_up"></a> <a href="#"
-														onclick="cartEaChg(this, -1, 7264); return false;"
+														onclick="cartEaChg(this, 1, ${status.count}); return false;"
+														class="ea_up"></a> 
+														
+														<a href="#"
+														onclick="cartEaChg(this, -1, ${status.count}); return false;"
 														class="ea_down"></a>
 												</div>
 											</div>
-											<p class="btn_edit">
-												<a href="javascript:updateCart(document.cartFrm);">변경</a>
-											</p>
+											
 										</td>
 										<td class="prc cart_prc">
-											<p class="before">
-												<strong>11,700</strong>원
+											<p id="item_p${status.count}">
+												<strong><fmt:formatNumber value="${cartItem.product_price * cartItem.cart_quantity}" pattern="#,###" type="number" /></strong>원
+												
 											</p>
-											<p class="after">
-												<strong>11,700</strong>원
+											<p id="item_p">
+												<strong></strong>
 											</p>
-										</td>
-										<td class="prc"><strong>580</strong>원</td>
+										</td>pr
+										<td class="prc"></td>
 										<td class="delete_wish"><span
 											class="box_btn w79 h29 gray fs13 light kor"><a
 												href="#"
 												onclick="deletePartCartAjax(7264, 0); return false;">삭제</a></span>
 										</td>
 									</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 
@@ -381,7 +319,7 @@
 									<tbody>
 										<tr>
 											<th scope="row">주문금액</th>
-											<td><span class="total_prd_prc">470,700</span>원</td>
+											<td><span class="total_prd_prc"></span>원</td>
 										</tr>
 										<tr>
 											<th scope="row">배송료</th>
@@ -389,17 +327,14 @@
 											</td>
 										</tr>
 
-										<tr>
-											<th scope="row">적립금</th>
-											<td><span class="total_total_milage">23,530</span>원</td>
-										</tr>
+					
 									</tbody>
 								</table>
 								<dl class="total">
 									<dt scope="row">총주문금액</dt>
 									<dd>
 										<strong><span id="total_order_price_cartlist"
-											class="price total_order_price_cartlist">470,700</span>원 </strong>
+											class="price total_order_price_cartlist"></span>원 </strong>
 									</dd>
 								</dl>
 							</div>
@@ -412,60 +347,53 @@
 						</form>
 					</div>
 
-					<!-- Enliple Tracker Start -->
+					
 					<script type="text/javascript">
-						var ENP_VAR = {
-							conversion : {
-								product : []
+			
+						
+						
+						$(document).ready(function(){
+						     total_price_calc();
+						  });
+						
+						function wonToInt(s) {
+							  return parseInt(s.substr(0, s.length - 1).replaceAll(',', ''));
 							}
-						};
+						
+						 function total_price_calc(){
+							 
+					          
+						    
+						     let final_price = 0; // 최종적으로 결제해야하는 가격 
+						     let deliveryfee = 0; // 배송비
+						     let og_price = 0;
+						      $(".checked").each(function(){
+						         
+						    	 let origin = wonToInt($("[id^='item_p']").text());
+						    	 
+						    	 final_price += parseInt(origin);	
+						    	 console.log(final_price);
+						    	
+						      });   
+						           
+						      /* 최종 가격 */
+						    
 
-						var mobCartQty = 0;
-						$('input[name="buy_ea[]"]').each(function() {
-							mobCartQty += Number($(this).val());
-						});
-
-						ENP_VAR.conversion.totalPrice = "470,700"; // 없는 경우 단일 상품의 정보를 이용해 계산
-						ENP_VAR.conversion.totalQty = mobCartQty; // 없는 경우 단일 상품의 정보를 이용해 계산
-
-						(function(a, g, e, n, t) {
-							a.enp = a.enp || function() {
-								(a.enp.q = a.enp.q || []).push(arguments);
-							};
-							n = g.createElement(e);
-							n.async = !0;
-							n.defer = !0;
-							n.src = "https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";
-							t = g.getElementsByTagName(e)[0];
-							t.parentNode.insertBefore(n, t);
-						})(window, document, "script");
-						enp("create", "conversion", "rexreskbio", {
-							device : "W",
-							paySys : "naverPay",
-						});
+						      // 총 가격
+						     
+						      $(".total_order_price_cartlist").text(final_price.toLocaleString());
+						      $(".total_prd_prc").text(final_price.toLocaleString());
+						      
+						      
+						      console.log(final_price);
+						     
+						  }
+						
+						
+						
+						
 					</script>
 
-					<!-- Enliple Insite breakAway Popup end -->
-					<!-- Enliple Tracker Start -->
-					<script type="text/javascript">
-						(function(a, g, e, n, t) {
-							a.enp = a.enp || function() {
-								(a.enp.q = a.enp.q || []).push(arguments);
-							};
-							n = g.createElement(e);
-							n.async = !0;
-							n.defer = !0;
-							n.src = "https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";
-							t = g.getElementsByTagName(e)[0];
-							t.parentNode.insertBefore(n, t);
-						})(window, document, "script");
-						enp("create", "common", "rexreskbio", {
-							device : "W"
-						});
-						enp("send", "common", "rexreskbio");
-					</script>
-					<!-- Enliple Tracker End -->
-					<!--mkt script '모비온' scr_bottom end-->
 				</div>
 			</div>
 			<!-- //중앙 -->
@@ -475,7 +403,7 @@
 			<!-- //하단 -->
 			
 		</div>
-		<!-- placeholder 스크립트 (삭	제하시면 ie 하위브라우저에서 구현되지 않습니다.) -->
+		<!-- placeholder 스크립트 (삭제하시면 ie 하위브라우저에서 구현되지 않습니다.) -->
 		<script
 			src="https://www.rexremall.com/_skin/skbioland_200731/img/../placeholder.js"></script>
 		<script type="text/javascript">

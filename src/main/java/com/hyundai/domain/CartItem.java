@@ -7,11 +7,11 @@ import lombok.Setter;
 @Setter
 public class CartItem {
 	
-	private Long product_id;
+	private Integer product_id;
 	private String product_name;
-	private Long product_price;
+	private Integer product_price;
+	private Integer cart_quantity;
 	private Integer cart_check;
-	private Long cart_quantity;
 	private String product_img;
 	
 	
@@ -20,17 +20,22 @@ public class CartItem {
 	}
 
 
-	public CartItem(Long product_id, String product_name, Long product_price, Integer cart_check, Long cart_quantity,
-			String product_img) {
-		
+	public CartItem(Integer product_id, String product_name, Integer product_price, Integer cart_quantity,
+			Integer cart_check, String product_img) {
+		super();
 		this.product_id = product_id;
 		this.product_name = product_name;
 		this.product_price = product_price;
-		this.cart_check = cart_check;
 		this.cart_quantity = cart_quantity;
+		this.cart_check = cart_check;
 		this.product_img = product_img;
 	}
 
+
+	
+
+
+	
 
 	
 

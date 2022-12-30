@@ -1,8 +1,8 @@
 
 package com.hyundai.controller.cart;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hyundai.domain.CartItem;
-import com.hyundai.mapper.CartMapper;
 import com.hyundai.service.CartService;
 
 import lombok.RequiredArgsConstructor;
@@ -55,12 +54,20 @@ public class CartController {
 		
 		System.out.println(memberId);
 		
-		List<CartItem> cartItems = cartService.findCart(memberId);
+		//List<CartItem> cartItems = cartService.findCart(memberId);
+		
+		
+		List<CartItem> cartItems = new ArrayList<CartItem>();
+		CartItem c = new CartItem(30, "»óÇ°¸í A Â¯ÀÌ»µÁü", 40000, 1, 1, "»óÇ°ÀÌ¹ÌÁö");
+		CartItem d = new CartItem(30, "»óÇ°¸í B Â¯¸ÚÁü", 50000, 1, 1, "»óÇ°ÀÌ¹ÌÁö");
+		cartItems.add(c);
+		cartItems.add(d);
 		
 		model.addAttribute("cartItems", cartItems);
+	
 		
 		
-		return "cart/cart";
+		return "cart/cart2";
 		
 		
 		
