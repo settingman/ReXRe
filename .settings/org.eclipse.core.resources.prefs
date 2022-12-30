@@ -1,3 +1,4 @@
 eclipse.preferences.version=1
-encoding//src/test/java/com/hyundai/service/ProductServiceTests.java=UTF-8
-encoding/<project>=UTF-8
+encoding//src/main/webapp/WEB-INF/views/cart/cart.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/include/footer.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/include/header.jsp=UTF-8
