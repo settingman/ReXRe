@@ -1,24 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="ROBOTS" content="INDEX,FOLLOW">
 <meta name="ROBOTS" content="ALL">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-<title>¸®¹ÙÀÌ¸® ºñ°Ç ½ºÅ²ÄÉ¾î »óÇ° ¼Ò°³</title>
+<title>ë¦¬ë°”ì´ë¦¬ ë¹„ê±´ ìŠ¤í‚¨ì¼€ì–´ ìƒí’ˆ ì†Œê°œ</title>
 <meta name="keywords"
-	content="¸®¹ÙÀÌ¸®, ¹ÙÀÌ¿À·£µå, Çö´ë¹éÈ­Á¡, ºñ°Ç, È­ÀåÇ°, ½ºÅ²ÄÉ¾î, ÄÞºÎÂ÷, ¾ÚÇÃ, Åä³Ê, ¹Ì½ºÆ®, ½ºÅ², Å©¸², Æû, Å¬·»Àú, ¸¶½ºÅ©, Çö´ë, ºäÆ¼, ºñ°ÇÅ©¸², ºñ°Ç¾ÚÇÃ, ºñ°ÇÅä³Ê, ºñ°ÇÄÉ¾î">
+	content="ë¦¬ë°”ì´ë¦¬, ë°”ì´ì˜¤ëžœë“œ, í˜„ëŒ€ë°±í™”ì , ë¹„ê±´, í™”ìž¥í’ˆ, ìŠ¤í‚¨ì¼€ì–´, ì½¤ë¶€ì°¨, ì•°í”Œ, í† ë„ˆ, ë¯¸ìŠ¤íŠ¸, ìŠ¤í‚¨, í¬ë¦¼, í¼, í´ë Œì €, ë§ˆìŠ¤í¬, í˜„ëŒ€, ë·°í‹°, ë¹„ê±´í¬ë¦¼, ë¹„ê±´ì•°í”Œ, ë¹„ê±´í† ë„ˆ, ë¹„ê±´ì¼€ì–´">
 <meta name="description"
-	content="Çö´ë¹éÈ­Á¡±×·ìÀÇ Ãµ¿¬¿ø·á Àü¹®±â¾÷ÀÎ Çö´ë¹ÙÀÌ¿À·£µå¿¡¼­ ¸¸µç ºñ°Ç ºäÆ¼ ºê·£µå. 
-ºñ°Ç ÀÎÁõ ÄÞºÎÂ÷Åä³Ê, ¼öºÐ¾ÚÇÃ, Àåº®Å©¸², ¾à»ê¼ºÆû, ÁøÁ¤¸¶½ºÅ© Ãâ½Ã">
-<meta property="og:site_name" content="Å¬¸° &amp; ºñ°Ç ºäÆ¼ ºê·£µå ¸®¹ÙÀÌ¸® ">
+	content="í˜„ëŒ€ë°±í™”ì ê·¸ë£¹ì˜ ì²œì—°ì›ë£Œ ì „ë¬¸ê¸°ì—…ì¸ í˜„ëŒ€ë°”ì´ì˜¤ëžœë“œì—ì„œ ë§Œë“  ë¹„ê±´ ë·°í‹° ë¸Œëžœë“œ. 
+ë¹„ê±´ ì¸ì¦ ì½¤ë¶€ì°¨í† ë„ˆ, ìˆ˜ë¶„ì•°í”Œ, ìž¥ë²½í¬ë¦¼, ì•½ì‚°ì„±í¼, ì§„ì •ë§ˆìŠ¤í¬ ì¶œì‹œ">
+<meta property="og:site_name" content="í´ë¦° &amp; ë¹„ê±´ ë·°í‹° ë¸Œëžœë“œ ë¦¬ë°”ì´ë¦¬ ">
 <meta property="og:url"
 	content="https://www.rexremall.com/shop/big_section.php?cno1=1009">
-<meta property="og:title" content="¸®¹ÙÀÌ¸®(ReXRe), Å¬¸° &amp; ºñ°Ç ºäÆ¼ ºê·£µå">
+<meta property="og:title" content="ë¦¬ë°”ì´ë¦¬(ReXRe), í´ë¦° &amp; ë¹„ê±´ ë·°í‹° ë¸Œëžœë“œ">
 <meta property="og:description"
-	content="Çö´ë¹éÈ­Á¡±×·ìÀÇ Ãµ¿¬¿ø·á Àü¹®±â¾÷ÀÎ Çö´ë¹ÙÀÌ¿À·£µå¿¡¼­ ¸¸µç ºñ°Ç ºäÆ¼ ºê·£µå. 
-ºñ°Ç ÀÎÁõ ÄÞºÎÂ÷Åä³Ê, ¼öºÐ¾ÚÇÃ, Àåº®Å©¸², ¾à»ê¼ºÆû, ÁøÁ¤¸¶½ºÅ© Ãâ½Ã">
+	content="í˜„ëŒ€ë°±í™”ì ê·¸ë£¹ì˜ ì²œì—°ì›ë£Œ ì „ë¬¸ê¸°ì—…ì¸ í˜„ëŒ€ë°”ì´ì˜¤ëžœë“œì—ì„œ ë§Œë“  ë¹„ê±´ ë·°í‹° ë¸Œëžœë“œ. 
+ë¹„ê±´ ì¸ì¦ ì½¤ë¶€ì°¨í† ë„ˆ, ìˆ˜ë¶„ì•°í”Œ, ìž¥ë²½í¬ë¦¼, ì•½ì‚°ì„±í¼, ì§„ì •ë§ˆìŠ¤í¬ ì¶œì‹œ">
 <meta property="og:image" content="">
 <link rel="shortcut icon" type="image/x-icon"
 	href="https://www.rexremall.com/favicon.ico">
@@ -45,11 +45,11 @@
 	var engine_url = 'https://www.rexremall.com/wm_engine_SW';
 	var this_url = 'https://www.rexremall.com/shop/big_section.php?cno1=1009';
 	var ssl_url = 'https://www.rexremall.com/main/exec.php';
-	var soldout_name = 'Ç°Àý';
+	var soldout_name = 'í’ˆì ˆ';
 	var ace_counter_gcode = '';
 	var uip = "112.221.225.164";
-	var currency = "¿ø";
-	var currency_type = "¿ø";
+	var currency = "ì›";
+	var currency_type = "ì›";
 	var currency_decimal = '0';
 	var r_currency_type = "";
 	var r_currency_decimal = '0';
@@ -102,7 +102,7 @@
 
 	/* Timer */
 	const use_ts_mark_1 = 'Y';
-	const ts_mark_1 = 'ÀÏ';
+	const ts_mark_1 = 'ì¼';
 	const use_ts_mark_2 = 'Y';
 	const ts_mark_2 = ' :';
 	const use_ts_mark_3 = 'Y';
@@ -152,11 +152,11 @@
 </noscript>
 <!-- DO NOT MODIFY -->
 <!-- End Facebook Pixel Code -->
-<meta property="¡±og:type¡±" content="¡±website¡±">
-<meta property="¡±og:title¡±" content="¡±ReXRe" mall¡±="">
-<meta property="¡±og:description¡±" content="¡±¸®¹ÙÀÌ¸®¸ô¿¡" ¿À½Å="" °ÍÀ»=""
-	È¯¿µÇÕ´Ï´Ù¡±="">
-<meta property="¡±og:url¡±content=https://rexremall.com">
+<meta property="â€og:typeâ€" content="â€websiteâ€">
+<meta property="â€og:titleâ€" content="â€ReXRe" mallâ€="">
+<meta property="â€og:descriptionâ€" content="â€ë¦¬ë°”ì´ë¦¬ëª°ì—" ì˜¤ì‹ ="" ê²ƒì„=""
+	í™˜ì˜í•©ë‹ˆë‹¤â€="">
+<meta property="â€og:urlâ€content=https://rexremall.com">
 <link rel="canonical" href="https://rexremall.com/">
 <meta name="naver-site-verification"
 	content="c1f6aa068fade511a5995d60dd3d32f8edf57215">
@@ -172,8 +172,8 @@
 	content="6xutrdio1qvgknsc8axf1z4gh8dx3f">
 <meta name="facebook-domain-verification"
 	content="mm7dc8pm3ja2f0lpa37zzwmyhc4jfd">
-<meta property="¡±og:image¡±"
-	content="¡°https://skbiolandmall.wisacdn.com/_data/banner/seo/aca9ec01c76b8eca3c6456d4c046bd53.JPG"¡°="">
+<meta property="â€og:imageâ€"
+	content="â€œhttps://skbiolandmall.wisacdn.com/_data/banner/seo/aca9ec01c76b8eca3c6456d4c046bd53.JPG"â€œ="">
 <script type="text/javascript" charset="UTF-8"
 	src="//t1.daumcdn.net/adfit/static/kp.js"></script>
 <script type="text/javascript">
@@ -214,23 +214,18 @@
 
 
 </head>
-<body>
 
+<body>
 	<div id="wrapper">
 		<div id="sub_hd" class="">
 			<div class="header">
 				<div class="gnb">
-					<!--
-		<ul class="tab_brand">
-			<li class="rexre"><a href="/">ReXRe</a></li>
-			<li class="az"><a href="/content/content.php?cont=hyaluronaz">HyaluronAZ</a></li>
-		</ul>
-		-->
+
 					<div class="inner">
 						<h1>
 							<a href="/"><img
 								src="https://www.rexremall.com/_skin/skbioland_200731/img/logo/logo_rexre.png"
-								alt="Å¬¸° &amp; ºñ°Ç ºäÆ¼ ºê·£µå ¸®¹ÙÀÌ¸® "></a>
+								alt="í´ë¦° &amp; ë¹„ê±´ ë·°í‹° ë¸Œëžœë“œ ë¦¬ë°”ì´ë¦¬ "></a>
 						</h1>
 						<div class="lnb">
 							<span class="all" onclick="toggle_view('all_cate', this);">all</span>
@@ -242,95 +237,58 @@
 
 										<ul class="mid_depth">
 											<li><a
-												href="https://www.rexremall.com/shop/big_section.php?cno1=1020">¸¶½ºÅ©ÆÑ</a></li>
+												href="https://www.rexremall.com/shop/big_section.php?cno1=1020">ë§ˆìŠ¤í¬íŒ©</a></li>
 											<li><a
-												href="https://www.rexremall.com/shop/big_section.php?cno1=1021">½ºÅ²ÄÉ¾î</a></li>
+												href="https://www.rexremall.com/shop/big_section.php?cno1=1021">ìŠ¤í‚¨ì¼€ì–´</a></li>
 										</ul>
-										<!--
-							<ul class="mid_depth">
-								<li onmouseover="sub_over('type', this);" onmouseout="sub_out('type', this);"><a href="/shop/big_section.php?cno1=1012">À¯Çüº°</a></li>
-								<li onmouseover="sub_over('synergy', this);" onmouseout="sub_out('synergy', this);"><a href="/shop/big_section.php?cno1=1052">½ºÆä¼È ¼¼Æ®</a></li>
-								<li onmouseover="sub_over('skin', this);" onmouseout="sub_out('skin', this);"><a href="/shop/big_section.php?cno1=1013">ÇÇºÎ°í¹Îº°</a></li>
-								<li onmouseover="sub_over('ingredient', this);" onmouseout="sub_out('ingredient', this);"><a href="/shop/big_section.php?cno1=1018">¼ººÐº°</a></li>
-								<li onmouseover="sub_over('gift', this);" onmouseout="sub_out('gift', this);"><a href="/shop/big_section.php?cno1=1019">SPECIAL GIFT</a></li>
-							</ul>
-							<div class="small_depth">
-								<div class="type" onmouseover="sub_over('type', this);" onmouseout="sub_out('type', this);">
-									
-<ul class="mid_depth"><li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1020">¸¶½ºÅ©ÆÑ</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1021">½ºÅ²ÄÉ¾î</a></li>
-</ul>
-								</div>
-								<div class="skin" onmouseover="sub_over('skin', this);" onmouseout="sub_out('skin', this);">
-									
-<ul><li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1026">°Ç¼º</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1027">Áö¼º</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1028">È­ÀÌÆ®´×</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1029">¹Î°¨ÁøÁ¤</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1030">ÁÖ¸§°³¼±</a></li>
-</ul>
-								</div>
-								<div class="ingredient" onmouseover="sub_over('ingredient', this);" onmouseout="sub_out('ingredient', this);">
-									
-								</div>
-								<div class="gift" onmouseover="sub_over('gift', this);" onmouseout="sub_out('gift', this);">
-									
-								</div>
-								<div class="synergy" onmouseover="sub_over('synergy', this);" onmouseout="sub_out('gift', this);">
-									
-<ul><li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1053">½Ã³ÊÁöÄÉ¾î</a></li>
-</ul>
-								</div>
-							</div>
-							-->
+
 									</div></li>
 								<li class="viewsub event"><a
 									href="/board/?db=gallery_1&amp;cate=17">EVENT</a>
 									<ul class="list">
-										<li><a href="/board/?db=gallery_1&amp;cate=17">ÁøÇàÁßÀÎ
-												ÀÌº¥Æ®</a></li>
-										<li><a href="/board/?db=gallery_1&amp;cate=18">Á¾·áµÈ
-												ÀÌº¥Æ®</a></li>
-										<li><a href="/board/?db=basic_3">´çÃ·ÀÚ¹ßÇ¥</a></li>
+										<li><a href="/board/?db=gallery_1&amp;cate=17">ì§„í–‰ì¤‘ì¸
+												ì´ë²¤íŠ¸</a></li>
+										<li><a href="/board/?db=gallery_1&amp;cate=18">ì¢…ë£Œëœ
+												ì´ë²¤íŠ¸</a></li>
+										<li><a href="/board/?db=basic_3">ë‹¹ì²¨ìžë°œí‘œ</a></li>
 									</ul></li>
 								<li class="viewsub community"><a href="/board/?db=basic_4">COMMUNITY</a>
 									<ul class="list">
-										<li><a href="/board/?db=basic_4">°øÁö»çÇ×</a></li>
-										<li><a href="/board/?db=gallery_2">¹Ìµð¾î</a></li>
-										<!--<li><a href="/content/content.php?cont=benefit">È¸¿øÇýÅÃ</a></li>-->
-										<li><a href="/board/?db=basic_2">¼îÇÎFAQ</a></li>
-										<li><a href="/mypage/counsel_list.php">1:1¹®ÀÇ</a></li>
+										<li><a href="/board/?db=basic_4">ê³µì§€ì‚¬í•­</a></li>
+										<li><a href="/board/?db=gallery_2">ë¯¸ë””ì–´</a></li>
+										<!--<li><a href="/content/content.php?cont=benefit">íšŒì›í˜œíƒ</a></li>-->
+										<li><a href="/board/?db=basic_2">ì‡¼í•‘FAQ</a></li>
+										<li><a href="/mypage/counsel_list.php">1:1ë¬¸ì˜</a></li>
 									</ul></li>
 								<li class="viewsub brand"><a
 									href="/content/content.php?cont=brand_n">BRAND</a>
 									<ul class="list">
-										<li><a href="/content/content.php?cont=brand_n">ºê·£µå
-												½ºÅä¸®</a></li>
+										<li><a href="/content/content.php?cont=brand_n">ë¸Œëžœë“œ
+												ìŠ¤í† ë¦¬</a></li>
 										<li><a href="/content/content.php?cont=bi">BI</a></li>
 									</ul></li>
 							</ul>
-							<!--<span class="reborn"><a href="/content/content.php?cont=diagnosis">ÇÇºÎ Áø´ÜÇÏ±â <span class="pulse animated infinite">³» ÇÇºÎ ¸ÂÃãÁø´ÜÀÌ ¹«·á!</span></a></span>-->
 
 						</div>
 						<ul class="menu">
-							<!-- gnb ·Î±×ÀÎ ¸Þ´ººÎºÐ¿¡ »ç¿ëµË´Ï´Ù. »èÁ¦½Ã ¹®Á¦°¡ ¹ß»ýÇÒ ¼ö ÀÖ½À´Ï´Ù. -->
+							<!-- gnb ë¡œê·¸ì¸ ë©”ë‰´ë¶€ë¶„ì— ì‚¬ìš©ë©ë‹ˆë‹¤. ì‚­ì œì‹œ ë¬¸ì œê°€ ë°œìƒí•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. -->
 							<li class="txt"><a href="/member/login.php">LOGIN</a></li>
 							<li class="txt"><a href="/member/join_step1.php">JOIN</a></li>
-							<!-- //gnb ·Î±×ÀÎ ¸Þ´ººÎºÐ¿¡ »ç¿ëµË´Ï´Ù. »èÁ¦½Ã ¹®Á¦°¡ ¹ß»ýÇÒ ¼ö ÀÖ½À´Ï´Ù. -->
+							<!-- //gnb ë¡œê·¸ì¸ ë©”ë‰´ë¶€ë¶„ì— ì‚¬ìš©ë©ë‹ˆë‹¤. ì‚­ì œì‹œ ë¬¸ì œê°€ ë°œìƒí•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. -->
 							<li class="viewsub"><a href="/mypage/mypage.php">MYPAGE</a>
 								<ul class="list">
-									<li><a href="/mypage/order_list.php">ÁÖ¹®/¹è¼ÛÁ¶È¸</a></li>
-									<li><a href="/mypage/coupon_down_list.php">ÄíÆùÇöÈ²</a></li>
-									<li><a href="/mypage/wish_list.php">À§½Ã¸®½ºÆ®</a></li>
-									<li><a href="/member/edit_step1.php">Á¤º¸¼öÁ¤</a></li>
-									<li><a href="/shop/product_review_list.php">»óÇ°ÈÄ±â</a></li>
-									<li><a href="/mypage/counsel_list.php">1:1¹®ÀÇ</a></li>
-									<li><a href="/board/?db=basic_2">¼îÇÎ FAQ</a></li>
+									<li><a href="/mypage/order_list.php">ì£¼ë¬¸/ë°°ì†¡ì¡°íšŒ</a></li>
+									<li><a href="/mypage/coupon_down_list.php">ì¿ í°í˜„í™©</a></li>
+									<li><a href="/mypage/wish_list.php">ìœ„ì‹œë¦¬ìŠ¤íŠ¸</a></li>
+									<li><a href="/member/edit_step1.php">ì •ë³´ìˆ˜ì •</a></li>
+									<li><a href="/shop/product_review_list.php">ìƒí’ˆí›„ê¸°</a></li>
+									<li><a href="/mypage/counsel_list.php">1:1ë¬¸ì˜</a></li>
+									<li><a href="/board/?db=basic_2">ì‡¼í•‘ FAQ</a></li>
 								</ul></li>
-							<li><a href="/shop/cart.php" class="cart">Àå¹Ù±¸´Ï <span
-									class="balloon">Àå¹Ù±¸´Ï</span></a></li>
+							<li><a href="/shop/cart.php" class="cart">ìž¥ë°”êµ¬ë‹ˆ <span
+									class="balloon">ìž¥ë°”êµ¬ë‹ˆ</span></a></li>
 							<li><a href="#" onclick="toggle_view('box_search',this)"
-								class="search">°Ë»ö <span class="balloon">ÅëÇÕ°Ë»ö</span></a></li>
+								class="search">ê²€ìƒ‰ <span class="balloon">í†µí•©ê²€ìƒ‰</span></a></li>
 						</ul>
 					</div>
 					<div id="all_cate" class="all_cate">
@@ -343,41 +301,11 @@
 
 									<ul class="mid_depth">
 										<li><a
-											href="https://www.rexremall.com/shop/big_section.php?cno1=1020">¸¶½ºÅ©ÆÑ</a></li>
+											href="https://www.rexremall.com/shop/big_section.php?cno1=1020">ë§ˆìŠ¤í¬íŒ©</a></li>
 										<li><a
-											href="https://www.rexremall.com/shop/big_section.php?cno1=1021">½ºÅ²ÄÉ¾î</a></li>
+											href="https://www.rexremall.com/shop/big_section.php?cno1=1021">ìŠ¤í‚¨ì¼€ì–´</a></li>
 									</ul>
-									<!--
-						<ul class="mid_depth">
-							<li onmouseover="sub_over('all_type', this);" onmouseout="sub_out('all_type', this);"><a href="/shop/big_section.php?cno1=1012">À¯Çüº°</a></li>
-							<li onmouseover="sub_over('all_skin', this);" onmouseout="sub_out('all_skin', this);"><a href="/shop/big_section.php?cno1=1013">ÇÇºÎ°í¹Îº°</a></li>
-							<li onmouseover="sub_over('all_ingredient', this);" onmouseout="sub_out('all_ingredient', this);"><a href="/shop/big_section.php?cno1=1018">¼ººÐº°</a></li>
-							<li onmouseover="sub_over('all_gift', this);" onmouseout="sub_out('all_gift', this);"><a href="/shop/big_section.php?cno1=91012">SPECIAL GIFT</a></li>
-						</ul>
-						<div class="small_depth">
-							<div class="all_type" onmouseover="sub_over('all_type', this);" onmouseout="sub_out('all_type', this);">
-								
-<ul class="mid_depth"><li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1020">¸¶½ºÅ©ÆÑ</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1021">½ºÅ²ÄÉ¾î</a></li>
-</ul>
-							</div>
-							<div class="all_skin" onmouseover="sub_over('all_skin', this);" onmouseout="sub_out('all_skin', this);">
-								
-<ul><li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1026">°Ç¼º</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1027">Áö¼º</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1028">È­ÀÌÆ®´×</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1029">¹Î°¨ÁøÁ¤</a></li>
-	<li><a href="https://www.rexremall.com/shop/big_section.php?cno1=1030">ÁÖ¸§°³¼±</a></li>
-</ul>
-							</div>
-							<div class="all_ingredient" onmouseover="sub_over('all_ingredient', this);" onmouseout="sub_out('all_ingredient', this);">
-								
-							</div>
-							<div class="all_gift" onmouseover="sub_over('all_gift', this);" onmouseout="sub_out('all_gift', this);">
-								
-							</div>
-						</div>
-						-->
+
 								</dd>
 							</dl>
 							<dl class="event">
@@ -385,13 +313,13 @@
 									<a href="/board/?db=gallery_1&amp;cate=17">EVENT</a>
 								</dt>
 								<dd>
-									<a href="/board/?db=gallery_1&amp;cate=17">ÁøÇàÁßÀÎ ÀÌº¥Æ®</a>
+									<a href="/board/?db=gallery_1&amp;cate=17">ì§„í–‰ì¤‘ì¸ ì´ë²¤íŠ¸</a>
 								</dd>
 								<dd>
-									<a href="/board/?db=gallery_1&amp;cate=18">Á¾·áµÈ ÀÌº¥Æ®</a>
+									<a href="/board/?db=gallery_1&amp;cate=18">ì¢…ë£Œëœ ì´ë²¤íŠ¸</a>
 								</dd>
 								<dd>
-									<a href="/board/?db=basic_3">´çÃ·ÀÚ¹ßÇ¥</a>
+									<a href="/board/?db=basic_3">ë‹¹ì²¨ìžë°œí‘œ</a>
 								</dd>
 							</dl>
 							<dl class="community">
@@ -399,17 +327,17 @@
 									<a href="/board/?db=basic_1">COMMUNITY</a>
 								</dt>
 								<dd>
-									<a href="/board/?db=basic_4">°øÁö»çÇ×</a>
+									<a href="/board/?db=basic_4">ê³µì§€ì‚¬í•­</a>
 								</dd>
 								<dd>
-									<a href="/board/?db=gallery_2">¹Ìµð¾î</a>
+									<a href="/board/?db=gallery_2">ë¯¸ë””ì–´</a>
 								</dd>
-								<!--<dd><a href="/content/content.php?cont=benefit">È¸¿øÇýÅÃ</a></dd>-->
+
 								<dd>
-									<a href="/board/?db=basic_2">¼îÇÎFAQ</a>
+									<a href="/board/?db=basic_2">ì‡¼í•‘FAQ</a>
 								</dd>
 								<dd>
-									<a href="/mypage/counsel_list.php">1:1¹®ÀÇ</a>
+									<a href="/mypage/counsel_list.php">1:1ë¬¸ì˜</a>
 								</dd>
 							</dl>
 							<dl class="brand">
@@ -417,7 +345,7 @@
 									<a href="/content/content.php?cont=brand_n">BRAND</a>
 								</dt>
 								<dd>
-									<a href="/content/content.php?cont=brand_n">ºê·£µå ½ºÅä¸®</a>
+									<a href="/content/content.php?cont=brand_n">ë¸Œëžœë“œ ìŠ¤í† ë¦¬</a>
 								</dd>
 								<dd>
 									<a href="/content/content.php?cont=bi">BI</a>
@@ -432,24 +360,24 @@
 							action="https://www.rexremall.com/shop/search_result.php">
 							<div class="box">
 								<input type="text" name="search_str" value=""
-									class="form_input block basic_search" placeholder="°Ë»ö¾î ÀÔ·Â">
+									class="form_input block basic_search" placeholder="ê²€ìƒ‰ì–´ ìž…ë ¥">
 								<input type="image"
 									src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search.png"
-									alt="°Ë»ö" class="btn">
+									alt="ê²€ìƒ‰" class="btn">
 							</div>
 						</form>
 						<div class="hot_keyword">
-							<h5>ÀÎ±â°Ë»ö¾î</h5>
+							<h5>ì¸ê¸°ê²€ìƒ‰ì–´</h5>
 							<ul class="list">
-								<li><a href="/shop/search_result.php?search_str=ÄÞºÎÂ÷">#ÄÞºÎÂ÷</a></li>
-								<li><a href="/shop/search_result.php?search_str=ÄÞºÎÂ÷">#ºñ°Ç</a></li>
-								<li><a href="/shop/search_result.php?search_str=ÄÞºÎÂ÷">#Ä£È¯°æ</a></li>
-								<li><a href="/shop/search_result.php?search_str=ÀÎÅÙ½Ãºê">#
-										Àåº®Å©¸²</a></li>
-								<li><a href="/shop/search_result.php?search_str=È÷¾Ë·ç·Ð">#ÁÖ¸§°³¼±</a></li>
-								<li><a href="/shop/search_result.php?search_str=Å©¸²">#º¸½À</a></li>
-								<li><a href="/shop/search_result.php?search_str=È÷¾Ë·ç·Ð">#È÷¾Ë·ç·Ð</a></li>
-								<li><a href="/shop/search_result.php?search_str=¾ÚÇÃ">#¾ÚÇÃ</a></li>
+								<li><a href="/shop/search_result.php?search_str=ì½¤ë¶€ì°¨">#ì½¤ë¶€ì°¨</a></li>
+								<li><a href="/shop/search_result.php?search_str=ì½¤ë¶€ì°¨">#ë¹„ê±´</a></li>
+								<li><a href="/shop/search_result.php?search_str=ì½¤ë¶€ì°¨">#ì¹œí™˜ê²½</a></li>
+								<li><a href="/shop/search_result.php?search_str=ì¸í…ì‹œë¸Œ">#
+										ìž¥ë²½í¬ë¦¼</a></li>
+								<li><a href="/shop/search_result.php?search_str=ížˆì•Œë£¨ë¡ ">#ì£¼ë¦„ê°œì„ </a></li>
+								<li><a href="/shop/search_result.php?search_str=í¬ë¦¼">#ë³´ìŠµ</a></li>
+								<li><a href="/shop/search_result.php?search_str=ížˆì•Œë£¨ë¡ ">#ížˆì•Œë£¨ë¡ </a></li>
+								<li><a href="/shop/search_result.php?search_str=ì•°í”Œ">#ì•°í”Œ</a></li>
 							</ul>
 						</div>
 					</div>
@@ -467,7 +395,7 @@
 						<h1>
 							<a href="/content/content.php?cont=hyaluronaz"><img
 								src="https://www.rexremall.com/_skin/skbioland_200731/img/logo/logo_hyaluronaz.png"
-								alt="Å¬¸° &amp; ºñ°Ç ºäÆ¼ ºê·£µå ¸®¹ÙÀÌ¸® "></a>
+								alt="í´ë¦° &amp; ë¹„ê±´ ë·°í‹° ë¸Œëžœë“œ ë¦¬ë°”ì´ë¦¬ "></a>
 						</h1>
 						<div class="lnb">
 							<ul id="az_menu" class="category">
@@ -478,42 +406,42 @@
 								<li class="viewsub event"><a
 									href="/board/?db=gallery_1&amp;cate=17">EVENT</a>
 									<ul class="list">
-										<li><a href="/board/?db=gallery_1&amp;cate=17">ÁøÇàÁßÀÎ
-												ÀÌº¥Æ®</a></li>
-										<li><a href="/board/?db=gallery_1&amp;cate=18">Á¾·áµÈ
-												ÀÌº¥Æ®</a></li>
-										<li><a href="/board/?db=basic_3">´çÃ·ÀÚ¹ßÇ¥</a></li>
+										<li><a href="/board/?db=gallery_1&amp;cate=17">ì§„í–‰ì¤‘ì¸
+												ì´ë²¤íŠ¸</a></li>
+										<li><a href="/board/?db=gallery_1&amp;cate=18">ì¢…ë£Œëœ
+												ì´ë²¤íŠ¸</a></li>
+										<li><a href="/board/?db=basic_3">ë‹¹ì²¨ìžë°œí‘œ</a></li>
 									</ul></li>
 								<li class="viewsub community"><a href="/board/?db=basic_4">COMMUNITY</a>
 									<ul class="list">
-										<li><a href="/board/?db=basic_4">°øÁö»çÇ×</a></li>
-										<li><a href="/board/?db=gallery_2">¹Ìµð¾î</a></li>
-										<!--<li><a href="/content/content.php?cont=benefit">È¸¿øÇýÅÃ</a></li>-->
-										<li><a href="/board/?db=basic_2">¼îÇÎFAQ</a></li>
-										<li><a href="/mypage/counsel_list.php">1:1¹®ÀÇ</a></li>
+										<li><a href="/board/?db=basic_4">ê³µì§€ì‚¬í•­</a></li>
+										<li><a href="/board/?db=gallery_2">ë¯¸ë””ì–´</a></li>
+										<!--<li><a href="/content/content.php?cont=benefit">íšŒì›í˜œíƒ</a></li>-->
+										<li><a href="/board/?db=basic_2">ì‡¼í•‘FAQ</a></li>
+										<li><a href="/mypage/counsel_list.php">1:1ë¬¸ì˜</a></li>
 									</ul></li>
 							</ul>
 						</div>
 						<ul class="menu">
-							<!-- gnb ·Î±×ÀÎ ¸Þ´ººÎºÐ¿¡ »ç¿ëµË´Ï´Ù. »èÁ¦½Ã ¹®Á¦°¡ ¹ß»ýÇÒ ¼ö ÀÖ½À´Ï´Ù. -->
+							<!-- gnb ë¡œê·¸ì¸ ë©”ë‰´ë¶€ë¶„ì— ì‚¬ìš©ë©ë‹ˆë‹¤. ì‚­ì œì‹œ ë¬¸ì œê°€ ë°œìƒí•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. -->
 							<li class="txt"><a href="/member/login.php">LOGIN</a></li>
 							<li class="txt"><a href="/member/join_step1.php">JOIN</a></li>
-							<!-- //gnb ·Î±×ÀÎ ¸Þ´ººÎºÐ¿¡ »ç¿ëµË´Ï´Ù. »èÁ¦½Ã ¹®Á¦°¡ ¹ß»ýÇÒ ¼ö ÀÖ½À´Ï´Ù. -->
+							<!-- //gnb ë¡œê·¸ì¸ ë©”ë‰´ë¶€ë¶„ì— ì‚¬ìš©ë©ë‹ˆë‹¤. ì‚­ì œì‹œ ë¬¸ì œê°€ ë°œìƒí•  ìˆ˜ ìžˆìŠµë‹ˆë‹¤. -->
 							<li class="viewsub"><a href="/mypage/mypage.php">MYPAGE</a>
 								<ul class="list">
-									<li><a href="/mypage/order_list.php">ÁÖ¹®/¹è¼ÛÁ¶È¸</a></li>
-									<li><a href="/mypage/coupon_down_list.php">ÄíÆùÇöÈ²</a></li>
-									<li><a href="/mypage/wish_list.php">À§½Ã¸®½ºÆ®</a></li>
-									<li><a href="/member/edit_step1.php">Á¤º¸¼öÁ¤</a></li>
-									<li><a href="/shop/product_review_list.php">»óÇ°ÈÄ±â</a></li>
-									<li><a href="/mypage/counsel_list.php">1:1¹®ÀÇ</a></li>
-									<li><a href="/board/?db=basic_2">¼îÇÎ FAQ</a></li>
+									<li><a href="/mypage/order_list.php">ì£¼ë¬¸/ë°°ì†¡ì¡°íšŒ</a></li>
+									<li><a href="/mypage/coupon_down_list.php">ì¿ í°í˜„í™©</a></li>
+									<li><a href="/mypage/wish_list.php">ìœ„ì‹œë¦¬ìŠ¤íŠ¸</a></li>
+									<li><a href="/member/edit_step1.php">ì •ë³´ìˆ˜ì •</a></li>
+									<li><a href="/shop/product_review_list.php">ìƒí’ˆí›„ê¸°</a></li>
+									<li><a href="/mypage/counsel_list.php">1:1ë¬¸ì˜</a></li>
+									<li><a href="/board/?db=basic_2">ì‡¼í•‘ FAQ</a></li>
 								</ul></li>
-							<li><a href="/shop/cart.php" class="cart">Àå¹Ù±¸´Ï<span
+							<li><a href="/shop/cart.php" class="cart">ìž¥ë°”êµ¬ë‹ˆ<span
 									class="ea_cart front_cart_rows quick_cart_cnt">0</span><span
-									class="balloon">Àå¹Ù±¸´Ï</span></a></li>
+									class="balloon">ìž¥ë°”êµ¬ë‹ˆ</span></a></li>
 							<li><a href="#" onclick="toggle_view('box_search2',this)"
-								class="search">°Ë»ö <span class="balloon">ÅëÇÕ°Ë»ö</span></a></li>
+								class="search">ê²€ìƒ‰ <span class="balloon">í†µí•©ê²€ìƒ‰</span></a></li>
 						</ul>
 					</div>
 					<div id="box_search2" class="box_search">
@@ -522,36 +450,34 @@
 							action="https://www.rexremall.com/shop/search_result.php">
 							<div class="box">
 								<input type="text" name="search_str" value=""
-									class="form_input block basic_search" placeholder="°Ë»ö¾î ÀÔ·Â">
+									class="form_input block basic_search" placeholder="ê²€ìƒ‰ì–´ ìž…ë ¥">
 								<input type="image"
 									src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search2.png"
-									alt="°Ë»ö" class="btn">
+									alt="ê²€ìƒ‰" class="btn">
 							</div>
 						</form>
 						<div class="hot_keyword">
-							<h5>ÀÎ±â°Ë»ö¾î</h5>
+							<h5>ì¸ê¸°ê²€ìƒ‰ì–´</h5>
 							<ul class="list">
-								<li><a href="/shop/search_result.php?search_str=¸¶½ºÅ©ÆÑ">#
-										¸¶½ºÅ©ÆÑ</a></li>
-								<li><a href="/shop/search_result.php?search_str=¹ÙÀÌ¿ÀÆÄ¹Ö">#
-										¹ÙÀÌ¿ÀÆÄ¹Ö</a></li>
-								<li><a href="/shop/search_result.php?search_str=È÷¾Ë·ç·Ð">#
-										È÷¾Ë·ç·Ð</a></li>
-								<li><a href="/shop/search_result.php?search_str=¾ÚÇÃ">#
-										¾ÚÇÃ</a></li>
-								<li><a href="/shop/search_result.php?search_str=¹Ì³×¶ö¾ÚÇÃ">#
-										¹Ì³×¶ö¾ÚÇÃ</a></li>
-								<li><a href="/shop/search_result.php?search_str=ÁÖ¸§°³¼±">#
-										ÁÖ¸§°³¼±</a></li>
-								<li><a href="/shop/search_result.php?search_str=¼¼¶ó¸¶ÀÌµå">#
-										¼¼¶ó¸¶ÀÌµå</a></li>
-								<li><a href="/shop/search_result.php?search_str=ÆéÅ¸ÀÌµå">#
-										ÆéÅ¸ÀÌµå</a></li>
+								<li><a href="/shop/search_result.php?search_str=ë§ˆìŠ¤í¬íŒ©">#
+										ë§ˆìŠ¤í¬íŒ©</a></li>
+								<li><a href="/shop/search_result.php?search_str=ë°”ì´ì˜¤íŒŒë°">#
+										ë°”ì´ì˜¤íŒŒë°</a></li>
+								<li><a href="/shop/search_result.php?search_str=ížˆì•Œë£¨ë¡ ">#
+										ížˆì•Œë£¨ë¡ </a></li>
+								<li><a href="/shop/search_result.php?search_str=ì•°í”Œ">#
+										ì•°í”Œ</a></li>
+								<li><a href="/shop/search_result.php?search_str=ë¯¸ë„¤ëž„ì•°í”Œ">#
+										ë¯¸ë„¤ëž„ì•°í”Œ</a></li>
+								<li><a href="/shop/search_result.php?search_str=ì£¼ë¦„ê°œì„ ">#
+										ì£¼ë¦„ê°œì„ </a></li>
+								<li><a href="/shop/search_result.php?search_str=ì„¸ë¼ë§ˆì´ë“œ">#
+										ì„¸ë¼ë§ˆì´ë“œ</a></li>
+								<li><a href="/shop/search_result.php?search_str=íŽ©íƒ€ì´ë“œ">#
+										íŽ©íƒ€ì´ë“œ</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-</body>
-</html>
