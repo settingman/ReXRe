@@ -31,18 +31,6 @@ public class CartController {
 	private final CartService cartService;
 	
 	
-	@GetMapping("/find")
-	public void findbno() {
-		
-		System.out.println("안대");
-		
-		log.info("cartcontroller");
-		
-		
-		List<Integer> a = cartService.find();
-		System.out.println(a.get(0));
-		
-	}
 	
 	
 	// 김영한 회원가입 페이지, 아이템 상세정보 Controller 확인
@@ -54,25 +42,47 @@ public class CartController {
 		
 		System.out.println(memberId);
 		
-		//List<CartItem> cartItems = cartService.findCart(memberId);
-		
-		
-		List<CartItem> cartItems = new ArrayList<CartItem>();
-		CartItem c = new CartItem(30, "상품명 A 짱이뻐짐", 40000, 1, 1, "상품이미지");
-		CartItem d = new CartItem(30, "상품명 B 짱멋짐", 50000, 1, 1, "상품이미지");
-		cartItems.add(c);
-		cartItems.add(d);
+		List<CartItem> cartItems = cartService.findCart(255);
 		
 		model.addAttribute("cartItems", cartItems);
-	
-		
-		
 		return "cart/cart2";
-		
 		
 		
 	}
 	
+	@GetMapping("/shop/cartDelOne")
+	public void deleteOne(Model model, HttpServletRequest requset) {
+		
+		HttpSession session = requset.getSession();
+		Integer memberId = (Integer) session.getAttribute("member_id");
+		
+		// ajax 로 product id를 보내고 받아서 처리.
+		Integer product_id = (Integer) session.getAttribute("product_id");
+		
+		
+		System.out.println(memberId);
+		
+		cartService.deleteOne(255,product_id);
+		
+		
+	}
+	
+	@GetMapping("/shop/cartDelAll")
+	public void deleteAll(Model model, HttpServletRequest requset) {
+		
+		HttpSession session = requset.getSession();
+		Integer memberId = (Integer) session.getAttribute("member_id");
+		
+		// ajax 로 product id를 보내고 받아서 처리.
+		Integer product_id = (Integer) session.getAttribute("product_id");
+		
+		
+		System.out.println(memberId);
+		
+		cartService.deleteAll(memberId);
+		
+		
+	}
 	
 	
 	

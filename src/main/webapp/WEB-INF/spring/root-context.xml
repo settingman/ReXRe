@@ -13,7 +13,7 @@
       <!-- <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property> 
          <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521/xepdb1"></property> -->
       <property name="driverClassName"
-         value="oracle.jdbc.driver.OracleDriver"></property>
+         value="oracle.jdbc.OracleDriver"></property>
       <property name="jdbcUrl" value="jdbc:oracle:oci8:@edudb_high"></property>
       <property name="username" value="user02"></property>
       <property name="password" value="xxxxxxAt21cc"></property>

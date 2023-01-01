@@ -244,14 +244,14 @@
 
 									<c:forEach var="cartItem" items="${cartItems}"
 										varStatus="status">
-										<tr class="checked">
+										<tr class="checked" id="itemNum${status.count}">
 											<td><input type="checkbox" name="cno[]" id="cno"
 												value="${status.count}" class="con_${status.count}" /></td>
 											<td><a
 												href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
-													src="${cartItem.product_img}" width="82" height="100"
+													src="${cartItem.IMAGE_PATH}" width="82" height="100"
 													barder="0" /></a></td>
-											<td class="name tal"><a href="상품디테일주소뿌려주기">${cartItem.product_name}</a></td>
+											<td class="name tal"><a href="상품디테일주소뿌려주기">${cartItem.PRODUCT_NAME}</a></td>
 											<td>
 												<div></div>
 											</td>
@@ -259,7 +259,7 @@
 											<td class="qty">
 												<div class="box_qty">
 													<input type="text" name="buy_ea[]"
-														value="${cartItem.cart_quantity}"
+														value="${cartItem.CART_QUANTITY}"
 														id="buy_ea${status.count}" class="form_input"
 														isplaceholderinited="true" />
 													<div class="btn_ea">
@@ -275,12 +275,15 @@
 											<td class="prc cart_prc">
 												<p id="item_p${status.count}">
 													<strong><fmt:formatNumber
-															value="${cartItem.product_price * cartItem.cart_quantity}"
+															value="${cartItem.PRODUCT_PRICE * cartItem.CART_QUANTITY}"
 															pattern="#,###" type="number" /></strong>원
 
 												</p> <input type="hidden" class="og_price"
 												id="og_price${status.count}"
-												value="${cartItem.product_price}">
+												value="${cartItem.PRODUCT_PRICE}"> <input
+												type="hidden" class="product_id"
+												id="product_id${status.count}"
+												value="${cartItem.PRODUCT_ID}">
 												<p id="item_p">
 													<strong></strong>
 												</p>
@@ -289,7 +292,7 @@
 											<td class="delete_wish"><span
 												class="box_btn w79 h29 gray fs13 light kor"><a
 													href="#"
-													onclick="deletePartCartAjax(7264, 0); return false;">삭제</a></span>
+													onclick="deletePartCartAjax2(${cartItem.PRODUCT_ID}, ${status.count}); return false;">삭제</a></span>
 											</td>
 										</tr>
 									</c:forEach>
@@ -302,7 +305,7 @@
 									<span class="box_btn w117 h45 fs15 kor white"><a
 										href="javascript:deleteCart(document.cartFrm);">선택삭제</a></span> <span
 										class="box_btn w117 h45 fs15 kor white"><a
-										href="javascript:truncateCart(document.cartFrm);">장바구니 비우기</a></span>
+										onclick="deleteAllCartAjax2();">장바구니 비우기</a></span>
 								</div>
 								<div class="right">
 									<span class="box_btn w117 h45 fs15 kor white"><a
@@ -344,7 +347,7 @@
 							</div>
 							<div class="bottom_btn tac">
 								<span class="box_btn w180 h65 fs17 kor"><a
-									href="javascript:orderCart(document.cartFrm);">전체상품 주문하기</a></span>
+									href="javascript:orderCart(document.cartFrm);">ㅌ`상품 주문하기</a></span>
 							</div>
 							<input type="hidden" name="cart_rows" value="2" /><input
 								type="hidden" id="partner_data" name="partner_data" value="" />
@@ -371,9 +374,34 @@
 							  return parseInt(s.substr(0, s.length - 1).replaceAll(',', ''));
 							}
 						
+						
+						
+						
+						// 함수에 직접 프로덕트 아이디 가져오기
+						function deletePartCartAjax2(product_id, status) {
+							
+						
+							console.log(product_id);
+							$( 'tr' ).remove( '#itemNum'+status );
+							// 세션id 불러와서 삭제 시키기.
+							
+							total_price_calc();
+							
+							}
+						
+						
+						
+						
+						// 아이템을 담고있는 tr id를 돌면서 모두 삭제. $( "[id^='itemNum']" ).remove() : id가  itemNum으로 시작하는 객체들 선택
+						function deleteAllCartAjax2() {
+							
+							$( "[id^='itemNum']" ).remove();
+							total_price_calc();
+							
+							}
+						
+						
 						 function total_price_calc(){
-							 
-					          
 						    
 						     let final_price = 0; // 최종적으로 결제해야하는 가격 
 						     let deliveryfee = 0; // 배송비
@@ -405,9 +433,14 @@
 						  }	
 						
 						
+						 // this 객체의 status 값을 가지고 찾아 변경해주기
 							$('.ea_up').click(function () {
 									
 								  let og_id = 'og_price' + $(this).attr('id');
+								  // this 의 id = status로 설정해놓고 현재 status를 찾은것이다.
+								  // 그냥 위 delete처럼 바로 파라미터로 넣어도 될것같다.
+								  
+								  
 								  let og_price = $('#'+og_id).val();
 								  
 								  let quantity_id ='buy_ea' + $(this).attr('id');

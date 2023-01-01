@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hyundai.domain.CartItem;
+import com.hyundai.service.CartService;
+
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -19,13 +22,13 @@ import lombok.extern.log4j.Log4j;
 public class ProductMapperTests {
 
    @Setter(onMethod_ = @Autowired)
-   private CartMapper mapper;
+   private CartService mapper;
 
 
    @Test
    public void testGetList() {
       log.info("helloooo");
-      List<Integer> list = mapper.find();
+      List<CartItem> list = mapper.findCart(255);
       log.info(list.isEmpty());
       log.info(list.size());
 //
@@ -33,7 +36,7 @@ public class ProductMapperTests {
 //
 //      log.info(list);
 
-      list.forEach(product -> log.info(product));
+      list.forEach(product -> log.info(product.getPRODUCT_NAME()));
       // assertEquals(0, 0);
       // mapper.getList().forEach(product -> log.info(product));
    }

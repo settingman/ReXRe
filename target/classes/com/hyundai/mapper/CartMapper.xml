@@ -1,20 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-   
-   
-   
-   
+
+
+
+
 <mapper namespace="com.hyundai.mapper.CartMapper">
 
-<select id="findCart" resultType="com.hyundai.domain.CartItem">
 
-</select>
+	<select id="find" resultType="String">
+		select PRODUCT_NAME from PRODUCTS
+		where PRODUCT_ID=#{PRODUCT_ID}
+	</select>
 
 
-<select id="find" resultType="int">
-select BNO from tbl_board
-</select>
+	<select id="findCart" resultType="com.hyundai.domain.CartItem">
+		select
+		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY, CART_CHECK
+		,IMAGE_PATH
+		from carts inner join products on carts.PRODUCTS_PRODUCT_ID
+		=
+		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
+		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
+		where MEMBERS_MEMBER_ID=#{member_id}
+	</select>
+
+
+	<delete id="deleteOne">
+		delete from Cart where members_member_id = #{member_id}
+		and products_product_id = #{product_id}
+	</delete>
+	
+	<delete id="deleteAll">
+		delete from Cart where members_member_id = #{member_id}
+	</delete>
 
 
 

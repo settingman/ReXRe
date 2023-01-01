@@ -19,22 +19,13 @@ public class CartService {
 
 	private final CartRepository cartRepository;
 	
-	private CartMapper cartMapper;
+	private final CartMapper cartMapper;
 	
-	public List<Integer> find(){
-		
-		log.info("cartMapper");
-		System.out.println("매퍼");
-		
-		List<Integer> bno =cartMapper.find(); 
-		
-		return bno;
-	}
 	
 
-	public List<CartItem> findCart(Long member_id) {
+	public List<CartItem> findCart(Integer member_id) {
 
-		List<CartItem> cartItemList = cartRepository.findCart(member_id);
+		List<CartItem> cartItemList = cartMapper.findCart(member_id);
 
 		return cartItemList;
 
@@ -51,9 +42,9 @@ public class CartService {
 	}
 
 	// 아이템 하나 삭제
-	public void deleteOne(Long member_id, Long product_id) {
+	public void deleteOne(Integer member_id, Integer product_id) {
 
-		cartRepository.deleteOne(member_id, product_id);
+		cartMapper.deleteOne(member_id, product_id);
 		return;
 
 	}
@@ -65,9 +56,9 @@ public class CartService {
 
 	}
 
-	public void deleteAll(Long member_id) {
+	public void deleteAll(Integer member_id) {
 
-		cartRepository.deleteAll(member_id);
+		cartMapper.deleteAll(member_id);
 	}
 
 	public int updateQuantity(Long member_id, Long product_id, int Stock) {
