@@ -179,16 +179,6 @@
 		<%@include file="include/footer.jsp"%>
 		<!-- //하단 -->
 	</div>
-	<script type="text/javascript">
-		// 인기검색어 폰트사이즈 제어
-		$(document).ready(function() {
-			$('.header').each(function(idx) {
-				if ($(this).find('.hot_keyword .list li').length > 8) {
-					$(this).find('.hot_keyword .list').addClass('small');
-				}
-			})
-		});
-	</script>
 	</div>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js" defer='defer'></script>
 	<script type="text/javascript">
