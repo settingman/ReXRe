@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -169,12 +169,12 @@
 		<i id="crema-login-username" style="display: none">95parksh</i> <i
 			id="crema-login-name" style="display: none">박성환</i>
 		<div id="wrapper">
-		
+
 			<!--상단 -->
 			<%@ include file="/WEB-INF/views/include/header.jsp"%>
 			<!--//상단 -->
-			
-			
+
+
 			<!-- 중앙 -->
 			<div id="cnt">
 				<div class="cntbody">
@@ -240,54 +240,58 @@
 										<th scope="col">삭제</th>
 									</tr>
 								</thead>
-								<tbody>
-								
-									 <c:forEach var="cartItem" items="${cartItems}" varStatus="status">
-									<tr class="checked">
-										<td><input type="checkbox" name="cno[]" id="cno"
-											value="${status.count}" class="con_${status.count}" /></td>
-										<td><a
-											href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
-												src="${cartItem.product_img}"
-												width="82" height="100" barder="0" /></a></td>
-										<td class="name tal"><a
-											href="상품디테일주소뿌려주기">${cartItem.product_name}</a></td>
-										<td>
-											<div></div> 
-										</td>
-										<td class="prc"></td>
-										<td class="qty">
-											<div class="box_qty">
-												<input type="text" name="buy_ea[]" value="${cartItem.cart_quantity}" id="buy_ea${status.count}"
-													class="form_input" isplaceholderinited="true" />
-												<div class="btn_ea">
-													<a href="#"
-														onclick="cartEaChg(this, 1, ${status.count}); return false;"
-														class="ea_up"></a> 
-														
+								<tbody class="test">
+
+									<c:forEach var="cartItem" items="${cartItems}"
+										varStatus="status">
+										<tr class="checked">
+											<td><input type="checkbox" name="cno[]" id="cno"
+												value="${status.count}" class="con_${status.count}" /></td>
+											<td><a
+												href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
+													src="${cartItem.product_img}" width="82" height="100"
+													barder="0" /></a></td>
+											<td class="name tal"><a href="상품디테일주소뿌려주기">${cartItem.product_name}</a></td>
+											<td>
+												<div></div>
+											</td>
+											<td class="prc"></td>
+											<td class="qty">
+												<div class="box_qty">
+													<input type="text" name="buy_ea[]"
+														value="${cartItem.cart_quantity}"
+														id="buy_ea${status.count}" class="form_input"
+														isplaceholderinited="true" />
+													<div class="btn_ea">
 														<a href="#"
-														onclick="cartEaChg(this, -1, ${status.count}); return false;"
-														class="ea_down"></a>
+															onclick="cartEaChg(this, 1, ${status.count}); return false;"
+															class="ea_up" id="${status.count}"></a> <a href="#"
+															onclick="cartEaChg(this, -1, ${status.count}); return false;"
+															class="ea_down" id="${status.count}"></a>
+													</div>
 												</div>
-											</div>
-											
-										</td>
-										<td class="prc cart_prc">
-											<p id="item_p${status.count}">
-												<strong><fmt:formatNumber value="${cartItem.product_price * cartItem.cart_quantity}" pattern="#,###" type="number" /></strong>원
-												
-											</p>
-											<p id="item_p">
-												<strong></strong>
-											</p>
-										</td>pr
-										<td class="prc"></td>
-										<td class="delete_wish"><span
-											class="box_btn w79 h29 gray fs13 light kor"><a
-												href="#"
-												onclick="deletePartCartAjax(7264, 0); return false;">삭제</a></span>
-										</td>
-									</tr>
+
+											</td>
+											<td class="prc cart_prc">
+												<p id="item_p${status.count}">
+													<strong><fmt:formatNumber
+															value="${cartItem.product_price * cartItem.cart_quantity}"
+															pattern="#,###" type="number" /></strong>원
+
+												</p> <input type="hidden" class="og_price"
+												id="og_price${status.count}"
+												value="${cartItem.product_price}">
+												<p id="item_p">
+													<strong></strong>
+												</p>
+											</td>
+											<td class="prc"></td>
+											<td class="delete_wish"><span
+												class="box_btn w79 h29 gray fs13 light kor"><a
+													href="#"
+													onclick="deletePartCartAjax(7264, 0); return false;">삭제</a></span>
+											</td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
@@ -327,7 +331,7 @@
 											</td>
 										</tr>
 
-					
+
 									</tbody>
 								</table>
 								<dl class="total">
@@ -347,14 +351,21 @@
 						</form>
 					</div>
 
-					
+
 					<script type="text/javascript">
+					
+				
+					
 			
 						
 						
 						$(document).ready(function(){
 						     total_price_calc();
 						  });
+						
+						function intToWon(s) {
+							  return s.toLocaleString() + '원';
+							}
 						
 						function wonToInt(s) {
 							  return parseInt(s.substr(0, s.length - 1).replaceAll(',', ''));
@@ -367,12 +378,16 @@
 						     let final_price = 0; // 최종적으로 결제해야하는 가격 
 						     let deliveryfee = 0; // 배송비
 						     let og_price = 0;
-						      $(".checked").each(function(){
+						     
+						      $(".cart_prc").each(function(){
 						         
-						    	 let origin = wonToInt($("[id^='item_p']").text());
+						    	 let origin = wonToInt($(this).text());
+						    	 console.log(origin);
+						    	 console.log(3);
+						    	 
 						    	 
 						    	 final_price += parseInt(origin);	
-						    	 console.log(final_price);
+						    	 
 						    	
 						      });   
 						           
@@ -387,21 +402,63 @@
 						      
 						      console.log(final_price);
 						     
-						  }
+						  }	
 						
 						
+							$('.ea_up').click(function () {
+									
+								  let og_id = 'og_price' + $(this).attr('id');
+								  let og_price = $('#'+og_id).val();
+								  
+								  let quantity_id ='buy_ea' + $(this).attr('id');
+								  let quantity = $('#'+quantity_id).val();
+								  
+								  let price = og_price*quantity;
+								  
+								
+								  let p_id ='item_p' + $(this).attr('id');
+								
+								  
+								  $('#'+ p_id).text(intToWon(price));
+								  
+								  total_price_calc()
+								  
+							
+							});
 						
-						
+							
+							
+							
+							$('.ea_down').click(function () {
+								
+								  let og_id = 'og_price' + $(this).attr('id');
+								  let og_price = $('#'+og_id).val();
+								  
+								  let quantity_id ='buy_ea' + $(this).attr('id');
+								  let quantity = $('#'+quantity_id).val();
+								  
+								  let price = og_price*quantity;
+								  
+								
+								  let p_id ='item_p' + $(this).attr('id');
+								
+								  
+								  $('#'+ p_id).text(intToWon(price));
+								  
+								  total_price_calc()
+								  
+							
+							});
 					</script>
 
 				</div>
 			</div>
 			<!-- //중앙 -->
-			
+
 			<!-- 하단 -->
 			<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 			<!-- //하단 -->
-			
+
 		</div>
 		<!-- placeholder 스크립트 (삭제하시면 ie 하위브라우저에서 구현되지 않습니다.) -->
 		<script
@@ -480,56 +537,7 @@
 	<iframe style="display: none"></iframe>
 	<hv-copy-modal></hv-copy-modal>
 	<!-- Code injected by live-server -->
-	<script>
-		// <![CDATA[  <-- For SVG support
-		if ("WebSocket" in window) {
-			(function() {
-				function refreshCSS() {
-					var sheets = [].slice.call(document
-							.getElementsByTagName("link"));
-					var head = document.getElementsByTagName("head")[0];
-					for (var i = 0; i < sheets.length; ++i) {
-						var elem = sheets[i];
-						var parent = elem.parentElement || head;
-						parent.removeChild(elem);
-						var rel = elem.rel;
-						if ((elem.href && typeof rel != "string")
-								|| rel.length == 0
-								|| rel.toLowerCase() == "stylesheet") {
-							var url = elem.href.replace(
-									/(&|\?)_cacheOverride=\d+/, "");
-							elem.href = url
-									+ (url.indexOf("?") >= 0 ? "&" : "?")
-									+ "_cacheOverride=" + new Date().valueOf();
-						}
-						parent.appendChild(elem);
-					}
-				}
-				var protocol = window.location.protocol === "http:" ? "ws://"
-						: "wss://";
-				var address = protocol + window.location.host
-						+ window.location.pathname + "/ws";
-				var socket = new WebSocket(address);
-				socket.onmessage = function(msg) {
-					if (msg.data == "reload")
-						window.location.reload();
-					else if (msg.data == "refreshcss")
-						refreshCSS();
-				};
-				if (sessionStorage
-						&& !sessionStorage
-								.getItem("IsThisFirstTime_Log_From_LiveServer")) {
-					console.log("Live reload enabled.");
-					sessionStorage.setItem(
-							"IsThisFirstTime_Log_From_LiveServer", true);
-				}
-			})();
-		} else {
-			console
-					.error("Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.");
-		}
-		// ]]>
-	</script>
+
 
 	<div id="criteo-tags-div" style="display: none"></div>
 	<iframe style="display: none"></iframe>
