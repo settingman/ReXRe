@@ -4,7 +4,11 @@
 	xmlns:security="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-		<bean id="LoginSuccess" class="com.hyundai.security.LoginSuccessHandler"></bean> 
+	<bean id="LoginSuccess"
+		class="com.hyundai.security.LoginSuccessHandler"></bean>
+	<!-- <bean id="PasswordEncoder" class="com.hyundai.security.NoOpPasswordEncoder"></bean> -->
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 	<!-- <bean id="customAccessDenied" class="org.kosa.security.CustomAccessDeniedHandler"></bean> 
 		<bean id="customLoginSuccess" class="org.kosa.security.CustomLoginSuccessHandler"></bean> 
 		<bean id="customPasswordEncoder" class="org.kosa.security.CustomNoOpPasswordEncoder"></bean> 
@@ -24,10 +28,15 @@
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="asdf" password="{noop}asdf"
-					authorities="ROLE_MEMBER"></security:user>
-			</security:user-service>
+			<security:jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select member_idid userid, member_pw userpw, '1' from members where member_idid = ?"
+				authorities-by-username-query="select member_idid, auth_name from members, (select * from membergrade, auth where auth_auth_id = auth_id) where member_id = members_member_id and member_idid = ? " />
+			<!-- <security:password-encoder ref="PasswordEncoder"></security:password-encoder> -->
+			<!-- <security:user-service> <security:user name="asdf" password="{noop}asdf" 
+				authorities="ROLE_MEMBER"></security:user> </security:user-service> -->
+			<security:password-encoder
+				ref="bcryptPasswordEncoder" />
 		</security:authentication-provider>
 		<!-- <security:authentication-provider user-service-ref="customUserDetailsService"> 
 			<security:jdbc-user-service data-source-ref="dataSource" users-by-username-query 
@@ -37,6 +46,5 @@
 			</security:authentication-provider> -->
 	</security:authentication-manager>
 
-	<!-- <context:component-scan
-		base-package="com.hyundai.security"></context:component-scan> -->
+	<!-- <context:component-scan base-package="com.hyundai.security"></context:component-scan> -->
 </beans>
