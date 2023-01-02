@@ -1,6 +1,7 @@
 
 package com.hyundai.controller.cart;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -54,19 +54,39 @@ public class CartController {
 		cartService.deleteOne(member_id, product_id);
 
 	}
+	
+	@ResponseBody
+	@GetMapping("/shop/cartDelChecked")
+	public void deleteCheked(@RequestParam(value="chbox[]") List<String> chArr) {
+		
+		System.out.println(chArr.get(0));
+		
+		// 세션으로 받아오기
+		Integer member_id = 255;
+		
+		for(String pro_id : chArr) {
+			Integer product_id = Integer.parseInt(pro_id);
+			cartService.deleteOne(member_id, product_id);
+		}
+		
+		System.out.println("들어왔나요del");
 
+		
+
+	}
+	
+	@ResponseBody
 	@GetMapping("/shop/cartDelAll")
 	public void deleteAll(Model model, HttpServletRequest requset) {
 
 		HttpSession session = requset.getSession();
-		Integer memberId = (Integer) session.getAttribute("member_id");
+		Integer member_id = (Integer) session.getAttribute("member_id");
 
-		// ajax 로 product id를 보내고 받아서 처리.
-		Integer product_id = (Integer) session.getAttribute("product_id");
+		
+		// 나중에 수정해줘야함.
+		member_id=255;
 
-		System.out.println(memberId);
-
-		cartService.deleteAll(memberId);
+		cartService.deleteAll(member_id);
 
 	}
 

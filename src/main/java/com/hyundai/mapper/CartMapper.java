@@ -16,8 +16,6 @@ public interface CartMapper {
 
 	public void deleteOne(@Param("member_id") Integer member_id, @Param("product_id") Integer product_id);
 
-	public void deletCheck(Integer member_id);
-
 	public void deleteAll(Integer member_id);
 
 	public void updateQuantity(@Param("product_qauntity") Integer product_qauntity,

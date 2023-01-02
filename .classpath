@@ -48,6 +48,5 @@
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/taglibs-standard-spec-1.2.5.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ucp.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/xdb6.jar"/>
-	<classpathentry kind="lib" path="C:/dev64/workspace-sts/libs/ojdbc11 (1).jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

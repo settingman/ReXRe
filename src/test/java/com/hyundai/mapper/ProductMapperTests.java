@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hyundai.domain.CartItem;
 import com.hyundai.domain.Criteria;
 import com.hyundai.domain.productVO;
 
@@ -23,6 +24,10 @@ public class ProductMapperTests {
 
    @Setter(onMethod_ = @Autowired)
    private ProductMapper mapper;
+   
+   @Setter(onMethod_ = @Autowired)
+   
+   private CartMapper carmapper;
 
 
    @Test
@@ -50,4 +55,16 @@ public class ProductMapperTests {
 	   criteria.setAmount(9);
 	   List<productVO> list = mapper.getListWithPaging(criteria);
    }
+   
+   @Test
+   public void CartList() {
+	   log.info("CartList paging");
+	   List<CartItem> list = carmapper.findCart(255);
+	   log.info(list.isEmpty());
+	      log.info(list.size());
+	   
+   }
+   
+   
+   
 }
