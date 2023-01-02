@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -168,27 +169,17 @@
 		<i id="crema-login-username" style="display: none">95parksh</i> <i
 			id="crema-login-name" style="display: none">박성환</i>
 		<div id="wrapper">
-		
+
 			<!--상단 -->
 			<%@ include file="/WEB-INF/views/include/header.jsp"%>
 			<!--//상단 -->
-			
-			
+
+
 			<!-- 중앙 -->
 			<div id="cnt">
 				<div class="cntbody">
-					<!-- 서브 타이틀 텍스트(일반페이지) 사용자코드 -->
 
 					<h2 class="subtitle">장바구니</h2>
-
-					<!-- //서브 타이틀 텍스트(일반페이지) 사용자코드 -->
-					<!-- 서브 타이틀 텍스트(카테고리) 사용자코드 -->
-
-					<!-- //서브 타이틀 텍스트(카테고리) 사용자코드 -->
-					<!-- 서브 타이틀 텍스트(게시판) 사용자코드 -->
-
-					<!-- //서브 타이틀 텍스트(게시판) 사용자코드 -->
-					<!-- 주문스텝 사용자코드 -->
 
 					<ul id="order_step" class="order_step">
 						<li class="active">
@@ -205,13 +196,6 @@
 						</li>
 					</ul>
 
-					<!-- //주문스텝 사용자코드 -->
-					<!-- 마이페이지 메뉴 -->
-
-					<!-- //마이페이지 메뉴 -->
-					<!-- 타이틀이미지 -->
-
-					<!-- //타이틀이미지 -->
 
 					<div id="cart">
 						<form name="cartFrm" method="post"
@@ -248,109 +232,70 @@
 										<th scope="col"><input type="checkbox"
 											onclick="cartCheckAll(this.checked)" /></th>
 										<th scope="col" colspan="2">상품명</th>
-										<th scope="col">옵션</th>
-										<th scope="col">추가금액</th>
+										<th scope="col"></th>
+										<th scope="col"></th>
 										<th scope="col">수량</th>
 										<th scope="col">총금액</th>
-										<th scope="col">적립금</th>
+										<th scope="col"></th>
 										<th scope="col">삭제</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr class="checked">
-										<td><input type="checkbox" name="cno[]" id="cno"
-											value="7260" class="con_7260" /></td>
-										<td><a
-											href="/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A"><img
-												src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg"
-												width="82" height="100" barder="0" /></a></td>
-										<td class="name tal"><a
-											href="/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A">리바이리
-												콤부차 배리옴 스킨케어 5종 기획</a></td>
-										<td>
-											<div></div> <span class="btn_edit"><a href="#"
-												onclick="cartChgOption(7260); return false;"
-												class="changeCartOption">변경</a></span>
-										</td>
-										<td class="prc"><strong>0</strong>원</td>
-										<td class="qty">
-											<div class="box_qty">
-												<input type="text" name="buy_ea[]" value="3" id="buy_ea7260"
-													class="form_input" isplaceholderinited="true" />
-												<div class="btn_ea">
-													<a href="#"
-														onclick="cartEaChg(this, 1, 7260); return false;"
-														class="ea_up"></a> <a href="#"
-														onclick="cartEaChg(this, -1, 7260); return false;"
-														class="ea_down"></a>
+								<tbody class="test">
+
+									<c:forEach var="cartItem" items="${cartItems}"
+										varStatus="status">
+										<tr class="checked" id="itemNum${status.count}">
+											<td><input type="checkbox" name="cno[]" id="cno"
+												value="${status.count}" class="con_${status.count}" /></td>
+											<td><a
+												href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
+													src="${cartItem.IMAGE_PATH}" width="82" height="100"
+													barder="0" /></a></td>
+											<td class="name tal"><a href="상품디테일주소뿌려주기">${cartItem.PRODUCT_NAME}</a></td>
+											<td>
+												<div></div>
+											</td>
+											<td class="prc"></td>
+											<td class="qty">
+												<div class="box_qty">
+													<input type="text" name="buy_ea[]"
+														value="${cartItem.CART_QUANTITY}"
+														id="buy_ea${status.count}" class="form_input"
+														isplaceholderinited="true" />
+													<div class="btn_ea">
+														<a href="#"
+															onclick="updateQuantity(${cartItem.PRODUCT_ID}, ${cartItem.CART_QUANTITY}, 255, 1,${status.count}); return false;"
+															class="ea_up" id="${status.count}"></a> <a href="#"
+															onclick="updateQuantity(${cartItem.PRODUCT_ID}, ${cartItem.CART_QUANTITY}, 255, -1,${status.count}); return false;"
+															class="ea_down" id="${status.count}"></a>
+													</div>
 												</div>
-											</div>
-											<p class="btn_edit">
-												<a href="javascript:updateCart(document.cartFrm);">변경</a>
-											</p>
-										</td>
-										<td class="prc cart_prc">
-											<p class="before">
-												<strong>459,000</strong>원
-											</p>
-											<p class="after">
-												<strong>459,000</strong>원
-											</p>
-										</td>
-										<td class="prc"><strong>22,950</strong>원</td>
-										<td class="delete_wish"><span
-											class="box_btn w79 h29 gray fs13 light kor"><a
-												href="#"
-												onclick="deletePartCartAjax(7260, 0); return false;">삭제</a></span>
-										</td>
-									</tr>
-									<tr class="checked">
-										<td><input type="checkbox" name="cno[]" id="cno"
-											value="7264" class="con_7264" /></td>
-										<td><a
-											href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
-												src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/9d67faf5de5906f682b3bb52fef7a3dc.jpg"
-												width="82" height="100" barder="0" /></a></td>
-										<td class="name tal"><a
-											href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087">리바이리
-												콤부차 배리옴 릴리프 마스크 1매</a></td>
-										<td>
-											<div></div> <span class="btn_edit"><a href="#"
-												onclick="cartChgOption(7264); return false;"
-												class="changeCartOption">변경</a></span>
-										</td>
-										<td class="prc"><strong>0</strong>원</td>
-										<td class="qty">
-											<div class="box_qty">
-												<input type="text" name="buy_ea[]" value="2" id="buy_ea7264"
-													class="form_input" isplaceholderinited="true" />
-												<div class="btn_ea">
-													<a href="#"
-														onclick="cartEaChg(this, 1, 7264); return false;"
-														class="ea_up"></a> <a href="#"
-														onclick="cartEaChg(this, -1, 7264); return false;"
-														class="ea_down"></a>
-												</div>
-											</div>
-											<p class="btn_edit">
-												<a href="javascript:updateCart(document.cartFrm);">변경</a>
-											</p>
-										</td>
-										<td class="prc cart_prc">
-											<p class="before">
-												<strong>11,700</strong>원
-											</p>
-											<p class="after">
-												<strong>11,700</strong>원
-											</p>
-										</td>
-										<td class="prc"><strong>580</strong>원</td>
-										<td class="delete_wish"><span
-											class="box_btn w79 h29 gray fs13 light kor"><a
-												href="#"
-												onclick="deletePartCartAjax(7264, 0); return false;">삭제</a></span>
-										</td>
-									</tr>
+
+											</td>
+											<td class="prc cart_prc">
+												<p id="item_p${status.count}">
+													<strong><fmt:formatNumber
+															value="${cartItem.PRODUCT_PRICE * cartItem.CART_QUANTITY}"
+															pattern="#,###" type="number" /></strong>원
+
+												</p> <input type="hidden" class="og_price"
+												id="og_price${status.count}"
+												value="${cartItem.PRODUCT_PRICE}"> <input
+												type="hidden" class="product_id"
+												id="product_id${status.count}"
+												value="${cartItem.PRODUCT_ID}">
+												<p id="item_p">
+													<strong></strong>
+												</p>
+											</td>
+											<td class="prc"></td>
+											<td class="delete_wish"><span
+												class="box_btn w79 h29 gray fs13 light kor"><a
+													href="#"
+													onclick="deletePartCartAjax2(${cartItem.PRODUCT_ID}, ${status.count}, 255); return false;">삭제</a></span>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 
@@ -360,7 +305,7 @@
 									<span class="box_btn w117 h45 fs15 kor white"><a
 										href="javascript:deleteCart(document.cartFrm);">선택삭제</a></span> <span
 										class="box_btn w117 h45 fs15 kor white"><a
-										href="javascript:truncateCart(document.cartFrm);">장바구니 비우기</a></span>
+										onclick="deleteAllCartAjax2();">장바구니 비우기</a></span>
 								</div>
 								<div class="right">
 									<span class="box_btn w117 h45 fs15 kor white"><a
@@ -381,7 +326,7 @@
 									<tbody>
 										<tr>
 											<th scope="row">주문금액</th>
-											<td><span class="total_prd_prc">470,700</span>원</td>
+											<td><span class="total_prd_prc"></span>원</td>
 										</tr>
 										<tr>
 											<th scope="row">배송료</th>
@@ -389,93 +334,267 @@
 											</td>
 										</tr>
 
-										<tr>
-											<th scope="row">적립금</th>
-											<td><span class="total_total_milage">23,530</span>원</td>
-										</tr>
+
 									</tbody>
 								</table>
 								<dl class="total">
 									<dt scope="row">총주문금액</dt>
 									<dd>
 										<strong><span id="total_order_price_cartlist"
-											class="price total_order_price_cartlist">470,700</span>원 </strong>
+											class="price total_order_price_cartlist"></span>원 </strong>
 									</dd>
 								</dl>
 							</div>
 							<div class="bottom_btn tac">
 								<span class="box_btn w180 h65 fs17 kor"><a
-									href="javascript:orderCart(document.cartFrm);">전체상품 주문하기</a></span>
+									href="javascript:orderCart(document.cartFrm);">ㅌ`상품 주문하기</a></span>
 							</div>
 							<input type="hidden" name="cart_rows" value="2" /><input
 								type="hidden" id="partner_data" name="partner_data" value="" />
 						</form>
 					</div>
 
-					<!-- Enliple Tracker Start -->
+
 					<script type="text/javascript">
-						var ENP_VAR = {
-							conversion : {
-								product : []
+					
+						
+						
+						$(document).ready(function(){
+						     total_price_calc();
+						  });
+						
+						
+						
+						function intToWon(s) {
+							
+							  return s.toLocaleString() + '원';
 							}
-						};
+						
+						function wonToInt(s) {
+							  return parseInt(s.substr(0, s.length - 1).replaceAll(',', ''));
+							}
+						
+						
+						
+						
+						// 함수에 직접 프로덕트 아이디 가져오기
+						function deletePartCartAjax2(product_id, status, member_id) {
+							
+							
+							
+							$.ajax({
+							 	
+	 							
+								type:"get",  //전송타입
+								url:"/shop/cartDelOne",//서버요청대상파일
+								data:{
+									
+									product_id: product_id,
+									member_id: member_id							
+							 
+						 			},
+						 			contentType : "application/json",
+						 
+						 			success: function () { 
+									
+						 				console.log("석세스");
+						 	
+							 		
+						 				$( 'tr' ).remove( '#itemNum'+status );								  
+							  
+										  total_price_calc();
+								  
+								 }, 
+								 error:function(request,status,error){
+						       		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					      		 }
+						 
+						
+								});
+							
+								}
+						
+						
+						
+						
+						// 아이템을 담고있는 tr id를 돌면서 모두 삭제. $( "[id^='itemNum']" ).remove() : id가  itemNum으로 시작하는 객체들 선택
+						function deleteAllCartAjax2() {
+							
+							$( "[id^='itemNum']" ).remove();
+							total_price_calc();
+							
+							}
+						
+						
+						
+						
+						 function total_price_calc(){
+						    
+						     let final_price = 0; // 최종적으로 결제해야하는 가격 
+						     let deliveryfee = 0; // 배송비
+						     let og_price = 0;
+						     
+						      $(".cart_prc").each(function(){
+						         
+						    	 let origin = wonToInt($(this).text());
+						    	 
+						    	 
+						    	 final_price += parseInt(origin);	
+						    	 
+						    	
+						      });   
+						           
+						      /* 최종 가격 */
+						    
 
-						var mobCartQty = 0;
-						$('input[name="buy_ea[]"]').each(function() {
-							mobCartQty += Number($(this).val());
-						});
-
-						ENP_VAR.conversion.totalPrice = "470,700"; // 없는 경우 단일 상품의 정보를 이용해 계산
-						ENP_VAR.conversion.totalQty = mobCartQty; // 없는 경우 단일 상품의 정보를 이용해 계산
-
-						(function(a, g, e, n, t) {
-							a.enp = a.enp || function() {
-								(a.enp.q = a.enp.q || []).push(arguments);
-							};
-							n = g.createElement(e);
-							n.async = !0;
-							n.defer = !0;
-							n.src = "https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";
-							t = g.getElementsByTagName(e)[0];
-							t.parentNode.insertBefore(n, t);
-						})(window, document, "script");
-						enp("create", "conversion", "rexreskbio", {
-							device : "W",
-							paySys : "naverPay",
-						});
+						      // 총 가격
+						     
+						      $(".total_order_price_cartlist").text(final_price.toLocaleString());
+						      $(".total_prd_prc").text(final_price.toLocaleString());
+						      
+						      
+						      console.log(final_price);
+						     
+						  }	
+						
+												 
+						
+						 
+						 // this 객체의 status 값을 가지고 찾아 변경해주기
+							$('.ea_up2').click(function () {
+								
+									
+								let og_price_id = 'og_price' + $(this).attr('id');
+								  let og_price = $('#'+og_price_id).val();
+								  
+								  // this 의 id = status로 설정해놓고 현재 status를 찾은것이다.
+								  // 그냥 위 delete처럼 바로 파라미터로 넣어도 될것같다.
+								  
+								  let product_id_id = 'product_id' + $(this).attr('id');
+								  let product_id = $('#'+product_id_id).val();
+								 
+								  							  
+								  let quantity_id ='buy_ea' + $(this).attr('id');
+								  let quantity = $('#'+quantity_id).val();
+								  
+								  let price = og_price*quantity;								  
+								
+								  let p_id ='item_p' + $(this).attr('id');								
+								  
+								  $('#'+ p_id).text(intToWon(price));
+								  
+								  
+								  
+								  console.log(og_price);
+								  console.log(product_id);
+								  console.log(quantity);
+								  
+								  
+								  total_price_calc()
+								  
+							
+							});
+						
+							
+							
+							
+							$('.ea_down2').click(function () {
+								
+								  let og_id = 'og_price' + $(this).attr('id');
+								  let og_price = $('#'+og_id).val();
+								  
+								  let quantity_id ='buy_ea' + $(this).attr('id');
+								  let quantity = $('#'+quantity_id).val();
+								  
+								  let price = og_price*quantity;
+								  
+								
+								  let p_id ='item_p' + $(this).attr('id');
+								
+								  
+								  $('#'+ p_id).text(intToWon(price));
+								  
+								  total_price_calc()
+								  
+							
+							});
+							
+							
+							function updateQuantity(product_id, product_qauntity,member_id,update_num, status){
+								
+								
+								console.log(product_qauntity);
+								
+							
+							 	let og_price = $('#og_price'+status).val();
+							 	
+							 	console.log(og_price);
+								 
+							 
+								  let quantity_id ='buy_ea' + status;
+								  let quantity = parseInt($('#'+quantity_id).val()) + update_num ;
+								  
+								  console.log(quantity);
+								  
+							  	let price = og_price*quantity;				
+							  	
+							  	 console.log(price);
+							
+							 	 let p_id ='item_p' + status;		
+							  	let quan_val_id = 'buy_ea' + status;
+							  	
+							  	console.log(quantity);
+								
+							 
+								
+								
+	 							$.ajax({
+									 	
+	 							
+										type:"get",  //전송타입
+										url:"/shop/upQuantity",//서버요청대상파일
+										data:{
+											product_qauntity: quantity,
+											product_id: product_id,
+											member_id: member_id,
+										
+									 
+								 			},
+								 			contentType : "application/json",
+								 
+								 		success: function () { 
+											
+								 		console.log("석세스");
+								 		console.log(product_qauntity);
+									 		
+										  $('#'+ quan_val_id).val(quantity);
+										  $('#'+ p_id).text(intToWon(price));									  
+									  
+										  total_price_calc();
+										  
+								 }, error:function(request,status,error){
+								        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							       }
+								 
+								
+								});
+								
+							}
+							
+							
+							
 					</script>
 
-					<!-- Enliple Insite breakAway Popup end -->
-					<!-- Enliple Tracker Start -->
-					<script type="text/javascript">
-						(function(a, g, e, n, t) {
-							a.enp = a.enp || function() {
-								(a.enp.q = a.enp.q || []).push(arguments);
-							};
-							n = g.createElement(e);
-							n.async = !0;
-							n.defer = !0;
-							n.src = "https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";
-							t = g.getElementsByTagName(e)[0];
-							t.parentNode.insertBefore(n, t);
-						})(window, document, "script");
-						enp("create", "common", "rexreskbio", {
-							device : "W"
-						});
-						enp("send", "common", "rexreskbio");
-					</script>
-					<!-- Enliple Tracker End -->
-					<!--mkt script '모비온' scr_bottom end-->
 				</div>
 			</div>
 			<!-- //중앙 -->
-			
+
 			<!-- 하단 -->
 			<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 			<!-- //하단 -->
-			
+
 		</div>
-		<!-- placeholder 스크립트 (삭	제하시면 ie 하위브라우저에서 구현되지 않습니다.) -->
+		<!-- placeholder 스크립트 (삭제하시면 ie 하위브라우저에서 구현되지 않습니다.) -->
 		<script
 			src="https://www.rexremall.com/_skin/skbioland_200731/img/../placeholder.js"></script>
 		<script type="text/javascript">
@@ -552,56 +671,7 @@
 	<iframe style="display: none"></iframe>
 	<hv-copy-modal></hv-copy-modal>
 	<!-- Code injected by live-server -->
-	<script>
-		// <![CDATA[  <-- For SVG support
-		if ("WebSocket" in window) {
-			(function() {
-				function refreshCSS() {
-					var sheets = [].slice.call(document
-							.getElementsByTagName("link"));
-					var head = document.getElementsByTagName("head")[0];
-					for (var i = 0; i < sheets.length; ++i) {
-						var elem = sheets[i];
-						var parent = elem.parentElement || head;
-						parent.removeChild(elem);
-						var rel = elem.rel;
-						if ((elem.href && typeof rel != "string")
-								|| rel.length == 0
-								|| rel.toLowerCase() == "stylesheet") {
-							var url = elem.href.replace(
-									/(&|\?)_cacheOverride=\d+/, "");
-							elem.href = url
-									+ (url.indexOf("?") >= 0 ? "&" : "?")
-									+ "_cacheOverride=" + new Date().valueOf();
-						}
-						parent.appendChild(elem);
-					}
-				}
-				var protocol = window.location.protocol === "http:" ? "ws://"
-						: "wss://";
-				var address = protocol + window.location.host
-						+ window.location.pathname + "/ws";
-				var socket = new WebSocket(address);
-				socket.onmessage = function(msg) {
-					if (msg.data == "reload")
-						window.location.reload();
-					else if (msg.data == "refreshcss")
-						refreshCSS();
-				};
-				if (sessionStorage
-						&& !sessionStorage
-								.getItem("IsThisFirstTime_Log_From_LiveServer")) {
-					console.log("Live reload enabled.");
-					sessionStorage.setItem(
-							"IsThisFirstTime_Log_From_LiveServer", true);
-				}
-			})();
-		} else {
-			console
-					.error("Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.");
-		}
-		// ]]>
-	</script>
+
 
 	<div id="criteo-tags-div" style="display: none"></div>
 	<iframe style="display: none"></iframe>
