@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hyundai.domain.CartItem;
-import com.hyundai.service.CartService;
+import com.hyundai.domain.Criteria;
+import com.hyundai.domain.productVO;
 
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,13 +22,13 @@ import lombok.extern.log4j.Log4j;
 public class ProductMapperTests {
 
    @Setter(onMethod_ = @Autowired)
-   private CartService mapper;
+   private ProductMapper mapper;
 
 
    @Test
    public void testGetList() {
       log.info("helloooo");
-      List<CartItem> list = mapper.findCart(255);
+      List<productVO> list = mapper.getList();
       log.info(list.isEmpty());
       log.info(list.size());
 //
@@ -36,23 +36,18 @@ public class ProductMapperTests {
 //
 //      log.info(list);
 
-      list.forEach(product -> log.info(product.getPRODUCT_NAME()));
+      list.forEach(product -> log.info(product));
       // assertEquals(0, 0);
       // mapper.getList().forEach(product -> log.info(product));
    }
-   
+
    
    @Test
-   public void update() {
-	   
-	   log.info("update");
-	   mapper.updateQuantity(1, 1234, 255, 1);
-      
-
+   public void testgetListWithPaging() {
+	   log.info("getListwith paging");
+	   Criteria criteria = new Criteria();
+	   criteria.setPageNum(2);
+	   criteria.setAmount(9);
+	   List<productVO> list = mapper.getListWithPaging(criteria);
    }
-   
-   
-   
-   
-
 }
