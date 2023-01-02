@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hyundai.domain.Criteria;
 import com.hyundai.domain.productVO;
 
 import lombok.NoArgsConstructor;
@@ -40,4 +41,13 @@ public class ProductMapperTests {
       // mapper.getList().forEach(product -> log.info(product));
    }
 
+   
+   @Test
+   public void testgetListWithPaging() {
+	   log.info("getListwith paging");
+	   Criteria criteria = new Criteria();
+	   criteria.setPageNum(2);
+	   criteria.setAmount(9);
+	   List<productVO> list = mapper.getListWithPaging(criteria);
+   }
 }

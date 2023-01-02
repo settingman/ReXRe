@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<!--Add by seeun 카테고리 이동 -->
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -287,14 +289,15 @@ var google_alanytics_id = 'UA-166260789-1';
 
 
 							<!--// 상품정렬 JSP 적용 -->
-							<c:forEach items="${productList}" var="productList">
-								<ul class="prd_basic col3">
+
+							<ul class="prd_basic col3">
+								<c:forEach items="${productList}" var="productList">
 									<li><div class="box ">
 											<div class="img">
 												<div class="prdimg img1226">
 													<a
 														href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012"><img
-														src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg"
+														src="<c:out value='${productList.image_path}'/>"
 														width="380" height="466"></a>
 												</div>
 												<!-- 상품품절 영역 -->
@@ -367,23 +370,107 @@ var google_alanytics_id = 'UA-166260789-1';
 
 											</div>
 										</div></li>
-								</ul>
-								<!-- 상품 jsplist -->
+								</c:forEach>
+							</ul>
+							<!-- 상품 jsplist -->
+
+<!-- 페이징 처리 코드 book -->
+						<div class="paging">
+							<c:if test="${pageMaker.prev}">
+								<!-- 이전 버튼 -->
+								<span class="paginate_button previous"> <a
+									href="${pageMaker.firstPage}"> << </a> <a
+									href="${pageMaker.startPage - 1}"> < </a>
+								</span>
+							</c:if>
+							<!-- 페이징 처리 시작부분 -->
+							<!-- 1~10 버튼 -->
+							<!-- jstl을 사용하여 현재 페이지의 번호를 굵게 한다 -->
+							<c:forEach var="num" begin="${pageMaker.startPage}"
+								end="${pageMaker.endPage}">
+								<span class="paginate_button"> <c:choose>
+										<c:when test="${pageMaker.cri.pageNum eq num}">
+											<a style="font-weight: bold; margin: 3px;" class="pageBtn"
+												href="${num}">${num}</a>
+										</c:when>
+										<c:otherwise>
+											<a style="margin: 3px;" class="pageBtn" href="${num}">${num}</a>
+										</c:otherwise>
+									</c:choose>
+								</span>
 							</c:forEach>
+							<c:if test="${pageMaker.next}">
+								<!-- 이전 버튼 -->
+								<span class="paginate_button next"> <a
+									href="${pageMaker.endPage + 1}">></a> <a
+									href="${pageMaker.lastPage}"> >> </a>
+								</span>
+							</c:if>
+							<!-- 페이징 처리 끝 -->
+							<form id='actionForm' action="/product/productList" method='get'>
+								<input type='hidden' id='pageNum' name='pageNum'
+									value='${pageMaker.cri.pageNum}'> <input type='hidden'
+									name='amount' value='${pageMaker.cri.amount}'>
+							</form>
 
 
-
-
-
+<%-- 
+							<!-- 페이징 -->
 							<ul class="paging">
-								<li></li>
+								<c:if test="${pageMaker.prev}">
+									<li>
+										<a href="${pageMaker.startPage -1}">Previous</a>
+									</li>
+								</c:if>
+								
+								<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+									<li class= " ${pageMaker.cri.pageNum == num ? 'active' : '' } ">
+										<a href="${num}">${num}</a>
+									</li>
+								</c:forEach>
+								
+								<c:if test="${pageMaker.next}">
+									<li>
+										<a href="${pageMaker.endPage + 1}">Next</a>
+									</li>
+								</c:if>
+								
+								<!-- <li></li>
 								<li><strong>1</strong></li>
 								<li><a href="?page=2&amp;cno1=1012">2</a></li>
-								<li></li>
+								<li></li> -->
 							</ul>
-						</div>
+						</div> --%>
+						
+						<!--  end pagination -->
+						
 					</div>
-					<script type="text/javascript">
+					
+					
+					<!-- page click form-->
+				<%-- 	<form id='actionForm' action = /product/productList' method='get'>
+						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
+						<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
+					</form> --%>
+
+<script type="text/javascript">
+	//1. paging button event, 페이지 번호를 클릭하면 처리하는 부분 추가
+	
+	$(document).ready(function() {
+		var actionForm = $("#actionForm");
+		
+		$(".paginate_button a").on("click", function(e) {
+			e.preventDefault();
+			console.log('click');
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+			actionForm.submit();
+		});
+		
+	});
+	
+
+
+					
 	// 하위분류 고정
 	var cno = document.location.href;
 	var regExp = /cno1=.+&?/gi;

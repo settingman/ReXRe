@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
+
+
 <!-- 상단 -->
 			<div id="sub_hd" class="">
 				<div class="header">
@@ -17,7 +20,7 @@
 									<li><a href="/shop/big_section.php?cno1=1009">NEW&amp;BEST</a>
 									</li>
 									<li class="viewsub product"><a
-										href="/shop/big_section.php?cno1=1012">PRODUCT</a>
+										href=""${contextPath}/product/productList">PRODUCT</a>
 										<div class="list">
 											<ul class="mid_depth">
 												<li><a
