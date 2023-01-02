@@ -2,7 +2,6 @@ package com.hyundai.service;
 
 import java.util.List;
 
-
 import org.springframework.stereotype.Service;
 
 import com.hyundai.domain.CartItem;
@@ -18,10 +17,8 @@ import lombok.extern.slf4j.Slf4j;
 public class CartService {
 
 	private final CartRepository cartRepository;
-	
+
 	private final CartMapper cartMapper;
-	
-	
 
 	public List<CartItem> findCart(Integer member_id) {
 
@@ -61,11 +58,9 @@ public class CartService {
 		cartMapper.deleteAll(member_id);
 	}
 
-	public int updateQuantity(Long member_id, Long product_id, int Stock) {
+	public void updateQuantity(Integer product_qauntity, Integer product_id, Integer member_id) {
 
-		int cart_stock = cartRepository.updateQuantity(member_id, product_id, Stock);
-
-		return cart_stock;
+		cartMapper.updateQuantity(product_qauntity, product_id, member_id);
 
 	}
 

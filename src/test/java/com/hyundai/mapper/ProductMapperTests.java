@@ -40,5 +40,19 @@ public class ProductMapperTests {
       // assertEquals(0, 0);
       // mapper.getList().forEach(product -> log.info(product));
    }
+   
+   
+   @Test
+   public void update() {
+	   
+	   log.info("update");
+	   mapper.updateQuantity(1, 1234, 255, 1);
+      
+
+   }
+   
+   
+   
+   
 
 }

@@ -27,15 +27,21 @@
 
 
 	<delete id="deleteOne">
-		delete from Cart where members_member_id = #{member_id}
+		delete from Carts where members_member_id =
+		#{member_id}
 		and products_product_id = #{product_id}
 	</delete>
-	
+
 	<delete id="deleteAll">
-		delete from Cart where members_member_id = #{member_id}
+		delete from Carts where members_member_id =
+		#{member_id}
 	</delete>
-
-
+	
+	
+	<update id="updateQuantity">
+		update Carts set CART_QUANTITY = #{product_qauntity}
+		where members_member_id =#{member_id} and PRODUCTS_PRODUCT_ID = #{product_id}
+	</update>
 
 
 

@@ -264,9 +264,9 @@
 														isplaceholderinited="true" />
 													<div class="btn_ea">
 														<a href="#"
-															onclick="cartEaChg(this, 1, ${status.count}); return false;"
+															onclick="updateQuantity(${cartItem.PRODUCT_ID}, ${cartItem.CART_QUANTITY}, 255, 1,${status.count}); return false;"
 															class="ea_up" id="${status.count}"></a> <a href="#"
-															onclick="cartEaChg(this, -1, ${status.count}); return false;"
+															onclick="updateQuantity(${cartItem.PRODUCT_ID}, ${cartItem.CART_QUANTITY}, 255, -1,${status.count}); return false;"
 															class="ea_down" id="${status.count}"></a>
 													</div>
 												</div>
@@ -292,7 +292,7 @@
 											<td class="delete_wish"><span
 												class="box_btn w79 h29 gray fs13 light kor"><a
 													href="#"
-													onclick="deletePartCartAjax2(${cartItem.PRODUCT_ID}, ${status.count}); return false;">삭제</a></span>
+													onclick="deletePartCartAjax2(${cartItem.PRODUCT_ID}, ${status.count}, 255); return false;">삭제</a></span>
 											</td>
 										</tr>
 									</c:forEach>
@@ -357,16 +357,16 @@
 
 					<script type="text/javascript">
 					
-				
-					
-			
 						
 						
 						$(document).ready(function(){
 						     total_price_calc();
 						  });
 						
+						
+						
 						function intToWon(s) {
+							
 							  return s.toLocaleString() + '원';
 							}
 						
@@ -378,16 +378,41 @@
 						
 						
 						// 함수에 직접 프로덕트 아이디 가져오기
-						function deletePartCartAjax2(product_id, status) {
+						function deletePartCartAjax2(product_id, status, member_id) {
 							
+							
+							
+							$.ajax({
+							 	
+	 							
+								type:"get",  //전송타입
+								url:"/shop/cartDelOne",//서버요청대상파일
+								data:{
+									
+									product_id: product_id,
+									member_id: member_id							
+							 
+						 			},
+						 			contentType : "application/json",
+						 
+						 			success: function () { 
+									
+						 				console.log("석세스");
+						 	
+							 		
+						 				$( 'tr' ).remove( '#itemNum'+status );								  
+							  
+										  total_price_calc();
+								  
+								 }, 
+								 error:function(request,status,error){
+						       		 alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					      		 }
+						 
 						
-							console.log(product_id);
-							$( 'tr' ).remove( '#itemNum'+status );
-							// 세션id 불러와서 삭제 시키기.
+								});
 							
-							total_price_calc();
-							
-							}
+								}
 						
 						
 						
@@ -401,6 +426,8 @@
 							}
 						
 						
+						
+						
 						 function total_price_calc(){
 						    
 						     let final_price = 0; // 최종적으로 결제해야하는 가격 
@@ -410,8 +437,6 @@
 						      $(".cart_prc").each(function(){
 						         
 						    	 let origin = wonToInt($(this).text());
-						    	 console.log(origin);
-						    	 console.log(3);
 						    	 
 						    	 
 						    	 final_price += parseInt(origin);	
@@ -432,27 +457,38 @@
 						     
 						  }	
 						
+												 
 						
+						 
 						 // this 객체의 status 값을 가지고 찾아 변경해주기
-							$('.ea_up').click(function () {
+							$('.ea_up2').click(function () {
+								
 									
-								  let og_id = 'og_price' + $(this).attr('id');
+								let og_price_id = 'og_price' + $(this).attr('id');
+								  let og_price = $('#'+og_price_id).val();
+								  
 								  // this 의 id = status로 설정해놓고 현재 status를 찾은것이다.
 								  // 그냥 위 delete처럼 바로 파라미터로 넣어도 될것같다.
 								  
-								  
-								  let og_price = $('#'+og_id).val();
-								  
+								  let product_id_id = 'product_id' + $(this).attr('id');
+								  let product_id = $('#'+product_id_id).val();
+								 
+								  							  
 								  let quantity_id ='buy_ea' + $(this).attr('id');
 								  let quantity = $('#'+quantity_id).val();
 								  
-								  let price = og_price*quantity;
-								  
+								  let price = og_price*quantity;								  
 								
-								  let p_id ='item_p' + $(this).attr('id');
-								
+								  let p_id ='item_p' + $(this).attr('id');								
 								  
 								  $('#'+ p_id).text(intToWon(price));
+								  
+								  
+								  
+								  console.log(og_price);
+								  console.log(product_id);
+								  console.log(quantity);
+								  
 								  
 								  total_price_calc()
 								  
@@ -462,7 +498,7 @@
 							
 							
 							
-							$('.ea_down').click(function () {
+							$('.ea_down2').click(function () {
 								
 								  let og_id = 'og_price' + $(this).attr('id');
 								  let og_price = $('#'+og_id).val();
@@ -482,6 +518,71 @@
 								  
 							
 							});
+							
+							
+							function updateQuantity(product_id, product_qauntity,member_id,update_num, status){
+								
+								
+								console.log(product_qauntity);
+								
+							
+							 	let og_price = $('#og_price'+status).val();
+							 	
+							 	console.log(og_price);
+								 
+							 
+								  let quantity_id ='buy_ea' + status;
+								  let quantity = parseInt($('#'+quantity_id).val()) + update_num ;
+								  
+								  console.log(quantity);
+								  
+							  	let price = og_price*quantity;				
+							  	
+							  	 console.log(price);
+							
+							 	 let p_id ='item_p' + status;		
+							  	let quan_val_id = 'buy_ea' + status;
+							  	
+							  	console.log(quantity);
+								
+							 
+								
+								
+	 							$.ajax({
+									 	
+	 							
+										type:"get",  //전송타입
+										url:"/shop/upQuantity",//서버요청대상파일
+										data:{
+											product_qauntity: quantity,
+											product_id: product_id,
+											member_id: member_id,
+										
+									 
+								 			},
+								 			contentType : "application/json",
+								 
+								 		success: function () { 
+											
+								 		console.log("석세스");
+								 		console.log(product_qauntity);
+									 		
+										  $('#'+ quan_val_id).val(quantity);
+										  $('#'+ p_id).text(intToWon(price));									  
+									  
+										  total_price_calc();
+										  
+								 }, error:function(request,status,error){
+								        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							       }
+								 
+								
+								});
+								
+							}
+							
+							
+							
 					</script>
 
 				</div>
