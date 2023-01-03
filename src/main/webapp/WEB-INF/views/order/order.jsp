@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,35 +17,7 @@
 <link rel="stylesheet" type="text/css"
 	href="https://www.rexremall.com/wm_engine_SW/_engine/common/loading.css??202212281151" />
 
-<script type="text/javascript">
-	var hid_frame = "hidden1672195870";
-	var mlv = "9";
-	var alv = "";
-	var root_url = "https://www.rexremall.com";
-	var engine_url = "https://www.rexremall.com/wm_engine_SW";
-	var this_url = "https://www.rexremall.com/shop/cart.php";
-	var ssl_url = "https://www.rexremall.com/main/exec.php";
-	var soldout_name = "품절";
-	var ace_counter_gcode = "";
-	var uip = "112.221.225.164";
-	var currency = "원";
-	var currency_type = "원";
-	var currency_decimal = "0";
-	var r_currency_type = "";
-	var r_currency_decimal = "0";
-	var exchangeRate = "";
-	var juso_api_use = "Y";
-	var browser_type = "pc";
-	var mobile_browser = "";
-	var ssl_type = "Y";
 
-	var click_prd = new Array();
-	click_prd[1] = '<a href="https://www.rexremall.com/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087&cno1=1001"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/9d67faf5de5906f682b3bb52fef7a3dc.jpg" width="51" height="62" alt="리바이리 콤부차 배리옴 릴리프 마스크 1매-6,500" title=""></a>';
-	click_prd[2] = '<a href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&cno1=1001"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg" width="51" height="62" alt="리바이리 콤부차 배리옴 스킨케어 5종 기획-170,000" title=""></a>';
-	var click_prd_limit = 2;
-	var click_prd_start = 1;
-	var click_prd_finish = click_prd_limit + 1;
-</script>
 <script type="text/javascript"
 	src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript"
@@ -165,106 +138,7 @@
 		src="https://www.rexremall.com/wm_engine_SW/_engine/common/order.js?20211021"></script>
 	<script type="text/javascript"
 		src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.prdcpn.js?20200630"></script>
-	<script type="text/javascript">
-		$(function() {
-			$(".datepicker").datepicker(date_picker_default);
 
-			var f = document.getElementsByName("ordFrm");
-			if (f.length == 1) {
-				f = f[0];
-				if (!f.elements["mail_send"]) {
-					$(f)
-							.prepend(
-									'<input type="hidden" name="mail_send" value="Y" />');
-				}
-			}
-		});
-
-		var nec_buyer_email = "";
-		var nec_buyer_phone = "";
-		var nec_addressee_phone = "";
-
-		var escrow_limit = "0";
-
-		var evnt_abl = "0";
-		var event_min_pay = 0;
-		var event_type = "";
-		var event_ptype = "";
-		var event_per = 0;
-		var event_round = 10;
-
-		var msale_per = 0;
-		var mmile_per = 5;
-		var msale_type = "3";
-		var msale_round = 10;
-		var msale_delivery = "";
-
-		var usable_emoney = 0;
-		var total_emoneys = 0;
-		var cash_receipt_use = "Y";
-
-		var order_cpn_paytype = "1";
-		var order_milage_paytype = "1";
-		var order_cpn_milage = "1";
-		var msale_milage_cash = "N";
-		var use_order_phone = "N";
-
-		var cart_selected = "";
-
-		var pg_charge_1 = "";
-		var pg_charge_4 = "";
-		var pg_charge_5 = "";
-		var pg_charge_7 = "";
-		var pg_charge_E = "";
-
-		var total_add_info = 0;
-		var skip_add_info = new Array();
-
-		var remote_addr = "112.221.225.164";
-		var adddlv_type = "2";
-		var areaNum = 24;
-		var free_delivery_area = "Y";
-		var delivery_type = "3";
-		var delivery_free_limit = 30000;
-		var delivery_fee = 4000;
-		var delivery_base = "2";
-		var delivery_free_milage = "Y";
-		var use_cpn_milage = "Y";
-		var use_cpn_milage_msg = "N";
-		var milage_use_unit = 50;
-
-		var freedeli_event_min_pay = "";
-		var delivery_fee_type = "D";
-
-		var sbscr = "N";
-		var sbscr_order_all = "";
-		var sbscr_order_split = "";
-
-		var f = document.ordFrm;
-		window.onload = function() {
-			if ($(":checked[name=pay_type]").length == 0) {
-				var p = $(":radio[name=pay_type]").eq(0);
-				p.click();
-			}
-
-			putOldAddressee($("select[name=old_addr_sel]")[0], "");
-			useMilage(document.ordFrm, 3);
-
-			//도로명주소를 Default로 설정
-			if ($("#zip_mode1").length) {
-				if (typeof $.prop == "function") {
-					$("#zip_mode1").prop("checked", true);
-				} else {
-					$("#zip_mode1").attr("checked", true);
-				}
-			}
-			var f = document.ordFrm;
-			if (sbscr == "Y" && typeof f.sbscr_all != "undefined") {
-				sbscrTypeChk(f.sbscr_all.value, sbscr_order_all,
-						sbscr_order_split);
-			}
-		};
-	</script>
 
 
 	<style type="text/css">
@@ -284,7 +158,7 @@
 		<i id="crema-login-username" style="display: none">95parksh</i> <i
 			id="crema-login-name" style="display: none">박성환</i>
 		<div id="wrapper">
-		
+
 			<!--상단 -->
 			<%@ include file="/WEB-INF/views/include/header.jsp"%>
 			<!--//상단 -->
@@ -292,8 +166,8 @@
 			<!-- 중앙 -->
 			<div id="cnt">
 				<div class="cntbody">
-					
-					<h2 class="subtitle">주문서</h2>		
+
+					<h2 class="subtitle">주문서</h2>
 
 					<ul id="order_step" class="order_step">
 						<li>
@@ -340,41 +214,39 @@
 									<tr>
 										<th scope="col" colspan="2">상품명</th>
 										<th scope="col"></th>
-										<th scope="col">추가금액</th>
+										<th scope="col">금액</th>
 										<th scope="col">수량</th>
 										<th scope="col">총 금액</th>
 										<th scope="col"></th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td class="img"><a
-											href="https://www.rexremall.com/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
-												src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/9d67faf5de5906f682b3bb52fef7a3dc.jpg"
-												width="57" height="70" barder="0" /></a></td>
-										<td class="name tal"><a
-											href="https://www.rexremall.com/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087">리바이리
-												콤부차 배리옴 릴리프 마스크 1매</a></td>
-										<td class="tal"><div></div></td>
-										<td class="prc"><strong>0</strong>원</td>
-										<td class="qty">1</td>
-										<td class="prc"><strong>5,850</strong>원</td>
-										<td class="prc"></td>
-									</tr>
-									<tr>
-										<td class="img"><a
-											href="https://www.rexremall.com/shop/detail.php?pno=FDE9264CF376FFFE2EE4DDF4A988880D"><img
-												src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/9146dfae7d1a41ba033e00893a752c87.jpg"
-												width="57" height="70" barder="0" /></a></td>
-										<td class="name tal"><a
-											href="https://www.rexremall.com/shop/detail.php?pno=FDE9264CF376FFFE2EE4DDF4A988880D">리바이리
-												콤부차 배리옴 릴리프 마스크 5매</a></td>
-										<td class="tal"><div></div></td>
-										<td class="prc"><strong>0</strong>원</td>
-										<td class="qty">2</td>
-										<td class="prc"><strong>54,000</strong>원</td>
-										<td class="prc"></td>
-									</tr>
+
+
+
+									<c:forEach var="cartItem" items="${cartItems}"
+										varStatus="status">
+										<tr class="checked" id="itemNum${status.count}">
+											<td class="img"><a href="#"><img
+													src="${cartItem.IMAGE_PATH}" width="57" height="70"
+													barder="0" /></a></td>
+											<td class="name tal"><a href="#">${cartItem.PRODUCT_NAME}</a></td>
+											<td class="tal"><div></div></td>
+											<td class="prc"><strong><fmt:formatNumber
+														value="${cartItem.PRODUCT_PRICE}" pattern="#,###"
+														type="number" /></strong>원</td>
+											<td class="qty">1</td>
+											<td class="prc itemPrice"><strong><fmt:formatNumber
+														"data-price"
+														value="${cartItem.PRODUCT_PRICE * cartItem.CART_QUANTITY}"
+														pattern="#,###" type="number" /></strong>원</td>
+											<td class="prc"></td>
+										</tr>
+
+									</c:forEach>
+
+
+
 								</tbody>
 							</table>
 							<!-- //주문상품정보 -->
@@ -591,7 +463,7 @@
 													</tr>
 													<tr>
 														<th scope="row">배송료</th>
-														<td>(+) <span id="delivery_prc2">0</span>원
+														<td>(+) <span id="delivery_prc2"></span>원
 														</td>
 													</tr>
 												</tbody>
@@ -656,8 +528,8 @@
 
 													<tr>
 														<th scope="row">총 결제 금액</th>
-														<td><strong class="total_price"><span
-																class="order_info_sale_prc">59,850</span>원</strong></td>
+														<td><strong><span
+																class="order_info_sale_prc"></span>원</strong></td>
 													</tr>
 												</tbody>
 											</table>
@@ -715,7 +587,7 @@
 										</div>
 										<div id="order2">
 											<p class="total_info">
-												총 결제 금액 <strong><span class="order_info_sale_prc">59,850</span></strong>원
+												총 결제 금액 <strong><span class="order_info_sale_prc"></span></strong>원
 												결제를 합니다.
 											</p>
 											<p class="msg">'결제하기' 버튼을 누르면 결제창으로 연결됩니다.</p>
@@ -727,16 +599,7 @@
 								</div>
 							</div>
 
-							<input type="hidden" name="total_order_price" value="59850" /> <input
-								type="hidden" name="event_total_prc" value="0" />
-							<!-- 이벤트할인 2006-05-18 -->
-							<input type="hidden" name="member_total_prc" value="59850" />
-							<!-- 회원할인 2006-05-18 -->
-							<input type="hidden" name="usable_milage" value="0" /> <input
-								type="hidden" name="delivery_prc" value="0" />
-							<!--배송비 2006-05-16-->
-							<input type="hidden" name="cart_where" value="" />
-							<!-- 장바구니조건값 2006-05-16 -->
+
 						</form>
 						<script type="text/javascript">
 							var prdprc_sale = "";
@@ -744,51 +607,7 @@
 							var prdprc_sale_add = "2";
 						</script>
 					</div>
-					<script type="text/javascript">
-						// 삭제금지
-						$(window)
-								.ready(
-										function() {
-											// 결제정보 입력
-											$(".msg_pay").hide();
-											$(".pay_label")
-													.click(
-															function() {
-																$(".msg_pay")
-																		.hide();
-																if ($(this)
-																		.parent()
-																		.find(
-																				".msg_pay").length == true) {
-																	$(this)
-																			.parent()
-																			.find(
-																					".msg_pay")
-																			.show();
-																}
-															});
-										});
-					</script>
 
-					
-					<script type="text/javascript">
-						(function(a, g, e, n, t) {
-							a.enp = a.enp || function() {
-								(a.enp.q = a.enp.q || []).push(arguments);
-							};
-							n = g.createElement(e);
-							n.async = !0;
-							n.defer = !0;
-							n.src = "https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";
-							t = g.getElementsByTagName(e)[0];
-							t.parentNode.insertBefore(n, t);
-						})(window, document, "script");
-						enp("create", "common", "rexreskbio", {
-							device : "W"
-						});
-						enp("send", "common", "rexreskbio");
-					</script>
-					
 				</div>
 			</div>
 			<!-- //중앙끝 -->
@@ -798,7 +617,7 @@
 			<!-- //하단끝 -->
 
 		</div>
-		
+
 		<script type="text/javascript">
 			// 인기검색어 폰트사이즈 제어
 			$(document).ready(function() {
@@ -812,7 +631,73 @@
 	</div>
 	<script type="text/javascript" defer="defer">
 		$(document).ready(function() {
+			
+			total_price_calc();
+			
+			
 		});
+		
+		function intToWon(s) {
+			
+			  return s.toLocaleString() + '원';
+			}
+		
+		function wonToInt(s) {
+			  return parseInt(s.substr(0, s.length - 1).replaceAll(',', ''));
+			}
+		
+		
+		
+		
+		function total_price_calc(){
+		    
+		     let final_price = 0; // 최종적으로 결제해야하는 가격 
+		     let deliveryfee = 0; // 배송비
+		     let og_price = 0;
+		     
+		     
+		     var checkArr = new Array();
+			   var PriceNum = new Array();
+			   
+			   $("[class='checked']").each(function(){
+				   
+				   let origin = wonToInt($(".itemPrice").text());
+
+			    	final_price += parseInt(origin);	
+			   
+			   });
+		           
+		      /* 최종 가격 */
+		      
+		      //배송비
+		      let delivery = 0;
+		      
+		      
+		      if(final_price < 150000){
+		    	  
+		    	  delivery = 4000;
+		    	  final_price += delivery;
+		    	  $(".delivery_prc2").text(delivery.toLocaleString());
+		    	  $(".order_info_sale_prc").text(final_price.toLocaleString());
+		    	  
+		      }else{
+		    	  $(".delivery_prc2").text(0);
+		    	  $(".order_info_sale_prc").text(final_price.toLocaleString());
+		      }
+		      
+		      
+		      
+		      console.log(final_price);
+		     
+		  }	
+		
+		
+		
+		
+		
+		
+		
+		
 	</script>
 	<script type="text/javascript"
 		src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js"

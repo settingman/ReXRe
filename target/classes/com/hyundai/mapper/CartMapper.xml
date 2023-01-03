@@ -22,7 +22,7 @@
 		=
 		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
 		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
-		where MEMBERS_MEMBER_ID=#{member_id}
+		where MEMBERS_MEMBER_IDID=#{member_id}
 	</select>
 	
 	
@@ -34,25 +34,25 @@
 		=
 		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
 		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
-		where MEMBERS_MEMBER_ID=#{member_id} and Carts.PRODUCTS_PRODUCT_ID=#{product_id}
+		where MEMBERS_MEMBER_IDID=#{member_id} and Carts.PRODUCTS_PRODUCT_ID=#{product_id}
 	</select>
 
 
 	<delete id="deleteOne">
-		delete from Carts where members_member_id =
+		delete from Carts where MEMBERS_MEMBER_IDID =
 		#{member_id}
 		and products_product_id = #{product_id}
 	</delete>
 
 	<delete id="deleteAll">
-		delete from Carts where members_member_id =
+		delete from Carts where MEMBERS_MEMBER_IDID =
 		#{member_id}
 	</delete>
 	
 	
 	<update id="updateQuantity">
 		update Carts set CART_QUANTITY = #{product_qauntity}
-		where members_member_id =#{member_id} and PRODUCTS_PRODUCT_ID = #{product_id}
+		where MEMBERS_MEMBER_IDID =#{member_id} and PRODUCTS_PRODUCT_ID = #{product_id}
 	</update>
 
 

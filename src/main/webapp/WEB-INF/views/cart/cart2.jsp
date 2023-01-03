@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -96,14 +94,7 @@
 <script type="text/javascript"
 	src="https://www.rexremall.com/wm_engine_SW/_engine/common/sec.js"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-<script type="text/javascript">
-	if (!wcs_add)
-		var wcs_add = {};
-	wcs_add["wa"] = "s_36b65d5f3061";
-	if (typeof wcs != "undefined") {
-		wcs.inflow("rexremall.com");
-	}
-</script>
+
 
 
 <link rel="canonical" href="https://rexremall.com/" />
@@ -133,19 +124,6 @@
 		var prdprc_sale = 0;
 		var delivery_type = "3";
 		var exchangeRate = "";
-	</script>
-	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					if ($("form[name=cartFrm]").find(":checkbox").length > 0) {
-						$("form[name=cartFrm]").find(":checkbox").attrprop(
-								"checked", true);
-					}
-					$("form[name=cartFrm]").find(":checkbox").change(
-							function() {
-								cartLiveCalc(this.form);
-							});
-				});
 	</script>
 	<script type="text/javascript" defer="defer">
 		$(document).ready(function() {
@@ -211,7 +189,7 @@
 
 							<div class="enterprise headY">
 								<p class="msg_delivery">
-									<strong>장바구니 (2)</strong> <span>/ 30,000원 이상 구매 시 무료배송</span>
+									<strong>장바구니 (3)</strong> <span>/ 30,000원 이상 구매 시 무료배송</span>
 								</p>
 							</div>
 							<table class="tbl_col prd">
@@ -249,7 +227,7 @@
 												data-product_id="${cartItem.PRODUCT_ID}"
 												data-status="itemNum${status.count}" data-price="item_p${status.count}"/></td>
 											<td><a
-												href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
+												href="#"><img
 													src="${cartItem.IMAGE_PATH}" width="82" height="100"
 													barder="0" /></a></td>
 											<td class="name tal"><a href="상품디테일주소뿌려주기">${cartItem.PRODUCT_NAME}</a></td>
@@ -393,7 +371,7 @@
 						   });
 						    
 						   $.ajax({
-						    url : "/shop/cartOrderChecked",
+						    url : "/shop/cartDelChecked",
 						    type : "get",
 						    data : { chbox : checkArr },
 						    success : function(){
@@ -403,6 +381,7 @@
 						    			);
 							  
 							  total_price_calc();
+							  Cart_Num_calc();
 						    }
 						   });
 						   
@@ -444,6 +423,7 @@
 						
 						$(document).ready(function(){
 						     total_price_calc();
+						     Cart_Num_calc();
 						  });
 						
 						
@@ -490,6 +470,7 @@
 						 				$( 'tr' ).remove( '#itemNum'+status );								  
 							  
 										  total_price_calc();
+										  Cart_Num_calc();
 								  
 								 }, 
 								 error:function(request,status,error){
@@ -527,6 +508,7 @@
 							 		
 						 				$( "[id^='itemNum']" ).remove();
 										total_price_calc();
+										Cart_Num_calc();
 								  
 								 }, 
 								 error:function(request,status,error){
@@ -741,6 +723,19 @@
 							}
 							
 							
+							 function Cart_Num_calc(){
+								 var Cart_Num = document.getElementsByClassName('checked').length;
+							       
+								 	console.log(Cart_Num);
+								 
+							        $(".quick_cart_cnt").text(Cart_Num);
+							       
+								 
+							 
+							 }
+							
+							
+							
 							
 					</script>
 
@@ -789,6 +784,12 @@
 				quantity : "2",
 			}, ],
 		});
+		
+		
+		
+		
+		
+		
 	</script>
 
 	<script type="text/javascript">
