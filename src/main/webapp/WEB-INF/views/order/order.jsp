@@ -83,48 +83,7 @@
 
 
 <body>
-	<iframe name="hidden1672389533" src="about:blank" width="0" height="0"
-		scrolling="no" frameborder="0" style="display: none"></iframe>
-
-
-	<form name="mainForm" method="post" id="LGD_PAYINFO">
-		<!-- 공통 정보 -->
-		<input type="hidden" name="LGD_MID" value="" />
-		<!-- 상점아이디 -->
-		<input type="hidden" name="LGD_OID" value="" />
-		<!-- 주문번호 -->
-		<input type="hidden" name="LGD_AMOUNT" value="" />
-		<!-- 결제금액 -->
-		<input type="hidden" name="LGD_BUYER" value="" />
-		<!-- 구매자 -->
-		<input type="hidden" name="LGD_PRODUCTINFO" value="" />
-		<!-- 상품정보 -->
-		<input type="hidden" name="LGD_TIMESTAMP" value="" />
-		<!-- 타임스탬프 -->
-		<input type="hidden" name="LGD_HASHDATA" value="" />
-		<!-- 해쉬값 -->
-		<input type="hidden" name="LGD_CUSTOM_USABLEPAY" value="" />
-		<!-- 결제가능수단 -->
-		<input type="hidden" name="LGD_CUSTOM_SKIN" value="" />
-		<!-- 결제창 SKIN -->
-		<input type="hidden" name="LGD_CUSTOM_FIRSTPAY" value="" />
-
-		<!-- 버전정보 (삭제하지 마세요) -->
-		<input type="hidden" name="LGD_RESPCODE" id="LGD_RESPCODE" value="" />
-		<input type="hidden" name="LGD_RESPMSG" id="LGD_RESPMSG" value="" />
-		<input type="hidden" name="LGD_PAYKEY" id="LGD_PAYKEY" value="" /> <input
-			type="hidden" name="LGD_RETURNURL" value="" />
-		<!-- 응답 수신 페이지 -->
-		<input type="hidden" name="LGD_CUSTOM_PROCESSTYPE" value="" />
-		<!-- 트랜잭션 처리방식 -->
-		<input type="hidden" name="LGD_ENCODING" value="" /> <input
-			type="hidden" name="LGD_ENCODING_NOTEURL" value="" /> <input
-			type="hidden" name="LGD_ENCODING_RETURNURL" value="" /> <input
-			type="hidden" name="LGD_CLOSEDATE" value="20230101235959" /> <input
-			type="hidden" name="LGD_EASYPAY_ONLY" value="" /> <input
-			type="hidden" name="LGD_ONEPAY_VIEW_VERSION" value="" /> <input
-			type="hidden" name="LGD_CUSTOM_SWITCHINGTYPE" value="IFRAME" />
-	</form>
+	
 
 	<script language="javascript"
 		src="https://xpay.uplus.co.kr/xpay/js/xpay_crossplatform.js"
@@ -232,12 +191,15 @@
 													barder="0" /></a></td>
 											<td class="name tal"><a href="#">${cartItem.PRODUCT_NAME}</a></td>
 											<td class="tal"><div></div></td>
-											<td class="prc"><strong><fmt:formatNumber
-														value="${cartItem.PRODUCT_PRICE}" pattern="#,###"
-														type="number" /></strong>원</td>
+											<td class="prc">
+												<p class="itemPrice">
+													<strong><fmt:formatNumber
+															value="${cartItem.PRODUCT_PRICE}" pattern="#,###"
+															type="number" /></strong>원
+												</p>
+											</td>
 											<td class="qty">1</td>
 											<td class="prc itemPrice"><strong><fmt:formatNumber
-														"data-price"
 														value="${cartItem.PRODUCT_PRICE * cartItem.CART_QUANTITY}"
 														pattern="#,###" type="number" /></strong>원</td>
 											<td class="prc"></td>
@@ -459,11 +421,11 @@
 												<tbody>
 													<tr>
 														<th scope="row">상품합계 금액</th>
-														<td>59,850원</td>
+														<td><span class="before_price"> </span> 원</td>
 													</tr>
 													<tr>
 														<th scope="row">배송료</th>
-														<td>(+) <span id="delivery_prc2"></span>원
+														<td>(+) <span class="delivery_prc2"></span> 원
 														</td>
 													</tr>
 												</tbody>
@@ -529,7 +491,7 @@
 													<tr>
 														<th scope="row">총 결제 금액</th>
 														<td><strong><span
-																class="order_info_sale_prc"></span>원</strong></td>
+																class="order_info_sale_prc"></span> 원</strong></td>
 													</tr>
 												</tbody>
 											</table>
@@ -631,73 +593,62 @@
 	</div>
 	<script type="text/javascript" defer="defer">
 		$(document).ready(function() {
-			
-			total_price_calc();
-			
-			
-		});
-		
-		function intToWon(s) {
-			
-			  return s.toLocaleString() + '원';
-			}
-		
-		function wonToInt(s) {
-			  return parseInt(s.substr(0, s.length - 1).replaceAll(',', ''));
-			}
-		
-		
-		
-		
-		function total_price_calc(){
-		    
-		     let final_price = 0; // 최종적으로 결제해야하는 가격 
-		     let deliveryfee = 0; // 배송비
-		     let og_price = 0;
-		     
-		     
-		     var checkArr = new Array();
-			   var PriceNum = new Array();
-			   
-			   $("[class='checked']").each(function(){
-				   
-				   let origin = wonToInt($(".itemPrice").text());
 
-			    	final_price += parseInt(origin);	
-			   
-			   });
-		           
-		      /* 최종 가격 */
-		      
-		      //배송비
-		      let delivery = 0;
-		      
-		      
-		      if(final_price < 150000){
-		    	  
-		    	  delivery = 4000;
-		    	  final_price += delivery;
-		    	  $(".delivery_prc2").text(delivery.toLocaleString());
-		    	  $(".order_info_sale_prc").text(final_price.toLocaleString());
-		    	  
-		      }else{
-		    	  $(".delivery_prc2").text(0);
-		    	  $(".order_info_sale_prc").text(final_price.toLocaleString());
-		      }
-		      
-		      
-		      
-		      console.log(final_price);
-		     
-		  }	
-		
-		
-		
-		
-		
-		
-		
-		
+			total_price_calc();
+
+		});
+
+		function intToWon(s) {
+
+			return s.toLocaleString() + '원';
+		}
+
+		function wonToInt(s) {
+			return parseInt(s.substr(0, s.length - 1).replaceAll(',', ''));
+		}
+
+		function total_price_calc() {
+
+			let final_price = 0; // 최종적으로 결제해야하는 가격 
+			let deliveryfee = 0; // 배송비
+			let og_price = 0;
+
+			var checkArr = new Array();
+			var PriceNum = new Array();
+
+			$("[class='checked']").each(function() {
+
+				let origin = wonToInt($(".itemPrice").text());
+
+				final_price += parseInt(origin);
+
+			});
+
+			/* 최종 가격 */
+
+			//배송비
+			let delivery = 0;
+
+			if (final_price < 150000) {
+				
+				$(".before_price").text(final_price.toLocaleString());
+				
+				delivery = 4000;
+				final_price += delivery;
+				
+				$(".delivery_prc2").text(delivery.toLocaleString());
+				$(".order_info_sale_prc").text(final_price.toLocaleString());
+				
+
+			} else {
+				$(".before_price").text(final_price.toLocaleString());	
+				$(".delivery_prc2").text(0);
+				$(".order_info_sale_prc").text(final_price.toLocaleString());
+			}
+
+			console.log(final_price);
+
+		}
 	</script>
 	<script type="text/javascript"
 		src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js"

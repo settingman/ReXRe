@@ -412,41 +412,7 @@
 						</form>
 					</div>
 
-					<!-- Enliple Tracker Start -->
-					<script type="text/javascript">
-						var ENP_VAR = {
-							conversion : {
-								product : []
-							}
-						};
-
-						var mobCartQty = 0;
-						$('input[name="buy_ea[]"]').each(function() {
-							mobCartQty += Number($(this).val());
-						});
-
-						ENP_VAR.conversion.totalPrice = "470,700"; // 없는 경우 단일 상품의 정보를 이용해 계산
-						ENP_VAR.conversion.totalQty = mobCartQty; // 없는 경우 단일 상품의 정보를 이용해 계산
-
-						(function(a, g, e, n, t) {
-							a.enp = a.enp || function() {
-								(a.enp.q = a.enp.q || []).push(arguments);
-							};
-							n = g.createElement(e);
-							n.async = !0;
-							n.defer = !0;
-							n.src = "https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";
-							t = g.getElementsByTagName(e)[0];
-							t.parentNode.insertBefore(n, t);
-						})(window, document, "script");
-						enp("create", "conversion", "rexreskbio", {
-							device : "W",
-							paySys : "naverPay",
-						});
-					</script>
-
-					<!-- Enliple Insite breakAway Popup end -->
-					<!-- Enliple Tracker Start -->
+					
 					<script type="text/javascript">
 						(function(a, g, e, n, t) {
 							a.enp = a.enp || function() {
