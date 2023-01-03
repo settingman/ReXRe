@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hyundai.domain.Criteria;
+import com.hyundai.domain.productDetailVO;
 import com.hyundai.domain.productVO;
 
 import lombok.NoArgsConstructor;
@@ -50,4 +51,21 @@ public class ProductMapperTests {
 	   criteria.setAmount(9);
 	   List<productVO> list = mapper.getListWithPaging(criteria);
    }
+   
+   
+	//상세페이지
+	@Test 
+	public void testGetProductDetail() {
+		log.info("getProductDetail");
+		List<productDetailVO> detail = mapper.getProductDetail(1L);
+
+	}
+	
+	//상세페이지 조회수
+	@Test
+	public void testGetProductDetailCount() throws Exception {
+		log.info("getProductDetailCount");
+		int count = mapper.getProductDetailCount(1L);
+		log.info(count);
+	}
 }

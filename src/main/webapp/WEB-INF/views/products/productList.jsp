@@ -295,9 +295,8 @@ var google_alanytics_id = 'UA-166260789-1';
 									<li><div class="box ">
 											<div class="img">
 												<div class="prdimg img1226">
-													<a
-														href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012"><img
-														src="<c:out value='${productList.image_path}'/>"
+													<a href='/product/productDetail?product_id=<c:out value="${productList.product_id}"/>'>
+													<img src="<c:out value='${productList.image_path}'/>"
 														width="380" height="466"></a>
 												</div>
 												<!-- 상품품절 영역 -->

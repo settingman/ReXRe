@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundai.domain.Criteria;
+import com.hyundai.domain.productDetailVO;
 import com.hyundai.domain.productVO;
 import com.hyundai.mapper.ProductMapper;
 
@@ -44,6 +46,14 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getListWithPaging(cri);
 	}
 	
-	
+	//상세페이지 조회 + count
+	@Override
+	@Transactional
+	public List<productDetailVO> getProductDetail(Long product_id) {
+		log.info(">>> productDetail " + product_id);
+		
+		int update = mapper.getProductDetailCount(product_id);
+		return mapper.getProductDetail(product_id);
+	}
 
 }
