@@ -247,7 +247,7 @@
 										<tr class="checked" id="itemNum${status.count}">
 											<td><input type="checkbox" name="chBox" class="chBox"
 												data-product_id="${cartItem.PRODUCT_ID}"
-												data-status="itemNum${status.count}" /></td>
+												data-status="itemNum${status.count}" data-price="item_p${status.count}"/></td>
 											<td><a
 												href="/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087"><img
 													src="${cartItem.IMAGE_PATH}" width="82" height="100"
@@ -312,7 +312,7 @@
 									<span class="box_btn w117 h45 fs15 kor white"><a
 										href="https://www.rexremall.com/shop/big_section.php?cno1=1020">계속
 											쇼핑하기</a></span> <span class="box_btn w117 h45 fs15 kor"><a
-										href="javascript:orderCart(document.cartFrm,'checked');">선택상품
+										href="#" class="selectOrder_btn">선택상품
 											주문</a></span>
 								</div>
 							</div>
@@ -365,38 +365,42 @@
 						 } else {
 						  $(".chBox").prop("checked", false);
 						 }
+						 total_price_calc();
 						});
 
 					
 					 $(".chBox").click(function(){
 						  $("#allCheck").prop("checked", false);
+						  total_price_calc();
 						 });
 					 
 					 
 					 
+					 
+					 //선택삭제
 					 $(".selectDelete_btn").click(function(){
 						 
 						  var confirm_val = confirm("정말 삭제하시겠습니까?");
 						  
 						  if(confirm_val) {
 						   var checkArr = new Array();
-						   var deleteNum = new Array();
+						   
 						   
 						   $("input[class='chBox']:checked").each(function(){
 							   
 						    checkArr.push($(this).attr("data-product_id"));
 						    
-						    deleteNum.push($(this).attr("data-status"));
 						   });
 						    
 						   $.ajax({
-						    url : "/shop/cartDelChecked",
+						    url : "/shop/cartOrderChecked",
 						    type : "get",
 						    data : { chbox : checkArr },
 						    success : function(){
 						    	
 						    	deleteNum.forEach(
-						    			itemNum => $( 'tr' ).remove( '#'+itemNum ));
+						    			itemNum => $( 'tr' ).remove( '#'+itemNum )
+						    			);
 							  
 							  total_price_calc();
 						    }
@@ -406,9 +410,36 @@
 						 });
 					 
 					 
+					 //선택 주문
+					 $(".selectOrder_btn").click(function(){
+						 
+						  var confirm_val = confirm("주문하시겠습니까?");
+						  
+						  if(confirm_val) {
+							  
+							let idquery = '?id='
+						   var checkArr = new Array();
+						  
+						   
+						   $("input[class='chBox']:checked").each(function(){
+							
+							   idquery=idquery + $(this).attr("data-product_id") + ','
+						    checkArr.push($(this).attr("data-product_id"));
+						    
+						    
+						   });
+						   
+						   idquery = idquery.slice(0, -1);
+						   
+						   console.log(checkArr);
+						   console.log(idquery);
+						    
+						   location.href = "/shop/order"+idquery;
+						   
+						  } 
+						 });
 					 
-					
-					
+					 
 						
 						
 						$(document).ready(function(){
@@ -514,33 +545,50 @@
 						
 						
 						
-						
+						 // 총 가격 계산
 						 function total_price_calc(){
 						    
 						     let final_price = 0; // 최종적으로 결제해야하는 가격 
 						     let deliveryfee = 0; // 배송비
 						     let og_price = 0;
 						     
-						      $(".cart_prc").each(function(){
-						         
-						    	 let origin = wonToInt($(this).text());
-						    	 
-						    	 
-						    	 final_price += parseInt(origin);	
-						    	 
-						    	
-						      });   
+						     
+						     var checkArr = new Array();
+							   var PriceNum = new Array();
+							   
+							   $("input[class='chBox']:checked").each(function(){
+								   
+							    checkArr.push($(this).attr("data-product_id"));
+							    
+							    PriceNum.push($(this).attr("data-price"));
+							    console.log($(this).attr("data-price"));
+							   });
+							   
+						     
+							   PriceNum.forEach(
+						    			itemNum => {
+						    				
+						    				let origin = wonToInt($('#'+itemNum).text());
+
+									    	 final_price += parseInt(origin);	
+						    				
+						    				
+						    			}
+						    			);
+						     
+						     
+						     
+						     
+						     
+						    
 						           
 						      /* 최종 가격 */
 						      
 						      //배송비
 						      let delivery = 0;
 						      
-						     
-						      
-						    
 
-						      // 총 가격
+						     
 						      $(".total_prd_prc").text(final_price.toLocaleString());
 						     
 						      
@@ -705,19 +753,8 @@
 			<!-- //하단 -->
 
 		</div>
-		<!-- placeholder 스크립트 (삭제하시면 ie 하위브라우저에서 구현되지 않습니다.) -->
-		<script
-			src="https://www.rexremall.com/_skin/skbioland_200731/img/../placeholder.js"></script>
-		<script type="text/javascript">
-			// 인기검색어 폰트사이즈 제어
-			$(document).ready(function() {
-				$(".header").each(function(idx) {
-					if ($(this).find(".hot_keyword .list li").length > 8) {
-						$(this).find(".hot_keyword .list").addClass("small");
-					}
-				});
-			});
-		</script>
+		
+	
 	</div>
 	<script type="text/javascript" defer="defer">
 		$(document).ready(function() {

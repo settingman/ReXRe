@@ -1,7 +1,8 @@
 
 package com.hyundai.controller.cart;
 
-import java.util.Arrays;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +60,6 @@ public class CartController {
 	@GetMapping("/shop/cartDelChecked")
 	public void deleteCheked(@RequestParam(value="chbox[]") List<String> chArr) {
 		
-		System.out.println(chArr.get(0));
 		
 		// 세션으로 받아오기
 		Integer member_id = 255;
@@ -71,9 +71,9 @@ public class CartController {
 		
 		System.out.println("들어왔나요del");
 
-		
-
 	}
+	
+	
 	
 	@ResponseBody
 	@GetMapping("/shop/cartDelAll")

@@ -11,6 +11,8 @@ public interface CartMapper {
 	public String find(Integer member_id);
 
 	public List<CartItem> findCart(Integer member_id);
+	
+	public CartItem findCartItem(@Param("member_id") Integer member_id, @Param("product_id") Integer product_id);
 
 	public void insertCart(Integer member_id, Integer product_id);
 
