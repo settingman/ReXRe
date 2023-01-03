@@ -24,6 +24,18 @@
 		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
 		where MEMBERS_MEMBER_ID=#{member_id}
 	</select>
+	
+	
+	<select id="findCartItem" resultType="com.hyundai.domain.CartItem">
+		select
+		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY, CART_CHECK
+		,IMAGE_PATH
+		from carts inner join products on carts.PRODUCTS_PRODUCT_ID
+		=
+		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
+		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
+		where MEMBERS_MEMBER_ID=#{member_id} and Carts.PRODUCTS_PRODUCT_ID=#{product_id}
+	</select>
 
 
 	<delete id="deleteOne">
