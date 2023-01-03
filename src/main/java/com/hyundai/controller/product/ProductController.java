@@ -1,11 +1,10 @@
 package com.hyundai.controller.product;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hyundai.domain.Criteria;
 import com.hyundai.domain.PageDTO;
@@ -36,5 +35,17 @@ public class ProductController {
 		return "products/productList";
 	}
 	
+	
+	//惑前惑技
+	@GetMapping("/productDetail")
+	public String list(@RequestParam("product_id") Long product_id, Model model) throws Exception {
+		
+		log.info("惑前惑技");
+		log.info(product_id);
+		
+		model.addAttribute("productDetail", productService.getProductDetail(product_id));
+
+		return "/products/productDetail";
+	}
 	
 }

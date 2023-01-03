@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hyundai.domain.CartItem;
 import com.hyundai.domain.Criteria;
+import com.hyundai.domain.productDetailVO;
 import com.hyundai.domain.productVO;
 
 import lombok.NoArgsConstructor;
@@ -24,10 +24,6 @@ public class ProductMapperTests {
 
    @Setter(onMethod_ = @Autowired)
    private ProductMapper mapper;
-   
-   @Setter(onMethod_ = @Autowired)
-   
-   private CartMapper carmapper;
 
 
    @Test
@@ -56,15 +52,20 @@ public class ProductMapperTests {
 	   List<productVO> list = mapper.getListWithPaging(criteria);
    }
    
-   @Test
-   public void CartList() {
-	   log.info("CartList paging");
-	   List<CartItem> list = carmapper.findCart(255);
-	   log.info(list.isEmpty());
-	      log.info(list.size());
-	   
-   }
    
-   
-   
+	//상세페이지
+	@Test 
+	public void testGetProductDetail() {
+		log.info("getProductDetail");
+		List<productDetailVO> detail = mapper.getProductDetail(1L);
+
+	}
+	
+	//상세페이지 조회수
+	@Test
+	public void testGetProductDetailCount() throws Exception {
+		log.info("getProductDetailCount");
+		int count = mapper.getProductDetailCount(1L);
+		log.info(count);
+	}
 }

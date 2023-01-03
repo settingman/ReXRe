@@ -3,7 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundai.mapper.ProductMapper">
-	
+
 	<!-- getList SELECT 부분 -->
 	<select id="getList" resultType="com.hyundai.domain.productVO">
 		<![CDATA[
@@ -26,17 +26,39 @@
 					ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY,
         			I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
 				FROM PRODUCTS P, PRODUCTIMAGES I 
-				WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND ROWNUM <= #{pageNum} * #{amount} AND P.PRODUCT_ID < 11
+				WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND ROWNUM <= #{pageNum} * #{amount} 
+
 				)
 			WHERE rn > (#{pageNum} -1) * #{amount} 
 			ORDER BY PRODUCT_ID
 		]]>
 	</select>
-	   <!-- 게시물 총 개수 (쓰레기) -->
-   <select id="getTotalCount" resultType="int">
+	<!-- 게시물 총 개수 (쓰레기) -->
+	<select id="getTotalCount" resultType="int">
      <![CDATA[
         SELECT count(*) from products where product_id > 0
      ]]>
-   </select>
-	
+	</select>
+
+
+	<!-- 상품상세 조회 -->
+	<!-- 상세페이지 -->
+	<select id="getProductDetail"
+		resultType="com.hyundai.domain.productDetailVO">
+		<![CDATA[
+			SELECT P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY,
+        			I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+			FROM PRODUCTS P, PRODUCTIMAGES I
+			WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND I.IMAGE_CATEGORY = '상품상세' AND P.PRODUCT_ID = #{product_id} 
+			ORDER BY P.PRODUCT_ID
+		]]>
+	</select>
+
+	<!-- 상세페이지 조회수 -->
+	<update id="getProductDetailCount">
+		UPDATE products
+		SET product_click = product_click + 1
+		WHERE product_id = #{product_id}
+	</update>
+
 </mapper>
