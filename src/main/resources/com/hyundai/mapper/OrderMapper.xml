@@ -10,22 +10,12 @@
 
 
 
-	<insert id="insertOrder">
-		<selectKey keyProperty="order_id" order="BEFORE"
-			resultType="String">
+	<insert id="insertOrderdetail">
 
-			SELECT Order_id_seq.NEXTVAL AS ID FROM DUAL
-
-		</selectKey>
-
-
-		INSERT INTO FULLMEMBERORDERS
-		VALUES(#{order_id}, #{order_adress1},
-		#{order_adress2}, #{ORDER_PHONE}, #{order_name}, #{order_postnum},
-		#{order_ask},
-		#{total_price}, #{order_payment}, #{order_category},1,
-		#{member_id})
-
+		INSERT INTO ORDERITEMS
+		VALUES(#{ITEM_QUANTITY},
+		#{ORDERS_ORDER_ID},
+		#{PRODUCTS_PRODUCT_ID})
 
 	</insert>
 
@@ -48,6 +38,19 @@
 
 
 	</insert>
+
+
+	<insert id="insertOrder3"
+		parameterType="com.hyundai.domain.OrderDTO2">
+		
+		INSERT INTO ORDERS
+		VALUES(#{orderid}, #{order_adress1},
+		#{order_adress2}, #{ORDER_PHONE}, #{order_name}, #{order_postnum},
+		#{order_ask},
+		#{total_price}, #{order_payment}, #{order_category})
+
+	</insert>
+
 
 
 

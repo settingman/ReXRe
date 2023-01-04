@@ -50,18 +50,23 @@ public class OrderController {
 
 	@PostMapping("/shop/oredercomplete")
 	public String OrederComplete(OrderDTO orderDTO, Model model) {
+		
 
+		System.out.println("ordercomplete");
 		
 		Integer member_id = 255;
-		
-		System.out.println(orderDTO);
-		
-		
 		Integer Order_id = orderService.insertOrder(orderDTO, member_id);
+		
+		
+		
+		
+		
 		
 
 		return "order/orderComplete";
 
 	}
+	
+	
 
 }

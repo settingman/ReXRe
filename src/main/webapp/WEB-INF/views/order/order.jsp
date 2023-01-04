@@ -159,12 +159,8 @@
 
 									<c:forEach var="cartItem" items="${cartItems}" varStatus="status">
 										<tr class="checked" id="itemNum${status.count}">
-											<td class="img">
-												<a href="#"><img src="${cartItem.IMAGE_PATH}" width="57" height="70" barder="0" /></a>
-											</td>
-											<td class="name tal">
-												<a href="#">${cartItem.PRODUCT_NAME}</a>
-											</td>
+											<td class="img"><a href="#"><img src="${cartItem.IMAGE_PATH}" width="57" height="70" barder="0" /></a></td>
+											<td class="name tal"><a href="#">${cartItem.PRODUCT_NAME}</a></td>
 											<td class="tal">
 												<div></div>
 											</td>
@@ -174,9 +170,7 @@
 												</p>
 											</td>
 											<td class="qty">${cartItem.CART_QUANTITY}</td>
-											<td class="prc itemPrice" id="itemPrice${status.count}">
-												<strong><fmt:formatNumber value="${cartItem.PRODUCT_PRICE * cartItem.CART_QUANTITY}" pattern="#,###" type="number" /></strong>원
-											</td>
+											<td class="prc itemPrice" id="itemPrice${status.count}"><strong><fmt:formatNumber value="${cartItem.PRODUCT_PRICE * cartItem.CART_QUANTITY}" pattern="#,###" type="number" /></strong>원</td>
 											<td class="prc"></td>
 										</tr>
 
@@ -261,29 +255,19 @@
 										<tbody>
 											<tr>
 												<th scope="row"><label for="order_buyer_name">주문하시는 분</label></th>
-												<td>
-													<input type="text" name="buyer_name" value="박성환" id="order_buyer_name" class="form_input" isplaceholderinited="true" />
-												</td>
+												<td><input type="text" name="buyer_name" value="박성환" id="order_buyer_name" class="form_input" isplaceholderinited="true" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="buyer_phone">전화번호</label></th>
-												<td>
-													<input type="text" name="buyer_phone" id="buyer_phone" value="" class="form_input remove_dash" isplaceholderinited="true" />
-												</td>
+												<td><input type="text" name="buyer_phone" id="buyer_phone" value="" class="form_input remove_dash" isplaceholderinited="true" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="buyer_cell">휴대전화번호</label></th>
-												<td>
-													<input type="text" name="buyer_cell" id="buyer_cell" value="01029270000" class="form_input remove_dash" isplaceholderinited="true" />
-													<input type="checkbox" name="sms" id="sms" value="Y" checked="" />
-													<label for="sms" class="msg">주문관련 SMS를 수신합니다.</label>
-												</td>
+												<td><input type="text" name="buyer_cell" id="buyer_cell" value="01029270000" class="form_input remove_dash" isplaceholderinited="true" /> <input type="checkbox" name="sms" id="sms" value="Y" checked="" /> <label for="sms" class="msg">주문관련 SMS를 수신합니다.</label></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="order_buyer_email">이메일</label></th>
-												<td>
-													<input type="text" name="buyer_email" value="95parksh@naver.com" id="order_buyer_email" class="form_input mail3" isplaceholderinited="true" />
-												</td>
+												<td><input type="text" name="buyer_email" value="95parksh@naver.com" id="order_buyer_email" class="form_input mail3" isplaceholderinited="true" /></td>
 											</tr>
 
 										</tbody>
@@ -302,30 +286,22 @@
 										<tbody>
 											<tr>
 												<th scope="row">기존 배송지</th>
-												<td>
-													<select name="old_addr_sel" onchange="putOldAddressee(this,''); useMilage(document.ordFrm,3);">
+												<td><select name="old_addr_sel" onchange="putOldAddressee(this,''); useMilage(document.ordFrm,3);">
 														<option value="">:: 새로운주소 입력 ::</option>
 														<option selected="" value="박성환<wisamall><wisamall>01029270000<wisamall>08104<wisamall>서울특별시 양천구 신정동 179-1<wisamall>123">박성환 : 서울특별시 양천구 신정동 179-1 123</option>
-													</select> <label class="msg"><input type="checkbox" name="copy_info" onclick="copyInfo(this.form)" /> 주문인 정보와 동일</label>
-												</td>
+												</select> <label class="msg"><input type="checkbox" name="copy_info" onclick="copyInfo(this.form)" /> 주문인 정보와 동일</label></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="order_addressee_name">받으시는 분</label></th>
-												<td>
-													<input type="text" name="addressee_name" value="" id="order_addressee_name" class="form_input" isplaceholderinited="true" />
-												</td>
+												<td><input type="text" name="addressee_name" value="" id="order_addressee_name" class="form_input" isplaceholderinited="true" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="addressee_phone">전화번호</label></th>
-												<td>
-													<input type="text" name="addressee_phone" id="addressee_phone" class="form_input remove_dash" isplaceholderinited="true" />
-												</td>
+												<td><input type="text" name="addressee_phone" id="addressee_phone" class="form_input remove_dash" isplaceholderinited="true" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="addressee_cell">휴대전화번호</label></th>
-												<td>
-													<input type="text" name="addressee_cell" id="addressee_cell" class="form_input remove_dash" isplaceholderinited="true" />
-												</td>
+												<td><input type="text" name="addressee_cell" id="addressee_cell" class="form_input remove_dash" isplaceholderinited="true" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="order_addressee_zip">주소</label></th>
@@ -342,9 +318,7 @@
 											</tr>
 											<tr>
 												<th scope="row"><label for="order_dlv_memo">배송시요청사항</label></th>
-												<td>
-													<textarea type="text" name="dlv_memo" value="" id="order_dlv_memo" class="form_input block" isplaceholderinited="true"></textarea>
-												</td>
+												<td><textarea type="text" name="dlv_memo" value="" id="order_dlv_memo" class="form_input block" isplaceholderinited="true"></textarea></td>
 											</tr>
 											<!-- ADDINFO_DONE -->
 										</tbody>
@@ -363,14 +337,11 @@
 												<tbody>
 													<tr>
 														<th scope="row">상품합계 금액</th>
-														<td>
-															<span class="before_price"> </span> 원
-														</td>
+														<td><span class="before_price"> </span> 원</td>
 													</tr>
 													<tr>
 														<th scope="row">배송료</th>
-														<td>
-															(+) <span class="delivery_prc2"></span> 원
+														<td>(+) <span class="delivery_prc2"></span> 원
 														</td>
 													</tr>
 												</tbody>
@@ -385,8 +356,7 @@
 													<tr class="total order_area_total_sale_prc" style="display: none">
 														<th scope="row">할인 금액 합계 <a class="i_info p_cursor" onclick="$('#discount_info').toggle()"></a>
 														</th>
-														<td>
-															(-) <span class="total_sale_prc">0</span>원
+														<td>(-) <span class="total_sale_prc">0</span>원
 															<div id="discount_info" class="view_info">
 																<div class="order_area_event_prc" style="display: none">
 																	이벤트 할인금액<br /> <span class="order_saleinfo_event_prc">0</span>원
@@ -411,14 +381,12 @@
 													</tr>
 													<tr class="use_milage_field total_sale" style="display: none">
 														<th scope="row">적립금 사용</th>
-														<td>
-															(-) <span class="use_milage_prc">0</span>원
+														<td>(-) <span class="use_milage_prc">0</span>원
 														</td>
 													</tr>
 													<tr class="use_emoney_field total_sale" style="display: none">
 														<th scope="row">예치금 사용</th>
-														<td>
-															(-) <span class="use_emoney_prc">0</span>원
+														<td>(-) <span class="use_emoney_prc">0</span>원
 														</td>
 													</tr>
 												</tbody>
@@ -433,9 +401,7 @@
 
 													<tr>
 														<th scope="row">총 결제 금액</th>
-														<td>
-															<strong><span class="order_info_sale_prc"></span> 원</strong>
-														</td>
+														<td><strong><span class="order_info_sale_prc"></span> 원</strong></td>
 													</tr>
 												</tbody>
 											</table>
@@ -518,7 +484,8 @@
 
 				<c:forEach var="cartItem" items="${cartItems}" varStatus="status">
 
-				<input type="hidden" name="product_id" value="${cartItem.PRODUCT_ID}">
+					<input type="hidden" name="product_id" value="${cartItem.PRODUCT_ID}">
+					<input type="hidden" name="product_Quntity" value="${cartItem.CART_QUANTITY}">
 
 				</c:forEach>
 
@@ -539,11 +506,9 @@
 					}
 				});
 			});
-			
-			
+
 			function orderComplete() {
-				
-				
+
 				console.log($('#order_addressee_name').val());
 				console.log($('#addressee_cell').val());
 				console.log($('#order_addressee_zip').val());
@@ -551,27 +516,25 @@
 				console.log($('#addressee_addr2').val());
 				console.log($('#order_dlv_memo').val());
 				console.log($('input[name="pay_type"]:checked').val());
-				
-				
-				$('.orderForm').find('#order_name').val($('#order_addressee_name').val());
-				$('.orderForm').find('#ORDER_PHONE').val($('#addressee_cell').val());
-				$('.orderForm').find('#order_postnum').val($('#order_addressee_zip').val());
-				$('.orderForm').find('#order_adress1').val($('#addressee_addr1').val());
-				$('.orderForm').find('#order_adress2').val($('#addressee_addr2').val());
-				$('.orderForm').find('#order_ask').val($('#order_dlv_memo').val());
-				$('.orderForm').find('#order_payment').val($('input[name="pay_type"]:checked').val());
-				
-				
+
+				$('.orderForm').find('#order_name').val(
+						$('#order_addressee_name').val());
+				$('.orderForm').find('#ORDER_PHONE').val(
+						$('#addressee_cell').val());
+				$('.orderForm').find('#order_postnum').val(
+						$('#order_addressee_zip').val());
+				$('.orderForm').find('#order_adress1').val(
+						$('#addressee_addr1').val());
+				$('.orderForm').find('#order_adress2').val(
+						$('#addressee_addr2').val());
+				$('.orderForm').find('#order_ask').val(
+						$('#order_dlv_memo').val());
+				$('.orderForm').find('#order_payment').val(
+						$('input[name="pay_type"]:checked').val());
+
 				$('.orderForm').submit();
 
-				
 			}
-			
-			
-			
-			
-			
-			
 		</script>
 	</div>
 	<script type="text/javascript" defer="defer">
@@ -623,17 +586,15 @@
 
 				$(".delivery_prc2").text(delivery.toLocaleString());
 				$(".order_info_sale_prc").text(final_price.toLocaleString());
-				
-				
+
 				$('.orderForm').find('#items_price').val(delivery);
 				$('.orderForm').find('#deliver_price').val(final_price);
-				
 
 			} else {
 				$(".before_price").text(final_price.toLocaleString());
 				$(".delivery_prc2").text(0);
 				$(".order_info_sale_prc").text(final_price.toLocaleString());
-				
+
 				$('.orderForm').find('#items_price').val(final_price);
 				$('.orderForm').find('#deliver_price').val(delivery);
 			}

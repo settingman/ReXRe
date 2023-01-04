@@ -10,6 +10,7 @@ import lombok.Setter;
 public class OrderDTO {
 
 	private List<Integer> product_id;
+	private List<Integer> product_Quntity;
 	private String order_name;
 	private Integer order_postnum;
 	private String ORDER_PHONE;
@@ -20,11 +21,26 @@ public class OrderDTO {
 	private Integer items_price;
 	private Integer deliver_price;
 	
-	public OrderDTO(List<Integer> product_id, String order_name, Integer order_postnum, String ORDER_PHONE,
-			String order_adress1, String order_adress2, String order_ask, String order_payment, Integer items_price,
-			Integer deliver_price) {
+	
+	
+	
+	@Override
+	public String toString() {
+		return "OrderDTO [product_id=" + product_id + ", product_Quntity=" + product_Quntity + ", order_name="
+				+ order_name + ", order_postnum=" + order_postnum + ", ORDER_PHONE=" + ORDER_PHONE + ", order_adress1="
+				+ order_adress1 + ", order_adress2=" + order_adress2 + ", order_ask=" + order_ask + ", order_payment="
+				+ order_payment + ", items_price=" + items_price + ", deliver_price=" + deliver_price + "]";
+	}
+
+
+
+
+	public OrderDTO(List<Integer> product_id, List<Integer> product_Quntity, String order_name, Integer order_postnum,
+			String ORDER_PHONE, String order_adress1, String order_adress2, String order_ask, String order_payment,
+			Integer items_price, Integer deliver_price) {
 		
 		this.product_id = product_id;
+		this.product_Quntity = product_Quntity;
 		this.order_name = order_name;
 		this.order_postnum = order_postnum;
 		this.ORDER_PHONE = ORDER_PHONE;
@@ -35,14 +51,7 @@ public class OrderDTO {
 		this.items_price = items_price;
 		this.deliver_price = deliver_price;
 	}
-
-	@Override
-	public String toString() {
-		return "OrderDTO [product_id=" + product_id + ", order_name=" + order_name + ", order_postnum=" + order_postnum
-				+ ", ORDER_PHONE=" + ORDER_PHONE + ", order_adress1=" + order_adress1 + ", order_adress2="
-				+ order_adress2 + ", order_ask=" + order_ask + ", order_payment=" + order_payment + ", items_price="
-				+ items_price + ", deliver_price=" + deliver_price + "]";
-	}
+	
 	
 	
 	
