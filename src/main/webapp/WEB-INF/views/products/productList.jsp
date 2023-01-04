@@ -406,6 +406,9 @@ var google_alanytics_id = 'UA-166260789-1';
 								</span>
 							</c:if>
 							<!-- 페이징 처리 끝 -->
+							
+							<!-- 페이징에서 다시 다른 버튼 누르면 category 리스트 아닌 productList의 리스트로 다시 넘어감 ! -->
+							
 							<form id='actionForm' action="/product/productList" method='get'>
 								<input type='hidden' id='pageNum' name='pageNum'
 									value='${pageMaker.cri.pageNum}'> <input type='hidden'
