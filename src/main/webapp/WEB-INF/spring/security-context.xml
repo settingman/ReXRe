@@ -25,6 +25,8 @@
 			<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"></security:remember-me> -->
 		<security:form-login login-page="/login"
 			authentication-success-handler-ref="LoginSuccess" />
+			<!-- 임시로 해놓은것 -->
+			<security:csrf disabled="true"/>
 	</security:http>
 	<security:authentication-manager>
 		<security:authentication-provider>
@@ -37,6 +39,7 @@
 				authorities="ROLE_MEMBER"></security:user> </security:user-service> -->
 			<security:password-encoder
 				ref="bcryptPasswordEncoder" />
+				
 		</security:authentication-provider>
 		<!-- <security:authentication-provider user-service-ref="customUserDetailsService"> 
 			<security:jdbc-user-service data-source-ref="dataSource" users-by-username-query 
@@ -44,6 +47,7 @@
 			userid, auth from tbl_member_auth where userid = ? "/> <security:password-encoder 
 			ref="customPasswordEncoder"/> <security:password-encoder ref="bcryptPasswordEncoder"/> 
 			</security:authentication-provider> -->
+			
 	</security:authentication-manager>
 
 	<!-- <context:component-scan base-package="com.hyundai.security"></context:component-scan> -->

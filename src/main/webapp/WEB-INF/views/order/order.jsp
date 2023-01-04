@@ -513,6 +513,8 @@
 				<input type="hidden" name="order_adress2" id="order_adress2">
 				<input type="hidden" name="order_ask" id="order_ask">
 				<input type="hidden" name="order_payment" id="order_payment">
+				<input type="hidden" name="items_price" id="items_price">
+				<input type="hidden" name="deliver_price" id="deliver_price">
 
 				<c:forEach var="cartItem" items="${cartItems}" varStatus="status">
 
@@ -558,6 +560,7 @@
 				$('.orderForm').find('#order_adress2').val($('#addressee_addr2').val());
 				$('.orderForm').find('#order_ask').val($('#order_dlv_memo').val());
 				$('.orderForm').find('#order_payment').val($('input[name="pay_type"]:checked').val());
+				
 				
 				$('.orderForm').submit();
 
@@ -620,11 +623,19 @@
 
 				$(".delivery_prc2").text(delivery.toLocaleString());
 				$(".order_info_sale_prc").text(final_price.toLocaleString());
+				
+				
+				$('.orderForm').find('#items_price').val(delivery);
+				$('.orderForm').find('#deliver_price').val(final_price);
+				
 
 			} else {
 				$(".before_price").text(final_price.toLocaleString());
 				$(".delivery_prc2").text(0);
 				$(".order_info_sale_prc").text(final_price.toLocaleString());
+				
+				$('.orderForm').find('#items_price').val(final_price);
+				$('.orderForm').find('#deliver_price').val(delivery);
 			}
 
 			console.log(final_price);

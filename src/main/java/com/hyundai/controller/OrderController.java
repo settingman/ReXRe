@@ -12,67 +12,56 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hyundai.domain.CartItem;
 import com.hyundai.domain.OrderDTO;
 import com.hyundai.service.CartService;
+import com.hyundai.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
-
-// ¹Ú¼ºÈ¯
-// ÁÖ¹®
+// ë°•ì„±í™˜
+// OrderController
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class OrderController {
-	
+
 	private final CartService cartService;
-	
+	private final OrderService orderService;
+
 	@GetMapping("/shop/order")
 	public String CartToOrder(@RequestParam List<Integer> id, Model model) {
-		
-		System.out.println("µé¾î¿Ô³ª¿ä?");
-		
-		for(Integer a : id ) {
+
+		System.out.println("ë¿Œë¦¬ê¸°");
+
+		for (Integer a : id) {
 			System.out.println(a);
 		}
-		
-		
-		// ¼¼¼ÇÀ¸·Î ¹Þ¾Æ¿À±â
+
+		// principle ë¡œ ë°›ê±°ë‚˜, or Session
 		Integer member_id = 255;
-		
+
 		List<CartItem> cartItems = cartService.CartToOrder(id, member_id);
-	
+
 		model.addAttribute("cartItems", cartItems);
-		
+
 		return "order/order";
-		
 
 	}
-	
-	
-	
-	
-	@PostMapping("shop/oredercomplete")
-	public String OrederComplete(@RequestParam OrderDTO orderDTO, Model model) {
+
+	@PostMapping("/shop/oredercomplete")
+	public String OrederComplete(OrderDTO orderDTO, Model model) {
+
 		
-		System.out.println("µé¾î¿Ô³ª¿ä?");
+		Integer member_id = 255;
 		
 		System.out.println(orderDTO);
 		
 		
-		// ¼¼¼ÇÀ¸·Î ¹Þ¾Æ¿À±â
-		Integer member_id = 255;
-		
-		
-		
-		
-		return "order/orderComplete";
+		Integer Order_id = orderService.insertOrder(orderDTO, member_id);
 		
 
+		return "order/orderComplete";
+
 	}
-	
-	
-	                   
-	
+
 }

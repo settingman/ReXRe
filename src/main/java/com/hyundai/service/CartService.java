@@ -56,13 +56,13 @@ public class CartService {
 
 		cartRepository.insertCart(member_id, product_id);
 
-		// Àå¹Ù±¸´Ï°¡ µé¾îÀÖ´Ù¸é?
+		
 
 		// insert into cart values (1,product_id,member_id,1)
 
 	}
 
-	// ¾ÆÀÌÅÛ ÇÏ³ª »èÁ¦
+	
 	public void deleteOne(Integer member_id, Integer product_id) {
 
 		cartMapper.deleteOne(member_id, product_id);
@@ -70,7 +70,7 @@ public class CartService {
 
 	}
 
-	// ¾ÆÀÌÅÛ ¼±ÅÃ »èÁ¦
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public void deletCheck(Long member_id) {
 
 		cartRepository.deletCheck(member_id);

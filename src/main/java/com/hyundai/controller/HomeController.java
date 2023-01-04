@@ -42,7 +42,7 @@ public class HomeController {
 		
 		
 		
-		System.out.println("hi man 技篮 怕铰 老快");
+		System.out.println("hi man 靹表櫂 鞚检毎 靹胳潃 韮滌姽");
 		
 		
 		return "home";

@@ -271,7 +271,7 @@
 											<td class="delete_wish"><span
 												class="box_btn w79 h29 gray fs13 light kor"><a
 													href="#"
-													onclick="deletePartCartAjax2(${cartItem.PRODUCT_ID}, ${status.count}, 255); return false;">삭제</a></span>
+													onclick="deleteCartOne(${cartItem.PRODUCT_ID}, ${status.count}, 255); return false;">삭제</a></span>
 											</td>
 										</tr>
 									</c:forEach>
@@ -443,7 +443,8 @@
 						
 						
 						// 함수에 직접 프로덕트 아이디 가져오기
-						function deletePartCartAjax2(product_id, status, member_id) {
+						// 아이템 하나 삭제
+						function deleteCartOne(product_id, status, member_id) {
 							
 							var confirm_val = confirm("정말 삭제하시겠습니까?");
 							  

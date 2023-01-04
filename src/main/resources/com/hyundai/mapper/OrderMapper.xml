@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+
+<mapper namespace="com.hyundai.mapper.OrderMapper">
+
+
+
+
+	<insert id="insertOrder">
+		<selectKey keyProperty="order_id" order="BEFORE"
+			resultType="String">
+
+			SELECT Order_id_seq.NEXTVAL AS ID FROM DUAL
+
+		</selectKey>
+
+
+		INSERT INTO FULLMEMBERORDERS
+		VALUES(#{order_id}, #{order_adress1},
+		#{order_adress2}, #{ORDER_PHONE}, #{order_name}, #{order_postnum},
+		#{order_ask},
+		#{total_price}, #{order_payment}, #{order_category},1,
+		#{member_id})
+
+
+	</insert>
+
+	<insert id="insertOrder2"
+		parameterType="com.hyundai.domain.OrderDTO2">
+		<selectKey keyProperty="orderid" order="BEFORE"
+			resultType="INTEGER">
+
+			SELECT Order_id_seq.NEXTVAL AS ID FROM DUAL
+
+		</selectKey>
+
+
+		INSERT INTO FULLMEMBERORDERS
+		VALUES(#{orderid}, #{order_adress1},
+		#{order_adress2}, #{ORDER_PHONE}, #{order_name}, #{order_postnum},
+		#{order_ask},
+		#{total_price}, #{order_payment}, #{order_category},1,
+		#{member_id})
+
+
+	</insert>
+
+
+
+
+	<select id="find" resultType="String">
+		select PRODUCT_NAME from PRODUCTS
+		where PRODUCT_ID=#{PRODUCT_ID}
+	</select>
+
+
+	<select id="findCart" resultType="com.hyundai.domain.CartItem">
+		select
+		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY, CART_CHECK
+		,IMAGE_PATH
+		from carts inner join products on carts.PRODUCTS_PRODUCT_ID
+		=
+		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
+		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
+		where MEMBERS_MEMBER_ID=#{member_id}
+		and IMAGE_CATEGORY='상품'
+	</select>
+
+
+	<select id="findCartItem"
+		resultType="com.hyundai.domain.CartItem">
+		select
+		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY,
+		CART_CHECK
+		,IMAGE_PATH
+		from carts inner join products on
+		carts.PRODUCTS_PRODUCT_ID
+		=
+		products.PRODUCT_ID inner join PRODUCTIMAGES
+		on products.PRODUCT_ID
+		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
+		where
+		MEMBERS_MEMBER_ID=#{member_id} and
+		Carts.PRODUCTS_PRODUCT_ID=#{product_id}
+		and IMAGE_CATEGORY='상품'
+	</select>
+
+
+	<delete id="deleteOne">
+		delete from Carts where MEMBERS_MEMBER_ID =
+		#{member_id}
+		and products_product_id = #{product_id}
+	</delete>
+
+	<delete id="deleteAll">
+		delete from Carts where MEMBERS_MEMBER_ID =
+		#{member_id}
+	</delete>
+
+
+	<update id="updateQuantity">
+		update Carts set CART_QUANTITY = #{product_qauntity}
+		where MEMBERS_MEMBER_ID =#{member_id} and PRODUCTS_PRODUCT_ID =
+		#{product_id}
+	</update>
+
+
+
+</mapper> 

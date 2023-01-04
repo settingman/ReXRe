@@ -29,7 +29,7 @@ public class CartController {
 
 	private final CartService cartService;
 
-	// ±è¿µÇÑ È¸¿ø°¡ÀÔ ÆäÀÌÁö, ¾ÆÀÌÅÛ »ó¼¼Á¤º¸ Controller È®ÀÎ
+	// ì¥ë°”êµ¬ë‹ˆ ìš”ì²­
 	@GetMapping("/shop/cart")
 	public String showCart(Model model, HttpServletRequest requset) {
 
@@ -50,7 +50,7 @@ public class CartController {
 	public void deleteOne(@RequestParam("product_id") Integer product_id,
 			@RequestParam("member_id") Integer member_id) {
 		
-		System.out.println("µé¾î¿Ô³ª¿ä");
+		System.out.println("ë°ì´íƒ€í•˜ë‚˜ì‚­ì œ");
 
 		cartService.deleteOne(member_id, product_id);
 
@@ -61,7 +61,7 @@ public class CartController {
 	public void deleteCheked(@RequestParam(value="chbox[]") List<String> chArr) {
 		
 		
-		// ¼¼¼ÇÀ¸·Î ¹Ş¾Æ¿À±â
+		// principle ë¡œ ë§´ë²„ì•„ì´ë”” ë°›ì•„ì•¼í•¨, or Session
 		Integer member_id = 255;
 		
 		for(String pro_id : chArr) {
@@ -69,7 +69,7 @@ public class CartController {
 			cartService.deleteOne(member_id, product_id);
 		}
 		
-		System.out.println("µé¾î¿Ô³ª¿ädel");
+		System.out.println("ì²´í¬ì‚­ì œ");
 
 	}
 	
@@ -83,7 +83,7 @@ public class CartController {
 		Integer member_id = (Integer) session.getAttribute("member_id");
 
 		
-		// ³ªÁß¿¡ ¼öÁ¤ÇØÁà¾ßÇÔ.
+		// principle ë¡œ ë§´ë²„ì•„ì´ë”” ë°›ì•„ì•¼í•¨, or Session
 		member_id=255;
 
 		cartService.deleteAll(member_id);
