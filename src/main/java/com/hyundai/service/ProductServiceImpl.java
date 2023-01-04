@@ -55,5 +55,11 @@ public class ProductServiceImpl implements ProductService {
 		int update = mapper.getProductDetailCount(product_id);
 		return mapper.getProductDetail(product_id);
 	}
+	
+	@Override
+	public List<productVO> getCategoryWithPaging(Criteria cri, String product_category) throws Exception {
+		log.info(">>> category" + cri);
+		return mapper.getCategoryWithPaging(cri, product_category);
+	}
 
 }

@@ -68,4 +68,18 @@ public class ProductMapperTests {
 		int count = mapper.getProductDetailCount(1L);
 		log.info(count);
 	}
+	
+	//카테고리
+	@Test
+	public void testGetCategoryWithPaging() {
+		Criteria cri = new Criteria();
+		cri.setPageNum(1);
+		cri.setAmount(9);
+		log.info("@@@@@@@@@@@@@@@");
+		List<productVO> list = mapper.getCategoryWithPaging(cri, "maskPack");
+		log.info("@@@@@@@@@@@@@@@");
+		for(int i = 0; i < list.size(); i++) {
+			log.info(list.get(i));
+		}
+	}
 }

@@ -60,5 +60,27 @@
 		SET product_click = product_click + 1
 		WHERE product_id = #{product_id}
 	</update>
+	
+	
+	<!-- 카테고리 -->
+	<select id="getCategoryWithPaging" resultType="com.hyundai.domain.productVO">
+	<![CDATA[
+		SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, 
+       				PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
+       				IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+		FROM 
+				(SELECT /*+ INDEX_DESC(PRODUCTS product_id) */
+					ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
+        			I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+				FROM PRODUCTS P, PRODUCTIMAGES I 
+				WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID 
+					  AND ROWNUM < #{cri.pageNum} * #{cri.amount} 
+					  AND P.PRODUCT_CATEGORY = #{product_category}
+					  AND I.IMAGE_CATEGORY = '상품'
+				)
+        WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
+        ORDER BY PRODUCT_ID
+	]]>
+	</select>
 
 </mapper>

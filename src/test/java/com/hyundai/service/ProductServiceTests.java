@@ -57,4 +57,15 @@ public class ProductServiceTests {
 			log.info(list.get(i));
 		}
 	}
+	
+	
+	//카테고리
+	@Test
+	public void testGetCategory() throws Exception {
+		List<productVO> list = service.getCategoryWithPaging(new Criteria(1, 9), "skinCare");
+		
+		for(int i = 0; i < list.size(); i++) {
+			log.info(list.get(i));
+		}
+	}
 }

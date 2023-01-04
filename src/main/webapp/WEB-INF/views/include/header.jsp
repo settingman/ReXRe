@@ -18,6 +18,9 @@
 						alt="클린 &amp; 비건 뷰티 브랜드 리바이리 " /></a>
 				</h1>
 				<div class="lnb">
+				
+				<!-- category -->
+				
 					<span class="all" onclick="toggle_view('all_cate', this);">all</span>
 					<ul class="category">
 						<li><a href="/shop/big_section.php?cno1=1009">NEW&amp;BEST</a>
@@ -25,11 +28,14 @@
 						<li class="viewsub product"><a href=""${contextPath}/product/productList">PRODUCT</a>
 							<div class="list">
 								<ul class="mid_depth">
-									<li><a
-										href="https://www.rexremall.com/shop/big_section.php?cno1=1020">마스크팩</a>
+									<li>
+									<a href="/product/productList/category?product_category=maskPack">마스크팩</a>
+									<!-- <a href="https://www.rexremall.com/shop/big_section.php?cno1=1020">마스크팩</a>-->
 									</li>
-									<li><a
-										href="https://www.rexremall.com/shop/big_section.php?cno1=1021">스킨케어</a>
+									<li>
+									<a href="/product/productList/category?product_category=skinCare">스킨케어</a>
+									<!-- <a
+										href="https://www.rexremall.com/shop/big_section.php?cno1=1021">스킨케어</a> -->
 									</li>
 								</ul>
 

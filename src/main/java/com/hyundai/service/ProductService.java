@@ -18,4 +18,6 @@ public interface ProductService {
 	
 	//상세페이지 + 조회수
 	public List<productDetailVO> getProductDetail(Long product_id);
+	
+	public List<productVO> getCategoryWithPaging(Criteria cri, String product_category) throws Exception;
 }

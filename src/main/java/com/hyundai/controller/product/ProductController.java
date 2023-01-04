@@ -21,7 +21,7 @@ public class ProductController {
 	private ProductService productService;
 
 	
-	
+	//product전체상품
 	@GetMapping("/productList") 
 	public String list(Criteria cri, Model model) throws Exception {
 		log.info("product2"+cri);
@@ -33,6 +33,20 @@ public class ProductController {
 		model.addAttribute("productList", productService.getListWithPaging(cri));
 		
 		return "products/productList";
+	}
+	
+	//product카테고리
+	@GetMapping("/productList/category")
+	public String list(@RequestParam("product_category") String category, Criteria cri, Model model) throws Exception {
+		log.info("productList/category 들어옴");
+		log.info(category);
+		
+		int total = productService.getTotal(cri);
+		model.addAttribute("count", total);
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
+		model.addAttribute("productList", productService.getCategoryWithPaging(cri, category));
+		
+		return "/products/productList";
 	}
 	
 	
@@ -47,5 +61,6 @@ public class ProductController {
 
 		return "/products/productDetail";
 	}
+	
 	
 }
