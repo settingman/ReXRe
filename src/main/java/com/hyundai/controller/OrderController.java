@@ -3,15 +3,14 @@ package com.hyundai.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hyundai.domain.CartItem;
+import com.hyundai.domain.OrderDTO;
 import com.hyundai.service.CartService;
 
 import lombok.RequiredArgsConstructor;
@@ -53,6 +52,25 @@ public class OrderController {
 	
 	
 	
+	
+	@PostMapping("shop/oredercomplete")
+	public String OrederComplete(@RequestParam OrderDTO orderDTO, Model model) {
+		
+		System.out.println("들어왔나요?");
+		
+		System.out.println(orderDTO);
+		
+		
+		// 세션으로 받아오기
+		Integer member_id = 255;
+		
+		
+		
+		
+		return "order/orderComplete";
+		
+
+	}
 	
 	
 	                   

@@ -362,11 +362,13 @@
 						  
 						  if(confirm_val) {
 						   var checkArr = new Array();
+						   var deleteNum = new Array();
 						   
 						   
 						   $("input[class='chBox']:checked").each(function(){
 							   
 						    checkArr.push($(this).attr("data-product_id"));
+						    deleteNum.push($(this).attr("data-status"));
 						    
 						   });
 						    

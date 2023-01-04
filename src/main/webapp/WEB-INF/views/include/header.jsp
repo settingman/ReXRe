@@ -76,7 +76,7 @@
 							<li><a href="/mypage/counsel_list.php">1:1문의</a></li>
 							<li><a href="/board/?db=basic_2">쇼핑 FAQ</a></li>
 						</ul></li>
-					<li><a href="/shop/cart.php" class="cart">장바구니 <span
+					<li><a href="/shop/cart" class="cart">장바구니 <span
 							class="ea_cart front_cart_rows quick_cart_cnt">  </span><span
 							class="balloon">장바구니</span>
 					</a></li>
