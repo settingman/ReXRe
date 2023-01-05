@@ -1,6 +1,6 @@
 package com.hyundai.mapper;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.hyundai.domain.OrderDTO2;
+import com.hyundai.domain.OrderList;
 import com.hyundai.service.OrderService;
 
 import lombok.extern.log4j.Log4j;
@@ -40,6 +41,26 @@ public class OrderTest {
 		
 		System.out.println(orderDTO2);
 		
+		
+		
+		
+	}
+	
+
+	@Test
+	public void OrderList() {
+		
+		
+		
+		
+		List<OrderList> orderList = orderMapper.OrderList(255);
+		
+		
+		for(OrderList i : orderList) {
+			
+			System.out.println(i);
+			
+		}
 		
 		
 		

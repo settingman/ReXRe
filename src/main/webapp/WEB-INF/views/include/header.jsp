@@ -68,7 +68,7 @@
 					<!-- //gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
 					<li class="viewsub"><a href="/mypage/mypage.php">MYPAGE</a>
 						<ul class="list">
-							<li><a href="/mypage/order_list.php">주문/배송조회</a></li>
+							<li><a href="/shop/orederlist">주문 조회</a></li>
 							<li><a href="/mypage/coupon_down_list.php">쿠폰현황</a></li>
 							<li><a href="/mypage/wish_list.php">위시리스트</a></li>
 							<li><a href="/member/edit_step1.php">정보수정</a></li>

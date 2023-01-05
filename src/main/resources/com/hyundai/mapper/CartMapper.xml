@@ -22,19 +22,26 @@
 		=
 		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
 		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
-		where MEMBERS_MEMBER_ID=#{member_id} and IMAGE_CATEGORY='상품'
+		where MEMBERS_MEMBER_ID=#{member_id}
+		and IMAGE_CATEGORY='상품'
 	</select>
-	
-	
-	<select id="findCartItem" resultType="com.hyundai.domain.CartItem">
+
+
+	<select id="findCartItem"
+		resultType="com.hyundai.domain.CartItem">
 		select
-		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY, CART_CHECK
+		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY,
+		CART_CHECK
 		,IMAGE_PATH
-		from carts inner join products on carts.PRODUCTS_PRODUCT_ID
+		from carts inner join products on
+		carts.PRODUCTS_PRODUCT_ID
 		=
-		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
+		products.PRODUCT_ID inner join PRODUCTIMAGES
+		on products.PRODUCT_ID
 		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
-		where MEMBERS_MEMBER_ID=#{member_id} and Carts.PRODUCTS_PRODUCT_ID=#{product_id}
+		where
+		MEMBERS_MEMBER_ID=#{member_id} and
+		Carts.PRODUCTS_PRODUCT_ID=#{product_id}
 		and IMAGE_CATEGORY='상품'
 	</select>
 
@@ -49,11 +56,34 @@
 		delete from Carts where MEMBERS_MEMBER_ID =
 		#{member_id}
 	</delete>
-	
-	
+
+
 	<update id="updateQuantity">
 		update Carts set CART_QUANTITY = #{product_qauntity}
-		where MEMBERS_MEMBER_ID =#{member_id} and PRODUCTS_PRODUCT_ID = #{product_id}
+		where MEMBERS_MEMBER_ID =#{member_id} and PRODUCTS_PRODUCT_ID =
+		#{product_id}
+	</update>
+
+
+
+	<update id="insertCart">
+		merge into Carts c
+		using dual
+		on (
+		c.PRODUCTS_PRODUCT_ID = #{product_id}
+		and c.MEMBERS_MEMBER_ID =
+		#{member_id}
+		)
+
+		when matched then
+		update set c.CART_QUANTITY =
+		c.CART_QUANTITY+1
+
+		when not matched then
+		insert (CART_QUANTITY,
+		PRODUCTS_PRODUCT_ID, CART_CHECK, MEMBERS_MEMBER_ID)
+		VALUES(1,#{product_id}, 1, #{member_id})
+		
 	</update>
 
 

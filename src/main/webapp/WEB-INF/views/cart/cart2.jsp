@@ -446,6 +446,8 @@
 						// 아이템 하나 삭제
 						function deleteCartOne(product_id, status, member_id) {
 							
+							// 멤버아이디는 세션에서 받아서 넘겨줘야함.
+							
 							var confirm_val = confirm("정말 삭제하시겠습니까?");
 							  
 							  if(confirm_val) {

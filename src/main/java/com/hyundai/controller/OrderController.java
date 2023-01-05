@@ -1,6 +1,7 @@
 
 package com.hyundai.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hyundai.domain.CartItem;
 import com.hyundai.domain.OrderCompleteDTO;
 import com.hyundai.domain.OrderDTO;
+import com.hyundai.domain.OrderList;
 import com.hyundai.service.CartService;
 import com.hyundai.service.OrderService;
 
@@ -69,6 +71,59 @@ public class OrderController {
 		
 
 		return "order/orderComplete";
+
+	}
+	
+	
+	// 주문 조회ㅍ
+	@GetMapping("/shop/orederlist")
+	public String OrederList(Model model) {
+		
+
+		System.out.println("orderList");
+		
+		
+		// 세션에서 맴버 받아오기.
+		Integer member_id = 255;
+		
+		List<OrderList> orderList = orderService.OrderList(member_id);
+		
+		List<String> itemList = new ArrayList<String>();
+		
+		
+		for(OrderList i: orderList) {
+			
+			List<String> orderListItem = orderService.OrderListItems(i.getOrderId());
+			
+			
+			System.out.println("오더아이디");
+			
+			System.out.println(i.getOrderId());
+			
+			
+			if(orderListItem.size()>1) {
+				
+				itemList.add(orderListItem.get(0) + "외 " + orderListItem.size() + "개" );
+			}
+			
+			else {
+				itemList.add(orderListItem.get(0));
+			}
+			
+		}
+			
+		
+		for( String i : itemList) {
+			System.out.println(i);
+		}
+		
+		
+		
+		model.addAttribute("orderList", orderList);		
+		model.addAttribute("itemList", itemList);		
+		
+
+		return "order/OrderList";
 
 	}
 	

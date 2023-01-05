@@ -49,32 +49,29 @@ public class CartController {
 	@GetMapping("/shop/cartDelOne")
 	public void deleteOne(@RequestParam("product_id") Integer product_id,
 			@RequestParam("member_id") Integer member_id) {
-		
+
 		System.out.println("데이타하나삭제");
 
 		cartService.deleteOne(member_id, product_id);
 
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/shop/cartDelChecked")
-	public void deleteCheked(@RequestParam(value="chbox[]") List<String> chArr) {
-		
-		
+	public void deleteCheked(@RequestParam(value = "chbox[]") List<String> chArr) {
+
 		// principle 로 맴버아이디 받아야함, or Session
 		Integer member_id = 255;
-		
-		for(String pro_id : chArr) {
+
+		for (String pro_id : chArr) {
 			Integer product_id = Integer.parseInt(pro_id);
 			cartService.deleteOne(member_id, product_id);
 		}
-		
+
 		System.out.println("체크삭제");
 
 	}
-	
-	
-	
+
 	@ResponseBody
 	@GetMapping("/shop/cartDelAll")
 	public void deleteAll(Model model, HttpServletRequest requset) {
@@ -82,9 +79,8 @@ public class CartController {
 		HttpSession session = requset.getSession();
 		Integer member_id = (Integer) session.getAttribute("member_id");
 
-		
 		// principle 로 맴버아이디 받아야함, or Session
-		member_id=255;
+		member_id = 255;
 
 		cartService.deleteAll(member_id);
 
@@ -107,6 +103,18 @@ public class CartController {
 			@RequestParam("product_id") Integer product_id, @RequestParam("member_id") Integer member_id) {
 
 		cartService.updateQuantity(product_qauntity, product_id, member_id);
+
+	}
+
+	@ResponseBody
+	@GetMapping("/shop/cartinsert")
+	public void insertCart(@RequestParam("product_id") Integer product_id,
+			@RequestParam("member_id") Integer member_id) {
+
+		
+		System.out.println(product_id);
+		System.out.println(member_id);
+		cartService.insertCart(product_id, member_id);
 
 	}
 

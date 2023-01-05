@@ -6,19 +6,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CartItem {
-	
+
 	private Integer PRODUCT_ID;
 	private String PRODUCT_NAME;
 	private Integer PRODUCT_PRICE;
 	private Integer CART_QUANTITY;
 	private Integer CART_CHECK;
 	private String IMAGE_PATH;
-	
-	
-	public CartItem() {
-		
-	}
 
+	public CartItem() {
+
+	}
 
 	public CartItem(Integer product_id, String product_name, Integer product_price, Integer cart_quantity,
 			Integer cart_check, String product_img) {
@@ -30,18 +28,11 @@ public class CartItem {
 		this.IMAGE_PATH = product_img;
 	}
 
-
-	
-
-
-	
-
-	
-
-
-	
-	
-	
-	
+	@Override
+	public String toString() {
+		return "CartItem [PRODUCT_ID=" + PRODUCT_ID + ", PRODUCT_NAME=" + PRODUCT_NAME + ", PRODUCT_PRICE="
+				+ PRODUCT_PRICE + ", CART_QUANTITY=" + CART_QUANTITY + ", CART_CHECK=" + CART_CHECK + ", IMAGE_PATH="
+				+ IMAGE_PATH + "]";
+	}
 
 }

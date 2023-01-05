@@ -42,10 +42,11 @@
 
 	<insert id="insertOrder3"
 		parameterType="com.hyundai.domain.OrderDTO2">
-		
+
 		INSERT INTO ORDERS
 		VALUES(#{orderid}, #{order_adress1},
-		#{order_adress2}, #{ORDER_PHONE}, #{order_name}, #{order_postnum},
+		#{order_adress2},
+		#{ORDER_PHONE}, #{order_name}, #{order_postnum},
 		#{order_ask},
 		#{total_price}, #{order_payment}, #{order_category})
 
@@ -110,6 +111,30 @@
 		where MEMBERS_MEMBER_ID =#{member_id} and PRODUCTS_PRODUCT_ID =
 		#{product_id}
 	</update>
+
+
+	<select id="OrderList" resultType="com.hyundai.domain.OrderList">
+
+		select
+		ORDER_ID,ORDER_PRICE
+		from FULLMEMBERORDERS
+		where
+		MEMBERS_MEMBER_ID=#{member_id}
+
+	</select>
+
+
+	<select id="OrderListItems" resultType="String">
+
+		select PRODUCT_NAME
+		from PRODUCTS inner join ORDERITEMS on PRODUCTS.PRODUCT_ID
+		=ORDERITEMS.PRODUCTS_PRODUCT_ID
+		where ORDERITEMS.ORDERS_ORDER_ID =#{orderId}
+
+	</select>
+
+
+
 
 
 

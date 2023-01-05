@@ -1,8 +1,11 @@
 package com.hyundai.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.hyundai.domain.OrderDTO2;
+import com.hyundai.domain.OrderList;
 
 public interface OrderMapper {
 
@@ -19,7 +22,11 @@ public interface OrderMapper {
 	
 	public Integer insertOrderdetail(@Param("ITEM_QUANTITY") Integer ITEM_QUANTITY, @Param("ORDERS_ORDER_ID") Integer ORDERS_ORDER_ID,
 			@Param("PRODUCTS_PRODUCT_ID") Integer PRODUCTS_PRODUCT_ID);
+	
+	public List<OrderList> OrderList(@Param("member_id") Integer member_id);
 
+	public List<String> OrderListItems(Integer orderId);
+	
 	
 
 }

@@ -28,41 +28,38 @@ public class CartService {
 		return cartItemList;
 
 	}
-	
+
 	public CartItem findCartItem(Integer member_id, Integer product_id) {
 
-		CartItem cartItem = cartMapper.findCartItem(member_id,product_id);
+		CartItem cartItem = cartMapper.findCartItem(member_id, product_id);
 
 		return cartItem;
 
 	}
-	
-	public List<CartItem> CartToOrder (List<Integer> chArr,Integer member_id){
-		
+
+	public List<CartItem> CartToOrder(List<Integer> chArr, Integer member_id) {
+
 		List<CartItem> OrderItemList = new ArrayList<CartItem>();
-		
-		for(Integer pro_id : chArr) {
-			Integer product_id =pro_id;
+
+		for (Integer pro_id : chArr) {
+			Integer product_id = pro_id;
 			OrderItemList.add(cartMapper.findCartItem(member_id, product_id));
 		}
-		
+
 		return OrderItemList;
-		
+
 	}
-	
-	
 
-	public void insertCart(Long member_id, Long product_id) {
+	public void insertCart(Integer product_id, Integer member_id ) {
 
-		cartRepository.insertCart(member_id, product_id);
 
-		
 
-		// insert into cart values (1,product_id,member_id,1)
+		cartMapper.insertCart(member_id, product_id);
 
 	}
 
 	
+
 	public void deleteOne(Integer member_id, Integer product_id) {
 
 		cartMapper.deleteOne(member_id, product_id);
@@ -98,7 +95,5 @@ public class CartService {
 		cartRepository.updateChecked(member_id, product_id, check);
 
 	}
-
-	
 
 }
