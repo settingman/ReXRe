@@ -2,6 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+	Date nowTime = new Date();
+	SimpleDateFormat sf = new SimpleDateFormat("yyyyMMdd-hh:mm");
+%>
+
+
 
 <html>
 <head>
@@ -107,34 +115,35 @@
 									<col style="width: 50%" />
 									<col />
 								</colgroup>
+								
 								<tbody>
+
 									<tr>
 										<th scope="row">주문번호</th>
-										<td>
-											<strong>20230103-99450</strong>
-										</td>
+										<td><strong><%= sf.format(nowTime) %>-ORDER-<fmt:formatNumber value="${orderCompleteDTO.order_id}" pattern="#,###" type="number" /></strong></td>
 									</tr>
 									<tr>
 										<th scope="row">총 상품구매금액</th>
-										<td>27,000원</td>
+										<td><strong><fmt:formatNumber value="${orderCompleteDTO.items_price}" pattern="#,###" type="number" /></strong>원</td>
 										<!-- 상품 총 합계 -->
 									</tr>
 									<tr>
 										<th scope="row">배송비</th>
-										<td>4,000원</td>
+										<td><strong><fmt:formatNumber value="${orderCompleteDTO.delivery_price}" pattern="#,###" type="number" /></strong>원</td>
 									</tr>
 
 									<tr>
 										<th scope="row">총 주문금액</th>
-										<td>31,000원</td>
+										<td><strong><fmt:formatNumber value="${orderCompleteDTO. total_price}" pattern="#,###" type="number" /></strong>원</td>
 										<!-- 배송비 포함 합계 -->
 									</tr>
 
 									<tr>
 										<th scope="row">총 결제금액</th>
-										<td>31,000원</td>
+										<td><strong><fmt:formatNumber value="${orderCompleteDTO. total_price}" pattern="#,###" type="number" /></strong>원</td>
 										<!-- 실결제금액 -->
 									</tr>
+
 								</tbody>
 							</table>
 						</div>

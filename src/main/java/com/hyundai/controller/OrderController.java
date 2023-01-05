@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hyundai.domain.CartItem;
+import com.hyundai.domain.OrderCompleteDTO;
 import com.hyundai.domain.OrderDTO;
 import com.hyundai.service.CartService;
 import com.hyundai.service.OrderService;
@@ -54,13 +55,17 @@ public class OrderController {
 
 		System.out.println("ordercomplete");
 		
+		
+		// 세션에서 맴버 받아오기.
 		Integer member_id = 255;
-		Integer Order_id = orderService.insertOrder(orderDTO, member_id);
+		
+		OrderCompleteDTO orderCompleteDTO = orderService.insertOrder(orderDTO, member_id);
 		
 		
+		System.out.println(orderCompleteDTO);
 		
 		
-		
+		model.addAttribute("orderCompleteDTO", orderCompleteDTO);		
 		
 
 		return "order/orderComplete";
