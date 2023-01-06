@@ -271,7 +271,7 @@
 											<td class="delete_wish"><span
 												class="box_btn w79 h29 gray fs13 light kor"><a
 													href="#"
-													onclick="deletePartCartAjax2(${cartItem.PRODUCT_ID}, ${status.count}, 255); return false;">삭제</a></span>
+													onclick="deleteCartOne(${cartItem.PRODUCT_ID}, ${status.count}, 255); return false;">삭제</a></span>
 											</td>
 										</tr>
 									</c:forEach>
@@ -362,11 +362,13 @@
 						  
 						  if(confirm_val) {
 						   var checkArr = new Array();
+						   var deleteNum = new Array();
 						   
 						   
 						   $("input[class='chBox']:checked").each(function(){
 							   
 						    checkArr.push($(this).attr("data-product_id"));
+						    deleteNum.push($(this).attr("data-status"));
 						    
 						   });
 						    
@@ -441,7 +443,10 @@
 						
 						
 						// 함수에 직접 프로덕트 아이디 가져오기
-						function deletePartCartAjax2(product_id, status, member_id) {
+						// 아이템 하나 삭제
+						function deleteCartOne(product_id, status, member_id) {
+							
+							// 멤버아이디는 세션에서 받아서 넘겨줘야함.
 							
 							var confirm_val = confirm("정말 삭제하시겠습니까?");
 							  

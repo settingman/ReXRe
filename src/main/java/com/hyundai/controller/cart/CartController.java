@@ -29,7 +29,7 @@ public class CartController {
 
 	private final CartService cartService;
 
-	// ±è¿µÇÑ È¸¿ø°¡ÀÔ ÆäÀÌÁö, ¾ÆÀÌÅÛ »ó¼¼Á¤º¸ Controller È®ÀÎ
+	// ì¥ë°”êµ¬ë‹ˆ ìš”ì²­
 	@GetMapping("/shop/cart")
 	public String showCart(Model model, HttpServletRequest requset) {
 
@@ -49,32 +49,29 @@ public class CartController {
 	@GetMapping("/shop/cartDelOne")
 	public void deleteOne(@RequestParam("product_id") Integer product_id,
 			@RequestParam("member_id") Integer member_id) {
-		
-		System.out.println("µé¾î¿Ô³ª¿ä");
+
+		System.out.println("ë°ì´íƒ€í•˜ë‚˜ì‚­ì œ");
 
 		cartService.deleteOne(member_id, product_id);
 
 	}
-	
+
 	@ResponseBody
 	@GetMapping("/shop/cartDelChecked")
-	public void deleteCheked(@RequestParam(value="chbox[]") List<String> chArr) {
-		
-		
-		// ¼¼¼ÇÀ¸·Î ¹Ş¾Æ¿À±â
+	public void deleteCheked(@RequestParam(value = "chbox[]") List<String> chArr) {
+
+		// principle ë¡œ ë§´ë²„ì•„ì´ë”” ë°›ì•„ì•¼í•¨, or Session
 		Integer member_id = 255;
-		
-		for(String pro_id : chArr) {
+
+		for (String pro_id : chArr) {
 			Integer product_id = Integer.parseInt(pro_id);
 			cartService.deleteOne(member_id, product_id);
 		}
-		
-		System.out.println("µé¾î¿Ô³ª¿ädel");
+
+		System.out.println("ì²´í¬ì‚­ì œ");
 
 	}
-	
-	
-	
+
 	@ResponseBody
 	@GetMapping("/shop/cartDelAll")
 	public void deleteAll(Model model, HttpServletRequest requset) {
@@ -82,9 +79,8 @@ public class CartController {
 		HttpSession session = requset.getSession();
 		Integer member_id = (Integer) session.getAttribute("member_id");
 
-		
-		// ³ªÁß¿¡ ¼öÁ¤ÇØÁà¾ßÇÔ.
-		member_id=255;
+		// principle ë¡œ ë§´ë²„ì•„ì´ë”” ë°›ì•„ì•¼í•¨, or Session
+		member_id = 255;
 
 		cartService.deleteAll(member_id);
 
@@ -107,6 +103,18 @@ public class CartController {
 			@RequestParam("product_id") Integer product_id, @RequestParam("member_id") Integer member_id) {
 
 		cartService.updateQuantity(product_qauntity, product_id, member_id);
+
+	}
+
+	@ResponseBody
+	@GetMapping("/shop/cartinsert")
+	public void insertCart(@RequestParam("product_id") Integer product_id,
+			@RequestParam("member_id") Integer member_id) {
+
+		
+		System.out.println(product_id);
+		System.out.println(member_id);
+		cartService.insertCart(product_id, member_id);
 
 	}
 

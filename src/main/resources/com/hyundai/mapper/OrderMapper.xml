@@ -5,7 +5,55 @@
 
 
 
-<mapper namespace="com.hyundai.mapper.CartMapper">
+<mapper namespace="com.hyundai.mapper.OrderMapper">
+
+
+
+
+	<insert id="insertOrderdetail">
+
+		INSERT INTO ORDERITEMS
+		VALUES(#{ITEM_QUANTITY},
+		#{ORDERS_ORDER_ID},
+		#{PRODUCTS_PRODUCT_ID})
+
+	</insert>
+
+	<insert id="insertOrder2"
+		parameterType="com.hyundai.domain.OrderDTO2">
+		<selectKey keyProperty="orderid" order="BEFORE"
+			resultType="INTEGER">
+
+			SELECT Order_id_seq.NEXTVAL AS ID FROM DUAL
+
+		</selectKey>
+
+
+		INSERT INTO FULLMEMBERORDERS
+		VALUES(#{orderid}, #{order_adress1},
+		#{order_adress2}, #{ORDER_PHONE}, #{order_name}, #{order_postnum},
+		#{order_ask},
+		#{total_price}, #{order_payment}, #{order_category},1,
+		#{member_id})
+
+
+	</insert>
+
+
+	<insert id="insertOrder3"
+		parameterType="com.hyundai.domain.OrderDTO2">
+
+		INSERT INTO ORDERS
+		VALUES(#{orderid}, #{order_adress1},
+		#{order_adress2},
+		#{ORDER_PHONE}, #{order_name}, #{order_postnum},
+		#{order_ask},
+		#{total_price}, #{order_payment}, #{order_category})
+
+	</insert>
+
+
+
 
 
 	<select id="find" resultType="String">
@@ -65,26 +113,28 @@
 	</update>
 
 
+	<select id="OrderList" resultType="com.hyundai.domain.OrderList">
 
-	<update id="insertCart">
-		merge into Carts c
-		using dual
-		on (
-		c.PRODUCTS_PRODUCT_ID = #{product_id}
-		and c.MEMBERS_MEMBER_ID =
-		#{member_id}
-		)
+		select
+		ORDER_ID,ORDER_PRICE
+		from FULLMEMBERORDERS
+		where
+		MEMBERS_MEMBER_ID=#{member_id}
 
-		when matched then
-		update set c.CART_QUANTITY =
-		c.CART_QUANTITY+1
+	</select>
 
-		when not matched then
-		insert (CART_QUANTITY,
-		PRODUCTS_PRODUCT_ID, CART_CHECK, MEMBERS_MEMBER_ID)
-		VALUES(1,#{product_id}, 1, #{member_id})
-		
-	</update>
+
+	<select id="OrderListItems" resultType="String">
+
+		select PRODUCT_NAME
+		from PRODUCTS inner join ORDERITEMS on PRODUCTS.PRODUCT_ID
+		=ORDERITEMS.PRODUCTS_PRODUCT_ID
+		where ORDERITEMS.ORDERS_ORDER_ID =#{orderId}
+
+	</select>
+
+
+
 
 
 
