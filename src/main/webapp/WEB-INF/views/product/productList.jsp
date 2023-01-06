@@ -217,11 +217,11 @@ fbq('track', 'PageView');
 
 							<ul class="sub_category">
 								<li class="mid_code cate_1012"><a
-									href="/shop/big_section.php?cno1=1012" class="active">전체</a></li>
+                              href="${contextPath}/product/productList?pageNum=1&amount=9">PRODUCT</a></li>
 								<li class="cate_1020"><a
-									href="https://www.rexremall.com/shop/big_section.php?cno1=1020">마스크팩</a></li>
+                                       href="${contextPath}/product/productCategory?productCategory=마스크팩&pageNum=1&amount=9">마스크팩</a></li>
 								<li class="cate_1021"><a
-									href="https://www.rexremall.com/shop/big_section.php?cno1=1021">스킨케어</a></li>
+                                       href="${contextPath}/product/productCategory?productCategory=스킨케어&pageNum=1&amount=9">스킨케어</a></li>
 							</ul>
 							<!-- 상품정렬 -->
 							<div class="total_sort">
