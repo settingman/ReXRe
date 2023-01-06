@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!--Add by seeun 카테고리 이동 -->
-<c:set var="contextPath" value="${pageContext.request.contextPath }" />
-<!DOCTYPE html>
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -19,7 +17,7 @@
 비건 인증 콤부차토너, 수분앰플, 장벽크림, 약산성폼, 진정마스크 출시">
 <meta property="og:site_name" content="클린 &amp; 비건 뷰티 브랜드 리바이리 ">
 <meta property="og:url"
-	content="https://www.rexremall.com/shop/big_section.php?cno1=1012">
+	content="https://www.rexremall.com/shop/big_section.php?cno1=1009">
 <meta property="og:title" content="리바이리(ReXRe), 클린 &amp; 비건 뷰티 브랜드">
 <meta property="og:description"
 	content="현대백화점그룹의 천연원료 전문기업인 현대바이오랜드에서 만든 비건 뷰티 브랜드. 
@@ -32,26 +30,23 @@
 <link rel="stylesheet" type="text/css"
 	href="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css"
-	href="https://www.rexremall.com/wm_engine_SW/_engine/common/loading.css??202212301607">
-<script async="true" type="text/javascript"
-	src="https://sslwidget.criteo.com/event?a=71354&amp;v=5.12.3&amp;p0=e%3Dce%26type%3D&amp;p1=e%3Dexd%26site_type%3Dd&amp;p2=e%3Dvl%26p%3D%255BB2EEB7362EF83DEFF5C7813A67E14F0A%252C076A0C97D09CF1A0EC3E19C7F2529F2B%252CFDE9264CF376FFFE2EE4DDF4A988880D%255D&amp;p3=e%3Ddis&amp;adce=1&amp;bundle=Ut6X918zUHd5NjRiTUNLV2FmYkMlMkI3ajdFOXppTnJPcjluRkdnWFFnMWN0VmhKNEVDaG15SUJmcWpPUmclMkZBMnB2TXdYZkVVVU5zQ0pra3NGTUVCYVNHd3ZxZlU0TWU0WmlSanNKTVAlMkZiTU5NYnNxYnIyaUpwaDhhOGJNQ0FaWTdseUxzc0lnMjcwNEppTkxoUVdQTFhZT1hlNUElM0QlM0Q&amp;tld=rexremall.com&amp;fu=https%253A%252F%252Fwww.rexremall.com%252Fshop%252Fbig_section.php%253Fcno1%253D1012&amp;pu=https%253A%252F%252Fwww.rexremall.com%252F&amp;dtycbr=61315"
-	data-owner="criteo-tag"></script>
+	href="https://www.rexremall.com/wm_engine_SW/_engine/common/loading.css??202301061043">
 <script async="" defer=""
 	src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js"></script>
 <script async="" defer=""
 	src="https://cdn.megadata.co.kr/dist/prod/enp_mbris.min.js"></script>
 <script async="" src="https://www.google-analytics.com/analytics.js"></script>
 <script
-	src="https://connect.facebook.net/signals/config/484907168870305?v=2.9.90&amp;r=stable"
+	src="https://connect.facebook.net/signals/config/484907168870305?v=2.9.91&amp;r=stable"
 	async=""></script>
 <script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script>
 <script type="text/javascript">
-var hid_frame='hidden1672384053';
-var mlv='10';
+var hid_frame='hidden1672969388';
+var mlv='9';
 var alv='';
 var root_url='https://www.rexremall.com';
 var engine_url='https://www.rexremall.com/wm_engine_SW';
-var this_url='https://www.rexremall.com/shop/big_section.php?cno1=1012';
+var this_url='https://www.rexremall.com/shop/big_section.php?cno1=1009';
 var ssl_url='https://www.rexremall.com/main/exec.php';
 var soldout_name='품절';
 var ace_counter_gcode='';
@@ -68,6 +63,7 @@ var mobile_browser = '';
 var ssl_type = 'Y';
 
 var click_prd=new Array();
+click_prd[1]="<a href=\"https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&cno1=1001\"><img src=\"https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg\" width=\"51\" height=\"62\" alt=\"리바이리 콤부차 배리옴 스킨케어 5종 기획-170,000\" title=\"\"></a>";
 var click_prd_limit=2;
 var click_prd_start=1;
 var click_prd_finish=click_prd_limit+1;
@@ -83,9 +79,11 @@ var click_prd_finish=click_prd_limit+1;
 <script type="text/javascript"
 	src="https://www.rexremall.com/wm_engine_SW/_engine/common/lang/lang_kor.js?00000002"></script>
 <script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/common.js?202212301607"></script>
+	src="https://www.rexremall.com/wm_engine_SW/_engine/common/common.js?202301061043"></script>
 <script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.review.js?202212301607"></script>
+	src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.review.js?202301061043"></script>
+<script type="text/javascript"
+	src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery-wingNextPage.js"></script>
 <script type="text/javascript"
 	src="https://www.rexremall.com/wm_engine_SW/_engine/R2Na/R2Na.js"></script>
 <script type="text/javascript"
@@ -100,7 +98,7 @@ var date_picker_default = {
 	'changeYear':true,
 	'changeMonth':true,
 	'showButtonPanel':true,
-	'currentText':_lang_pack.common_info_today+'2022-12-30',
+	'currentText':_lang_pack.common_info_today+'2023-01-06',
 	'closeText':_lang_pack.coommon_info_close
 }
 
@@ -184,13 +182,13 @@ m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 var use_google_enhenced_ecommerce = true;
 var google_alanytics_id = 'UA-166260789-1';
 </script>
-<script
-	src="https://cdn.megadata.co.kr/js/socialLink/social_sns_config_min.js"
-	type="text/javascript" defer="" async=""></script>
 <meta http-equiv="origin-trial"
 	content="A9+ldib+sKhGj2FcIjq5GnvBZFuIiXID0+NkE6k7cEk71MhaHFGqo3wUlUFmZ6d9w0KPwx9UxGiCTYWtRnTGDQkAAACAeyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5uZXQ6NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY4MDY1Mjc5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
 <meta http-equiv="origin-trial"
 	content="AzLNuh8GFzfIOcwvhEg7Ymr7YCzlYVTKeD7i2iETABbRf+sL2FAx+r+HlTtxSi1zgUFxBlJVoxgLjuhqiwTjAw4AAACAeyJvcmlnaW4iOiJodHRwczovL2NyaXRlby5jb206NDQzIiwiZmVhdHVyZSI6IlByaXZhY3lTYW5kYm94QWRzQVBJcyIsImV4cGlyeSI6MTY4MDY1Mjc5OSwiaXNTdWJkb21haW4iOnRydWUsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=">
+<script
+	src="https://cdn.megadata.co.kr/js/socialLink/social_sns_config_min.js"
+	type="text/javascript" defer="" async=""></script>
 </head>
 
 
@@ -202,7 +200,7 @@ var google_alanytics_id = 'UA-166260789-1';
 <!--mkt script '카카오모먼트' scr_header end-->
 
 <body>
-	<iframe name="hidden1672384053" src="about:blank" width="0" height="0"
+	<iframe name="hidden1672969388" src="about:blank" width="0" height="0"
 		scrolling="no" frameborder="0" style="display: none"></iframe>
 
 	<script type="text/javascript"
@@ -223,13 +221,12 @@ var google_alanytics_id = 'UA-166260789-1';
 			href="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.css">
 		<link rel="stylesheet" type="text/css"
 			href="https://www.rexremall.com/_skin/skbioland_200731/img/../animate.css">
-		<i id="crema-login-username" style="display: none;"></i> <i
-			id="crema-login-name" style="display: none;"></i>
+		<i id="crema-login-username" style="display: none;">michelle5659@naver.com</i>
+		<i id="crema-login-name" style="display: none;">이세은</i>
 		<div id="wrapper">
-
+			<!-- 상단 -->
 			<%@ include file="/WEB-INF/views/include/header.jsp"%>
-
-
+			<!-- //상단 -->
 			<!-- 중앙 -->
 			<div id="cnt">
 				<div class="cntbody">
@@ -237,7 +234,7 @@ var google_alanytics_id = 'UA-166260789-1';
 
 					<!-- //서브 타이틀 텍스트(일반페이지) 사용자코드 -->
 					<!-- 서브 타이틀 텍스트(카테고리) 사용자코드 -->
-					<h2 class="subtitle">PRODUCT</h2>
+					<h2 class="subtitle">NEW&amp;BEST</h2>
 					<!-- //서브 타이틀 텍스트(카테고리) 사용자코드 -->
 					<!-- 서브 타이틀 텍스트(게시판) 사용자코드 -->
 
@@ -250,6 +247,8 @@ var google_alanytics_id = 'UA-166260789-1';
 					<!-- //마이페이지 메뉴 -->
 					<!-- 타이틀이미지 -->
 
+					<h2 class="subtitle img"></h2>
+
 					<!-- //타이틀이미지 -->
 
 					<style type="text/css">
@@ -261,101 +260,88 @@ var google_alanytics_id = 'UA-166260789-1';
 					<div id="big_section">
 						<div class="wrap_inner">
 
-							<ul class="sub_category">
-								<li class="mid_code cate_1012"><a
-									href="/shop/big_section.php?cno1=1012" class="active">전체</a></li>
-								<li class="cate_1020"><a
-									href="https://www.rexremall.com/shop/big_section.php?cno1=1020">마스크팩</a></li>
-								<li class="cate_1021"><a
-									href="https://www.rexremall.com/shop/big_section.php?cno1=1021">스킨케어</a></li>
+							<ul class="sub_category" style="display: none;">
+								<li class="mid_code cate_"><a
+									href="/shop/big_section.php?cno1=">전체</a></li>
+
 							</ul>
 							<!-- 상품정렬 -->
 							<div class="total_sort">
 								<p class="total">
-									<strong>12</strong>개의 상품
+									<strong>${total}</strong>개의 상품
 								</p>
 								<div class="sort">
 									<select onchange="if(this.value){location.href=this.value}"><option
 											value="">:: 상품정렬 ::</option>
-										<option value="/shop/big_section.php?sort=1&amp;cno1=1012"
+										<option value="/shop/big_section.php?sort=1&amp;cno1=1009"
 											selected="">신상품순</option>
-										<option value="/shop/big_section.php?sort=3&amp;cno1=1012">판매량높은순</option>
-										<option value="/shop/big_section.php?sort=4&amp;cno1=1012">높은가격순</option>
-										<option value="/shop/big_section.php?sort=5&amp;cno1=1012">낮은가격순</option>
-										<option value="/shop/big_section.php?sort=9&amp;cno1=1012">판매량낮은순</option></select>
+										<option value="/shop/big_section.php?sort=3&amp;cno1=1009">판매량높은순</option>
+										<option value="/shop/big_section.php?sort=4&amp;cno1=1009">높은가격순</option>
+										<option value="/shop/big_section.php?sort=5&amp;cno1=1009">낮은가격순</option>
+										<option value="/shop/big_section.php?sort=9&amp;cno1=1009">판매량낮은순</option></select>
 
 								</div>
 							</div>
-
-
-							<!--// 상품정렬 JSP 적용 -->
+							<!--// 상품정렬 -->
 
 							<ul class="prd_basic col3">
 								<c:forEach items="${productList}" var="productList">
 									<li><div class="box ">
 											<div class="img">
 												<div class="prdimg img1226">
-													<a href='/product/productDetail?product_id=<c:out value="${productList.product_id}"/>'>
-													<img src="<c:out value='${productList.image_path}'/>"
+													<a
+														href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1009&amp;ctype=2&amp;cno1=1009"><img
+														src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg"
 														width="380" height="466"></a>
 												</div>
 												<!-- 상품품절 영역 -->
 												<div class="soldout"
-													onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1012&amp;ctype=1&amp;cno1=1012'">SOLD
+													onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1009&amp;ctype=2&amp;cno1=1009'">SOLD
 													OUT</div>
 												<!-- //상품품절 영역 -->
 											</div>
 											<div class="info">
 												<ul class="quick" style="display: none;">
 													<li class="preview"><a
-														href="javascript:quickDetailPopup(this, 596, '1012');">상품팝업</a></li>
+														href="javascript:quickDetailPopup(this, 596, '1009');">상품팝업</a></li>
 													<li class="wish"><a href="#"
 														onclick="wishPartCartAjax(&quot;B2EEB7362EF83DEFF5C7813A67E14F0A&quot;, this); return false;">관심상품
 															담기</a></li>
 													<li class="cart"><a href="#"
-														onclick="cartPartCartAjax(&quot;B2EEB7362EF83DEFF5C7813A67E14F0A&quot;, &quot;리바이리 콤부차 배리옴 스킨케어 5종 기획&quot;, &quot;170,000&quot;); return false;">장바구니
+														onclick="cartPartCartAjax(&quot;B2EEB7362EF83DEFF5C7813A67E14F0A&quot;, &quot;리바이리 콤부차 배리옴 스킨케어 5종 기획&quot;, &quot;153,000&quot;); return false;">장바구니
 															담기</a></li>
 												</ul>
 
 												<span class="hashtag">#클렌저 #토너 #앰플 #크림 #마스크</span>
 
-												<!-- 상품명 -->
 												<p class="name name1226">
-													<a href=""> <c:out value="${productList.product_name}" />
-
-													</a>
+													<a
+														href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1009&amp;ctype=2&amp;cno1=1009"><c:out
+															value="${productList.productName}"></c:out></a>
 												</p>
 
-												<div class="summary">건강한 피부를 위해 리바이리가 제안하는 비건 스킨케어 5종</div>
+												<div class="summary">
+													<c:out value="${productList.productSummary}"></c:out>
+												</div>
 
 												<div class="price">
-													<div class="price_boxY">
-
-														<p class="consumer dn">
-															<c:out value="${productList.product_price}" />
-														</p>
-
+													<div class="price_box">
 														<p class="sell">
 															<strong><c:out
-																	value="${productList.product_price}" /></strong>원
+																	value="${productList.productPrice}"></c:out></strong>원
 														</p>
 
 													</div>
-													<div class="price_box">
-
-
-
-														<p class="consumer dn"></p>
+													<div class="price_boxY">
 														<p class="sell">
 															<strong><c:out
-																	value="${productList.product_price}" /></strong>원
+																	value="${productList.productPrice}"></c:out></strong>원
 														</p>
-
 													</div>
 												</div>
 												<ul class="count" style="display: none;">
 													<li>Wish 1</li>
-													<li>Review 5</li>
+													<li>Review 6</li>
 													<li>Q&amp;A 0</li>
 												</ul>
 
@@ -369,110 +355,56 @@ var google_alanytics_id = 'UA-166260789-1';
 
 											</div>
 										</div></li>
+
+
+
+
+
+
+
 								</c:forEach>
 							</ul>
-							<!-- 상품 jsplist -->
-
-<!-- 페이징 처리 코드 book -->
-						<div class="paging">
-							<c:if test="${pageMaker.prev}">
-								<!-- 이전 버튼 -->
-								<span class="paginate_button previous"> <a
-									href="${pageMaker.firstPage}"> << </a> <a
-									href="${pageMaker.startPage - 1}"> < </a>
-								</span>
-							</c:if>
-							<!-- 페이징 처리 시작부분 -->
-							<!-- 1~10 버튼 -->
-							<!-- jstl을 사용하여 현재 페이지의 번호를 굵게 한다 -->
-							<c:forEach var="num" begin="${pageMaker.startPage}"
-								end="${pageMaker.endPage}">
-								<span class="paginate_button"> <c:choose>
-										<c:when test="${pageMaker.cri.pageNum eq num}">
-											<a style="font-weight: bold; margin: 3px;" class="pageBtn"
-												href="${num}">${num}</a>
-										</c:when>
-										<c:otherwise>
-											<a style="margin: 3px;" class="pageBtn" href="${num}">${num}</a>
-										</c:otherwise>
-									</c:choose>
-								</span>
-							</c:forEach>
-							<c:if test="${pageMaker.next}">
-								<!-- 이전 버튼 -->
-								<span class="paginate_button next"> <a
-									href="${pageMaker.endPage + 1}">></a> <a
-									href="${pageMaker.lastPage}"> >> </a>
-								</span>
-							</c:if>
-							<!-- 페이징 처리 끝 -->
-							
-							<!-- 페이징에서 다시 다른 버튼 누르면 category 리스트 아닌 productList의 리스트로 다시 넘어감 ! -->
-							
-							<form id='actionForm' action="/product/productList" method='get'>
-								<input type='hidden' id='pageNum' name='pageNum'
-									value='${pageMaker.cri.pageNum}'> <input type='hidden'
-									name='amount' value='${pageMaker.cri.amount}'>
-							</form>
 
 
-<%-- 
-							<!-- 페이징 -->
+							<!-- 페이징 처리 -->
 							<ul class="paging">
 								<c:if test="${pageMaker.prev}">
-									<li>
-										<a href="${pageMaker.startPage -1}">Previous</a>
+									<li class="paginate_button previous">
+										<a href="${pageMaker.firstPage}"> << </a>
+										<a href="${pageMaker.startPage - 1}">이전</a>	
 									</li>
+				
 								</c:if>
 								
-								<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-									<li class= " ${pageMaker.cri.pageNum == num ? 'active' : '' } ">
-										<a href="${num}">${num}</a>
+								<!-- number -->
+								<c:forEach var="num" begin="${pageMaker.startPage}"
+									end="${pageMaker.endPage }">
+									<li class="paginate_button ${pageMaker.cri.pageNum == num ? "action" : "" }">
+										<a style="font-weight:bold; margin: 3px;" class="pageNutton"
+										href="/product/productNewBest?pageNum=${num}&amount=9">${num}</a>
 									</li>
 								</c:forEach>
 								
 								<c:if test="${pageMaker.next}">
-									<li>
-										<a href="${pageMaker.endPage + 1}">Next</a>
+									<li class="pageinate_button next">
+										<a href="${pageMaker.endPage + 1}"></a>
 									</li>
 								</c:if>
-								
 								<!-- <li></li>
 								<li><strong>1</strong></li>
-								<li><a href="?page=2&amp;cno1=1012">2</a></li>
+								<li><a href="?page=2&amp;cno1=1009">2</a></li>
 								<li></li> -->
 							</ul>
-						</div> --%>
-						
-						<!--  end pagination -->
-						
+							
+							<!-- 311p -->
+							<form id='actionFrom' action="/product/productNewBest" method="get">
+								<input type='hidden' name='pageNum' value='${pageNum.cri.pageNum}'> 
+								<input type='hidden' name='amount' value='${pageNum.cri.amount }'>
+							</form>
+							
+						</div>
 					</div>
-					
-					
-					<!-- page click form-->
-				<%-- 	<form id='actionForm' action = /product/productList' method='get'>
-						<input type='hidden' name='pageNum' value='${pageMaker.cri.pageNum}'>
-						<input type='hidden' name='amount' value='${pageMaker.cri.amount}'>
-					</form> --%>
-
-<script type="text/javascript">
-	//1. paging button event, 페이지 번호를 클릭하면 처리하는 부분 추가
-	
-	$(document).ready(function() {
-		var actionForm = $("#actionForm");
-		
-		$(".paginate_button a").on("click", function(e) {
-			e.preventDefault();
-			console.log('click');
-			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
-			actionForm.submit();
-		});
-		
-	});
-	
-
-
-					
+					<script type="text/javascript">
 	// 하위분류 고정
 	var cno = document.location.href;
 	var regExp = /cno1=.+&?/gi;
@@ -480,14 +412,14 @@ var google_alanytics_id = 'UA-166260789-1';
 	cno = cno[0].replace('cno1=', '');
 	cno = cno.replace('#', '');
 	cno = cno.replace(/&.+|&/, '');
-	if(cno == '1012') {
+	if(cno == '1009') {
 		$('.sub_category .cate_'+cno+' a').addClass('active');
 	} else {
 		$('.sub_category .cate_'+cno+' a').removeClass('active');
 	}
 
 	// 중분류 노출 제어
-	if (1 != 2) {
+	if (2 != 2) {
 		$('.sub_category').show();
 	} else {
 		$('.sub_category').hide();
@@ -512,7 +444,6 @@ var google_alanytics_id = 'UA-166260789-1';
 			</div>
 			<!-- //중앙 -->
 			<!-- 하단 -->
-
 			<%@ include file="/WEB-INF/views/include/footer.jsp"%>
 			<!-- //하단 -->
 		</div>
@@ -555,9 +486,9 @@ $(document).ready(function() {
 window.criteo_q = window.criteo_q || [];
 window.criteo_q.push(
 	{event:"setAccount",account:"71354"},
-	{event:"setEmail",type:""},
+	{event:"setEmail",type:"michelle5659@naver.com"},
 	{event:"setSiteType",type:"d"},
-	{"event":"viewList","item":["B2EEB7362EF83DEFF5C7813A67E14F0A","076A0C97D09CF1A0EC3E19C7F2529F2B","FDE9264CF376FFFE2EE4DDF4A988880D"]});
+	{"event":"viewList","item":["B2EEB7362EF83DEFF5C7813A67E14F0A","076A0C97D09CF1A0EC3E19C7F2529F2B","FFEABD223DE0D4EACB9A3E6E53E5448D"]});
 
 </script>
 	<script type="text/javascript">
@@ -584,6 +515,5 @@ window.criteo_q.push(
 	<div id="criteo-tags-div" style="display: none;"></div>
 	<iframe height="0" width="0" title="Criteo DIS iframe"
 		style="display: none;"></iframe>
-
 </body>
 </html>

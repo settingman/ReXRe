@@ -2,22 +2,23 @@ package com.hyundai.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import com.hyundai.domain.Criteria;
 import com.hyundai.domain.productDetailVO;
 import com.hyundai.domain.productVO;
 
-@Component
 public interface ProductService {
-	public List<productVO> getList(Criteria cri);
-	public int getTotal(Criteria cri) throws Exception; // 총 행 개수
+	//전체 product 조회
+	public List<productVO> getListWithPaging(Criteria cri) throws Exception;
+	public int getTotalCount();
 	
+	//카테고리 product조회
+	public List<productVO> getCategoryListWithPaging(Criteria cri, String productCategory);
+	public int getCategoryTotalCount(String productCategory);
 	
-	public List<productVO> getListWithPaging(Criteria cri)throws Exception; // 페이징 리스트
+	//newBest
+	public List<productVO> getNewBestListWithPaging(Criteria cri);
+	public int getNewBestTotalCount();
 	
 	//상세페이지 + 조회수
-	public List<productDetailVO> getProductDetail(Long product_id);
-	
-	public List<productVO> getCategoryWithPaging(Criteria cri, String product_category) throws Exception;
+	public List<productDetailVO> getProductDetail(Long productId);
 }

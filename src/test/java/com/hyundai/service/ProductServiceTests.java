@@ -1,7 +1,5 @@
 package com.hyundai.service;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -26,25 +24,41 @@ public class ProductServiceTests {
 	private ProductService service;
 	
 	@Test
-	public void testExist() {
-		log.info(service);
-		assertNotNull(service);
+	public void testGetPagingList() throws Exception {
+		
+		List<productVO> list = service.getListWithPaging(new Criteria(1,9));
+	
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 	}
 	
-	/*
-	 * //getList 확占쏙옙
-	 * 
-	 * @Test public void testGetList() { log.info("@@@@@@@@@@@getList" );
-	 * //log.info(service.getList().get(0)); service.getList().forEach(get ->
-	 * log.info(get)); //service.getList().forEach(list -> log.info(list)); }
-	 */
+	@Test
+	public void testGetTotalCount() throws Exception {
+		int count = service.getTotalCount();
+		System.out.print(count);
+	}
 	
 	@Test
-	public void testGetList() {
-		List<productVO> list = service.getList(new Criteria(1, 9));
+	public void testGetCategoryList() {
 
-		for (int i = 0; i < list.size(); i++) {
-			log.info(list.get(i));
+		List<productVO> list = service.getCategoryListWithPaging(new Criteria(1,9), "스킨케어");
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+	}
+	
+	@Test
+	public void testCategoryCount() {
+		System.out.println(service.getCategoryTotalCount("스킨케어"));
+		
+	}
+	
+	@Test
+	public void testNewBestList() {
+		List<productVO> list = service.getNewBestListWithPaging(new Criteria(1,9));
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
 		}
 	}
 	
@@ -59,13 +73,4 @@ public class ProductServiceTests {
 	}
 	
 	
-	//카테고리
-	@Test
-	public void testGetCategory() throws Exception {
-		List<productVO> list = service.getCategoryWithPaging(new Criteria(1, 9), "skinCare");
-		
-		for(int i = 0; i < list.size(); i++) {
-			log.info(list.get(i));
-		}
-	}
 }
