@@ -44,14 +44,14 @@
                                        이벤트</a></li>
                                  <li><a href="/board/?db=basic_3">당첨자발표</a></li>
                               </ul></li>
-                           <li class="viewsub community"><a href="/board/?db=basic_4">COMMUNITY</a>
-                              <ul class="list">
+                           <li class="viewsub community"><a href="${contextPath}/board/list">COMMUNITY</a>
+                              <!-- <ul class="list">
                                  <li><a href="/board/?db=basic_4">공지사항</a></li>
                                  <li><a href="/board/?db=gallery_2">미디어</a></li>
-                                 <!--<li><a href="/content/content.php?cont=benefit">회원혜택</a></li>-->
+                                 <li><a href="/content/content.php?cont=benefit">회원혜택</a></li>
                                  <li><a href="/board/?db=basic_2">쇼핑FAQ</a></li>
                                  <li><a href="/mypage/counsel_list.php">1:1문의</a></li>
-                              </ul></li>
+                              </ul> --></li>
                            <li class="viewsub brand"><a
                               href="/content/content.php?cont=brand_n">BRAND</a>
                               <ul class="list">
@@ -72,7 +72,7 @@
                         <!-- //gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
                         <li class="viewsub"><a href="/mypage/mypage.php">MYPAGE</a>
                            <ul class="list">
-                              <li><a href="/mypage/order_list.php">주문/배송조회</a></li>
+                              <li><a href="/shop/orederlist">주문 조회</a></li>
                               <li><a href="/mypage/coupon_down_list.php">쿠폰현황</a></li>
                               <li><a href="/mypage/wish_list.php">위시리스트</a></li>
                               <li><a href="/member/edit_step1.php">정보수정</a></li>
@@ -122,21 +122,21 @@
                         </dl>
                         <dl class="community">
                            <dt>
-                              <a href="/board/?db=basic_1">COMMUNITY</a>
+                              <a href="${contextPath}/board/list">COMMUNITY</a>
                            </dt>
-                           <dd>
+                         <!--   <dd>
                               <a href="/board/?db=basic_4">공지사항</a>
                            </dd>
                            <dd>
                               <a href="/board/?db=gallery_2">미디어</a>
                            </dd>
-                           <!--<dd><a href="/content/content.php?cont=benefit">회원혜택</a></dd>-->
+                           <dd><a href="/content/content.php?cont=benefit">회원혜택</a></dd>
                            <dd>
                               <a href="/board/?db=basic_2">쇼핑FAQ</a>
                            </dd>
                            <dd>
                               <a href="/mypage/counsel_list.php">1:1문의</a>
-                           </dd>
+                           </dd> -->
                         </dl>
                         <dl class="brand">
                            <dt>

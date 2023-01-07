@@ -109,31 +109,8 @@ if(typeof wcs != 'undefined') {
 	wcs.inflow("rexremall.com");
 }
 </script>
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', "484907168870305");
-fbq('track', 'PageView');
 
 
-
-
-</script>
-<noscript>
-	<img height="1" width="1" style="display: none"
-		src="https://www.facebook.com/tr?id=484907168870305&ev=PageView&noscript=1" />
-</noscript>
-<!-- DO NOT MODIFY -->
-<!-- End Facebook Pixel Code -->
-<meta property="”og:type”" content="”website”">
-<meta property="”og:title”" content="”ReXRe" mall”="">
-<meta property="”og:description”" content="”리바이리몰에" 오신="" 것을=""
-	환영합니다”="">
-<meta property="”og:url”content=https://rexremall.com">
 <link rel="canonical" href="https://rexremall.com/">
 
 <script type="text/javascript" charset="UTF-8"
@@ -187,24 +164,9 @@ fbq('track', 'PageView');
 			<!-- 중앙 -->
 			<div id="cnt">
 				<div class="cntbody">
-					<!-- 서브 타이틀 텍스트(일반페이지) 사용자코드 -->
-
-					<!-- //서브 타이틀 텍스트(일반페이지) 사용자코드 -->
-					<!-- 서브 타이틀 텍스트(카테고리) 사용자코드 -->
+					
 					<h2 class="subtitle">PRODUCT</h2>
-					<!-- //서브 타이틀 텍스트(카테고리) 사용자코드 -->
-					<!-- 서브 타이틀 텍스트(게시판) 사용자코드 -->
-
-					<!-- //서브 타이틀 텍스트(게시판) 사용자코드 -->
-					<!-- 주문스텝 사용자코드 -->
-
-					<!-- //주문스텝 사용자코드 -->
-					<!-- 마이페이지 메뉴 -->
-
-					<!-- //마이페이지 메뉴 -->
-					<!-- 타이틀이미지 -->
-
-					<!-- //타이틀이미지 -->
+				
 
 					<style type="text/css">
 #cnt .cntbody {
@@ -217,11 +179,11 @@ fbq('track', 'PageView');
 
 							<ul class="sub_category">
 								<li class="mid_code cate_1012"><a
-                              href="${contextPath}/product/productList?pageNum=1&amount=9">PRODUCT</a></li>
+									href="${contextPath}/product/productList?pageNum=1&amount=9">PRODUCT</a></li>
 								<li class="cate_1020"><a
-                                       href="${contextPath}/product/productCategory?productCategory=마스크팩&pageNum=1&amount=9">마스크팩</a></li>
+									href="${contextPath}/product/productCategory?productCategory=마스크팩&pageNum=1&amount=9">마스크팩</a></li>
 								<li class="cate_1021"><a
-                                       href="${contextPath}/product/productCategory?productCategory=스킨케어&pageNum=1&amount=9">스킨케어</a></li>
+									href="${contextPath}/product/productCategory?productCategory=스킨케어&pageNum=1&amount=9">스킨케어</a></li>
 							</ul>
 							<!-- 상품정렬 -->
 							<div class="total_sort">
@@ -287,12 +249,15 @@ fbq('track', 'PageView');
 													<div class="price_boxY">
 
 														<p class="consumer dn">
-															<c:out value="${productList.productPrice}" />
+															<fmt:formatNumber value="${productList.productPrice}"
+																pattern="#,###" type="number" />
+
 														</p>
 
 														<p class="sell">
-															<strong><c:out
-																	value="${productList.productPrice}" /></strong>원
+															<strong> <fmt:formatNumber
+																	value="${productList.productPrice}" pattern="#,###"
+																	type="number" /></strong>원
 														</p>
 
 													</div>
@@ -488,8 +453,7 @@ $(document).ready(function(){
 
 
 </script>
-						<!-- Enliple Tracker End -->
-						<!--mkt script '모비온' scr_bottom end-->
+
 
 
 					</div>
@@ -544,15 +508,7 @@ window.criteo_q.push(
 	{"event":"viewList","item":["B2EEB7362EF83DEFF5C7813A67E14F0A","076A0C97D09CF1A0EC3E19C7F2529F2B","FDE9264CF376FFFE2EE4DDF4A988880D"]});
 
 </script>
-		<script type="text/javascript">
-	if(typeof wcs != 'undefined') {
-		if(typeof cpa == 'undefined') var cpa = {};
-		if(cpa['order']) {
-			cpa['cnv'] = wcs.cnv("1", "0");
-		}
-		wcs_do(cpa);
-	}
-</script>
+
 		<span itemscope="" itemtype="http://schema.org/Organization">
 			<link itemprop="url" href="https://www.rexremall.com"> <a
 			itemprop="sameAs" href="https://www.facebook.com/officialrexre/"></a>

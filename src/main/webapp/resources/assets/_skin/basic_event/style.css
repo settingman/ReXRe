@@ -1,0 +1,76 @@
+/*-----------------------------------------------------------------*/
+/* 목록
+/*-----------------------------------------------------------------*/
+
+h2.subtitle.img {display:none;}
+#boardlist {width:100%;}
+#boardlist .category > ul {margin-bottom:63px; font-size:0; text-align:center;}
+#boardlist .category > ul > li {display:inline-block; *display:inline; *zoom:1; padding:0 33px; vertical-align:middle;}
+#boardlist .category > ul > li > a {display:inline-block; *display:inline; *zoom:1; padding:10px 0; color:#636363; font-size:17px;}
+#boardlist .category > ul > li.cate_all > a,
+#boardlist .category > ul > li.selected > a {position:relative; color:#b17957;}
+#boardlist .category > ul > li.cate_all > a:after,
+#boardlist .category > ul > li.selected > a:after {display:block; position:absolute; left:0; bottom:0; width:100%; height:3px; background:#b17957; content:'';}
+#boardlist .board_col {table-layout:fixed; clear:both; width:100%; border-collapse:collapse;}
+#boardlist .board_col caption {padding-bottom:20px; font-weight:bold; text-align:left;}
+#boardlist .board_col > thead > tr > th {padding:15px 0; border-top:3px solid #000; border-bottom:1px solid #d6d6d6; color:#000; font-size:15px; font-weight:400; text-align:center; vertical-align:middle; letter-spacing:-0.5px;}
+#boardlist .board_col > tbody > tr > td {padding:15px 0; border-bottom:1px solid #d6d6d6; text-align:center; vertical-align:middle; letter-spacing:-0.5px;}
+#boardlist .board_col > tbody > tr > td,
+#boardlist .board_col > tbody > tr > td * {color:#636363; font-size:15px; font-weight:300;}
+#boardlist .board_col > tbody > tr > td.tal {padding-left:15px !important;}
+#boardlist .board_col > tbody > tr > td.subject,
+#boardlist .board_col > tbody > tr > td.subject * {color:#333;}
+#boardlist .board_col > tbody > tr > td.subject img {margin-right:5px; vertical-align:middle;}
+#boardlist .btn {margin-top:20px;}
+#boardlist .board_search {clear:both; text-align:center;}
+#boardlist .board_search form {display:inline-block; margin:30px auto 0; padding:5px; border:1px solid #dcdcdc; text-align:center;}
+#boardlist .board_search select {border:0;}
+#boardlist .board_search input.form_input.search {width:300px; border-width:0 1px;}
+#boardlist .board_search .btn_search {display:inline-block; width:34px; height:34px; border:0; background:url('../basic_general/img/btn_search.png') no-repeat center; vertical-align:top; text-indent:-9999px; cursor:pointer;}
+
+/*-----------------------------------------------------------------*/
+/* 열람
+/*-----------------------------------------------------------------*/
+
+#boardview .subject_date {border-top:3px solid #000; border-bottom:1px solid #d6d6d6; text-align:center;}
+#boardview .subject_date .subject {padding:20px 0 2px; color:#000; font-size:25px; letter-spacing:-0.5px;}
+#boardview .subject_date .date {padding-bottom:20px; color:#000; font-size:15px; font-weight:500; letter-spacing:-0.5px;}
+#boardview .boxview {padding:37px 100px 35px; border-bottom:1px solid #e0e0e0; text-align:left;}
+#boardview .boxview > div {word-break:break-all; word-wrap:break-word;}
+#boardview .boxview > div * {font-family:inherit; font-size:inherit; text-align:inherit; line-height:inherit;}
+#boardview .boxview > div img {max-width:100%;}
+#boardview .btn {margin-top:50px;}
+#boardview .btn2 {padding:20px 0; text-align:right;}
+#boardview .btn2:after {display:block; clear:both; content:'';}
+#boardview .btn2 .modelete {float:left;}
+
+/*-----------------------------------------------------------------*/
+/* 쓰기
+/*-----------------------------------------------------------------*/
+
+#boardwrite {width:100%; background:#f5f5f5; text-align:center;}
+#boardwrite form {display:inline-block; width:72%; margin:0 auto; padding:40px 0; text-align:left;}
+#boardwrite fieldset > div {position:relative; margin-bottom:10px;}
+#boardwrite fieldset > div:last-child {margin-bottom:0;}
+#boardwrite fieldset > div > label {display:none;}
+#boardwrite fieldset > div.name {min-height:34px; padding-right:180px; line-height:34px; font-weight:bold;}
+#boardwrite fieldset > div.name .form_input {width:90%;}
+#boardwrite fieldset > div.name .check {position:absolute; right:0; top:3px;}
+#boardwrite fieldset > div.contents {background:#fff;}
+#boardwrite fieldset select {width:100%;}
+#boardwrite .btn {padding:20px 0; text-align:center;}
+
+
+/*-----------------------------------------------------------------*/
+/* 비밀번호 확인
+/*-----------------------------------------------------------------*/
+
+#boardpw {padding:40px 0; border:1px solid #e0e0e0; background:#fafafa; text-align:center !important;}
+#boardpw h3 {padding-bottom:15px;}
+#boardpw p {margin-bottom:20px; color:#888;}
+#boardpw .form_input {width:330px; margin-bottom:20px;}
+
+
+/*-----------------------------------------------------------------*/
+/* 댓글목록, 댓글쓰기 - 스킨공통css 적용
+/*-----------------------------------------------------------------*/
