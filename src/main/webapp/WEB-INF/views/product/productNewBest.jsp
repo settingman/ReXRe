@@ -290,9 +290,10 @@ var google_alanytics_id = 'UA-166260789-1';
 											<div class="img">
 												<div class="prdimg img1226">
 													<a
-														href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1009&amp;ctype=2&amp;cno1=1009"><img
-														src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg"
-														width="380" height="466"></a>
+														href='/product/productDetail?productId=<c:out value="${productList.productId}"/>'>
+														<img src="<c:out value='${productList.imagePath}'/>"
+														width="380" height="466">
+													</a>
 												</div>
 												<!-- 상품품절 영역 -->
 												<div class="soldout"
@@ -314,9 +315,10 @@ var google_alanytics_id = 'UA-166260789-1';
 
 												<span class="hashtag">#클렌저 #토너 #앰플 #크림 #마스크</span>
 
-												<p class="name name1226">
+												<p>
 													<a
-														href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fbig_section.php%3Fcno1%3D1009&amp;ctype=2&amp;cno1=1009"><c:out
+														href='/product/productDetail?productId=<c:out value="${productList.productId}"/>'>
+														<c:out
 															value="${productList.productName}"></c:out></a>
 												</p>
 
@@ -327,15 +329,15 @@ var google_alanytics_id = 'UA-166260789-1';
 												<div class="price">
 													<div class="price_box">
 														<p class="sell">
-															<strong><c:out
-																	value="${productList.productPrice}"></c:out></strong>원
+															<strong><fmt:formatNumber value="${productList.productPrice}"
+																pattern="#,###" type="number" /></strong>원
 														</p>
 
 													</div>
 													<div class="price_boxY">
 														<p class="sell">
-															<strong><c:out
-																	value="${productList.productPrice}"></c:out></strong>원
+															<strong><fmt:formatNumber value="${productList.productPrice}"
+																pattern="#,###" type="number" /></strong>원
 														</p>
 													</div>
 												</div>
