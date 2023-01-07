@@ -1,7 +1,6 @@
 
 package com.hyundai.controller.cart;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
 import java.util.List;
@@ -30,7 +29,7 @@ public class CartController {
 
 	private final CartService cartService;
 
-	// �옣諛붽뎄�땲 �슂泥�
+	// 장바구니 요청
 	@GetMapping("/shop/cart")
 	public String showCart(Model model, HttpServletRequest requset) {
 
@@ -40,9 +39,7 @@ public class CartController {
 		System.out.println(memberId);
 
 		List<CartItem> cartItems = cartService.findCart(255);
-		for(int i = 0; i < cartItems.size(); i++) {
-			System.out.println(cartItems.get(i));
-		}
+
 		model.addAttribute("cartItems", cartItems);
 		return "cart/cart2";
 
@@ -53,7 +50,7 @@ public class CartController {
 	public void deleteOne(@RequestParam("product_id") Integer product_id,
 			@RequestParam("member_id") Integer member_id) {
 
-		System.out.println("�뜲�씠���븯�굹�궘�젣");
+		System.out.println("데이타하나삭제");
 
 		cartService.deleteOne(member_id, product_id);
 
@@ -63,7 +60,7 @@ public class CartController {
 	@GetMapping("/shop/cartDelChecked")
 	public void deleteCheked(@RequestParam(value = "chbox[]") List<String> chArr) {
 
-		// principle 濡� 留대쾭�븘�씠�뵒 諛쏆븘�빞�븿, or Session
+		// principle 로 맴버아이디 받아야함, or Session
 		Integer member_id = 255;
 
 		for (String pro_id : chArr) {
@@ -71,7 +68,7 @@ public class CartController {
 			cartService.deleteOne(member_id, product_id);
 		}
 
-		System.out.println("泥댄겕�궘�젣");
+		System.out.println("체크삭제");
 
 	}
 
@@ -82,7 +79,7 @@ public class CartController {
 		HttpSession session = requset.getSession();
 		Integer member_id = (Integer) session.getAttribute("member_id");
 
-		// principle 濡� 留대쾭�븘�씠�뵒 諛쏆븘�빞�븿, or Session
+		// principle 로 맴버아이디 받아야함, or Session
 		member_id = 255;
 
 		cartService.deleteAll(member_id);
@@ -111,13 +108,15 @@ public class CartController {
 
 	@ResponseBody
 	@GetMapping("/shop/cartinsert")
-	public void insertCart(@RequestParam("productId") Integer product_id,
-			@RequestParam("member_id") Integer member_id) {
+	public void insertCart(@RequestParam("product_id") Integer product_id,
+			@RequestParam("member_id") Integer member_id, @RequestParam("qty") Integer qty) {
 
 		
 		System.out.println(product_id);
 		System.out.println(member_id);
-		cartService.insertCart(product_id, member_id);
+		System.out.println(qty);
+		
+		cartService.insertCart(product_id, member_id,qty);
 
 	}
 
