@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- * @function : BoardMapper * @author : Taeseung Choi * @Date : Dec 26. 
+	2022. -->
+<mapper namespace="com.hyundai.mapper.BoardMapper">
+
+	<!-- 게시판 리스트 가져오기 -->
+	<select id="getList2"
+		resultType="com.hyundai.domain.board.BoardVO">
+  <![CDATA[
+  	select * from faqs where boardid > 0
+  ]]>
+	</select>
+
+
+	<sql id="search">
+		<if
+			test="boardCategory !=null  and  boardCategory !=null  and boardCategory != 'all'.toString()">
+			AND boardcategory=#{boardCategory}
+		</if>
+
+		<if test="searchType !=null  and  keyword !=null">
+			<if test="searchType == 'boardtitle'.toString()">
+				AND boardtitle like '%' || #{keyword} || '%'
+			</if>
+
+			<if test="searchType == 'boardcontent'.toString()">
+				AND boardcontent like '%' || #{keyword} || '%'
+			</if>
+		</if>
+	</sql>
+
+	<!-- 게시물 총 개수 -->
+	<!-- WHERE boardsubcategory=#{boardSubcategory} -->
+	<select id="getTotalCount" resultType="int"
+		parameterType="com.hyundai.domain.PageMaker">
+	  	<![CDATA[  		
+	  	   SELECT count(boardid) FROM faqs WHERE boardsubcategory=#{boardSubcategory}
+	  	  
+	  	]]>
+		<include refid="search" />
+	</select>
+
+	<!-- 페이징 처리에 필요한 순서로 ROWNUM을 붙이고 inline view로 처리 pageNum : 만들고자하는 페이지의 수 
+		amount : 각 페이지 마다 표시할 행의 수 -->
+	<select id="getListWithPaging"
+		resultType="com.hyundai.domain.board.BoardVO"
+		parameterType="com.hyundai.domain.PageMaker">
+  	<![CDATA[
+  	  SELECT * FROM 
+             ( 
+                SELECT  rownum AS rn , A.* 
+                
+                FROM ( 
+                	
+                SELECT * FROM faqs WHERE boardsubcategory=#{boardSubcategory}  
+      ]]>
+
+		<include refid="search" />                    	
+    <![CDATA[
+                ORDER BY boardid DESC ) A  
+             
+             )             
+      WHERE rn BETWEEN #{pageBegin} and #{pageEnd}
+  	]]>
+	</select>
+
+	<!-- 게시판 등록 -->
+	<insert id="insert"
+		parameterType="com.hyundai.domain.board.BoardVO">
+
+		INSERT INTO faqs(boardid, membersmemberid, boardtitle,
+		boardcontent,
+		boardcategory, boardsubcategory, boardregdate)
+
+		VALUES(FAQS_BOARDID_SEQ.nextval, #{membersMemberId}, #{boardTitle},
+		#{boardContent}, #{boardCategory},#{boardSubcategory}, sysdate)
+	</insert>
+
+	<!-- 게시판 조회 -->
+	<select id="read" resultType="com.hyundai.domain.board.BoardVO">
+		SELECT *
+
+		FROM faqs
+		where boardid
+		=
+		#{boardId}
+	</select>
+
+	<!-- 게시판 삭제 -->
+	<delete id="delete">
+		DELETE FROM faqs where boardid = #{boardId}
+	</delete>
+
+	<!-- 게시판 수정 -->
+	<update id="update"
+		parameterType="com.hyundai.domain.board.BoardVO">
+		UPDATE faqs
+		SET
+		boardtitle=#{boardTitle},
+		boardcontent=
+		#{boardContent},
+		boardcategory= #{boardCategory},
+		boardsubcategory=
+		#{boardSubcategory},
+		membersmemberid=#{membersMemberId},
+		boardENDDATE=
+		sysdate
+		WHERE boardid= #{boardId}
+	</update>
+
+
+
+	<select id="test" resultType="com.hyundai.domain.board.BoardVO">
+		select * from boards
+	</select>
+
+</mapper>

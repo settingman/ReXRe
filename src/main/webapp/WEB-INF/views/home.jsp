@@ -200,7 +200,8 @@
 												<div class="box">
 													<div class="img">
 														<div class="prdimg img1226">
-															<a href="https://www.rexremall.com/shop/detail.php?pno=DD458505749B2941217DDD59394240E8&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059" tabindex="-1"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/6d01008cb8fb554b26e73dd6733a6ecf.jpg" width="380" height="466" /></a>
+															<a href="/product/productDetail?productId=1" tabindex="-1">
+															<img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/6d01008cb8fb554b26e73dd6733a6ecf.jpg" width="380" height="466" /></a>
 														</div>
 														<!-- 상품품절 영역 -->
 														<div class="soldout" onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=DD458505749B2941217DDD59394240E8&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD OUT</div>
@@ -216,7 +217,7 @@
 														<span class="hashtag">#진정세안 #촉촉 #비건클렌저 #초도완판</span>
 
 														<p class="name name1226">
-															<a href="https://www.rexremall.com/shop/detail.php?pno=DD458505749B2941217DDD59394240E8&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059" tabindex="-1">리바이리 콤부차 배리옴 마일드 포밍 클렌저</a>
+															<a href="/product/productDetail?productId=2" tabindex="-1">리바이리 콤부차 배리옴 마일드 포밍 클렌저</a>
 														</p>
 
 														<div class="summary">조밀하고 부드러운 거품으로 말끔한 클렌징을 선사하는 약산성 포밍 클렌저</div>
@@ -252,7 +253,7 @@
 												<div class="box">
 													<div class="img">
 														<div class="prdimg img1226">
-															<a href="https://www.rexremall.com/shop/detail.php?pno=E6B4B2A746ED40E1AF829D1FA82DAA10&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059" tabindex="-1"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/984ffaa10c17f95b95baddacb5dc4017.jpg" width="380" height="466" /></a>
+															<a href="/product/productDetail?productId=3" tabindex="-1"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/984ffaa10c17f95b95baddacb5dc4017.jpg" width="380" height="466" /></a>
 														</div>
 														<!-- 상품품절 영역 -->
 														<div class="soldout" onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=E6B4B2A746ED40E1AF829D1FA82DAA10&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD OUT</div>
@@ -304,7 +305,7 @@
 												<div class="box">
 													<div class="img">
 														<div class="prdimg img1226">
-															<a href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg" width="380" height="466" /></a>
+															<a href="/product/productDetail?productId=1" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg" width="380" height="466" /></a>
 														</div>
 														<!-- 상품품절 영역 -->
 														<div class="soldout" onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD OUT</div>
@@ -320,7 +321,7 @@
 														<span class="hashtag">#클렌저 #토너 #앰플 #크림 #마스크</span>
 
 														<p class="name name1226">
-															<a href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059" tabindex="0">리바이리 콤부차 배리옴 스킨케어 5종 기획</a>
+															<a href="/product/productDetail?productId=2" tabindex="0">리바이리 콤부차 배리옴 스킨케어 5종 기획</a>
 														</p>
 
 														<div class="summary">건강한 피부를 위해 리바이리가 제안하는 비건 스킨케어 5종</div>
@@ -356,7 +357,7 @@
 												<div class="box">
 													<div class="img">
 														<div class="prdimg img1226">
-															<a href="https://www.rexremall.com/shop/detail.php?pno=076A0C97D09CF1A0EC3E19C7F2529F2B&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/2a81785d3198690a505a063c87217b3a.jpg" width="380" height="466" /></a>
+															<a href="/product/productDetail?productId=3" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/2a81785d3198690a505a063c87217b3a.jpg" width="380" height="466" /></a>
 														</div>
 														<!-- 상품품절 영역 -->
 														<div class="soldout" onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=076A0C97D09CF1A0EC3E19C7F2529F2B&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD OUT</div>
@@ -408,7 +409,7 @@
 												<div class="box">
 													<div class="img">
 														<div class="prdimg img1226">
-															<a href="https://www.rexremall.com/shop/detail.php?pno=FFEABD223DE0D4EACB9A3E6E53E5448D&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/94ffdfb1d7886b83e5cee672dbc11318.jpg" width="380" height="466" /></a>
+															<a href="/product/productDetail?productId=5" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/94ffdfb1d7886b83e5cee672dbc11318.jpg" width="380" height="466" /></a>
 														</div>
 														<!-- 상품품절 영역 -->
 														<div class="soldout" onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=FFEABD223DE0D4EACB9A3E6E53E5448D&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD OUT</div>

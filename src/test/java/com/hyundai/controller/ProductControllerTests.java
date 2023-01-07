@@ -40,4 +40,14 @@ public class ProductControllerTests {
 						.getModelAndView().getModelMap());
 		
 	}
+	
+	@Test
+	public void testGetCategory() throws Exception {
+		log.info(
+				mockMvc.perform(MockMvcRequestBuilders
+				.get("/product/productList/category")
+				.param("product_category", "skinCare"))
+				.andReturn()
+				.getModelAndView().getModelMap());
+	}
 }

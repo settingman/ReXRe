@@ -1,7 +1,5 @@
 package com.hyundai.service;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.util.List;
 
 import org.junit.Test;
@@ -26,25 +24,41 @@ public class ProductServiceTests {
 	private ProductService service;
 	
 	@Test
-	public void testExist() {
-		log.info(service);
-		assertNotNull(service);
+	public void testGetPagingList() throws Exception {
+		
+		List<productVO> list = service.getListWithPaging(new Criteria(1,9));
+	
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
 	}
 	
-	/*
-	 * //getList È®ï¿½ï¿½
-	 * 
-	 * @Test public void testGetList() { log.info("@@@@@@@@@@@getList" );
-	 * //log.info(service.getList().get(0)); service.getList().forEach(get ->
-	 * log.info(get)); //service.getList().forEach(list -> log.info(list)); }
-	 */
+	@Test
+	public void testGetTotalCount() throws Exception {
+		int count = service.getTotalCount();
+		System.out.print(count);
+	}
 	
 	@Test
-	public void testGetList() {
-		List<productVO> list = service.getList(new Criteria(1, 9));
+	public void testGetCategoryList() {
 
-		for (int i = 0; i < list.size(); i++) {
-			log.info(list.get(i));
+		List<productVO> list = service.getCategoryListWithPaging(new Criteria(1,9), "½ºÅ²ÄÉ¾î");
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
+		}
+	}
+	
+	@Test
+	public void testCategoryCount() {
+		System.out.println(service.getCategoryTotalCount("½ºÅ²ÄÉ¾î"));
+		
+	}
+	
+	@Test
+	public void testNewBestList() {
+		List<productVO> list = service.getNewBestListWithPaging(new Criteria(1,9));
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
 		}
 	}
 	
@@ -57,4 +71,6 @@ public class ProductServiceTests {
 			log.info(list.get(i));
 		}
 	}
+	
+	
 }
