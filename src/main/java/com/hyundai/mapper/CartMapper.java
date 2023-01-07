@@ -14,7 +14,7 @@ public interface CartMapper {
 
 	public CartItem findCartItem(@Param("member_id") Integer member_id, @Param("product_id") Integer product_id);
 
-	public Integer insertCart(@Param("member_id") Integer member_id, @Param("product_id") Integer product_id);
+	public Integer insertCart(@Param("member_id") Integer member_id, @Param("product_id") Integer product_id, @Param("qty") Integer qty);
 
 	public void deleteOne(@Param("member_id") Integer member_id, @Param("product_id") Integer product_id);
 

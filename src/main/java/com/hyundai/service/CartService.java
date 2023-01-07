@@ -50,11 +50,11 @@ public class CartService {
 
 	}
 
-	public void insertCart(Integer product_id, Integer member_id ) {
+	public void insertCart(Integer product_id, Integer member_id, Integer qty ) {
 
 
 
-		cartMapper.insertCart(member_id, product_id);
+		cartMapper.insertCart(member_id, product_id, qty);
 
 	}
 

@@ -254,7 +254,7 @@ h2.subtitle.img {
 
 											<tr>
 												<th scope="row">정상소비자가</th>
-												<td class="sell"><strong>${productDetail[0].product_price}</strong>원<span class="detail_login"><a href="/member/login.php">로그인 후 회원혜택가를 확인하세요</a></span></td>
+												<td class="sell"><strong><fmt:formatNumber value="${productDetail[0].product_price}" pattern="#,###" type="number" /></strong>원<span class="detail_login"><a href="/member/login.php">로그인 후 회원혜택가를 확인하세요</a></span></td>
 											</tr>
 
 
@@ -296,7 +296,7 @@ h2.subtitle.img {
 												<th scope="row">수량</th>
 												<td>
 													<div class="box_qty">
-														<input type="text" name="buy_ea" value="1" class="form_input" isplaceholderinited="true">
+														<input type="text" id="buy_ea" name="buy_ea" value="1" class="form_input" isplaceholderinited="true">
 														<div class="btn_ea">
 															<a href="javascript:eaChg(1);" class="ea_up"></a> <a href="javascript:eaChg(2);" class="ea_down"></a>
 														</div>
@@ -310,7 +310,7 @@ h2.subtitle.img {
 
 									<div class="multi_opt">
 										<div class="opt_total">
-											<span class="title">총 상품 금액</span> <strong><span class="sell_prc_str_total">170,000</span>원</strong>
+											<span class="title">총 상품 금액</span> <strong><span class="sell_prc_str_total"><fmt:formatNumber value="${productDetail[0].product_price}" pattern="#,###" type="number" /></span>원</strong>
 
 										</div>
 									</div>
@@ -319,10 +319,8 @@ h2.subtitle.img {
 									<!-- 버튼 -->
 
 									<div class="btn">
-										<span id="cartBtn" class="box_btn w215 h60 fs15 medium white3">
-										<a href="javascript:insertCart(${productDetail[0].product_id},255);">CART</a>
-										</span> <span class="box_btn w215 h60 fs15 medium buy">
-										<a href="javascript:insertCart(${productDetail[0].product_id},255);"> BUY NOW </a>
+										<span id="cartBtn" class="box_btn w215 h60 fs15 medium white3"> <a href="javascript:insertCart(${productDetail[0].product_id},255);">CART</a>
+										</span> <span class="box_btn w215 h60 fs15 medium buy"> <a href="javascript:insertCart(${productDetail[0].product_id},255);"> BUY NOW </a>
 										</span> <span id="wishBtn" class="box_btn w91 h60 white3 wish "></span>
 										<div class="pay"></div>
 									</div>
@@ -770,6 +768,11 @@ h2.subtitle.img {
 			$('#detail .wrap_prd > .info > .list').find('.qty').show();
 		}
 	});
+	
+	function intToWon(s) {
+		
+		  return s.toLocaleString();
+		}
 
 	// 상품 수량조절
 	var f=document.prdFrm;
@@ -784,6 +787,13 @@ h2.subtitle.img {
 			f.buy_ea.value--;
 		}
 		totalCal(f);
+		
+		
+		
+		var price = 
+		$(".sell_prc_str_total").text(intToWon(${productDetail[0].product_price} * f.buy_ea.value));
+		
+		console.log(${productDetail[0].product_price})
 	}
 
 	// 컬러칩 사용자 정의
@@ -894,6 +904,7 @@ $(document).ready(function() {
 	function insertCart(product_id, member_id) {
 
 		var confirm_val = confirm("장바구니에 추가하시겠습니까?");
+		var qty=document.prdFrm.buy_ea.value;
 
 		if (confirm_val) {
 
@@ -904,7 +915,8 @@ $(document).ready(function() {
 				data : {
 
 					product_id : product_id,
-					member_id : member_id
+					member_id : member_id,
+					qty : qty
 
 				},
 				contentType : "application/json",

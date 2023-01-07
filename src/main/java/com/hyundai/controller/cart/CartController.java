@@ -109,12 +109,14 @@ public class CartController {
 	@ResponseBody
 	@GetMapping("/shop/cartinsert")
 	public void insertCart(@RequestParam("product_id") Integer product_id,
-			@RequestParam("member_id") Integer member_id) {
+			@RequestParam("member_id") Integer member_id, @RequestParam("qty") Integer qty) {
 
 		
 		System.out.println(product_id);
 		System.out.println(member_id);
-		cartService.insertCart(product_id, member_id);
+		System.out.println(qty);
+		
+		cartService.insertCart(product_id, member_id,qty);
 
 	}
 

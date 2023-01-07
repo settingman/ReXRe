@@ -77,13 +77,13 @@
 
 		when matched then
 		update set c.CART_QUANTITY =
-		c.CART_QUANTITY+1
+		c.CART_QUANTITY+#{qty}
 
 		when not matched then
 		insert (CART_QUANTITY,
 		PRODUCTS_PRODUCT_ID, CART_CHECK, MEMBERS_MEMBER_ID)
-		VALUES(1,#{product_id}, 1, #{member_id})
-		
+		VALUES(#{qty},#{product_id}, 1, #{member_id})
+
 	</update>
 
 
