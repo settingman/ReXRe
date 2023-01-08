@@ -7,17 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.hyundai.domain.CartItem;
 import com.hyundai.mapper.CartMapper;
-import com.hyundai.mapper.CartRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CartService {
 
-	private final CartRepository cartRepository;
 
 	private final CartMapper cartMapper;
 
@@ -67,12 +64,6 @@ public class CartService {
 
 	}
 
-	// ������ ���� ����
-	public void deletCheck(Long member_id) {
-
-		cartRepository.deletCheck(member_id);
-
-	}
 
 	public void deleteAll(Integer member_id) {
 
@@ -85,15 +76,5 @@ public class CartService {
 
 	}
 
-	public void updateCheck(Long member_id, Long product_id, int check) {
-
-		if (check == 1)
-			check = 0;
-		else
-			check = 0;
-
-		cartRepository.updateChecked(member_id, product_id, check);
-
-	}
 
 }
