@@ -20,22 +20,22 @@ public class ProductServiceImpl implements ProductService {
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
 	
-	//»óÇ° ÀüÃ¼ list ºÒ·¯¿À±â
+	//ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ list ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½
 	@Override
 	public List<productVO> getListWithPaging(Criteria cri) throws Exception {
-		log.info(">>> »óÇ° ÆäÀÌÂ¡ Ã³¸® list ºÒ·¯¿À±â" + cri);
+		log.info(">>> ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½Â¡ Ã³ï¿½ï¿½ list ï¿½Ò·ï¿½ï¿½ï¿½ï¿½ï¿½" + cri);
 		return mapper.getListWithPaging(cri);
 	}
 
 	@Override
 	public int getTotalCount() {
-		log.info(">>> »óÇ° ÀüÃ¼ °³¼ö");		
+		log.info(">>> ï¿½ï¿½Ç° ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½");		
 		return mapper.getTotalCount();
 	}
 
 	@Override
 	public List<productVO> getCategoryListWithPaging(Criteria cri, String productCategory) {
-		log.info(">>> Ä«Å×°í¸® »óÇ° ÆäÀÌÂ¡");
+		log.info(">>> Ä«ï¿½×°ï¿½ ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½Â¡");
 		return mapper.getCategoryListWithPaging(cri, productCategory);
 	}
 
@@ -54,12 +54,19 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getNewBestTotalCount();
 	}
 
-	//»ó¼¼ÆäÀÌÁö Á¶È¸ + count 
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ + count 
 	@Override
 	@Transactional
 	public List<productDetailVO> getProductDetail(Long productId) {
 		int update = mapper.getProductDetailCount(productId);
 		return mapper.getProductDetail(productId);
+	}
+
+	@Override
+	public List<String> getAllergies(String id, Long productId) {
+		System.out.println("service");
+		List<String> list = mapper.getAllergies(id, productId);
+		return list;
 	}
 
 }

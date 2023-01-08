@@ -7,6 +7,12 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class productVO {
+
+	public productVO(Long productId, String productName) {
+		super();
+		this.productId = productId;
+		this.productName = productName;
+	}
 	private Long productId; //pk
 	private String productName;
 	private int productPrice;

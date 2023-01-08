@@ -97,4 +97,15 @@ public class ProductController {
 		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
 		return "product/productDetail";
 	}
+	
+	@GetMapping("/productDetailid")
+	public String listID(Criteria cri, @RequestParam("productId") Long productId, @RequestParam("member_idid")
+			String id,  Model model) throws Exception {
+		System.out.println("controller");
+		model.addAttribute("allist", productService.getAllergies(id, productId));
+		model.addAttribute("productDetail", productService.getProductDetail(productId));
+		model.addAttribute("reviewList", reviewService.getReviewWithPaging(productId));
+		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
+		return "product/productDetail";
+	}
 }
