@@ -8,4 +8,5 @@ import com.hyundai.domain.Review2VO;
 
 public interface ReviewService2 {
 	List<Review2VO> getReviewWithPaging(@Param("productId") Long productId) throws Exception;
+	int getReview2TotalCount(@Param("productId") Long productId);
 }

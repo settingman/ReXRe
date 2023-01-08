@@ -94,6 +94,7 @@ public class ProductController {
 		}
 		model.addAttribute("productDetail", productService.getProductDetail(productId));
 		model.addAttribute("reviewList", reviewService.getReviewWithPaging(productId));
+		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
 		return "product/productDetail";
 	}
 }

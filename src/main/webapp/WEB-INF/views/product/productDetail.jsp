@@ -369,7 +369,7 @@ h2.subtitle.img {
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')" class="active">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')">교환/반품/배송정보</a></li>
 								</ul>
@@ -467,7 +467,7 @@ h2.subtitle.img {
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')" class="active">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')" class="active">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')">교환/반품/배송정보</a></li>
 								</ul>
@@ -486,7 +486,7 @@ h2.subtitle.img {
 										<div class="count">
 											<h4>전체 상품후기수</h4>
 											<p>
-												<strong>5</strong>건
+												<strong>${count}</strong>건
 											</p>
 										</div>
 										<div class="grade">
@@ -518,7 +518,7 @@ h2.subtitle.img {
 
 										<div class="title_qnarev">
 											<h3>
-												전체후기 <span>5</span>건
+												전체후기 <span>${count}</span>건
 											</h3>
 											<ul class="sort">
 												<li><a
@@ -599,7 +599,7 @@ h2.subtitle.img {
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')" class="active">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')">교환/반품/배송정보</a></li>
 								</ul>
@@ -712,7 +712,7 @@ h2.subtitle.img {
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')" class="active">교환/반품/배송정보</a></li>
 								</ul>
