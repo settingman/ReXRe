@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--  /* ***********************
+ * @function : ReplyMapper2
+ * @author : Seeun Lee
+ * @Date : 
+ ***************************/ -->
+   
+<mapper namespace="com.hyundai.mapper.ReviewMapper2">
+	
+	<!-- getReview2WithPaging SELECT 부분 -->
+	<select id="getReview2WithPaging"
+		resultType="com.hyundai.domain.Review2VO">
+		<![CDATA[
+		
+			SELECT R.REVIEWID, R.REVIEWTITLE, R.REVIEWCONTENT, R.REVIEWCATEGORY, R.REVIEWREGDATE, R.MEMBERSMEMBERID, R.REVIEWSCORE, R.PRODUCTID, R.REVIEWENDDATE,
+       		       I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH, I.REVIEWS_BOARD_ID
+			FROM REVIEWS R, REVIEWIMAGES I
+			WHERE R.REVIEWID = I.REVIEWS_BOARD_ID(+) AND R.PRODUCTID = #{productId}
+		
+		]]>
+	</select>
+	
+	<select id="getReview2TotalCount"
+		resultType="int">
+		<![CDATA[
+			SELECT COUNT(REVIEWID)
+			FROM REVIEWS
+			WHERE PRODUCTID = #{productId}
+		]]>
+	</select>
+	
+</mapper>

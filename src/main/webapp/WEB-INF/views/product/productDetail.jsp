@@ -536,13 +536,14 @@ h2.subtitle.img {
 											</ul>
 										</div>
 										<ul class="list">
+											<c:forEach items="${reviewList}" var="reviewList">
 											<li>
 												<div class="info">
 													<div>
 														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
+															class="grade">${reviewList.reviewScore}</span>
 													</div>
-													<div class="name">소*** | 2022/10/19</div>
+													<div class="name">${reviewList.reviewEndDate}</div>
 													<div class="title">
 
 
@@ -552,109 +553,40 @@ h2.subtitle.img {
 														<a onclick="openReviewDetail(782, '5');">선물용 구매</a>
 
 													</div>
-													<div class="content">스킨케어 전 제품이 들어있어서 선물용으로 좋은것 같습니다</div>
-													<a onclick="openReviewDetail(782, '5');" class="more">더보기
-														+</a>
+													<div class="content">${reviewList.reviewContent}</div>
+													<!-- <a onclick="openReviewDetail(782, '5');" class="more">더보기
+														+</a> -->
 												</div>
-
+													<c:choose>
+														<c:when test="${not empty reviewList.imagePath}">
+															<div class="upfile">
+																<a onclick="openReviewDetail(787, '18');">
+																	<img src="${reviewList.imagePath}" />											
+																</a>
+															</div>
+														</c:when>
+														<c:otherwise>
+														<p></p>
+														</c:otherwise>
+													</c:choose>
+<%-- 													<c:if test ="${reviewList.imagePath} != null">
+														???
+														<div class="upfile">
+															<a onclick="openReviewDetail(787, '18');">
+																<img src="${reviewList.imagePath}" />
+																<span class="count">2</span>
+															</a>
+														</div>
+													</c:if> --%>
 											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">연*** | 2022/10/01</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(773, '4');">알찬 구성이 맘에 들어요</a>
-
-													</div>
-													<div class="content">알찬 구성이 맘에 들어요</div>
-													<a onclick="openReviewDetail(773, '4');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">노*** | 2022/09/28</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(769, '3');">가성비 최고</a>
-
-													</div>
-													<div class="content">이 퀄리티, 구성을 이 가격에 진짜 가성비
-														최고입니다&nbsp;&nbsp;</div>
-													<a onclick="openReviewDetail(769, '3');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">백*** | 2022/08/25</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(748, '2');">실속 포장이 맘에 들어요</a>
-
-													</div>
-													<div class="content">종이패키지로 친환경 실속 포장!</div>
-													<a onclick="openReviewDetail(748, '2');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">피*** | 2022/08/25</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(734, '1');">요새 뜨는 제품이라고
-															해서 사봤어요</a>
-
-													</div>
-													<div class="content">오픈하자마자 인기라고 해서 사봤어요화장대 제품 싹
-														바꾸려구요저를 위해 산건데 선물받는 느낌이라 좋...</div>
-													<a onclick="openReviewDetail(734, '1');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
+											
+											</c:forEach>
 										</ul>
-										<ul class="paging">
+										<!-- <ul class="paging">
 											<li></li>
 											<li><strong>1</strong></li>
 											<li></li>
-										</ul>
+										</ul> -->
 									</div>
 								</div>
 								<!-- crema.me / 상품 리뷰 / 스크립트를 수정할 경우 연락주세요 (support@crema.me) -->
