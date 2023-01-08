@@ -57,4 +57,7 @@
 		select
 		member_idid from members where member_name = #{allergy_name } and member_email = #{member_idid}
 	</select>
+	<update id="pwChange" parameterType="com.hyundai.domain.AllergyMapperVO">
+		UPDATE members SET member_pw = #{allergy_name} WHERE member_idid = #{member_idid}
+	</update>
 </mapper>

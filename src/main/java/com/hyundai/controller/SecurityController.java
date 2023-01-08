@@ -124,5 +124,11 @@ public class SecurityController {
 
 		model.addAttribute("id", id);
 	}
+	@PostMapping("/changePW")
+	public String changPW(@RequestParam("id") String id,
+			@RequestParam("pwd1") String pw) {
+		service.pwChange(id, pw);
+		return "security/pwChanged";
+	}
 
 }

@@ -4,7 +4,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!-- 상단 -->
-<<script type="text/javascript">
+<script type="text/javascript">
 function goPost(crsfname,crsfvalue){
     let f = document.createElement('form');
     let obj;

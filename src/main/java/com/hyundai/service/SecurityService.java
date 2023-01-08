@@ -17,4 +17,6 @@ public interface SecurityService {
 			String member_phone, String member_email,  String member_email2, String member_email3,
 			String member_postNum, String member_address1, String member_address2, List<String> allergies);
 
+	public void pwChange(String id, String pw);
+
 }

@@ -1,6 +1,5 @@
 package com.hyundai.service;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,6 +85,14 @@ public class SecurityServiceImpl implements SecurityService {
 		String cnt = mapper.findID(vo);
 		System.out.println(cnt);
 		return cnt;
+	}
+
+	@Override
+	public void pwChange(String id, String pw) {
+		AllergyMapperVO vo = new AllergyMapperVO();
+		vo.setAllergy_name(  pwencoder.encode(pw));
+		vo.setMember_idid(id);
+		mapper.pwChange(vo);
 	}
 
 }

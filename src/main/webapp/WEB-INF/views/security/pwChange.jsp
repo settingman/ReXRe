@@ -49,6 +49,18 @@
 <!-- DO NOT MODIFY -->
 <body>
 <script type="text/javascript" defer="defer">
+function chkPwdFrm1(){
+	var pwcheck = $('#pw_check').val();
+	var pwcheck2 = $('#pw2_check').val();
+	if (pwcheck2 == "0"){
+		alert("올바를 형식의 비밀번호를 입력하세요");
+		return false;
+	}
+	else if (pwcheck == "0"){
+		alert("비밀헌호가 일치하지 않습니다");
+		return false;
+	}
+}
 $(document).ready(function(){
 	$('#pwd1').on('keyup',function(){
         var pwd1 = $("#pwd1").val();
@@ -87,18 +99,7 @@ $(document).ready(function(){
             }
         }
 	});
-	function chkPwdFrm1(){
-		var pwcheck = $('#pw_check').val();
-		var pwcheck2 = $('#pw_checked').val();
-		if (pwcheck2 == "0"){
-			alert("올바를 형식의 비밀번호를 입력하세요");
-			return false;
-		}
-		else if (pwcheck == "0"){
-			alert("비밀헌호가 일치하지 않습니다");
-			return false;
-		}
-	}
+
 	
 });
 </script>
@@ -115,11 +116,11 @@ $(document).ready(function(){
 			<div class="cntbody">
 				<h2 class="subtitle">비밀번호 변경</h2>
 				<div id="modify_pwd" class="box_member">
-					<form name="pwdFrm" method="post" action="./changePW" target="hidden1673104375" onsubmit="return chkPwdFrm1()"
-						style="margin: 0px;">
+					<form name="pwdFrm" method="post" action="./changePW" onsubmit="return chkPwdFrm1()" style="margin: 0px;">
 							<input type="hidden" name="pw_checked" value="0" id="pw_check">
-							<input type="hidden" name="pw_check" value="0" id-="pw2_check">
-							<input type="hidden" name="id" value="${id }" id-="idid">
+							<input type="hidden" name="pw_check" value="0" id="pw2_check">
+							<input type="hidden" name="id" value="${id }" id="idid">
+							<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 
 						<fieldset>
 							<legend>비밀번호 변경</legend>
@@ -128,7 +129,7 @@ $(document).ready(function(){
 
 							<div class="fld">
 								<label for="pwd1">변경할 비밀번호</label>
-								<input type="password" name="pwd[]" id="pwd1" class="form_input member block" placeholder="변경할 비밀번호">
+								<input type="password" name="pwd1" id="pwd1" class="form_input member block" placeholder="변경할 비밀번호">
 								<h4 id="join_pwpw" ></h4>
 							</div>
 							<div class="fld">

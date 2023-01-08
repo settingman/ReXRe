@@ -1,46 +1,4 @@
-	var hid_frame = 'hidden1672379633';
-	var mlv = '10';
-	var alv = '';
-	var root_url = 'https://www.rexremall.com';
-	var engine_url = 'https://www.rexremall.com/wm_engine_SW';
-	var this_url = 'https://www.rexremall.com/member/join_step2.php';
-	var ssl_url = 'https://www.rexremall.com/main/exec.php';
-	var soldout_name = '품절';
-	var ace_counter_gcode = '';
-	var uip = "112.221.225.164";
-	var currency = "원";
-	var currency_type = "원";
-	var currency_decimal = '0';
-	var r_currency_type = "";
-	var r_currency_decimal = '0';
-	var exchangeRate = '';
-	var juso_api_use = 'Y';
-	var browser_type = 'pc';
-	var mobile_browser = '';
-	var ssl_type = 'Y';
 
-	var click_prd = new Array();
-	var click_prd_limit = 2;
-	var click_prd_start = 1;
-	var click_prd_finish = click_prd_limit + 1;
-			var use_biz_memebr = 'Y';
-		var member_type = '1';
-
-		var nec_member_phone = '';
-		var total_add_info = 0;
-		var skip_add_info = new Array();
-		var email_org = "";
-		var reg_sms = "";
-		var reg_email = "";
-		var password_min = 8;
-		var password_max = 0;
-		var member_join_addr = 'Y';
-		var member_join_id_email = 'N';
-		var browser_type = "pc";
-		var nickname_essential = 'N';
-		var member_join_birth = 'Y';
-		var member_join_sex = 'Y';
-		
 										window.onload = function() {
 									document
 											.getElementById("address_kakao")
@@ -65,40 +23,7 @@
 													});
 								}
 								
-var hid_frame = 'hidden1672369396';
-var mlv = '10';
-var alv = '';
-var root_url = 'https://www.rexremall.com';
-var engine_url = 'https://www.rexremall.com/wm_engine_SW';
-var this_url = 'https://www.rexremall.com/member/login.php';
-var ssl_url = 'https://www.rexremall.com/main/exec.php';
-var soldout_name = '품절';
-var ace_counter_gcode = '';
-var uip = "112.221.225.164";
-var currency = "원";
-var currency_type = "원";
-var currency_decimal = '0';
-var r_currency_type = "";
-var r_currency_decimal = '0';
-var exchangeRate = '';
-var juso_api_use = 'Y';
-var browser_type = 'pc';
-var mobile_browser = '';
-var ssl_type = 'Y';
 
-var click_prd = new Array();
-var click_prd_limit = 2;
-var click_prd_start = 1;
-var click_prd_finish = click_prd_limit + 1;
-/* Timer */
-const use_ts_mark_1 = 'Y';
-const ts_mark_1 = '일';
-const use_ts_mark_2 = 'Y';
-const ts_mark_2 = ' :';
-const use_ts_mark_3 = 'Y';
-const ts_mark_3 = ' :';
-const use_ts_mark_4 = 'Y';
-const ts_mark_4 = '';
 $(document).ready(function(){
 	// 저장된 쿠키값을 가져와서 ID 칸에 넣어준다. 없으면 공백으로 들어감.
     var idKey = getCookie("idKey");
