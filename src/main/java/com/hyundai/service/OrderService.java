@@ -43,7 +43,6 @@ public class OrderService {
 		
 		
 		// 멤버아이디 불러오기
-		member_id = 255;
 		
 		// 오더 카테고리(맴버 주문)
 		Integer order_category = 1;

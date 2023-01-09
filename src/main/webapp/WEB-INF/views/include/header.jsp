@@ -5,22 +5,24 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!-- 상단 -->
 <script type="text/javascript">
-function goPost(crsfname,crsfvalue){
-    let f = document.createElement('form');
-    let obj;
-    obj = document.createElement('input');
-    obj.setAttribute('type' ,'hidden');
-    obj.setAttribute('name' ,crsfname);
-    obj.setAttribute('value', crsfvalue);
-    
-    f.appendChild(obj);
-    f.setAttribute('method', 'post');
-    f.setAttribute('action', '/security/logout');
-    document.body.appendChild(f);
-    f.submit();
-}
+	function goPost(crsfname, crsfvalue) {
+		let f = document.createElement('form');
+		let obj;
+		obj = document.createElement('input');
+		obj.setAttribute('type', 'hidden');
+		obj.setAttribute('name', crsfname);
+		obj.setAttribute('value', crsfvalue);
+
+		f.appendChild(obj);
+		f.setAttribute('method', 'post');
+		f.setAttribute('action', '/security/logout');
+		document.body.appendChild(f);
+		f.submit();
+	}
 </script>
 <script src="${pageContext.request.contextPath }/resources/js/security.js"></script>
+
+
 <div id="sub_hd" class="">
 	<div class="header">
 		<div class="gnb">
@@ -41,7 +43,7 @@ function goPost(crsfname,crsfvalue){
 							</div></li>
 						<li class="viewsub event"><a href="/board/?db=gallery_1&amp;cate=17">EVENT</a>
 							<ul class="list">
-								<li><a href="/board/?db=gallery_1&amp;cate=17">진행중인 이벤트</a></li>
+								<li><a href="/board/?db=gallery_1&amp;cate=17">진행중 이벤트</a></li>
 								<li><a href="/board/?db=gallery_1&amp;cate=18">종료된 이벤트</a></li>
 								<li><a href="/board/?db=basic_3">당첨자발표</a></li>
 							</ul></li>
@@ -54,11 +56,10 @@ function goPost(crsfname,crsfvalue){
                               </ul> --></li>
 						<li class="viewsub brand"><a href="/content/content.php?cont=brand_n">BRAND</a>
 							<ul class="list">
-								<li><a href="/content/content.php?cont=brand_n">브랜드 스토리</a></li>
+								<li><a href="/content/content.php?cont=brand_n">Brand Story</a></li>
 								<li><a href="/content/content.php?cont=bi">BI</a></li>
 							</ul></li>
 					</ul>
-					<!--<span class="reborn"><a href="/content/content.php?cont=diagnosis">피부 진단하기 <span class="pulse animated infinite">내 피부 맞춤진단이 무료!</span></a></span>-->
 				</div>
 				<ul class="menu">
 					<!-- gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
@@ -68,12 +69,11 @@ function goPost(crsfname,crsfvalue){
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
 						<li class="txt first"><a href="/mypage/mypage.php"><sec:authentication property="principal.member.userName" />님</a></li>
-						<li class="txt">
-						<a href="javascript:goPost('${_csrf.parameterName}','${_csrf.token }')">LOGOUT </a></li>
+						<li class="txt"><a href="javascript:goPost('${_csrf.parameterName}','${_csrf.token }')">LOGOUT</a></li>
 						<!-- //gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
-						<li class="viewsub"><a href="/security/mypage/">MYPAGE</a>
+						<li class="viewsub"><a href="/mypage/mypage.php">MYPAGE</a>
 							<ul class="list">
-								<li><a href="/mypage/order_list.php">주문/배송조회</a></li>
+								<li><a href="/shop/orederlist">주문 조회</a></li>
 								<li><a href="/mypage/coupon_down_list.php">쿠폰현황</a></li>
 								<li><a href="/mypage/wish_list.php">위시리스트</a></li>
 								<li><a href="/member/edit_step1.php">정보수정</a></li>
@@ -81,7 +81,7 @@ function goPost(crsfname,crsfvalue){
 								<li><a href="/mypage/counsel_list.php">1:1문의</a></li>
 								<li><a href="/board/?db=basic_2">쇼핑 FAQ</a></li>
 							</ul></li>
-						<li><a href="/shop/cart.php" class="cart">장바구니 <span class="ea_cart front_cart_rows quick_cart_cnt">2</span><span class="balloon">장바구니</span>
+						<li><a href="/shop/cart" class="cart">장바구니 <span class="ea_cart front_cart_rows quick_cart_cnt"> </span><span class="balloon">장바구니</span>
 						</a></li>
 					</sec:authorize>
 					<!-- //gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
@@ -151,8 +151,8 @@ function goPost(crsfname,crsfvalue){
 				<span class="close" onclick="toggle_view('box_search');"></span>
 				<form method="get" action="https://www.rexremall.com/shop/search_result.php">
 					<div class="box">
-						<input type="text" name="search_str" value="" class="form_input block basic_search" placeholder="검색어 입력" /> <input type="image"
-							src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search.png" alt="검색" class="btn" />
+						<input type="text" name="search_str" value="" class="form_input block basic_search" placeholder="검색어 입력" />
+						<input type="image" src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search.png" alt="검색" class="btn" />
 					</div>
 				</form>
 				<div class="hot_keyword">
@@ -204,7 +204,7 @@ function goPost(crsfname,crsfvalue){
 					<!-- //gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
 					<li class="viewsub"><a href="/mypage/mypage.php">MYPAGE</a>
 						<ul class="list">
-							<li><a href="/mypage/order_list.php">주문/배송조회</a></li>
+							<li><a href="/shop/orederlist">주문 조회</a></li>
 							<li><a href="/mypage/coupon_down_list.php">쿠폰현황</a></li>
 							<li><a href="/mypage/wish_list.php">위시리스트</a></li>
 							<li><a href="/member/edit_step1.php">정보수정</a></li>
@@ -212,7 +212,8 @@ function goPost(crsfname,crsfvalue){
 							<li><a href="/mypage/counsel_list.php">1:1문의</a></li>
 							<li><a href="/board/?db=basic_2">쇼핑 FAQ</a></li>
 						</ul></li>
-					<li><a href="/shop/cart.php" class="cart">장바구니<span class="ea_cart front_cart_rows quick_cart_cnt">2</span><span class="balloon">장바구니</span></a></li>
+					<li><a href="/shop/cart" class="cart">장바구니 <span class="ea_cart front_cart_rows quick_cart_cnt"> </span><span class="balloon">장바구니</span>
+					</a></li>
 					<li><a href="#" onclick="toggle_view('box_search2',this)" class="search">검색 <span class="balloon">통합검색</span></a></li>
 				</ul>
 			</div>
@@ -220,8 +221,8 @@ function goPost(crsfname,crsfvalue){
 				<span class="close" onclick="toggle_view('box_search2');"></span>
 				<form method="get" action="https://www.rexremall.com/shop/search_result.php">
 					<div class="box">
-						<input type="text" name="search_str" value="" class="form_input block basic_search" placeholder="검색어 입력" /> <input type="image"
-							src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search2.png" alt="검색" class="btn" />
+						<input type="text" name="search_str" value="" class="form_input block basic_search" placeholder="검색어 입력" />
+						<input type="image" src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search2.png" alt="검색" class="btn" />
 					</div>
 				</form>
 				<div class="hot_keyword">
