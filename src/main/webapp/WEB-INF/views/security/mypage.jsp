@@ -123,7 +123,7 @@
 						</div>
 						<ul class="shopping">
 							<li><a href="/mypage/order_list.php">
-									<p class="title">주문배송조회</p>
+									<p class="title">주문조회</p>
 									<p class="count">
 										<strong>0</strong> 건
 									</p>
