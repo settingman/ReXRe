@@ -16,4 +16,5 @@ public interface MemberMapper {
 	public void addMemAl(AllergyMapperVO avo);
 	public String findID(AllergyMapperVO vo);
 	public void pwChange(AllergyMapperVO vo);
+	public Integer idid(String member_idid);
 }

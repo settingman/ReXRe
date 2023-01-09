@@ -6,6 +6,7 @@
  	<resultMap type="com.hyundai.domain.MemberVO" id="memberMap">
 		<id property="useridid" column="member_idid"></id>
 		<result property="useridid" column="member_idid"></result>
+		<result property="userid" column="member_id"></result>
 		<result property="userpw" column="member_pw"></result>
 		<result property="userName" column="member_name"></result>
 		<result property="enabled" column="member_enabled"></result>
@@ -24,7 +25,7 @@
 	</resultMap>
 
 	<select id="read" resultMap="memberMap">
-		select mem.member_idid, member_pw,
+		select mem.member_idid, member_id, member_pw,
 		member_name, member_enabled, member_regdate, member_updatedate,
 		auth_name
 		from members mem, (select * from membergrade, auth where
@@ -60,4 +61,7 @@
 	<update id="pwChange" parameterType="com.hyundai.domain.AllergyMapperVO">
 		UPDATE members SET member_pw = #{allergy_name} WHERE member_idid = #{member_idid}
 	</update>
+	<select id="idid" resultType="Integer">
+		select member_id from members where member_idid = #{member_idid}
+	</select>
 </mapper>

@@ -69,9 +69,9 @@ function goPost(crsfname,crsfvalue){
 					<sec:authorize access="isAuthenticated()">
 						<li class="txt first"><a href="/mypage/mypage.php"><sec:authentication property="principal.member.userName" />님</a></li>
 						<li class="txt">
-						<a href="javascript:goPost('${_csrf.parameterName}','${_csrf.token }')">LOGOUT</a></li>
+						<a href="javascript:goPost('${_csrf.parameterName}','${_csrf.token }')">LOGOUT </a></li>
 						<!-- //gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
-						<li class="viewsub"><a href="/mypage/mypage.php">MYPAGE</a>
+						<li class="viewsub"><a href="/security/mypage/">MYPAGE</a>
 							<ul class="list">
 								<li><a href="/mypage/order_list.php">주문/배송조회</a></li>
 								<li><a href="/mypage/coupon_down_list.php">쿠폰현황</a></li>

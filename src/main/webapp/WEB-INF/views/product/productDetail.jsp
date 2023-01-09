@@ -427,32 +427,6 @@ h2.subtitle.img {
 											<a onclick="writeReviewWithoutRa(596, '');" class="write">글쓰기</a> <a href="/shop/product_review_list.php" class="list">전체보기</a>
 										</div>
 									</div>
-									<div class="summary">
-										<div class="count">
-											<h4>전체 상품후기수</h4>
-											<p>
-												<strong>${count}</strong>건
-											</p>
-										</div>
-										<div class="grade">
-											<h4>총 평점</h4>
-											<span class="icon"><i style="width: 100%"></i></span>
-											<p class="average">
-												<strong>5</strong> / 5
-											</p>
-										</div>
-										<div class="ratio">
-											<h4>평점 비율</h4>
-
-											<ul class="graph">
-												<li><span>1점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>2점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>3점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>4점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>5점</span> <span class="bar max min"><i style="width: 100%;"></i></span> <span class="count max">5</span></li>
-											</ul>
-										</div>
-									</div>
 
 									<div id="detail_review_ajax_list">
 

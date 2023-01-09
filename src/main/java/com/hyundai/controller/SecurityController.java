@@ -134,5 +134,9 @@ public class SecurityController {
 	public void welcome() {
 		
 	}
+	@GetMapping("/mypage")
+	public void mypage() {
+		
+	}
 
 }
