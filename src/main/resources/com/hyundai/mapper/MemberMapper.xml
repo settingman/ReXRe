@@ -3,14 +3,16 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http:/mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundai.mapper.MemberMapper">
- 	<resultMap type="com.hyundai.domain.MemberVO" id="memberMap">
+	<resultMap type="com.hyundai.domain.MemberVO" id="memberMap">
 		<id property="useridid" column="member_idid"></id>
+
 		<result property="useridid" column="member_idid"></result>
 		<result property="userpw" column="member_pw"></result>
 		<result property="userName" column="member_name"></result>
 		<result property="enabled" column="member_enabled"></result>
 		<result property="regDate" column="member_regdate"></result>
 		<result property="updateDate" column="member_updatedate"></result>
+		<result property="userid" column="member_id"></result>
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 	<resultMap type="com.hyundai.domain.AuthVO" id="authMap">
@@ -24,40 +26,61 @@
 	</resultMap>
 
 	<select id="read" resultMap="memberMap">
-		select mem.member_idid, member_pw,
-		member_name, member_enabled, member_regdate, member_updatedate,
+		select mem.member_idid,member_id,
+		member_pw,
+		member_name, member_enabled, member_regdate,
+		member_updatedate,
 		auth_name
-		from members mem, (select * from membergrade, auth where
+		from members mem, (select * from
+		membergrade, auth where
 		auth_auth_id = auth_id)
-		where mem.member_id = members_member_id and
+		where mem.member_id =
+		members_member_id and
 		mem.member_idid = #{userid}
 		and member_enabled = 1
-	</select> 
+	</select>
 	<select id="IDCheck" parameterType="String" resultType="int">
 		select
 		count(member_idid) from members where member_idid = #{member_idid}
 	</select>
-	<select id="allergySearch" parameterType="String" resultType="com.hyundai.domain.AllergyVO"> 
+	<select id="allergySearch" parameterType="String"
+		resultType="com.hyundai.domain.AllergyVO"> 
 		<![CDATA[select allergy_id, allergy_name from allergies where (allergy_name 
 		like '%'||#{allergy}||'%' or allergy_alter like '%'||#{allergy}||'%') and allergy_id >0 and 
-		rownum < 6]]> </select>
+		rownum < 6]]>
+	</select>
 	<insert id="addal" parameterType="String">
-		insert into allergies values (cusallergy_seq.nextval,#{allergy},'')
-	</insert>		
-	<insert id="joinUser" parameterType="com.hyundai.domain.MemberVO">
-		insert into members (member_id,member_idid,member_pw,member_name,member_birthday,member_sex,member_phone,member_email,member_postNum,member_address1,member_address2) 
-		values (memberid_seq.nextval,#{useridid},#{userpw},#{userName},#{member_birthday},
+		insert into allergies values
+		(cusallergy_seq.nextval,#{allergy},'')
+	</insert>
+	<insert id="joinUser"
+		parameterType="com.hyundai.domain.MemberVO">
+		insert into members
+		(member_id,member_idid,member_pw,member_name,member_birthday,member_sex,member_phone,member_email,member_postNum,member_address1,member_address2)
+		values
+		(memberid_seq.nextval,#{useridid},#{userpw},#{userName},#{member_birthday},
 		#{member_sex},#{member_phone},#{member_email},#{member_postNum},#{member_address1},#{member_address2})
 	</insert>
-	<insert id="addMemAl" parameterType="com.hyundai.domain.AllergyMapperVO">
-		insert into allergymappers  
-		values ((select allergy_id from allergies where allergy_name = #{allergy_name}),(select member_id from members where member_idid = #{member_idid}))
+	<insert id="addMemAl"
+		parameterType="com.hyundai.domain.AllergyMapperVO">
+		insert into allergymappers
+		values ((select allergy_id from allergies where allergy_name =
+		#{allergy_name}),(select member_id from members where member_idid =
+		#{member_idid}))
 	</insert>
-	<select id="findID"  parameterType="com.hyundai.domain.AllergyMapperVO" resultType="String">
+	<select id="findID"
+		parameterType="com.hyundai.domain.AllergyMapperVO" resultType="String">
 		select
-		member_idid from members where member_name = #{allergy_name } and member_email = #{member_idid}
+		member_idid from members where member_name = #{allergy_name } and
+		member_email = #{member_idid}
 	</select>
-	<update id="pwChange" parameterType="com.hyundai.domain.AllergyMapperVO">
-		UPDATE members SET member_pw = #{allergy_name} WHERE member_idid = #{member_idid}
+	<update id="pwChange"
+		parameterType="com.hyundai.domain.AllergyMapperVO">
+		UPDATE members SET member_pw = #{allergy_name} WHERE
+		member_idid = #{member_idid}
 	</update>
+
+	<select id="idid" resultType="Integer">
+		select member_id from members where member_idid = #{member_idid}
+	</select>
 </mapper>

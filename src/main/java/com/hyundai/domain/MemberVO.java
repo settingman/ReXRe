@@ -18,6 +18,7 @@ public class MemberVO {
 	private String member_postNum;
 	private String member_address1;
 	private String member_address2;
+	private Integer userid;
 	
 	private Date regDate;
 	private Date updateDate;
