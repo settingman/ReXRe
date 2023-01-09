@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http:/mybatis.org/dtd/mybatis-3-mapper.dtd">
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http:/mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundai.mapper.MemberMapper">
 	<resultMap type="com.hyundai.domain.MemberVO" id="memberMap">
 		<id property="useridid" column="member_idid"></id>
@@ -54,9 +54,9 @@
 	</select>
 	<select id="allergySearch" parameterType="String"
 		resultType="com.hyundai.domain.AllergyVO"> 
-		<![CDATA[select allergy_id, allergy_name from allergies where (allergy_name 
-		like '%'||#{allergy}||'%' or allergy_alter like '%'||#{allergy}||'%') and allergy_id >0 and 
-		rownum < 6]]>
+      <![CDATA[select allergy_id, allergy_name from allergies where (allergy_name 
+      like '%'||#{allergy}||'%' or allergy_alter like '%'||#{allergy}||'%') and allergy_id >0 and 
+      rownum < 6]]>
 	</select>
 	<insert id="addal" parameterType="String">
 		insert into allergies values
@@ -95,4 +95,20 @@
 		select member_id from members where
 		member_idid = #{member_idid}
 	</select>
+	<select id="PWCheck" resultType="String">
+		select member_pw from members where member_idid = #{name}
+	</select>
+	<update id="updateUser"
+		parameterType="com.hyundai.domain.MemberVO">
+		update members set
+		member_pw = #{userpw}, member_birthday = #{member_birthday},member_sex =
+		#{member_sex}, member_phone =#{member_phone} ,
+		member_email = #{member_email}, member_postNum = #{member_postNum},
+		member_address1 = #{member_address1}, member_address2 =
+		#{member_address2}
+		where member_idid = #{useridid}
+	</update>
+	<update id="out">
+		update members set member_enabled = 0 where member_idid = #{name}
+	</update>
 </mapper>

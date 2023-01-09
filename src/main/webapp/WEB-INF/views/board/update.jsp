@@ -23,7 +23,7 @@ pageContext.setAttribute("replaceChar", "\n");
 
 					<h2 class="subtitle">쇼핑FAQ 업데이트</h2>
 
-					<form id="faqForm" name="faqForm" method="post" action="update?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+					<form id="faqForm" name="faqForm" method="post" action="update" enctype="multipart/form-data">
 
 						<input type="hidden" name="boardId" value="${board.boardId}">
 						<input type="hidden" name="boardSubcategory" value="${board.boardSubcategory}">
@@ -64,24 +64,37 @@ pageContext.setAttribute("replaceChar", "\n");
 
 										<tr>
 											<th scope="row"><strong class="reqd">*</strong>제목</th>
-											<td><input type="text" id="boardTitle" name="boardTitle" title="제목" maxlength="150" class="w_all" value="${board.boardTitle}"></td>
+											<!-- <td><input type="text" id="boardTitle" name="boardTitle"
+                                    title="제목" class="w_all"></td> -->
+											<td><textarea id="boardTitle" name="boardTitle" title="제목" cols="10" rows="1" maxlength="100" placeholder="제목을 입력해주세요"></textarea></td>
 										</tr>
 										<tr>
-											<th scope="row"><strong class="reqd">*</strong>내용<span class="com_txt_p">(2000자 이하)</span></th>
-											<td><textarea id="boardContent" name="boardContent" title="내용" cols="30" rows="10" maxlength="2000" placeholder="내용을 입력해주세요">${fn:replace(board.boardContent, "<br>", replaceChar)}</textarea></td>
+											<th scope="row"><strong class="reqd">*</strong>내용<span class="com_txt_p">(1500자 이하)</span></th>
+											<td><textarea id="boardContent" name="boardContent" title="내용" cols="30" rows="10" maxlength="1500" placeholder="내용을 입력해주세요"></textarea></td>
 										</tr>
+
 										<tr>
-											<th scope="row"><strong class="reqd">*</strong>사진업로드</th>
+											<th scope="row"><strong class="reqd"></strong>사진 업로드</th>
 											<td>
 												<div class="inputArea">
-													<label for="faqsImg">이미지</label>
-													<input type="file" id="faqsImg" name="file" />
-													<div class="select_img">
-														<img src="" />
+													<!-- <label for="faqsImg">이미지</label> -->
+													<!--    <input type="file" id="faqsImg" name="file" />
+                                       <div class="select_img">
+                                          <img src="" />
+                                       </div> -->
+													<div class="file_upload">
+														<input type="text" id="textManToManFile" class="text" title="파일 첨부하기" readonly="readonly" name="fileText">
+														<div class="upload_btn">
+															<button type="button" id="uploadFile" class="img_upload" title="파일찾기">
+																<span>파일찾기</span>
+															</button>
+															<input type="file" name="file" id="faqsImg" class="btn add_s" title="파일찾기">
+															<div class="select_img">
+																<img src="" />
+															</div>
+														</div>
 													</div>
-													<input type="hidden" name="faqsImg" value="${faqs.faqsImg}" />
-													<input type="hidden" name="faqsThumbImg" value="${faqss.faqsThumbImg}" />
-
+													<p class="txt_guide">10MB 미만의 jpg,gif,png 파일만 첨부하실 수 있습니다.</p>
 													<script>
                                      $("#faqsImg").change(function(){
                                       if(this.files &amp;&amp; this.files[0]) {

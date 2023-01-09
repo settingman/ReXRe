@@ -8,7 +8,6 @@
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,6 +45,10 @@
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 </head>
 <!-- DO NOT MODIFY -->
+
+
+
+
 <body>
 	<%--  	<c:if test="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username != null}">
 		<c:redirect url="/"></c:redirect>
@@ -63,7 +66,7 @@
 					<ul>
 						<li>
 							<dl>
-								<dt>주문관리</dt>
+								<dt>주문관리 ${error }</dt>
 								<dd>
 									<a href="/mypage/order_list.php">주문/배송조회</a>
 								</dd>
@@ -127,6 +130,21 @@
 						</ul>
 					</div>
 				</div>
+				<div id="edit_pw" class="edit_info">
+					<h3 class="title first">나의정보수정</h3>
+					<form method="post" action="/security/pwModify" style="margin: 0px;">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						<div class="box">
+							<p class="msg">
+								고객님의 안전한 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.<br>비밀번호가 타인에게 노출되지 않도록 주의하여 주세요.
+							</p>
+							<input type="password" id="edit_pwd" name="pwd" class="form_input" placeholder="비밀번호">
+						</div>
+						<div class="btn">
+							<span class="box_btn w150 large"><input type="submit" value="확인"></span> <span class="box_btn w150 large white"><a href="javascript:history.back();">취소</a></span>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -137,5 +155,13 @@
 	</div>
 	</div>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js" defer='defer'></script>
+		<script>
+			<c:if test="${error != null}">
+			var error = ${error} ;
+			</c:if>
+			if(error == 1){ 
+				alert("비밀번호를 확인해 주세요");
+			}
+	</script>
 </body>
 </html>

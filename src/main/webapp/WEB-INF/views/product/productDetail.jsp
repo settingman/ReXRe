@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
@@ -18,11 +19,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-<c:if test="${allist != null }">
+<c:if test="${fn:length(allist) > 0 }">
 $(document).ready(function(){
-	$('#warnModal').modal("show");
+   $('#warnModal').modal("show");
 });
 </c:if>
+
+
 var hid_frame='hidden1672657829';
 var mlv='10';
 var alv='';
@@ -433,33 +436,7 @@ h2.subtitle.img {
 											<a href="/review/insert?id=${productDetail[0].productId}" class="write">글쓰기</a> <a href="/review/list" class="list">전체보기</a>
 										</div>
 									</div>
-									<%-- <div class="summary">
-										<div class="count">
-											<h4>전체 상품후기수</h4>
-											<p>
-												<strong>${count}</strong>건
-											</p>
-										</div>
-										<div class="grade">
-											<h4>총 평점</h4>
-											<span class="icon"><i style="width: 100%"></i></span>
-											<p class="average">
-												<strong>5</strong> / 5
-											</p>
-										</div>
-										<div class="ratio">
-											<h4>평점 비율</h4>
 
-											<ul class="graph">
-												<li><span>1점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>2점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>3점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>4점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>5점</span> <span class="bar max min"><i style="width: 100%;"></i></span> <span class="count max">5</span></li>
-											</ul>
-										</div>
-									</div>
- --%>
 									<div id="detail_review_ajax_list">
 
 										<div class="title_qnarev">
