@@ -26,74 +26,80 @@ public class ProductMapperTests {
 	private ProductMapper mapper;
 	
 	
-	//product ÀüÃ¼ Á¶È¸
-	@Test 
-	public void testGetListWithPaging() {
-		log.info("getListWith paging");
-		int count = mapper.getTotalCount();
-		Criteria cri = new Criteria(2,9);
-		PageDTO pageDTO = new PageDTO(cri, count);
-		List<productVO> list = mapper.getListWithPaging(cri);
-		
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
-		}
-	}
+//	//product ï¿½ï¿½Ã¼ ï¿½ï¿½È¸
+//	@Test 
+//	public void testGetListWithPaging() {
+//		log.info("getListWith paging");
+//		int count = mapper.getTotalCount();
+//		Criteria cri = new Criteria(2,9);
+//		PageDTO pageDTO = new PageDTO(cri, count);
+//		List<productVO> list = mapper.getListWithPaging(cri);
+//		
+//		for(int i = 0; i < list.size(); i++) {
+//			System.out.println(list.get(i));
+//		}
+//	}
+//	
+//	//product ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+//	@Test
+//	public void testGetTotalCount() {
+//		log.info("getTotalCount");
+//		int count = mapper.getTotalCount();
+//		System.out.println(count);
+//	}
+//	
+//	//product Category ï¿½ï¿½È¸
+//	@Test
+//	public void testCategoryListWithPaging() {
+//		log.info("getCategoryListWith paging");
+//		List<productVO> list = mapper.getCategoryListWithPaging(new Criteria(), "ï¿½ï¿½Å²ï¿½É¾ï¿½");
+//		for(int i = 0; i < list.size(); i++) {
+//			log.info(list.get(i));
+//		}
+//	}
+//	
+//	//product Category ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½
+//	@Test
+//	public void testCategoryTotalCount() {
+//		log.info("getCategoryListWith paging");
+//		int count = mapper.getCategoryTotalCount("ï¿½ï¿½Å²ï¿½É¾ï¿½");
+//		log.info(count);
+//	}
+//	
+//	
+//	//product newBest ï¿½ï¿½È¸
+//	@Test
+//	public void testNewBestListWithPaging() {
+//		log.info("getNewBestWith Paging");
+//		
+//		List<productVO> list = mapper.getNewBestListWithPaging(new Criteria());
+//		for(int i = 0; i < list.size(); i++) {
+//			log.info(list.get(i));
+//		}
+//	}
+//	
+//	//product Detail ï¿½ï¿½È¸
+//	@Test
+//	public void testGetProductDetail() {
+//		System.out.println("getProductDetail");
+//		
+//		List<productDetailVO> list = mapper.getProductDetail(1L);
+//		for(int i = 0; i < list.size(); i++) {
+//			log.info(list.get(i));
+//		}
+//	}
+//	
+//	//productDetailClick +1
+//	@Test
+//	public void testGetProductDetailCount() throws Exception {
+//		log.info("getProductDetailCount");
+//		int count = mapper.getProductDetailCount(1L);
+//		log.info(count);
+//	}
 	
-	//product ÀüÃ¼ °³¼ö
 	@Test
-	public void testGetTotalCount() {
-		log.info("getTotalCount");
-		int count = mapper.getTotalCount();
-		System.out.println(count);
-	}
-	
-	//product Category Á¶È¸
-	@Test
-	public void testCategoryListWithPaging() {
-		log.info("getCategoryListWith paging");
-		List<productVO> list = mapper.getCategoryListWithPaging(new Criteria(), "½ºÅ²ÄÉ¾î");
-		for(int i = 0; i < list.size(); i++) {
-			log.info(list.get(i));
-		}
-	}
-	
-	//product Category ÀüÃ¼ °³¼ö
-	@Test
-	public void testCategoryTotalCount() {
-		log.info("getCategoryListWith paging");
-		int count = mapper.getCategoryTotalCount("½ºÅ²ÄÉ¾î");
-		log.info(count);
-	}
-	
-	
-	//product newBest Á¶È¸
-	@Test
-	public void testNewBestListWithPaging() {
-		log.info("getNewBestWith Paging");
-		
-		List<productVO> list = mapper.getNewBestListWithPaging(new Criteria());
-		for(int i = 0; i < list.size(); i++) {
-			log.info(list.get(i));
-		}
-	}
-	
-	//product Detail Á¶È¸
-	@Test
-	public void testGetProductDetail() {
-		System.out.println("getProductDetail");
-		
-		List<productDetailVO> list = mapper.getProductDetail(1L);
-		for(int i = 0; i < list.size(); i++) {
-			log.info(list.get(i));
-		}
-	}
-	
-	//productDetailClick +1
-	@Test
-	public void testGetProductDetailCount() throws Exception {
-		log.info("getProductDetailCount");
-		int count = mapper.getProductDetailCount(1L);
+	public void getAler() throws Exception {
+		List<String> count = mapper.getAllergies("member1",1L);
 		log.info(count);
 	}
 }

@@ -7,11 +7,11 @@ import com.hyundai.domain.productDetailVO;
 import com.hyundai.domain.productVO;
 
 public interface ProductService {
-	//ÀüÃ¼ product Á¶È¸
+	//ï¿½ï¿½Ã¼ product ï¿½ï¿½È¸
 	public List<productVO> getListWithPaging(Criteria cri) throws Exception;
 	public int getTotalCount();
 	
-	//Ä«Å×°í¸® productÁ¶È¸
+	//Ä«ï¿½×°ï¿½ productï¿½ï¿½È¸
 	public List<productVO> getCategoryListWithPaging(Criteria cri, String productCategory);
 	public int getCategoryTotalCount(String productCategory);
 	
@@ -19,6 +19,7 @@ public interface ProductService {
 	public List<productVO> getNewBestListWithPaging(Criteria cri);
 	public int getNewBestTotalCount();
 	
-	//»ó¼¼ÆäÀÌÁö + Á¶È¸¼ö
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ + ï¿½ï¿½È¸ï¿½ï¿½
 	public List<productDetailVO> getProductDetail(Long productId);
+	public List<String> getAllergies(String id, Long productId);
 }
