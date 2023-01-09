@@ -464,13 +464,13 @@ h2.subtitle.img {
 
 
 
-															<a onclick="openReviewDetail(782, '5');">선물용 구매</a>
+															<a onclick="openReviewDetail(782, '5');">${reviewList.reviewTitle}</a>
 
 														</div>
 														<div class="content">${reviewList.reviewContent}</div>
 														<!-- <a onclick="openReviewDetail(782, '5');" class="more">더보기
 														+</a> -->
-													</div> <c:choose>
+													</div> <%-- <c:choose>
 														<c:when test="${not empty reviewList.imagePath}">
 															<div class="upfile">
 																<a onclick="openReviewDetail(787, '18');"> <img src="${reviewList.imagePath}" />
@@ -479,8 +479,8 @@ h2.subtitle.img {
 														</c:when>
 														<c:otherwise>
 															<p></p>
-														</c:otherwise>
-													</c:choose> <%-- 													<c:if test ="${reviewList.imagePath} != null">
+														</c:otherwise> 
+													</c:choose>													<c:if test ="${reviewList.imagePath} != null">
 														???
 														<div class="upfile">
 															<a onclick="openReviewDetail(787, '18');">
