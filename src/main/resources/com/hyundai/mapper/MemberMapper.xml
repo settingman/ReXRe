@@ -6,14 +6,14 @@
 	<resultMap type="com.hyundai.domain.MemberVO" id="memberMap">
 		<id property="useridid" column="member_idid"></id>
 
-		<result property="useridid" column="member_idid"></result>
-		<result property="userpw" column="member_pw"></result>
-		<result property="userName" column="member_name"></result>
 		<result property="member_phone" column="member_phone"></result>
 		<result property="member_email" column="member_email"></result>
 		<result property="member_postNum" column="member_postnum"></result>
 		<result property="member_address1" column="member_address1"></result>
 		<result property="member_address2" column="member_address2"></result>
+		<result property="useridid" column="member_idid"></result>
+		<result property="userpw" column="member_pw"></result>
+		<result property="userName" column="member_name"></result>
 		<result property="enabled" column="member_enabled"></result>
 		<result property="regDate" column="member_regdate"></result>
 		<result property="updateDate" column="member_updatedate"></result>
@@ -31,12 +31,16 @@
 	</resultMap>
 
 	<select id="read" resultMap="memberMap">
-		select mem.member_idid,member_id,member_phone, member_email, member_postnum,member_address1,member_address2,
+		select
+		mem.member_idid,member_id,member_phone, member_email,
+		member_postnum,member_address1,member_address2,
 		member_pw,
-		member_name, member_enabled, member_regdate,
+		member_name,
+		member_enabled, member_regdate,
 		member_updatedate,
 		auth_name
-		from members mem, (select * from
+		from members
+		mem, (select * from
 		membergrade, auth where
 		auth_auth_id = auth_id)
 		where mem.member_id =
@@ -69,8 +73,10 @@
 	<insert id="addMemAl"
 		parameterType="com.hyundai.domain.AllergyMapperVO">
 		insert into allergymappers
-		values ((select allergy_id from allergies where allergy_name =
-		#{allergy_name}),(select member_id from members where member_idid =
+		values ((select allergy_id
+		from allergies where allergy_name =
+		#{allergy_name}),(select member_id
+		from members where member_idid =
 		#{member_idid}))
 	</insert>
 	<select id="findID"
@@ -86,6 +92,7 @@
 	</update>
 
 	<select id="idid" resultType="Integer">
-		select member_id from members where member_idid = #{member_idid}
+		select member_id from members where
+		member_idid = #{member_idid}
 	</select>
 </mapper>
