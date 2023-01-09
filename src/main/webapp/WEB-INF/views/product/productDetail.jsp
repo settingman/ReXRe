@@ -21,7 +21,7 @@
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-<c:if test="${allist !=c null}">
+<c:if test="${fn:length(allist) > 0}">
 $(document).ready(function(){
 	$('#warnModal').modal("show");
 });
