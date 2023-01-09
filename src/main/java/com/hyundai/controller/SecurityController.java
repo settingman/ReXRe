@@ -130,5 +130,9 @@ public class SecurityController {
 		service.pwChange(id, pw);
 		return "security/pwChanged";
 	}
+	@GetMapping("/welcome")
+	public void welcome() {
+		
+	}
 
 }

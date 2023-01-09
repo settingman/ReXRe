@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
 	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
-<c:if test="${allist != null }">
+<c:if test="${allist !=c null}">
 $(document).ready(function(){
 	$('#warnModal').modal("show");
 });
@@ -654,8 +655,8 @@ h2.subtitle.img {
 						</div>
 						<!-- //상품 상세정보 -->
 					</div>
-<div class="modal" tabindex="-1" role="dialog" id="warnModal">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal" tabindex="-1" id="warnModal">
+  <div class="modal-dialog modal-dialog-centered" >
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">주의</h5>
@@ -666,7 +667,7 @@ h2.subtitle.img {
         <p><c:forEach var="allergy"  items="${allist }">${allergy }    </c:forEach></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
