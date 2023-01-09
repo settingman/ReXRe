@@ -426,7 +426,7 @@ h2.subtitle.img {
 											<a onclick="writeReviewWithoutRa(596, '');" class="write">글쓰기</a> <a href="/shop/product_review_list.php" class="list">전체보기</a>
 										</div>
 									</div>
-									<div class="summary">
+									<%-- <div class="summary">
 										<div class="count">
 											<h4>전체 상품후기수</h4>
 											<p>
@@ -452,7 +452,7 @@ h2.subtitle.img {
 											</ul>
 										</div>
 									</div>
-
+ --%>
 									<div id="detail_review_ajax_list">
 
 										<div class="title_qnarev">
