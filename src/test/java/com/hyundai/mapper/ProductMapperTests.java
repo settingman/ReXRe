@@ -102,4 +102,11 @@ public class ProductMapperTests {
 		List<String> count = mapper.getAllergies("member1",1L);
 		log.info(count);
 	}
+	
+	@Test
+	public void testGetProductImage() {
+		System.out.println("productImage");
+		String image = mapper.getProductImage(1L);
+		System.out.println(image);
+	}
 }
