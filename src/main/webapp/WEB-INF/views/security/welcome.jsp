@@ -55,7 +55,7 @@
 					<div class="box">
 						<p class="finish">리바이리몰 회원가입이 완료되었습니다.</p>
 						<p>
-							<span class="name">자요나</span> 고객님, 회원가입을 진심으로 감사드립니다.
+							고객님, 회원가입을 진심으로 감사드립니다.
 						</p>
 					</div>
 

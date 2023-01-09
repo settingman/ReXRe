@@ -94,7 +94,7 @@
 			var idcheck = $('#id_check').val();
 			var pwcheck = $('#pw_check').val();
 			 var email =$("#email2").val();
-			 var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			 var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 			 if (idcheck == "0"){
 				  alert("아이디 중복확인을 실시해주세요");
 				  return false;

@@ -191,7 +191,9 @@ h2.subtitle.img {
 									<div id="mimg_div" class="img">
 										<a href="javascript:zoomView('B2EEB7362EF83DEFF5C7813A67E14F0A', '600', '800');">
 											<div id="zoom_frame" style="position: relative;">
-												<img id="mainImg" src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/ce54fb763f97212f98ea336fee839619.jpg" upfile1="https://skbiolandmall.wisacdn.com/_data/product/202208/22/43bc113c324808b21ff8f7fa8c13bdf8.jpg" width="580" height="711" jquery_pzoom="">
+												<img id="mainImg"
+													src="${productImage}"
+													width="580" height="711" jquery_pzoom=""/>
 											</div>
 										</a>
 									</div>
@@ -435,7 +437,7 @@ h2.subtitle.img {
 											<a onclick="writeReviewWithoutRa(596, '');" class="write">글쓰기</a> <a href="/shop/product_review_list.php" class="list">전체보기</a>
 										</div>
 									</div>
-									<div class="summary">
+									<%-- <div class="summary">
 										<div class="count">
 											<h4>전체 상품후기수</h4>
 											<p>
@@ -461,7 +463,7 @@ h2.subtitle.img {
 											</ul>
 										</div>
 									</div>
-
+ --%>
 									<div id="detail_review_ajax_list">
 
 										<div class="title_qnarev">

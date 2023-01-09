@@ -92,6 +92,7 @@ public class ProductController {
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
+		model.addAttribute("productImage", productService.getProductImage(productId));
 		model.addAttribute("productDetail", productService.getProductDetail(productId));
 		model.addAttribute("reviewList", reviewService.getReviewWithPaging(productId));
 		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
