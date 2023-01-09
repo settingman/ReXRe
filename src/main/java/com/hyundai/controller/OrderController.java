@@ -1,6 +1,7 @@
 
 package com.hyundai.controller;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import com.hyundai.domain.CartItem;
 import com.hyundai.domain.OrderCompleteDTO;
 import com.hyundai.domain.OrderDTO;
 import com.hyundai.domain.OrderList;
+import com.hyundai.mapper.MemberMapper;
 import com.hyundai.service.CartService;
 import com.hyundai.service.OrderService;
 
@@ -30,9 +32,10 @@ public class OrderController {
 
 	private final CartService cartService;
 	private final OrderService orderService;
+	private final MemberMapper memberMapper;
 
 	@GetMapping("/shop/order")
-	public String CartToOrder(@RequestParam List<Integer> id, Model model) {
+	public String CartToOrder(@RequestParam List<Integer> id, Model model, Principal principal) {
 
 		System.out.println("뿌리기");
 
@@ -41,7 +44,7 @@ public class OrderController {
 		}
 
 		// principle 로 받거나, or Session
-		Integer member_id = 255;
+		Integer member_id = memberMapper.idid(principal.getName());
 
 		List<CartItem> cartItems = cartService.CartToOrder(id, member_id);
 
@@ -52,14 +55,14 @@ public class OrderController {
 	}
 
 	@PostMapping("/shop/oredercomplete")
-	public String OrederComplete(OrderDTO orderDTO, Model model) {
+	public String OrederComplete(OrderDTO orderDTO, Model model,Principal principal) {
 		
 
 		System.out.println("ordercomplete");
 		
 		
 		// 세션에서 맴버 받아오기.
-		Integer member_id = 255;
+		Integer member_id = memberMapper.idid(principal.getName());
 		
 		OrderCompleteDTO orderCompleteDTO = orderService.insertOrder(orderDTO, member_id);
 		
@@ -77,14 +80,16 @@ public class OrderController {
 	
 	// 주문 조회ㅍ
 	@GetMapping("/shop/orederlist")
-	public String OrederList(Model model) {
+	public String OrederList(Model model, Principal principal) {
 		
 
 		System.out.println("orderList");
 		
 		
 		// 세션에서 맴버 받아오기.
-		Integer member_id = 255;
+		Integer member_id = memberMapper.idid(principal.getName());
+		
+		System.out.println(member_id);
 		
 		List<OrderList> orderList = orderService.OrderList(member_id);
 		
@@ -103,7 +108,7 @@ public class OrderController {
 			
 			if(orderListItem.size()>1) {
 				
-				itemList.add(orderListItem.get(0) + "외 " + orderListItem.size() + "개" );
+				itemList.add(orderListItem.get(0) + "외 " + (orderListItem.size()-1) + "개" );
 			}
 			
 			else {

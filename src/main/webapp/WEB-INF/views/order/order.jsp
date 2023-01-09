@@ -24,6 +24,7 @@
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/smartEditor/js/HuskyEZCreator.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
+	f
 	var date_picker_default = {
 		monthNamesShort : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
 				"11", "12", ],
@@ -438,7 +439,7 @@
 												* 주문신청 후 <strong class="point_color">2</strong>일 이내에 입금 확인이 되지 않으면 자동취소 됩니다.
 											</p>
 											<div id="order1">
-												<span class="box_btn huge block"><a href="javascript:orderComplete(); scroll_page();">주문하기</a></span>
+												<span class="box_btn huge block"><a href="javascript:orderComplete();">주문하기</a></span>
 											</div>
 										</div>
 										<div id="order2">
@@ -472,6 +473,8 @@
 
 
 			<form class="orderForm" action="/shop/oredercomplete" method="post">
+
+				<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 
 				<input type="hidden" name="order_name" id="order_name">
 				<input type="hidden" name="ORDER_PHONE" id="ORDER_PHONE">
@@ -616,7 +619,7 @@
 							// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
 							var roadAddr = data.roadAddress; // 도로명 주소 변수
 							var jibunAddr = data.jibunAddress; // 지번 주소 변수
-							
+
 							console.log(roadAddr);
 							console.log(jibunAddr);
 							// 우편번호와 주소 정보를 해당 필드에 넣는다.

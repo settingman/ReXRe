@@ -156,10 +156,9 @@
 						</div>
 
 						<div class="btn">
-							<span class="box_btn large"><a href="/mypage/order_list.php">주문조회하기</a></span> <span class="box_btn large white"><a href="/">쇼핑계속하기</a></span>
+							<span class="box_btn large"><a href="/shop/orederlist">주문조회하기</a></span> <span class="box_btn large white"><a href="/">쇼핑계속하기</a></span>
 						</div>
 					</div>
-
 
 				</div>
 			</div>
