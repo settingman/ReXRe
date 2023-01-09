@@ -126,5 +126,19 @@
 		SET product_click = product_click + 1
 		WHERE product_id = #{productId}
 	</update>
-	
+	<select id="getAllergies" resultType="String">
+		select allergy_name
+		from members,(
+		select *
+		from allergies, allergymappers
+		where allergy_id = allergies_allergy_id)
+		where member_id = members_member_id and member_idid = #{id}
+		and (allergy_name in 
+		(select ingredient from ingredients, products_ingredients where ingredients_ingredient_id = ingredient_id
+		and products_product_id = #{productId})
+		or allergy_alter in (select ingredient from ingredients, products_ingredients where ingredients_ingredient_id = ingredient_id
+		and products_product_id = #{productId})
+		)
+		
+	</select>
 </mapper>

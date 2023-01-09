@@ -1,0 +1,11 @@
+
+  .rounded-pill{
+    transform: scale(1.1);
+    margin-left: 13px;
+  }
+  .rounded-pill:hover {
+    transform: scale(1.2);
+  }
+
+  <span class="badge rounded-pill text-bg-primary" id="allergy-pill">sample</span>
+  <span class="badge rounded-pill text-bg-primary" id="allergy-pill">나트륨</span>

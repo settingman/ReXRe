@@ -12,6 +12,7 @@ import com.hyundai.domain.Criteria;
 import com.hyundai.domain.PageDTO;
 import com.hyundai.domain.productDetailVO;
 import com.hyundai.service.ProductService;
+import com.hyundai.service.ReviewService2;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -22,13 +23,14 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 public class ProductController {
 	private ProductService productService;
+	private ReviewService2 reviewService;
 	
-	//product ÀüÃ¼»óÇ°	
+	//product ï¿½ï¿½Ã¼ï¿½ï¿½Ç°	
 	@GetMapping("/productList")
 	public String productList(Criteria cri, @RequestParam("pageNum") Integer pageNum, @RequestParam("amount") Integer amount, Model model) throws Exception {
 		
-		System.out.println("@@@@@@@@@@@@@@@CRI³Ñ¾î¿Â pageNUM" + pageNum);
-		System.out.println("@@@@@@@@@@@@@@@CRI³Ñ¾î¿Â Amount" + amount);
+		System.out.println("@@@@@@@@@@@@@@@CRIï¿½Ñ¾ï¿½ï¿½ pageNUM" + pageNum);
+		System.out.println("@@@@@@@@@@@@@@@CRIï¿½Ñ¾ï¿½ï¿½ Amount" + amount);
 		cri.setPageNum(pageNum);
 		cri.setAmount(amount);
 		int total = productService.getTotalCount();
@@ -65,7 +67,7 @@ public class ProductController {
 		cri.setAmount(amount);
 		int total = productService.getNewBestTotalCount();
 		model.addAttribute("total", total);
-		System.out.println("newbest °³¼ö ??? " + total);
+		System.out.println("newbest ï¿½ï¿½ï¿½ï¿½ ??? " + total);
 		model.addAttribute("productList", productService.getNewBestListWithPaging(cri));
 		PageDTO pageDTO = new PageDTO(cri, total);
 		model.addAttribute("pageMaker", pageDTO);
@@ -80,19 +82,30 @@ public class ProductController {
 		return "product/productNewBest";
 	}
 	
-	//»óÇ°»ó¼¼
-	//»óÇ°»ó¼¼
+	//ï¿½ï¿½Ç°ï¿½ï¿½
+	//ï¿½ï¿½Ç°ï¿½ï¿½
 	@GetMapping("/productDetail")
-	public String list(@RequestParam("productId") Long productId, Model model) throws Exception {
-		
-		log.info("»óÇ°»ó¼¼");
+	public String list(Criteria cri, @RequestParam("productId") Long productId, Model model) throws Exception {
+		log.info("ï¿½ï¿½Ç°ï¿½ï¿½");
 		log.info(productId);
 		List<productDetailVO> list = productService.getProductDetail(productId);
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 		model.addAttribute("productDetail", productService.getProductDetail(productId));
-
+		model.addAttribute("reviewList", reviewService.getReviewWithPaging(productId));
+		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
+		return "product/productDetail";
+	}
+	
+	@GetMapping("/productDetailid")
+	public String listID(Criteria cri, @RequestParam("productId") Long productId, @RequestParam("member_idid")
+			String id,  Model model) throws Exception {
+		System.out.println("controller");
+		model.addAttribute("allist", productService.getAllergies(id, productId));
+		model.addAttribute("productDetail", productService.getProductDetail(productId));
+		model.addAttribute("reviewList", reviewService.getReviewWithPaging(productId));
+		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
 		return "product/productDetail";
 	}
 }

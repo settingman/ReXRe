@@ -1,23 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 
-<link rel="shortcut icon" type="image/x-icon"
-	href="https://www.rexremall.com/favicon.ico">
-<link rel="stylesheet" type="text/css"
-	href="https://www.rexremall.com/_data/wing_skbioland_200731_temp.css">
-<link rel="stylesheet" type="text/css"
-	href="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui.min.css">
-<link rel="stylesheet" type="text/css"
-	href="https://www.rexremall.com/wm_engine_SW/_engine/common/loading.css??202301022010">
+<link rel="shortcut icon" type="image/x-icon" href="https://www.rexremall.com/favicon.ico">
+<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_data/wing_skbioland_200731_temp.css">
+<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui.min.css">
+<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/wm_engine_SW/_engine/common/loading.css??202301022010">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<!-- 부트스트랩 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+<c:if test="${allist != null }">
+$(document).ready(function(){
+	$('#warnModal').modal("show");
+});
+</c:if>
 var hid_frame='hidden1672657829';
 var mlv='10';
 var alv='';
@@ -49,26 +56,16 @@ var click_prd_limit=2;
 var click_prd_start=1;
 var click_prd_finish=click_prd_limit+1;
 </script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui-1.11.3.min.js"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery.serializeObject.js"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/_skin/skbioland_200731/script.js"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/lang/lang_kor.js?00000002"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/common.js?202301022010"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.review.js?202301022010"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery-wingNextPage.js"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/R2Na/R2Na.js"></script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/smartEditor/js/HuskyEZCreator.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery.serializeObject.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/_skin/skbioland_200731/script.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/lang/lang_kor.js?00000002"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/common.js?202301022010"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.review.js?202301022010"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery-wingNextPage.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/R2Na/R2Na.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/smartEditor/js/HuskyEZCreator.js"></script>
 <script type="text/javascript">
 var date_picker_default = {
    'monthNamesShort':['1','2','3','4','5','6','7','8','9','10','11','12'],
@@ -94,8 +91,7 @@ const use_ts_mark_4 = 'Y';
 const ts_mark_4 = '';
 
 </script>
-<script type="text/javascript"
-	src="https://www.rexremall.com/wm_engine_SW/_engine/common/sec.js"></script>
+<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/sec.js"></script>
 
 
 </head>
@@ -106,23 +102,17 @@ const ts_mark_4 = '';
 
 
 <body>
-	<iframe name="hidden1672657829" src="about:blank" width="0" height="0"
-		scrolling="no" frameborder="0" style="display: none"></iframe>
+	<iframe name="hidden1672657829" src="about:blank" width="0" height="0" scrolling="no" frameborder="0" style="display: none"></iframe>
 
-	<script type="text/javascript"
-		src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.js?20220111"></script>
-	<script type="text/javascript"
-		src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.prdcpn.js?20200630"></script>
-	<script type="text/javascript"
-		src="https://www.rexremall.com/wm_engine_SW/_engine/common/clipboard.min.js"></script>
+	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.js?20220111"></script>
+	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.prdcpn.js?20200630"></script>
+	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/clipboard.min.js"></script>
 	<script type="text/javascript">
 
 </script>
-	<span class="detail_url"
-		data-clipboard-text="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A"></span>
+	<span class="detail_url" data-clipboard-text="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A"></span>
 
-	<script type="text/javascript"
-		src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery-zoom.js"></script>
+	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery-zoom.js"></script>
 	<script type="text/javascript">
       $(window).ready(function() {
          $('#product_add_image_list').find('img[src$="#addimg"]').each(function(idx) {
@@ -159,14 +149,10 @@ const ts_mark_4 = '';
 </style>
 	<div id="skin_shop_detail_big_div">
 
-		<script
-			src="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.min.js"></script>
-		<link rel="stylesheet" type="text/css"
-			href="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.css" />
-		<link rel="stylesheet" type="text/css"
-			href="https://www.rexremall.com/_skin/skbioland_200731/img/../animate.css" />
-		<i id="crema-login-username" style="display: none;"></i> <i
-			id="crema-login-name" style="display: none;"></i>
+		<script src="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.css" />
+		<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_skin/skbioland_200731/img/../animate.css" />
+		<i id="crema-login-username" style="display: none;"></i> <i id="crema-login-name" style="display: none;"></i>
 		<div id="wrapper">
 			<!-- 상단 -->
 			<%@ include file="/WEB-INF/views/include/header.jsp"%>
@@ -183,37 +169,23 @@ h2.subtitle.img {
 </style>
 					<div id="detail">
 						<!-- 상단 -->
-						<form name="prdFrm" method="post" style="margin: 0px"
-							accept-charset="utf-8" data-prd_type="1">
-							<input type="hidden" name="pno"
-								value="B2EEB7362EF83DEFF5C7813A67E14F0A"> <input
-								type="hidden" name="product_name"
-								value="리바이리 콤부차 배리옴 스킨케어 5종 기획"> <input type="hidden"
-								name="stat" value="2"> <input type="hidden"
-								name="ea_type" value="1"> <input type="hidden"
-								name="min_ord" value="1"> <input type="hidden"
-								name="max_ord" value=""> <input type="hidden" name="ea"
-								value="0"> <input type="hidden" name="next" value="">
-							<input type="hidden" name="exec" value=""> <input
-								type="hidden" name="rURL" value=""> <input type="hidden"
-								name="total_prc" value="170000"> <input type="hidden"
-								name="pay_prc" value="170000"> <input type="hidden"
-								name="new_total_prc" value="170000"> <input
-								type="hidden" name="sell_prc_consultation" value=""> <input
-								type="hidden" name="qd" value=""> <input type="hidden"
-								name="prdcpn_no" value="">
+						<form name="prdFrm" method="post" style="margin: 0px" accept-charset="utf-8" data-prd_type="1">
+							<input type="hidden" name="pno" value="B2EEB7362EF83DEFF5C7813A67E14F0A"> <input type="hidden" name="product_name"
+								value="리바이리 콤부차 배리옴 스킨케어 5종 기획"> <input type="hidden" name="stat" value="2"> <input type="hidden" name="ea_type" value="1"> <input
+								type="hidden" name="min_ord" value="1"> <input type="hidden" name="max_ord" value=""> <input type="hidden" name="ea" value="0">
+							<input type="hidden" name="next" value=""> <input type="hidden" name="exec" value=""> <input type="hidden" name="rURL" value="">
+							<input type="hidden" name="total_prc" value="170000"> <input type="hidden" name="pay_prc" value="170000"> <input type="hidden"
+								name="new_total_prc" value="170000"> <input type="hidden" name="sell_prc_consultation" value=""> <input type="hidden" name="qd" value="">
+							<input type="hidden" name="prdcpn_no" value="">
 
 							<div class="wrap_prd">
 								<!-- 상품 이미지 -->
 								<div class="prdimg">
 									<div id="mimg_div" class="img">
-										<a
-											href="javascript:zoomView('B2EEB7362EF83DEFF5C7813A67E14F0A', '600', '800');">
+										<a href="javascript:zoomView('B2EEB7362EF83DEFF5C7813A67E14F0A', '600', '800');">
 											<div id="zoom_frame" style="position: relative;">
-												<img id="mainImg"
-													src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/ce54fb763f97212f98ea336fee839619.jpg"
-													upfile1="https://skbiolandmall.wisacdn.com/_data/product/202208/22/43bc113c324808b21ff8f7fa8c13bdf8.jpg"
-													width="580" height="711" jquery_pzoom="">
+												<img id="mainImg" src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/ce54fb763f97212f98ea336fee839619.jpg"
+													upfile1="https://skbiolandmall.wisacdn.com/_data/product/202208/22/43bc113c324808b21ff8f7fa8c13bdf8.jpg" width="580" height="711" jquery_pzoom="">
 											</div>
 										</a>
 									</div>
@@ -232,8 +204,7 @@ h2.subtitle.img {
 											onclick="window.open('http://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fdetail.php%3Fpno%3DB2EEB7362EF83DEFF5C7813A67E14F0A','','width=804,height=504');"></a>
 										<a href="javascript:;"
 											onclick="window.open('http://twitter.com/intent/tweet?text=%EB%A6%AC%EB%B0%94%EC%9D%B4%EB%A6%AC+%EC%BD%A4%EB%B6%80%EC%B0%A8+%EB%B0%B0%EB%A6%AC%EC%98%B4+%EC%8A%A4%ED%82%A8%EC%BC%80%EC%96%B4+5%EC%A2%85+%EA%B8%B0%ED%9A%8D+%E2%86%92+170%2C000%EC%9B%90&amp;url=https%3A%2F%2Fwww.rexremall.com%2Fshop%2Fdetail.php%3Fpno%3DB2EEB7362EF83DEFF5C7813A67E14F0A','','width=804,height=504');"></a>
-										<a id="kakao-link-btn" href="javascript:;"></a> <a
-											href="javascript:kakaostory();"></a>
+										<a id="kakao-link-btn" href="javascript:;"></a> <a href="javascript:kakaostory();"></a>
 									</div>
 									<h3 class="name">
 										${productDetail[0].productName}
@@ -250,10 +221,8 @@ h2.subtitle.img {
 
 											<tr>
 												<th scope="row">정상소비자가</th>
-												<td class="sell"><strong><fmt:formatNumber
-															value="${productDetail[0].productPrice}" pattern="#,###"
-															type="number" /></strong>원<span class="detail_login"><a
-														href="/member/login.php">로그인 후 회원혜택가를 확인하세요</a></span></td>
+												<td class="sell"><strong><fmt:formatNumber value="${productDetail[0].productPrice}" pattern="#,###" type="number" /></strong>원<span
+													class="detail_login"><sec:authorize access="isAnonymous()"><a href="/security/login">로그인 후 회원혜택가를 확인하세요</a></sec:authorize></span></td>
 											</tr>
 
 
@@ -271,8 +240,7 @@ h2.subtitle.img {
 
 											<tr>
 												<th scope="row">배송비</th>
-												<td class="delivery"><span>0원</span> <span>3만원이상
-														구매시 무료배송 (3만원미만 4천원)</span></td>
+												<td class="delivery"><span>0원</span> <span>3만원이상 구매시 무료배송 (3만원미만 4천원)</span></td>
 											</tr>
 
 											<tr>
@@ -296,11 +264,9 @@ h2.subtitle.img {
 												<th scope="row">수량</th>
 												<td>
 													<div class="box_qty">
-														<input type="text" id="buy_ea" name="buy_ea" value="1"
-															class="form_input" isplaceholderinited="true">
+														<input type="text" id="buy_ea" name="buy_ea" value="1" class="form_input" isplaceholderinited="true">
 														<div class="btn_ea">
-															<a href="javascript:eaChg(1);" class="ea_up"></a> <a
-																href="javascript:eaChg(2);" class="ea_down"></a>
+															<a href="javascript:eaChg(1);" class="ea_up"></a> <a href="javascript:eaChg(2);" class="ea_down"></a>
 														</div>
 													</div>
 												</td>
@@ -312,10 +278,8 @@ h2.subtitle.img {
 
 									<div class="multi_opt">
 										<div class="opt_total">
-											<span class="title">총 상품 금액</span> <strong><span
-												class="sell_prc_str_total"><fmt:formatNumber
-														value="${productDetail[0].productPrice}" pattern="#,###"
-														type="number" /></span>원</strong>
+											<span class="title">총 상품 금액</span> <strong><span class="sell_prc_str_total"><fmt:formatNumber
+														value="${productDetail[0].productPrice}" pattern="#,###" type="number" /></span>원</strong>
 
 										</div>
 									</div>
@@ -324,12 +288,8 @@ h2.subtitle.img {
 									<!-- 버튼 -->
 
 									<div class="btn">
-										<span id="cartBtn" class="box_btn w215 h60 fs15 medium white3">
-											<a
-											href="javascript:insertCart(${productDetail[0].productId},255);">CART</a>
-										</span> <span class="box_btn w215 h60 fs15 medium buy"> <a
-											href="javascript:insertCart(${productDetail[0].productId},255);">
-												BUY NOW </a>
+										<span id="cartBtn" class="box_btn w215 h60 fs15 medium white3"> <a href="javascript:insertCart(${productDetail[0].productId},255);">CART</a>
+										</span> <span class="box_btn w215 h60 fs15 medium buy"> <a href="javascript:insertCart(${productDetail[0].productId},255);"> BUY NOW </a>
 										</span> <span id="wishBtn" class="box_btn w91 h60 white3 wish "></span>
 										<div class="pay"></div>
 									</div>
@@ -345,16 +305,12 @@ h2.subtitle.img {
 						<!-- Enliple Insite shopDetail start -->
 						<script type="text/javascript">(function(m,b,r,i,s){m.mbris=m.mbris||function(){(m.mbris.q=m.mbris.q||[]).push(arguments)};i=b.createElement(r);i.async=!0;i.defer=!0;i.src="https://cdn.megadata.co.kr/dist/prod/enp_mbris.min.js";0<b.querySelectorAll("script[src*=enp_mbris]").length&&m.ENP_MBRIS_INVOKE?m.ENP_MBRIS_INVOKE():(s=b.getElementsByTagName(r)[0],s.parentNode.insertBefore(i,s))})(window,document,"script");mbris("202010303120010697_rexreskbio_2_01,202010303120010698_rexreskbio_2_02");</script>
 						<!-- 광고 노출 영역 -->
-						<div id="mbris_detail_section"
-							style="margin-top: 10px; position: relative; display: block; height: 0px; width: 100%;">
-							<iframe scrolling="no" id="iframe_mbris_detail_section"
-								style="height: 0px; border: none; width: 100%;"></iframe>
+						<div id="mbris_detail_section" style="margin-top: 10px; position: relative; display: block; height: 0px; width: 100%;">
+							<iframe scrolling="no" id="iframe_mbris_detail_section" style="height: 0px; border: none; width: 100%;"></iframe>
 						</div>
 
-						<div id="mbris_ar_detail_section"
-							style="margin: 10px auto; position: relative; display: block; height: 0px; width: 100%;">
-							<iframe scrolling="no" id="iframe_mbris_ar_detail_section"
-								style="height: 0px; border: none; width: 100%;"></iframe>
+						<div id="mbris_ar_detail_section" style="margin: 10px auto; position: relative; display: block; height: 0px; width: 100%;">
+							<iframe scrolling="no" id="iframe_mbris_ar_detail_section" style="height: 0px; border: none; width: 100%;"></iframe>
 						</div>
 						<!-- Enliple Insite shopDetail Together end -->
 
@@ -362,14 +318,12 @@ h2.subtitle.img {
 						<!-- 상품 상세정보 -->
 						<div class="wrap_info">
 							<div class="join_banner">
-								<img
-									src="https://skbiolandmall.wisacdn.com/_data/banner/00bfe6d72492caeca75871dba6f9e4ba.jpg"
-									border="0">
+								<img src="https://skbiolandmall.wisacdn.com/_data/banner/00bfe6d72492caeca75871dba6f9e4ba.jpg" border="0">
 							</div>
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')" class="active">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')">교환/반품/배송정보</a></li>
 								</ul>
@@ -385,12 +339,10 @@ h2.subtitle.img {
 										<span style="font-size: 10pt;">&nbsp;</span>
 									</p>
 									<p style="text-align: center;" align="center">
-										<span style="font-size: 10pt;">- 리바이리 콤부차 배리옴 마일드 포밍
-											클렌저</span>
+										<span style="font-size: 10pt;">- 리바이리 콤부차 배리옴 마일드 포밍 클렌저</span>
 									</p>
 									<p style="text-align: center;" align="center">
-										<span style="font-size: 13.3333px;">- 리바이리 콤부차 배리옴 에센스
-											토너</span>
+										<span style="font-size: 13.3333px;">- 리바이리 콤부차 배리옴 에센스 토너</span>
 									</p>
 									<p style="text-align: center;" align="center">
 										<span style="font-size: 10pt;">- 리바이리 콤부차 배리옴 래디언스 앰플</span>
@@ -429,20 +381,13 @@ h2.subtitle.img {
 
 								<div class="related">
 
-									<form name="refFrm1" method="post"
-										action="https://www.rexremall.com/main/exec.php"
-										target="hidden1672657829">
-										<input type="hidden" name="exec_file"
-											value="cart/cart.exe.php"> <input type="hidden"
-											name="rel_cart" value="Y"> <input type="hidden"
-											name="next" value="1"> <input type="hidden" name="qd"
-											value=""> <input type="hidden" name="refparent"
-											value="596"> <input type="hidden" name="refkey"
-											value="1">
+									<form name="refFrm1" method="post" action="https://www.rexremall.com/main/exec.php" target="hidden1672657829">
+										<input type="hidden" name="exec_file" value="cart/cart.exe.php"> <input type="hidden" name="rel_cart" value="Y"> <input type="hidden"
+											name="next" value="1"> <input type="hidden" name="qd" value=""> <input type="hidden" name="refparent" value="596"> <input
+											type="hidden" name="refkey" value="1">
 
 										<div class="arrow"></div>
-										<div
-											class="prd_basic slide rel slick-initialized slick-slider">
+										<div class="prd_basic slide rel slick-initialized slick-slider">
 											<div aria-live="polite" class="slick-list draggable"></div>
 
 
@@ -467,7 +412,7 @@ h2.subtitle.img {
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')" class="active">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')" class="active">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')">교환/반품/배송정보</a></li>
 								</ul>
@@ -478,15 +423,14 @@ h2.subtitle.img {
 									<div class="title_qnarev">
 										<h3>상품후기</h3>
 										<div class="btn">
-											<a onclick="writeReviewWithoutRa(596, '');" class="write">글쓰기</a>
-											<a href="/shop/product_review_list.php" class="list">전체보기</a>
+											<a onclick="writeReviewWithoutRa(596, '');" class="write">글쓰기</a> <a href="/shop/product_review_list.php" class="list">전체보기</a>
 										</div>
 									</div>
 									<div class="summary">
 										<div class="count">
 											<h4>전체 상품후기수</h4>
 											<p>
-												<strong>5</strong>건
+												<strong>${count}</strong>건
 											</p>
 										</div>
 										<div class="grade">
@@ -500,16 +444,11 @@ h2.subtitle.img {
 											<h4>평점 비율</h4>
 
 											<ul class="graph">
-												<li><span>1점</span> <span class="bar  "><i
-														style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>2점</span> <span class="bar  "><i
-														style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>3점</span> <span class="bar  "><i
-														style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>4점</span> <span class="bar  "><i
-														style="width: 0%;"></i></span> <span class="count ">0</span></li>
-												<li><span>5점</span> <span class="bar max min"><i
-														style="width: 100%;"></i></span> <span class="count max">5</span></li>
+												<li><span>1점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
+												<li><span>2점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
+												<li><span>3점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
+												<li><span>4점</span> <span class="bar  "><i style="width: 0%;"></i></span> <span class="count ">0</span></li>
+												<li><span>5점</span> <span class="bar max min"><i style="width: 100%;"></i></span> <span class="count max">5</span></li>
 											</ul>
 										</div>
 									</div>
@@ -518,148 +457,67 @@ h2.subtitle.img {
 
 										<div class="title_qnarev">
 											<h3>
-												전체후기 <span>5</span>건
+												전체후기 <span>${count}</span>건
 											</h3>
 											<ul class="sort">
-												<li><a
-													onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 1); return false;"
-													class="selected">최신순</a></li>
-												<li><a
-													onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 2); return false;"
-													class="">평점 높은순</a></li>
-												<li><a
-													onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 3); return false;"
-													class="">평점 낮은순</a></li>
-												<li><a
-													onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 4); return false;"
-													class="">추천순</a></li>
+												<li><a onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 1); return false;" class="selected">최신순</a></li>
+												<li><a onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 2); return false;" class="">평점 높은순</a></li>
+												<li><a onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 3); return false;" class="">평점 낮은순</a></li>
+												<li><a onclick="reloadProductBoard('review', '?rev_page=1&amp;pno=B2EEB7362EF83DEFF5C7813A67E14F0A', 4); return false;" class="">추천순</a></li>
 											</ul>
 										</div>
 										<ul class="list">
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">소*** | 2022/10/19</div>
-													<div class="title">
+											<c:forEach items="${reviewList}" var="reviewList">
+												<li>
+													<div class="info">
+														<div>
+															<span class="gradebox small point5"></span> <span class="grade">${reviewList.reviewScore}</span>
+														</div>
+														<div class="name">${reviewList.reviewEndDate}</div>
+														<div class="title">
 
 
 
 
 
-														<a onclick="openReviewDetail(782, '5');">선물용 구매</a>
+															<a onclick="openReviewDetail(782, '5');">선물용 구매</a>
 
-													</div>
-													<div class="content">스킨케어 전 제품이 들어있어서 선물용으로 좋은것 같습니다</div>
-													<a onclick="openReviewDetail(782, '5');" class="more">더보기
-														+</a>
-												</div>
+														</div>
+														<div class="content">${reviewList.reviewContent}</div>
+														<!-- <a onclick="openReviewDetail(782, '5');" class="more">더보기
+														+</a> -->
+													</div> <c:choose>
+														<c:when test="${not empty reviewList.imagePath}">
+															<div class="upfile">
+																<a onclick="openReviewDetail(787, '18');"> <img src="${reviewList.imagePath}" />
+																</a>
+															</div>
+														</c:when>
+														<c:otherwise>
+															<p></p>
+														</c:otherwise>
+													</c:choose> <%-- 													<c:if test ="${reviewList.imagePath} != null">
+														???
+														<div class="upfile">
+															<a onclick="openReviewDetail(787, '18');">
+																<img src="${reviewList.imagePath}" />
+																<span class="count">2</span>
+															</a>
+														</div>
+													</c:if> --%>
+												</li>
 
-											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">연*** | 2022/10/01</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(773, '4');">알찬 구성이 맘에 들어요</a>
-
-													</div>
-													<div class="content">알찬 구성이 맘에 들어요</div>
-													<a onclick="openReviewDetail(773, '4');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">노*** | 2022/09/28</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(769, '3');">가성비 최고</a>
-
-													</div>
-													<div class="content">이 퀄리티, 구성을 이 가격에 진짜 가성비
-														최고입니다&nbsp;&nbsp;</div>
-													<a onclick="openReviewDetail(769, '3');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">백*** | 2022/08/25</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(748, '2');">실속 포장이 맘에 들어요</a>
-
-													</div>
-													<div class="content">종이패키지로 친환경 실속 포장!</div>
-													<a onclick="openReviewDetail(748, '2');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
-											<li>
-												<div class="info">
-													<div>
-														<span class="gradebox small point5"></span> <span
-															class="grade">5</span>
-													</div>
-													<div class="name">피*** | 2022/08/25</div>
-													<div class="title">
-
-
-
-
-
-														<a onclick="openReviewDetail(734, '1');">요새 뜨는 제품이라고
-															해서 사봤어요</a>
-
-													</div>
-													<div class="content">오픈하자마자 인기라고 해서 사봤어요화장대 제품 싹
-														바꾸려구요저를 위해 산건데 선물받는 느낌이라 좋...</div>
-													<a onclick="openReviewDetail(734, '1');" class="more">더보기
-														+</a>
-												</div>
-
-											</li>
+											</c:forEach>
 										</ul>
-										<ul class="paging">
+										<!-- <ul class="paging">
 											<li></li>
 											<li><strong>1</strong></li>
 											<li></li>
-										</ul>
+										</ul> -->
 									</div>
 								</div>
 								<!-- crema.me / 상품 리뷰 / 스크립트를 수정할 경우 연락주세요 (support@crema.me) -->
-								<div id="crema-product-reviews" class="crema-product-reviews"
-									data-product-code="596"></div>
+								<div id="crema-product-reviews" class="crema-product-reviews" data-product-code="596"></div>
 								<!-- crema.me / 팝업을 띄우는 코드 / 스크립트를 수정할 경우 연락주세요 (support@crema.me) -->
 								<div class="crema-popup"></div>
 							</div>
@@ -667,7 +525,7 @@ h2.subtitle.img {
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')" class="active">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')">교환/반품/배송정보</a></li>
 								</ul>
@@ -678,8 +536,7 @@ h2.subtitle.img {
 									<div class="title_qnarev">
 										<h3>상품문의</h3>
 										<div class="btn">
-											<a href="javascript:writeQna();" class="write">글쓰기</a> <a
-												href="https://www.rexremall.com/shop/product_qna.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A"
+											<a href="javascript:writeQna();" class="write">글쓰기</a> <a href="https://www.rexremall.com/shop/product_qna.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A"
 												class="list">전체보기</a>
 										</div>
 									</div>
@@ -688,27 +545,17 @@ h2.subtitle.img {
 
 										<div class="qnarev_write">
 											<div id="qnaWriteDiv" style="display: none">
-												<form name="qnaFrm" method="post"
-													action="https://www.rexremall.com/main/exec.php"
-													target="hidden1672657829"
-													onsubmit="return checkQnaFrm(this)" style="margin: 0px"
-													enctype="multipart/form-data">
-													<input type="hidden" name="exec_file"
-														value="shop/qna_reg.exe.php"> <input type="hidden"
-														name="pno" value="B2EEB7362EF83DEFF5C7813A67E14F0A">
-													<input type="hidden" name="no" value=""> <input
-														type="hidden" name="exec" value="">
+												<form name="qnaFrm" method="post" action="https://www.rexremall.com/main/exec.php" target="hidden1672657829" onsubmit="return checkQnaFrm(this)"
+													style="margin: 0px" enctype="multipart/form-data">
+													<input type="hidden" name="exec_file" value="shop/qna_reg.exe.php"> <input type="hidden" name="pno"
+														value="B2EEB7362EF83DEFF5C7813A67E14F0A"> <input type="hidden" name="no" value=""> <input type="hidden" name="exec" value="">
 
 													<fieldset>
 														<legend class="hidden">상품문의 작성</legend>
 														<div class="name">
-															<label for="qna_name">작성자</label> <input type="text"
-																name="name" value="" id="qna_name" class="form_input"
-																placeholder="작성자"> <label for="qna_pwd">비밀번호</label>
-															<input type="password" name="pwd" id="qna_pwd"
-																class="form_input pw" placeholder="비밀번호"> <span
-																class="check"> <input type="checkbox"
-																name="secret" value="Y"> 비밀글
+															<label for="qna_name">작성자</label> <input type="text" name="name" value="" id="qna_name" class="form_input" placeholder="작성자"> <label
+																for="qna_pwd">비밀번호</label> <input type="password" name="pwd" id="qna_pwd" class="form_input pw" placeholder="비밀번호"> <span class="check">
+																<input type="checkbox" name="secret" value="Y"> 비밀글
 															</span>
 														</div>
 
@@ -723,28 +570,22 @@ h2.subtitle.img {
 														</div>
 
 														<div>
-															<label for="b_category">제목</label> <input type="text"
-																name="title" value="" id="qna_title"
-																class="form_input block" placeholder="제목">
+															<label for="b_category">제목</label> <input type="text" name="title" value="" id="qna_title" class="form_input block" placeholder="제목">
 														</div>
 														<div class="contents">
 															<label for="qna_content">글내용</label>
-															<textarea name="content" rows="20" id="qna_content"
-																class="form_input block" isplaceholderinited="true"></textarea>
+															<textarea name="content" rows="20" id="qna_content" class="form_input block" isplaceholderinited="true"></textarea>
 														</div>
 														<div>
-															<label for="qna_file1">첨부파일 1</label> <input type="file"
-																name="upfile1" id="qna_file1" class="form_input block">
+															<label for="qna_file1">첨부파일 1</label> <input type="file" name="upfile1" id="qna_file1" class="form_input block">
 														</div>
 														<div>
-															<label for="qna_file2">첨부파일 2</label> <input type="file"
-																name="upfile2" id="qna_file2" class="form_input block">
+															<label for="qna_file2">첨부파일 2</label> <input type="file" name="upfile2" id="qna_file2" class="form_input block">
 														</div>
 
 													</fieldset>
 													<div class="btn">
-														<span class="box_btn w150 large"><input
-															type="submit" value="확인"></span>
+														<span class="box_btn w150 large"><input type="submit" value="확인"></span>
 													</div>
 
 												</form>
@@ -780,7 +621,7 @@ h2.subtitle.img {
 							<div class="tab_area">
 								<ul class="tab tab_detail">
 									<li><a onclick="tabmove('0')">상품 상세정보</a></li>
-									<li><a onclick="tabmove('1')">상품후기(5)</a></li>
+									<li><a onclick="tabmove('1')">상품후기(${count})</a></li>
 									<li><a onclick="tabmove('2')">상품문의(0)</a></li>
 									<li><a onclick="tabmove('3')" class="active">교환/반품/배송정보</a></li>
 								</ul>
@@ -791,12 +632,9 @@ h2.subtitle.img {
 								<dl class="common_info">
 									<dt>배송안내</dt>
 									<dd>
-										- 한진택배를 이용하고 있습니다.<br> - 배송비용은 총 결제 금액 30,000원 미만일 경우
-										4,000원이 추가 되며, 30,000원 이상 구매 시 무료배송입니다.<br> - 배송지역은 전국이며,
-										일부 도서산간 지역의 경우 추가배송비가 발생할 수 있습니다.<br> - 배송준비기간을 포함하여 배송까지
-										평균 2~4일 소요됩니다. (일,공휴일 제외)<br> - 재고가 없거나 재입고 될 경우 5~7일
-										소요됩니다.<br> - 조기 품절 및 제품 디테일 변경시, 개별적으로 연락을 드리고 있습니다. 이 점
-										양해해 주시기 바랍니다.<br> - 입금자명이나 입금액이 다를 경우, 고객센터로 연락주시기 바랍니다.
+										- 한진택배를 이용하고 있습니다.<br> - 배송비용은 총 결제 금액 30,000원 미만일 경우 4,000원이 추가 되며, 30,000원 이상 구매 시 무료배송입니다.<br> - 배송지역은 전국이며, 일부 도서산간 지역의 경우 추가배송비가 발생할 수
+										있습니다.<br> - 배송준비기간을 포함하여 배송까지 평균 2~4일 소요됩니다. (일,공휴일 제외)<br> - 재고가 없거나 재입고 될 경우 5~7일 소요됩니다.<br> - 조기 품절 및 제품 디테일 변경시, 개별적으로 연락을 드리고
+										있습니다. 이 점 양해해 주시기 바랍니다.<br> - 입금자명이나 입금액이 다를 경우, 고객센터로 연락주시기 바랍니다.
 									</dd>
 								</dl>
 
@@ -804,12 +642,9 @@ h2.subtitle.img {
 								<dl class="common_info">
 									<dt>교환/반품</dt>
 									<dd>
-										단순 변심에 의한 반품은 상품 수령후 7일 이내에 연락 주셔야 하며, 교환/반품시 배송비는 고객부담 입니다.<br>
-										상품 하자 및 오배송 등의 사유로 교환/반품시 상품 수령후 1주일 이내에 물류센터에 도착해야하며, 반품 비용은
-										해당 쇼핑몰에서 부담 합니다.<br> 단순 변심으로 인한 제품 반품시에는 왕복 배송비를 모두
-										부담해주셔야 합니다.<br> 교환/반품 시 고객센터로 연락 부탁드립니다.<br> 교환/반품
-										불가능한 경우<br> - 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우<br> -
-										교환/반품 불가 상품 구매시<br>
+										단순 변심에 의한 반품은 상품 수령후 7일 이내에 연락 주셔야 하며, 교환/반품시 배송비는 고객부담 입니다.<br> 상품 하자 및 오배송 등의 사유로 교환/반품시 상품 수령후 1주일 이내에 물류센터에 도착해야하며, 반품 비용은 해당 쇼핑몰에서 부담 합니다.<br>
+										단순 변심으로 인한 제품 반품시에는 왕복 배송비를 모두 부담해주셔야 합니다.<br> 교환/반품 시 고객센터로 연락 부탁드립니다.<br> 교환/반품 불가능한 경우<br> - 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우<br>
+										- 교환/반품 불가 상품 구매시<br>
 									</dd>
 								</dl>
 
@@ -819,7 +654,23 @@ h2.subtitle.img {
 						</div>
 						<!-- //상품 상세정보 -->
 					</div>
-
+<div class="modal" tabindex="-1" role="dialog" id="warnModal">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">주의</h5>
+          <span aria-hidden="true">&times;</span>
+      </div>
+      <div class="modal-body">
+        <p>고객님의 유의 성분이 포함되어 있습니다</p>
+        <p><c:forEach var="allergy"  items="${allist }">${allergy }    </c:forEach></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 					<script language="Javascript">
    $(document).ready(function(){
       if (1001 == '1002') { // 히알루론에이지
@@ -934,8 +785,7 @@ h2.subtitle.img {
 			<!-- //하단 -->
 		</div>
 		<!-- placeholder 스크립트 (삭제하시면 ie 하위브라우저에서 구현되지 않습니다.) -->
-		<script
-			src="https://www.rexremall.com/_skin/skbioland_200731/img/../placeholder.js"></script>
+		<script src="https://www.rexremall.com/_skin/skbioland_200731/img/../placeholder.js"></script>
 		<script type="text/javascript">
 // 인기검색어 폰트사이즈 제어
 $(document).ready(function(){
@@ -948,20 +798,15 @@ $(document).ready(function(){
 </script>
 
 	</div>
-	<div id="mbris_bounce_section"
-		style="height: 0px; z-index: 100000; visibility: hidden; overflow: hidden;">
-		<iframe scrolling="no" id="iframe_mbris_bounce_section"
-			style="width: 100%; height: 0px; border: none; opacity: 0;"></iframe>
+	<div id="mbris_bounce_section" style="height: 0px; z-index: 100000; visibility: hidden; overflow: hidden;">
+		<iframe scrolling="no" id="iframe_mbris_bounce_section" style="width: 100%; height: 0px; border: none; opacity: 0;"></iframe>
 	</div>
 	<script type="text/javascript" defer="defer">
 $(document).ready(function() {
    });
 </script>
-	<script type="text/javascript"
-		src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js"
-		defer="defer"></script>
-	<script type="text/javascript"
-		src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui-1.11.3.min.js"></script>
+	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js" defer="defer"></script>
+	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui-1.11.3.min.js"></script>
 	<script language="JavaScript">
 </script>
 	<style type="text/css">
@@ -1019,8 +864,7 @@ $(document).ready(function() {
             });
          }
       </script>
-	<script type="text/javascript"
-		src="https://static.criteo.net/js/ld/ld.js" async="true"></script>
+	<script type="text/javascript" src="https://static.criteo.net/js/ld/ld.js" async="true"></script>
 	<script type="text/javascript">
 window.criteo_q = window.criteo_q || [];
 window.criteo_q.push(
@@ -1040,10 +884,8 @@ window.criteo_q.push(
    }
 </script>
 	<span itemscope="" itemtype="http://schema.org/Organization">
-		<link itemprop="url" href="https://www.rexremall.com"> <a
-		itemprop="sameAs" href="https://www.facebook.com/officialrexre/"></a>
-		<a itemprop="sameAs" href="https://pf.kakao.com/_xjFMxbT"></a> <a
-		itemprop="sameAs" href="https://www.instagram.com/rexre.official"></a>
+		<link itemprop="url" href="https://www.rexremall.com"> <a itemprop="sameAs" href="https://www.facebook.com/officialrexre/"></a> <a itemprop="sameAs"
+		href="https://pf.kakao.com/_xjFMxbT"></a> <a itemprop="sameAs" href="https://www.instagram.com/rexre.official"></a>
 	</span>
 
 	<div id="criteo-tags-div" style="display: none;"></div>

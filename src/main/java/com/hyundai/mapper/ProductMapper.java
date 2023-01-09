@@ -10,12 +10,12 @@ import com.hyundai.domain.productVO;
 
 public interface ProductMapper {
 	
-	//»óÇ° ÀüÃ¼
-	public List<productVO> getListWithPaging(Criteria cri); // ÆÄ¶ó¹ÌÅÍ ¹Þ¾Æ¼­ ÆäÀÌÂ¡ º¸¿©ÁÜ -> xml ºÎ¸¦ °Í
+	//ï¿½ï¿½Ç° ï¿½ï¿½Ã¼
+	public List<productVO> getListWithPaging(Criteria cri); // ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ ï¿½Þ¾Æ¼ï¿½ ï¿½ï¿½ï¿½ï¿½Â¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ -> xml ï¿½Î¸ï¿½ ï¿½ï¿½
 	
 	public int getTotalCount();
 	
-	//»óÇ° Ä«Å×°í¸®
+	//ï¿½ï¿½Ç° Ä«ï¿½×°ï¿½
 	public List<productVO> getCategoryListWithPaging(@Param("cri") Criteria cri, @Param("productCategory") String productCategory);
 	
 	public int getCategoryTotalCount(@Param("productCategory") String productCategory);
@@ -25,8 +25,10 @@ public interface ProductMapper {
 	
 	public int getNewBestTotalCount();
 	
-	//»óÇ°»ó¼¼
+	//ï¿½ï¿½Ç°ï¿½ï¿½
 	public List<productDetailVO> getProductDetail(@Param("productId") Long productId);
 	
 	public int getProductDetailCount(Long productId);
+
+	public List<String> getAllergies(@Param("id") String id,@Param("productId") Long productId);
 }
