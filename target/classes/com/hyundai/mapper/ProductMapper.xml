@@ -120,7 +120,16 @@
 		]]>	
 	</select>
 	
-		<!-- 상세페이지 조회수 -->
+	
+	<!-- 상세페이지 상품사진 가져오기 -->
+	<select id="getProductImage"
+		resultType = "String">
+		SELECT IMAGE_PATH
+		FROM PRODUCTIMAGES
+		WHERE PRODUCTS_PRODUCT_ID = #{productId} and IMAGE_CATEGORY = '상품'		
+	</select>
+	
+	<!-- 상세페이지 조회수 -->
 	<update id="getProductDetailCount">
 		UPDATE products
 		SET product_click = product_click + 1

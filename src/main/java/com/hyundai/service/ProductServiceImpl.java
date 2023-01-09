@@ -68,5 +68,10 @@ public class ProductServiceImpl implements ProductService {
 		List<String> list = mapper.getAllergies(id, productId);
 		return list;
 	}
-
+	@Override
+	public String getProductImage(Long productId) {
+		
+		return mapper.getProductImage(productId);
+	}
+	
 }

@@ -22,4 +22,6 @@ public interface ProductService {
 	//�������� + ��ȸ��
 	public List<productDetailVO> getProductDetail(Long productId);
 	public List<String> getAllergies(String id, Long productId);
+
+	public String getProductImage(Long productId);
 }
