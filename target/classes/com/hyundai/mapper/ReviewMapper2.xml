@@ -2,15 +2,28 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-<!--  /* ***********************
- * @function : ReplyMapper2
- * @author : Seeun Lee
- * @Date : 
- ***************************/ -->
-   
+
+<!-- /* *********************** * @function : ReplyMapper2 * @author : Seeun 
+	Lee * @Date : ***************************/ -->
+
 <mapper namespace="com.hyundai.mapper.ReviewMapper2">
-	
+
+	<insert id="insertReview2">
+
+		INSERT INTO reviews(REVIEWID, REVIEWTITLE,
+		REVIEWCONTENT,
+		REVIEWCATEGORY,
+		REVIEWREGDATE,
+		MEMBERSMEMBERID,REVIEWSCORE,PRODUCTID,REVIEWENDDATE)
+
+		VALUES(REVIEW_BOARDID_SEQ.nextval, #{title}, #{content},
+		'상품후기',sysdate,
+		#{member_id},5,#{product_id},
+		sysdate)
+
+	</insert>
+
+
 	<!-- getReview2WithPaging SELECT 부분 -->
 	<select id="getReview2WithPaging"
 		resultType="com.hyundai.domain.Review2VO">
@@ -23,14 +36,13 @@
 		
 		]]>
 	</select>
-	
-	<select id="getReview2TotalCount"
-		resultType="int">
+
+	<select id="getReview2TotalCount" resultType="int">
 		<![CDATA[
 			SELECT COUNT(REVIEWID)
 			FROM REVIEWS
 			WHERE PRODUCTID = #{productId}
 		]]>
 	</select>
-	
+
 </mapper>

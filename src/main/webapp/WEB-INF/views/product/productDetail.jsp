@@ -191,9 +191,7 @@ h2.subtitle.img {
 									<div id="mimg_div" class="img">
 										<a href="javascript:zoomView('B2EEB7362EF83DEFF5C7813A67E14F0A', '600', '800');">
 											<div id="zoom_frame" style="position: relative;">
-												<img id="mainImg"
-													src="${productImage}"
-													width="580" height="711" jquery_pzoom=""/>
+												<img id="mainImg" src="${productImage}" width="580" height="711" jquery_pzoom="" />
 											</div>
 										</a>
 									</div>
@@ -292,11 +290,9 @@ h2.subtitle.img {
 									<!-- 버튼 -->
 
 									<div class="btn">
-										<span id="cartBtn" class="box_btn w215 h60 fs15 medium white3"> 
-										<a href="javascript:insertCart(${productDetail[0].productId},<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.member.userid"/>
+										<span id="cartBtn" class="box_btn w215 h60 fs15 medium white3"> <a href="javascript:insertCart(${productDetail[0].productId},<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.member.userid"/>
 </sec:authorize>);">CART</a>
-										</span> <span class="box_btn w215 h60 fs15 medium buy"> 
-										<a href="javascript:insertCart(${productDetail[0].productId},<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.member.userid"/>
+										</span> <span class="box_btn w215 h60 fs15 medium buy"> <a href="javascript:insertCart(${productDetail[0].productId},<sec:authorize access="isAuthenticated()"><sec:authentication property="principal.member.userid"/>
 </sec:authorize>);"> BUY NOW </a>
 										</span> <span id="wishBtn" class="box_btn w91 h60 white3 wish "></span>
 										<div class="pay"></div>
@@ -434,7 +430,7 @@ h2.subtitle.img {
 									<div class="title_qnarev">
 										<h3>상품후기</h3>
 										<div class="btn">
-											<a onclick="writeReviewWithoutRa(596, '');" class="write">글쓰기</a> <a href="/shop/product_review_list.php" class="list">전체보기</a>
+											<a href="/review/insert?id=${productDetail[0].productId}" class="write">글쓰기</a> <a href="/review/list" class="list">전체보기</a>
 										</div>
 									</div>
 									<%-- <div class="summary">
@@ -547,7 +543,7 @@ h2.subtitle.img {
 									<div class="title_qnarev">
 										<h3>상품문의</h3>
 										<div class="btn">
-											<a href="javascript:writeQna();" class="write">글쓰기</a> <a href="https://www.rexremall.com/shop/product_qna.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A" class="list">전체보기</a>
+											<a href="/review/insert?id=${productDetail[0].productId}" class="write">글쓰기</a> <a href="https://www.rexremall.com/shop/product_qna.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A" class="list">전체보기</a>
 										</div>
 									</div>
 									<div id="detail_qna_ajax_list">
@@ -666,25 +662,7 @@ h2.subtitle.img {
 						</div>
 						<!-- //상품 상세정보 -->
 					</div>
-					<div class="modal" tabindex="-1" role="dialog" id="warnModal">
-						<div class="modal-dialog modal-dialog-centered" role="document">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h5 class="modal-title">주의</h5>
-									<span aria-hidden="true">&times;</span>
-								</div>
-								<div class="modal-body">
-									<p>고객님의 유의 성분이 포함되어 있습니다</p>
-									<p>
-										<c:forEach var="allergy" items="${allist }">${allergy }    </c:forEach>
-									</p>
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-								</div>
-							</div>
-						</div>	
-					</div>
+
 					<script language="Javascript">
    $(document).ready(function(){
       if (1001 == '1002') { // 히알루론에이지
@@ -907,5 +885,25 @@ window.criteo_q.push(
 	</span>
 
 	<div id="criteo-tags-div" style="display: none;"></div>
+
+	<div class="modal" tabindex="-1" role="dialog" id="warnModal">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">주의</h5>
+					<span aria-hidden="true">&times;</span>
+				</div>
+				<div class="modal-body">
+					<p>고객님의 유의 성분이 포함되어 있습니다</p>
+					<p>
+						<c:forEach var="allergy" items="${allist }">${allergy }    </c:forEach>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

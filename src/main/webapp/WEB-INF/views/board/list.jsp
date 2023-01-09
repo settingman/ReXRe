@@ -36,8 +36,6 @@
 
 						<div class="board_search">
 							<form method="get">
-							
-								
 								<input type="hidden" name="boardSubcategory" value="FAQ">
 								<input type="hidden" name="boardCategory" value="${param.boardCategory}">
 

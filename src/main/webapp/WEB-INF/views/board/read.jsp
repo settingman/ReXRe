@@ -66,6 +66,11 @@
 											<th scope="row"><strong class="reqd">*</strong>내용<span class="com_txt_p">(2000자 이하)</span></th>
 											<td>${board.boardContent}</td>
 										</tr>
+										<tr>
+											<th scope="row"><strong class="reqd">*</strong>사진</th>
+											<td><img src="${board.faqsThumbImg}" class="thumbImg" /></td>
+										</tr>
+
 
 									</tbody>
 								</table>

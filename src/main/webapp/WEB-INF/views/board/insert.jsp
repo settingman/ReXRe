@@ -1,88 +1,87 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <%@ include file="../include/head.jsp"%>
 </head>
 <body>
-	<div id="skin_board_index_big_div">
-		<div id="wrapper">
+   <div id="skin_board_index_big_div">
+      <div id="wrapper">
 
 
-			<!-- 상단 -->
-			<%@ include file="../include/header.jsp"%>
-			<!-- //상단 -->
+         <!-- 상단 -->
+         <%@ include file="../include/header.jsp"%>
+         <!-- //상단 -->
 
 
-			<div id="cnt">
-				<div class="cntbody">
+         <div id="cnt">
+            <div class="cntbody">
 
-					<h2 class="subtitle">쇼핑FAQ 등록</h2>
+               <h2 class="subtitle">쇼핑FAQ 등록</h2>
 
+               <form id="faqForm" name="faqForm" method="Post" action="insert?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
+                  <input type="hidden" name="pageParam" id="pageParam"
+                     value="${pageMaker.pageParam}">
 
-					<!-- // 멀티파트 form 은 토큰값을 action url 뒤에 붙여준다. -->
-					<form id="faqForm" name="faqForm" method="Post" action="insert?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
-
-
-						<input type="hidden" name="pageParam" id="pageParam" value="${pageMaker.pageParam}">
-
-
-
-
-						<fieldset>
-							<legend>쇼핑FAQ 게시글 작성</legend>
-							<div class="tblwrap">
-								<table class="tbl_wtype1">
-									<caption>게시글 작성</caption>
-									<colgroup>
-										<col style="width: 140px">
-										<col>
-									</colgroup>
-									<tbody>
-										<tr>
-											<th scope="row"><strong class="reqd"></strong> 게시판</th>
-											<td class="storeQue">
-												<p>FAQ</p> <input type="hidden" name="boardSubcategory" maxlength="150" value="FAQ">
-											</td>
-										</tr>
-										<tr>
-											<th scope="row"><strong class="reqd">*</strong>문의 종류</th>
-											<td>
-												<div class="form-group col-sm-5">
-													<select class="form-control" id="boardCategory" name="boardCategory" style="width: 150px">
-														<option value=""></option>
-														<option value="주문/결제">주문결제</option>
-														<option value="배송">배송</option>
-														<option value="취소">취소</option>
-														<option value="교환/환불">교환/환불</option>
-														<option value="회원">회원</option>
-														<option value="기타">기타</option>
-													</select>
-												</div>
-											</td>
-										</tr>
+                  <fieldset>
+                     <legend>쇼핑FAQ 게시글 작성</legend>
+                     <div class="tblwrap">
+                        <table class="tbl_wtype1">
+                           <caption>게시글 작성</caption>
+                           <colgroup>
+                              <col style="width: 140px">
+                              <col>
+                           </colgroup>
+                           <tbody>
+                              <tr>
+                                 <th scope="row"><strong class="reqd"></strong> 게시판</th>
+                                 <td class="storeQue">
+                                    <p>FAQ</p> <input type="hidden" name="boardSubcategory"
+                                    maxlength="150" value="FAQ">
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <th scope="row"><strong class="reqd">*</strong>문의 종류</th>
+                                 <td>
+                                    <div class="form-group col-sm-5">
+                                       <select class="form-control" id="boardCategory"
+                                          name="boardCategory" style="width: 150px">
+                                          <option value=""></option>
+                                          <option value="주문/결제">주문결제</option>
+                                          <option value="배송">배송</option>
+                                          <option value="취소">취소</option>
+                                          <option value="교환/환불">교환/환불</option>
+                                          <option value="회원">회원</option>
+                                          <option value="기타">기타</option>
+                                       </select>
+                                    </div>
+                                 </td>
+                              </tr>
 
 
-										<tr>
-											<th scope="row"><strong class="reqd">*</strong>제목</th>
-											<td><input type="text" id="boardTitle" name="boardTitle" title="제목" class="w_all"></td>
-										</tr>
-										<tr>
-											<th scope="row"><strong class="reqd">*</strong>내용<span class="com_txt_p">(2000자 이하)</span></th>
-											<td><textarea id="boardContent" name="boardContent" title="내용" cols="30" rows="10" maxlength="2000" placeholder="내용을 입력해주세요"></textarea></td>
-										</tr>
+                              <tr>
+                                 <th scope="row"><strong class="reqd">*</strong>제목</th>
+                                 <td><input type="text" id="boardTitle" name="boardTitle"
+                                    title="제목" class="w_all"></td>
+                              </tr>
+                              <tr>
+                                 <th scope="row"><strong class="reqd">*</strong>내용<span
+                                    class="com_txt_p">(2000자 이하)</span></th>
+                                 <td><textarea id="boardContent" name="boardContent"
+                                       title="내용" cols="30" rows="10" maxlength="2000"
+                                       placeholder="내용을 입력해주세요"></textarea></td>
+                              </tr>
 
-										<tr>
-											<th scope="row"><strong class="reqd">*</strong>사진업로드</th>
-											<td>
-												<div class="inputArea">
-													<label for="faqsImg">이미지</label>
-													<input type="file" id="faqsImg" name="file" />
-													<div class="select_img">
-														<img src="" />
-													</div>
-
-													<script>
+                              <tr>
+                              <th scope="row"><strong class="reqd"></strong>사진업로드</th>
+                                 <td>
+                                 <div class="inputArea">
+                                    <label for="faqsImg">이미지</label>
+                                    <input type="file" id="faqsImg" name="file" />
+                                    <div class="select_img"><img src="" /></div>
+                                    
+                                    <script>
                                      $("#faqsImg").change(function(){
                                       if(this.files &amp;&amp; this.files[0]) {
                                        var reader = new FileReader;
@@ -93,42 +92,45 @@
                                       }
                                      });
                                     </script>
+                                  
+                                 </div>
+                                 </td>
+                              </tr>
+                           
+                           </tbody>
+                        </table>
+                     </div>
 
-												</div>
-											</td>
-										</tr>
+                     <div class="btnwrap">
+                        <input type="button" id="cancleBtn" value="취소" class="btn wt">
+                        <input type="button" id="registerBtn" value="등록"
+                           class="btn gray mr0">
+                     </div>
 
-									</tbody>
-								</table>
-							</div>
-
-							<div class="btnwrap">
-								<input type="button" id="cancleBtn" value="취소" class="btn wt">
-								<input type="button" id="registerBtn" value="등록" class="btn gray mr0">
-							</div>
-
-						</fieldset>
-					</form>
-
-
-				</div>
-			</div>
+                  </fieldset>
+               </form>
 
 
-
-			<!-- 하단 -->
-			<%@ include file="../include/footer.jsp"%>
-			<!-- //하단 -->
+            </div>
+         </div>
 
 
-		</div>
-	</div>
+
+         <!-- 하단 -->
+         <%@ include file="../include/footer.jsp"%>
+         <!-- //하단 -->
 
 
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/css_files/beta.fix.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/common/common_function.js"></script>
+      </div>
+   </div>
 
-	<script>
+
+   <script type="text/javascript"
+      src="${pageContext.request.contextPath}/resources/css_files/beta.fix.js"></script>
+   <script type="text/javascript"
+      src="${pageContext.request.contextPath}/resources/assets/common/common_function.js"></script>
+
+   <script>
       //취소버튼
       $("#cancleBtn").click(function() {
          location.href = "list";

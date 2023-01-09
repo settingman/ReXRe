@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -63,12 +64,11 @@ public class BoardController {
 	// 게시판 insert 페이지
 
 	@GetMapping("/insert")
-	public void register() {
-		
-		System.out.println("@@@@@@@@@@@@b나야");
+	public String register() {
+		System.out.println("@@@@@@@@@@@@board/insert@@@@");
 		log.info("게시판 등록 페이지 ");
 
-		
+		return "/board/insert";
 	}
 
 	// 게시글 등록 페이지에서 등록 버튼을 누르면 insert 후에 리스트 페이지 첫 화면으로 이동 -> insert.jsp
@@ -108,9 +108,37 @@ public class BoardController {
 	}
 
 	@PostMapping("/update") // 게시글 수정(update) 페이지. 수정 버튼을 누르면 실행됨
-	public String update(BoardVO board, RedirectAttributes rttr) throws Exception {
+	public String update(BoardVO board, RedirectAttributes rttr, @RequestPart(required = false) MultipartFile file,
+			HttpServletRequest req) throws Exception {
+
+		// 새로운 파일이 등록되었는지 확인
+		if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			// 기존 파일을 삭제
+			new File(uploadPath + req.getParameter("faqsImg")).delete();
+			new File(uploadPath + req.getParameter("faqsThumbImg")).delete();
+
+			// 새로 첨부한 파일을 등록
+			String imgUploadPath = uploadPath + File.separator + "imgUpload";
+			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+			String fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(),
+					ymdPath);
+
+			board.setFaqsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			board.setFaqsThumbImg(
+					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+
+		} else { // 새로운 파일이 등록되지 않았다면
+			// 기존 이미지를 그대로 사용
+			board.setFaqsImg(req.getParameter("gdsImg"));
+			board.setFaqsThumbImg(req.getParameter("gdsThumbImg"));
+
+		}
+
+//       adminService.goodsModify(vo);
+
 		// 수정되는 값이 있으면 success 결과를 attribute 값으로 전송함
 		if (service.update(board)) {
+
 			rttr.addFlashAttribute("result", "success");
 		}
 		return "redirect:read?boardId=" + board.getBoardId();

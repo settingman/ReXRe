@@ -108,6 +108,7 @@ public class ProductController {
 			@RequestParam("member_idid") String id, Model model) throws Exception {
 		System.out.println("controller");
 		model.addAttribute("allist", productService.getAllergies(id, productId));
+		model.addAttribute("productImage", productService.getProductImage(productId));
 		model.addAttribute("productDetail", productService.getProductDetail(productId));
 		model.addAttribute("reviewList", reviewService.getReviewWithPaging(productId));
 		model.addAttribute("count", reviewService.getReview2TotalCount(productId));

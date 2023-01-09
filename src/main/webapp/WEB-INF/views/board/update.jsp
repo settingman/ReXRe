@@ -23,7 +23,7 @@ pageContext.setAttribute("replaceChar", "\n");
 
 					<h2 class="subtitle">쇼핑FAQ 업데이트</h2>
 
-					<form id="faqForm" name="faqForm" method="post" action="update">
+					<form id="faqForm" name="faqForm" method="post" action="update?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
 
 						<input type="hidden" name="boardId" value="${board.boardId}">
 						<input type="hidden" name="boardSubcategory" value="${board.boardSubcategory}">
@@ -70,6 +70,33 @@ pageContext.setAttribute("replaceChar", "\n");
 											<th scope="row"><strong class="reqd">*</strong>내용<span class="com_txt_p">(2000자 이하)</span></th>
 											<td><textarea id="boardContent" name="boardContent" title="내용" cols="30" rows="10" maxlength="2000" placeholder="내용을 입력해주세요">${fn:replace(board.boardContent, "<br>", replaceChar)}</textarea></td>
 										</tr>
+										<tr>
+											<th scope="row"><strong class="reqd">*</strong>사진업로드</th>
+											<td>
+												<div class="inputArea">
+													<label for="faqsImg">이미지</label>
+													<input type="file" id="faqsImg" name="file" />
+													<div class="select_img">
+														<img src="" />
+													</div>
+													<input type="hidden" name="faqsImg" value="${faqs.faqsImg}" />
+													<input type="hidden" name="faqsThumbImg" value="${faqss.faqsThumbImg}" />
+
+													<script>
+                                     $("#faqsImg").change(function(){
+                                      if(this.files &amp;&amp; this.files[0]) {
+                                       var reader = new FileReader;
+                                       reader.onload = function(data) {
+                                        $(".select_img img").attr("src", data.target.result).width(500);          
+                                       }
+                                       reader.readAsDataURL(this.files[0]);
+                                      }
+                                     });
+                                    </script>
+
+												</div>
+											</td>
+										</tr>
 
 									</tbody>
 								</table>
@@ -102,34 +129,36 @@ pageContext.setAttribute("replaceChar", "\n");
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/common/common_function.js"></script>
 
 	<script>
-		//취소버튼
-		$("#cancleBtn").click(function() {
-			location.href = "list";
-		});
+      //취소버튼
+      $("#cancleBtn").click(function() {
+            location.href="list";
+      });
+      
+      // 등록버튼
+      $("#registerBtn").click(function() {
+         
+         if ($("#boardCategory").val() == "") {
+            alert("문의종류를 선택해주시길 바랍니다.");
+            $('#boardCategory').focus();
+            return false;
+         }
+         
+         if ($('#boardTitle').val() == "") {
+            alert("제목을 입력해주시길 바랍니다.");
+            $('#boardTitle').focus();
+            return false;
+         }
+         
+         if ($('#boardContent').val() == "") {
+            alert("내용을 입력해주시길 바랍니다.");
+            $('#boardContent').focus();
+            return false;
+         }
+         
+         $("#faqForm").submit();      
+      });
 
-		// 등록버튼
-		$("#registerBtn").click(function() {
 
-			if ($("#boardCategory").val() == "") {
-				alert("문의종류를 선택해주시길 바랍니다.");
-				$('#boardCategory').focus();
-				return false;
-			}
-
-			if ($('#boardTitle').val() == "") {
-				alert("제목을 입력해주시길 바랍니다.");
-				$('#boardTitle').focus();
-				return false;
-			}
-
-			if ($('#boardContent').val() == "") {
-				alert("내용을 입력해주시길 바랍니다.");
-				$('#boardContent').focus();
-				return false;
-			}
-
-			$("#faqForm").submit();
-		});
-	</script>
+   </script>
 </body>
 </html>

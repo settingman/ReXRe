@@ -73,7 +73,6 @@ public class SecurityController {
 	}
 
 	@PostMapping("/join")
-	@ResponseBody
 	public String joinPOST(@RequestParam("member_idid") String member_idid,
 			@RequestParam("member_pw") String member_pw,
 			@RequestParam("member_name") String member_name,

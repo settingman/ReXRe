@@ -101,14 +101,13 @@
 		UPDATE faqs
 		SET
 		boardtitle=#{boardTitle},
-		boardcontent=
-		#{boardContent},
+		boardcontent=#{boardContent},
 		boardcategory= #{boardCategory},
-		boardsubcategory=
-		#{boardSubcategory},
+		boardsubcategory=#{boardSubcategory},
 		membersmemberid=#{membersMemberId},
-		boardENDDATE=
-		sysdate
+		boardENDDATE=sysdate,
+		faqsThumbImg=#{faqsThumbImg},
+		faqsImg=#{faqsImg}
 		WHERE boardid= #{boardId}
 	</update>
 
