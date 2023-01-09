@@ -13,29 +13,30 @@ import com.hyundai.mapper.ProductMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+
 @Service
 @Log4j
 public class ProductServiceImpl implements ProductService {
 
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
-	
-	//��ǰ ��ü list �ҷ�����
+
+	// 占쏙옙품 占쏙옙체 list 占쌀뤄옙占쏙옙占쏙옙
 	@Override
 	public List<productVO> getListWithPaging(Criteria cri) throws Exception {
-		log.info(">>> ��ǰ ����¡ ó�� list �ҷ�����" + cri);
+		log.info(">>> 占쏙옙품 占쏙옙占쏙옙징 처占쏙옙 list 占쌀뤄옙占쏙옙占쏙옙" + cri);
 		return mapper.getListWithPaging(cri);
 	}
 
 	@Override
 	public int getTotalCount() {
-		log.info(">>> ��ǰ ��ü ����");		
+		log.info(">>> 占쏙옙품 占쏙옙체 占쏙옙占쏙옙");
 		return mapper.getTotalCount();
 	}
 
 	@Override
 	public List<productVO> getCategoryListWithPaging(Criteria cri, String productCategory) {
-		log.info(">>> ī�װ� ��ǰ ����¡");
+		log.info(">>> 카占쌓곤옙 占쏙옙품 占쏙옙占쏙옙징");
 		return mapper.getCategoryListWithPaging(cri, productCategory);
 	}
 
@@ -54,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getNewBestTotalCount();
 	}
 
-	//�������� ��ȸ + count 
+	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙회 + count
 	@Override
 	@Transactional
 	public List<productDetailVO> getProductDetail(Long productId) {
@@ -68,10 +69,16 @@ public class ProductServiceImpl implements ProductService {
 		List<String> list = mapper.getAllergies(id, productId);
 		return list;
 	}
+
 	@Override
 	public String getProductImage(Long productId) {
-		
+
 		return mapper.getProductImage(productId);
 	}
-	
+
+	@Override
+	public List<productVO> getProductSearch(Criteria cri, String searchWord) {
+		// TODO Auto-generated method stub
+		return mapper.getProductSearch(cri, searchWord);
+	}
 }

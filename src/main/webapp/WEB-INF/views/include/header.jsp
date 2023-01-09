@@ -149,25 +149,16 @@
 			</div>
 			<div id="box_search" class="box_search">
 				<span class="close" onclick="toggle_view('box_search');"></span>
-				<form method="get" action="https://www.rexremall.com/shop/search_result.php">
+				<!-- 검색 -->
+				<form method="get" id="seachForm" action="/product/productSearch">
 					<div class="box">
-						<input type="text" name="search_str" value="" class="form_input block basic_search" placeholder="검색어 입력" />
-						<input type="image" src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search.png" alt="검색" class="btn" />
+						<input type="text" name="searchWord" value="" class="form_input block basic_search" placeholder="검색어 입력" />
+						<input type="image" src="https://www.rexremall.com/_skin/skbioland_200731/img/button/hd_search2.png" alt="검색" class="btn" />
 					</div>
 				</form>
-				<div class="hot_keyword">
-					<h5>인기검색어</h5>
-					<ul class="list">
-						<li><a href="/shop/search_result.php?search_str=콤부차">#콤부차</a></li>
-						<li><a href="/shop/search_result.php?search_str=콤부차">#비건</a></li>
-						<li><a href="/shop/search_result.php?search_str=콤부차">#친환경</a></li>
-						<li><a href="/shop/search_result.php?search_str=인텐시브"># 장벽크림</a></li>
-						<li><a href="/shop/search_result.php?search_str=히알루론">#주름개선</a></li>
-						<li><a href="/shop/search_result.php?search_str=크림">#보습</a></li>
-						<li><a href="/shop/search_result.php?search_str=히알루론">#히알루론</a></li>
-						<li><a href="/shop/search_result.php?search_str=앰플">#앰플</a></li>
-					</ul>
-				</div>
+
+				<!-- 검색끝 -->
+				
 			</div>
 		</div>
 	</div>

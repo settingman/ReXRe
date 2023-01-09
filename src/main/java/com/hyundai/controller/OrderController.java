@@ -55,83 +55,62 @@ public class OrderController {
 	}
 
 	@PostMapping("/shop/oredercomplete")
-	public String OrederComplete(OrderDTO orderDTO, Model model,Principal principal) {
-		
+	public String OrederComplete(OrderDTO orderDTO, Model model, Principal principal) {
 
 		System.out.println("ordercomplete");
-		
-		
+
 		// 세션에서 맴버 받아오기.
 		Integer member_id = memberMapper.idid(principal.getName());
-		
+
 		OrderCompleteDTO orderCompleteDTO = orderService.insertOrder(orderDTO, member_id);
-		
-		
+
 		System.out.println(orderCompleteDTO);
-		
-		
-		model.addAttribute("orderCompleteDTO", orderCompleteDTO);		
-		
+
+		model.addAttribute("orderCompleteDTO", orderCompleteDTO);
 
 		return "order/orderComplete";
 
 	}
-	
-	
+
 	// 주문 조회ㅍ
 	@GetMapping("/shop/orederlist")
 	public String OrederList(Model model, Principal principal) {
-		
 
 		System.out.println("orderList");
-		
-		
+
 		// 세션에서 맴버 받아오기.
 		Integer member_id = memberMapper.idid(principal.getName());
-		
+
 		System.out.println(member_id);
-		
+
 		List<OrderList> orderList = orderService.OrderList(member_id);
-		
+
 		List<String> itemList = new ArrayList<String>();
-		
-		
-		for(OrderList i: orderList) {
-			
+
+		for (OrderList i : orderList) {
+
 			List<String> orderListItem = orderService.OrderListItems(i.getOrderId());
-			
-			
-			System.out.println("오더아이디");
-			
-			System.out.println(i.getOrderId());
-			
-			
-			if(orderListItem.size()>1) {
-				
-				itemList.add(orderListItem.get(0) + "외 " + (orderListItem.size()-1) + "개" );
+
+			if (orderListItem.size() > 1) {
+
+				itemList.add(orderListItem.get(0) + "외 " + (orderListItem.size() - 1) + "개");
 			}
-			
+
 			else {
 				itemList.add(orderListItem.get(0));
 			}
-			
+
 		}
-			
-		
-		for( String i : itemList) {
+
+		for (String i : itemList) {
 			System.out.println(i);
 		}
-		
-		
-		
-		model.addAttribute("orderList", orderList);		
-		model.addAttribute("itemList", itemList);		
-		
+
+		model.addAttribute("orderList", orderList);
+		model.addAttribute("itemList", itemList);
 
 		return "order/OrderList";
 
 	}
-	
-	
 
 }

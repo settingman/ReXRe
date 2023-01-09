@@ -10,7 +10,7 @@
 	<select id="getList2"
 		resultType="com.hyundai.domain.board.BoardVO">
   <![CDATA[
-  	select * from faqs where boardid > 0
+     select * from faqs where boardid > 0
   ]]>
 	</select>
 
@@ -36,10 +36,10 @@
 	<!-- WHERE boardsubcategory=#{boardSubcategory} -->
 	<select id="getTotalCount" resultType="int"
 		parameterType="com.hyundai.domain.PageMaker">
-	  	<![CDATA[  		
-	  	   SELECT count(boardid) FROM faqs WHERE boardsubcategory=#{boardSubcategory}
-	  	  
-	  	]]>
+        <![CDATA[        
+           SELECT count(boardid) FROM faqs WHERE boardsubcategory=#{boardSubcategory}
+          
+        ]]>
 		<include refid="search" />
 	</select>
 
@@ -48,23 +48,23 @@
 	<select id="getListWithPaging"
 		resultType="com.hyundai.domain.board.BoardVO"
 		parameterType="com.hyundai.domain.PageMaker">
-  	<![CDATA[
-  	  SELECT * FROM 
+     <![CDATA[
+       SELECT * FROM 
              ( 
                 SELECT  rownum AS rn , A.* 
                 
                 FROM ( 
-                	
+                   
                 SELECT * FROM faqs WHERE boardsubcategory=#{boardSubcategory}  
       ]]>
 
-		<include refid="search" />                    	
+		<include refid="search" />                       
     <![CDATA[
                 ORDER BY boardid DESC ) A  
              
              )             
       WHERE rn BETWEEN #{pageBegin} and #{pageEnd}
-  	]]>
+     ]]>
 	</select>
 
 	<!-- 게시판 등록 -->
@@ -73,10 +73,11 @@
 
 		INSERT INTO faqs(boardid, membersmemberid, boardtitle,
 		boardcontent,
-		boardcategory, boardsubcategory, boardregdate)
+		boardcategory, boardsubcategory, boardregdate, faqsThumbImg, faqsImg)
 
 		VALUES(FAQS_BOARDID_SEQ.nextval, #{membersMemberId}, #{boardTitle},
-		#{boardContent}, #{boardCategory},#{boardSubcategory}, sysdate)
+		#{boardContent}, #{boardCategory},#{boardSubcategory}, sysdate,
+		#{faqsThumbImg}, #{faqsImg})
 	</insert>
 
 	<!-- 게시판 조회 -->

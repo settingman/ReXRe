@@ -55,16 +55,16 @@ var click_prd_finish=click_prd_limit+1;
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/assets/common/HuskyEZCreator.js"></script>
 <script type="text/javascript">
 var date_picker_default = {
-	'monthNamesShort':['1','2','3','4','5','6','7','8','9','10','11','12'],
-	'dayNamesMin':[_lang_pack.data_week_sun, _lang_pack.data_week_mon, _lang_pack.data_week_tue, _lang_pack.data_week_wed, _lang_pack.data_week_thu, _lang_pack.data_week_fri, _lang_pack.data_week_sat],
-	'weekHeader':'Wk',
-	'dateFormat':'yy-mm-dd',
-	'autoSize':false,
-	'changeYear':true,
-	'changeMonth':true,
-	'showButtonPanel':true,
-	'currentText':_lang_pack.common_info_today+'2023-01-01',
-	'closeText':_lang_pack.coommon_info_close
+   'monthNamesShort':['1','2','3','4','5','6','7','8','9','10','11','12'],
+   'dayNamesMin':[_lang_pack.data_week_sun, _lang_pack.data_week_mon, _lang_pack.data_week_tue, _lang_pack.data_week_wed, _lang_pack.data_week_thu, _lang_pack.data_week_fri, _lang_pack.data_week_sat],
+   'weekHeader':'Wk',
+   'dateFormat':'yy-mm-dd',
+   'autoSize':false,
+   'changeYear':true,
+   'changeMonth':true,
+   'showButtonPanel':true,
+   'currentText':_lang_pack.common_info_today+'2023-01-01',
+   'closeText':_lang_pack.coommon_info_close
 }
 /* Timer */
 const use_ts_mark_1 = 'Y';
@@ -77,9 +77,7 @@ const use_ts_mark_4 = 'Y';
 const ts_mark_4 = '';
 </script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/_skin/basic_faq/style.css">
-<script type="text/javascript" defer='defer'>$(document).ready(function(){setInterval("wingQuickSlide(228, 0, 0, 5)", 10);});</script>
 <script src="${pageContext.request.contextPath}/resources/assets/skin/slick.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/skin/slick.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/skin/animate.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/assets/common/contents.css">
-

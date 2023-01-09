@@ -166,6 +166,8 @@
                                              onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=F0E52B27A7A5D6A1A87373DFFA53DBE5&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD
                                              OUT</div>
                                           <!-- //상품품절 영역 -->
+                                          
+                                          
                                        </div>
                                        <div class="info">
                                           <ul class="quick" style="display: none">
@@ -335,9 +337,9 @@
                                              <sec:authorize access="isAnonymous()">
                                                 <a href="/product/productDetail?productId=1" tabindex="-1">
                                              </sec:authorize>
-                                             <%-- <sec:authorize access="isAuthenticated()">
+                                             <sec:authorize access="isAuthenticated()">
                                                 <a href="/product/productDetailid?productId=1&member_idid=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}" tabindex="-1">
-                                             </sec:authorize> --%>
+                                             </sec:authorize>
                                              <img
                                                 src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg" width="380" height="466" /></a>
                                           </div>
@@ -394,7 +396,7 @@
                                     <div class="box">
                                        <div class="img">
                                           <div class="prdimg img1226">
-                                             <a href="/product/productDetail?productId=2" tabindex="0"><img
+                                             <a href="/product/productDetail?productId=3" tabindex="0"><img
                                                 src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/2a81785d3198690a505a063c87217b3a.jpg" width="380" height="466" /></a>
                                           </div>
                                           <!-- 상품품절 영역 -->

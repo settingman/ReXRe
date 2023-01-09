@@ -23,58 +23,50 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/review/*")
 @AllArgsConstructor
 public class ReviewController {
-	// ReviewService ê°ì²´ ë¶ˆëŸ¬?˜¤ê¸?
 	@Autowired
 	private ReviewService service;
+
 	
-	/**
-	 * ë¦¬ë·° ë¦¬ìŠ¤?Š¸ë¥? ë¶ˆëŸ¬?˜¤?Š” ?•¨?ˆ˜ PageMaker
-	 */
 	@GetMapping("/list")
 	public void list(PageMaker pageMaker, Model model) throws Exception {
 
-		int total = service.getTotal(pageMaker); // ê²Œì‹œê¸??˜ ê°œìˆ˜ ?‘œ?‹œ
+		int total = service.getTotal(pageMaker); 
 		pageMaker.setTotPage(total);
 		List<ReviewVO> list = service.getListWithPaging(pageMaker);
 		System.out.println(" total : " +total);
 		
 		
-		model.addAttribute("pagination", pageMaker.pagination("list")); // ?˜?´ì§??„¤?´?…˜ ?„¤? •
+		model.addAttribute("pagination", pageMaker.pagination("list")); 
 		log.info("pageMaker >>>>>>>>>>>>>>>>>" + pageMaker.pagination("list"));
-		model.addAttribute("count", total); // ê²Œì‹œê¸??˜ ì´? ê°œìˆ˜
-		model.addAttribute("pageMaker", pageMaker); // ?˜?´ì§? ì²˜ë¦¬?•œ ê°’ì„ pageMaker?— ? „?‹¬
+		model.addAttribute("count", total); 
+		model.addAttribute("pageMaker", pageMaker); 
 		model.addAttribute("list", list);
 		
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@" + pageMaker);
 		
 	}
 	
-	// ê²Œì‹œ?Œ insert ?˜?´ì§?
 		@GetMapping("/insert")
 		public void register() {
-			log.info("ê²Œì‹œ?Œ ?“±ë¡? ?˜?´ì§? ");
+			log.info("ê²Œì‹œ?ï¿½ï¿½ ?ï¿½ï¿½ï¿½? ?ï¿½ï¿½?ï¿½ï¿½ï¿½? ");
 		}
 
-		// ê²Œì‹œê¸? ?“±ë¡? ?˜?´ì§??—?„œ ?“±ë¡? ë²„íŠ¼?„ ?ˆ„ë¥´ë©´ insert ?›„?— ë¦¬ìŠ¤?Š¸ ?˜?´ì§? ì²? ?™”ë©´ìœ¼ë¡? ?´?™ -> insert.jsp
 		@PostMapping("/insert")
 		public String insert(ReviewVO review, RedirectAttributes rttr) throws Exception {
 			System.out.println(" insert  : " + review.toString());
 
-			// insert ?‹œ?‘
 			service.insert(review);
 			rttr.addFlashAttribute("inserted", review.getReviewId());
 			return "redirect:list";
 		}
 		
-		// ê²Œì‹œê¸? ì¡°íšŒ ë°? ?ˆ˜? • -> read.jsp ì¡°íšŒ?•˜ê³? ?‹¶?? ê²Œì‹œê¸??„ ?´ë¦??•˜ë©? reviewIdê³? ?˜?´ì§? ? •ë³? ??™ ë°”ì¸?”©
 		@GetMapping({ "/read", "/update" })
 		public void read(@RequestParam("reviewId") long reviewId, Model model) throws Exception {
 			model.addAttribute("review", service.read(reviewId));
 		}
 		
-		@PostMapping("/update") // ê²Œì‹œê¸? ?ˆ˜? •(update) ?˜?´ì§?. ?ˆ˜? • ë²„íŠ¼?„ ?ˆ„ë¥´ë©´ ?‹¤?–‰?¨
+		@PostMapping("/update") 
 		public String update(ReviewVO review, RedirectAttributes rttr) throws Exception {
-			// ?ˆ˜? •?˜?Š” ê°’ì´ ?ˆ?œ¼ë©? success ê²°ê³¼ë¥? attribute ê°’ìœ¼ë¡? ? „?†¡?•¨
 			if (service.update(review)) {
 				rttr.addFlashAttribute("result", "success");
 			}
@@ -82,7 +74,7 @@ public class ReviewController {
 		}
 	
 		/**
-		 * Ajax ë°˜í™˜ ì²˜ë¦¬ ê²Œì‹œê¸? ì¡°íšŒ ?˜?´ì§??—?„œ ?‚­? œ ë²„íŠ¼?„ ?ˆ„ë¥¼ì‹œ ?‹¤?–‰?˜?Š” ë©”ì„œ?“œ
+		 * Ajax ë°˜í™˜ ì²˜ë¦¬ ê²Œì‹œï¿½? ì¡°íšŒ ?ï¿½ï¿½?ï¿½ï¿½ï¿½??ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½?ï¿½ï¿½ ë²„íŠ¼?ï¿½ï¿½ ?ï¿½ï¿½ë¥¼ì‹œ ?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½ ë©”ì„œ?ï¿½ï¿½
 		 * 
 		 * @param boardId
 		 * @param rttr
@@ -91,12 +83,11 @@ public class ReviewController {
 		 */
 		@PostMapping("/delete")
 		public ResponseEntity<?> delete(@RequestParam("reviewId") long reviewId, RedirectAttributes rttr) throws Exception {
-			// ë°›ì•„?˜¨ boardIdê°’ìœ¼ë¡? ?•´?‹¹?˜?Š” ê²Œì‹œê¸??„ ?‚­? œ?•œ?‹¤
 			try {
 				service.delete(reviewId);
 				return ResponseEntity.status(200).body("success");
 			} catch (Exception e) {
-				return ResponseEntity.status(403).body("?‚­? œ ?˜¤ë¥?");
+				return ResponseEntity.status(403).body("?ï¿½ï¿½?ï¿½ï¿½ ?ï¿½ï¿½ï¿½?");
 			}
 		}
 	

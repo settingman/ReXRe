@@ -10,79 +10,77 @@ import lombok.ToString;
 /*********************************
  * @function : BoardCriteria
  * @author : Taeseung Choi
- * @Date : Jan 03. 2023.
- * 페이징 처리 - JAVA
-*********************************/
+ * @Date : Jan 03. 2023. 페이징 처리 - JAVA
+ *********************************/
 @Setter
 @Getter
 @ToString
 public class PageMaker {
-	
+
 	/** 페이지당 게시물 수 */
 	public int perPageNum;
-	
+
 	/** 화면당 페이지 수 */
 	public static int BLOCK_SCALE = 10;
-	
+
 	/** 현재 페이지 */
-	private Integer page = 1; 
-	
-	/** 이전 페이지  */
-	private int prevPage; 
-	
-	/** 다음 페이지  */
-	private int nextPage; 
-	
-	/** 전체 페이지 개수  */
-	private int totPage;  
-	
-	/** 전체 페이지 블록 개수   */
-	private int totBlock;  
-	
-	/** 현재 페이지 블록  */
-	private int curBlock;  
+	private Integer page = 1;
 
-	/** 이전 페이지 블록  */
-	private int prevBlock; 
-	
-	/** 다음 페이지 블록   */
-	private int nextBlock; 
-	
-	/** where rn between #{start } and #{end}  */
+	/** 이전 페이지 */
+	private int prevPage;
+
+	/** 다음 페이지 */
+	private int nextPage;
+
+	/** 전체 페이지 개수 */
+	private int totPage;
+
+	/** 전체 페이지 블록 개수 */
+	private int totBlock;
+
+	/** 현재 페이지 블록 */
+	private int curBlock;
+
+	/** 이전 페이지 블록 */
+	private int prevBlock;
+
+	/** 다음 페이지 블록 */
+	private int nextBlock;
+
+	/** where rn between #{start } and #{end} */
 	private int pageBegin;
-	
-	/**  #{end}  */
-	private int pageEnd; 
-	/** 현재 페이지에 시작번호 [이전]   */
-	
-	private int blockBegin; 
-	
-	/** 현재 페이지에 끝 번호 [끝]  */
-	private int blockEnd; 
 
-	/** 검색처리 추가 */ 
+	/** #{end} */
+	private int pageEnd;
+	/** 현재 페이지에 시작번호 [이전] */
+
+	private int blockBegin;
+
+	/** 현재 페이지에 끝 번호 [끝] */
+	private int blockEnd;
+
+	/** 검색처리 추가 */
 	private String searchType;
-	
-	/** 검색어 */ 
+
+	/** 검색어 */
 	private String keyword;
 
 	/** 카테고리 */
-	private String boardCategory;  
+	private String boardCategory;
 
 	/** 하위카테고리 */
-	private String boardSubcategory; 		
-
+	private String boardSubcategory;
 
 	private String pageParam;
-	
+
 	public PageMaker() {
-		if(boardSubcategory==null || !boardSubcategory.equals("")) {
-			boardSubcategory="FAQ";
+		if (boardSubcategory == null || !boardSubcategory.equals("")) {
+			boardSubcategory = "FAQ";
 		}
-		if(boardCategory==null || !boardCategory.equals("")) {
-			boardCategory="all";
+		if (boardCategory == null || !boardCategory.equals("")) {
+			boardCategory = "all";
 		}
-		
+
 		this.page = 1; // 초기 페이지는 1
 		this.perPageNum = 10; // 10 개씩 보여줌
 	}
@@ -99,7 +97,7 @@ public class PageMaker {
 		// 페이지 블록의 시작, 끝 번호 계산
 		setBlockRange();
 	}
-	
+
 	public void setPerPageNum(int perPageNum) {
 		// 최대 100개씩 보여줌
 		// 만약 0보다 작거나 100 보다 크면 10으로 초기화
@@ -109,8 +107,6 @@ public class PageMaker {
 		}
 		this.perPageNum = perPageNum;
 	}
-
-	
 
 	private void setBlockRange() {
 		// 현재 페이지에 몇번째 페이지 블록에 속하는지 계산
@@ -138,8 +134,6 @@ public class PageMaker {
 		pageEnd = pageBegin + perPageNum - 1;
 	}
 
-
-
 	public void setPage(Integer page) {
 		// 페이지 번호가 0이거나 0보다 작으면 1페이지로 한다.
 		if (page <= 0) {
@@ -149,29 +143,27 @@ public class PageMaker {
 		this.page = page;
 	}
 
-	/** 페이지 블록의 개수 계산 (총 100 페이지라면 10개 블록) */  
-	/*190이면 나와 20까지
-	 * 189는 안나와 18.9 19 / 20 아니죠 ?
-	 * */
+	/** 페이지 블록의 개수 계산 (총 100 페이지라면 10개 블록) */
+	/*
+	 * 190이면 나와 20까지 189는 안나와 18.9 19 / 20 아니죠 ?
+	 */
 	public void setTotBlock() {
-		this.totBlock = (int) Math.ceil((double)totPage / (double)10);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+this.totBlock);
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+(int) Math.ceil((double)totPage / (double)10));
+		this.totBlock = (int) Math.ceil((double) totPage / (double) 10);
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + this.totBlock);
+		System.out
+				.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@" + (int) Math.ceil((double) totPage / (double) 10));
 	}
 
-	
-	/**  페이지 파라미터 */ 
+	/** 페이지 파라미터 */
 	public String makeSearch(Integer page) {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance().queryParam("page", page)
 				.queryParam("perPageNum", perPageNum).queryParam("searchType", searchType)
-				.queryParam("boardCategory", boardCategory)
-				.queryParam("boardSubcategory", boardSubcategory)
+				.queryParam("boardCategory", boardCategory).queryParam("boardSubcategory", boardSubcategory)
 				.queryParam("keyword", keyword).build();
 		return uriComponents.toUriString();
 	}
 
-
-	/**  페이지네이션   */ 
+	/** 페이지네이션 */
 	public String pagination(String url) {
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append("<ul class='paging'>");
@@ -193,7 +185,7 @@ public class PageMaker {
 				sBuffer.append("<a href='" + url + makeSearch(i) + "'>" + i + "</a></li>");
 				sBuffer.append("</li>");
 			}
-		
+
 		}
 
 		if (curBlock < totBlock) {

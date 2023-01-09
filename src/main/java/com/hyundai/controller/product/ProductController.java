@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.hyundai.domain.Criteria;
 import com.hyundai.domain.PageDTO;
 import com.hyundai.domain.productDetailVO;
+import com.hyundai.domain.productVO;
 import com.hyundai.service.ProductService;
 import com.hyundai.service.ReviewService2;
 
@@ -24,13 +25,14 @@ import lombok.extern.log4j.Log4j;
 public class ProductController {
 	private ProductService productService;
 	private ReviewService2 reviewService;
-	
-	//product ��ü��ǰ	
+
+	// product ü ǰ
 	@GetMapping("/productList")
-	public String productList(Criteria cri, @RequestParam("pageNum") Integer pageNum, @RequestParam("amount") Integer amount, Model model) throws Exception {
-		
-		System.out.println("@@@@@@@@@@@@@@@CRI�Ѿ�� pageNUM" + pageNum);
-		System.out.println("@@@@@@@@@@@@@@@CRI�Ѿ�� Amount" + amount);
+	public String productList(Criteria cri, @RequestParam("pageNum") Integer pageNum,
+			@RequestParam("amount") Integer amount, Model model) throws Exception {
+
+		System.out.println("@@@@@@@@@@@@@@@CRI Ѿ   pageNUM" + pageNum);
+		System.out.println("@@@@@@@@@@@@@@@CRI Ѿ   Amount" + amount);
 		cri.setPageNum(pageNum);
 		cri.setAmount(amount);
 		int total = productService.getTotalCount();
@@ -42,11 +44,13 @@ public class ProductController {
 		model.addAttribute("pageMaker", pageDTO);
 		return "product/productList";
 	}
-	
-	//product Category
+
+	// product Category
 	@GetMapping("/productCategory")
-	public String productCategory(Criteria cri, @RequestParam("productCategory") String productCategory, @RequestParam("pageNum") Integer pageNum, @RequestParam("amount") Integer amount, Model model) throws Exception {
-		
+	public String productCategory(Criteria cri, @RequestParam("productCategory") String productCategory,
+			@RequestParam("pageNum") Integer pageNum, @RequestParam("amount") Integer amount, Model model)
+			throws Exception {
+
 		cri.setPageNum(pageNum);
 		cri.setAmount(amount);
 		int total = productService.getCategoryTotalCount(productCategory);
@@ -55,41 +59,41 @@ public class ProductController {
 		model.addAttribute("productList", productService.getCategoryListWithPaging(cri, productCategory));
 		PageDTO pageDTO = new PageDTO(cri, total);
 		model.addAttribute("pageMaker", pageDTO);
-		model.addAttribute("productCategory",productCategory);
-		
+		model.addAttribute("productCategory", productCategory);
+
 		return "product/productList";
 	}
-	
-	//product NewBest
+
+	// product NewBest
 	@GetMapping("/productNewBest")
-	public String productNewBest(Criteria cri, @RequestParam("pageNum") Integer pageNum, @RequestParam("amount") Integer amount, Model model) {
+	public String productNewBest(Criteria cri, @RequestParam("pageNum") Integer pageNum,
+			@RequestParam("amount") Integer amount, Model model) {
 		cri.setPageNum(pageNum);
 		cri.setAmount(amount);
 		int total = productService.getNewBestTotalCount();
 		model.addAttribute("total", total);
-		System.out.println("newbest ���� ??? " + total);
+		System.out.println("newbest      ??? " + total);
 		model.addAttribute("productList", productService.getNewBestListWithPaging(cri));
 		PageDTO pageDTO = new PageDTO(cri, total);
 		model.addAttribute("pageMaker", pageDTO);
-		
+
 		return "product/productNewBest";
 	}
-	
-	
-	//product NEWBESTTEST
+
+	// product NEWBESTTEST
 	@GetMapping("/newBest")
 	public String newBestTest() {
 		return "product/productNewBest";
 	}
-	
-	//��ǰ��
-	//��ǰ��
+
+	// ǰ
+	// ǰ
 	@GetMapping("/productDetail")
 	public String list(Criteria cri, @RequestParam("productId") Long productId, Model model) throws Exception {
-		log.info("��ǰ��");
+		log.info("  ǰ  ");
 		log.info(productId);
 		List<productDetailVO> list = productService.getProductDetail(productId);
-		for(int i = 0; i < list.size(); i++) {
+		for (int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 		model.addAttribute("productImage", productService.getProductImage(productId));
@@ -98,15 +102,26 @@ public class ProductController {
 		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
 		return "product/productDetail";
 	}
-	
+
 	@GetMapping("/productDetailid")
-	public String listID(Criteria cri, @RequestParam("productId") Long productId, @RequestParam("member_idid")
-			String id,  Model model) throws Exception {
+	public String listID(Criteria cri, @RequestParam("productId") Long productId,
+			@RequestParam("member_idid") String id, Model model) throws Exception {
 		System.out.println("controller");
 		model.addAttribute("allist", productService.getAllergies(id, productId));
 		model.addAttribute("productDetail", productService.getProductDetail(productId));
 		model.addAttribute("reviewList", reviewService.getReviewWithPaging(productId));
 		model.addAttribute("count", reviewService.getReview2TotalCount(productId));
 		return "product/productDetail";
+	}
+
+	// productSearch
+	@GetMapping("/productSearch")
+	public String productSearch(Criteria cri, @RequestParam("searchWord") String searchWord, Model model)
+			throws Exception {
+
+		List<productVO> list = productService.getProductSearch(cri, searchWord);
+		model.addAttribute("productList", productService.getProductSearch(cri, searchWord));
+
+		return "product/productList";
 	}
 }

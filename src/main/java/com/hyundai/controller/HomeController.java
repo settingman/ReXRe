@@ -40,7 +40,6 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
 		String formattedDate = dateFormat.format(date);
-		System.out.println("hi man �꽦�솚 �씪�슦 �꽭�� �깭�듅");
 		
 		
 		return "home";

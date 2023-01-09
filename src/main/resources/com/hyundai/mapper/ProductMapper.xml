@@ -1,134 +1,131 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper	
-	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper   
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundai.mapper.ProductMapper">
 
 	<!-- getListWithPaging SELECT 부분 -->
 	<select id="getListWithPaging"
 		resultType="com.hyundai.domain.productVO">
-		<![CDATA[
-			SELECT  PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
-        			IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
-			FROM 
-				(SELECT /*+ INDEX_DESC(P.PRODUCTS product_id) */
-					ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
-        			I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
-				FROM PRODUCTS P, PRODUCTIMAGES I 
-				WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND I.IMAGE_CATEGORY = '상품' AND
-					  ROWNUM <= #{pageNum} * #{amount} 
-				ORDER BY P.PRODUCT_ID
-				)
-			WHERE rn > (#{pageNum} - 1) * #{amount}
-		]]>
+      <![CDATA[
+         SELECT  PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
+                 IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+         FROM 
+            (SELECT /*+ INDEX_DESC(P.PRODUCTS product_id) */
+               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
+                 I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+            FROM PRODUCTS P, PRODUCTIMAGES I 
+            WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND I.IMAGE_CATEGORY = '상품' AND
+                 ROWNUM <= #{pageNum} * #{amount} 
+            ORDER BY P.PRODUCT_ID
+            )
+         WHERE rn > (#{pageNum} - 1) * #{amount}
+      ]]>
 	</select>
-	
+
 	<!-- getListWithPaging Count -->
 	<select id="getTotalCount" resultType="int">
-		<![CDATA[
-			SELECT count(*) 
-			FROM products
-			WHERE product_id > 0
-		]]>
+      <![CDATA[
+         SELECT count(*) 
+         FROM products
+         WHERE product_id > 0
+      ]]>
 	</select>
-	
-	
+
+
 	<!-- getCategoryListWithPaging -->
 	<select id="getCategoryListWithPaging"
 		resultType="com.hyundai.domain.productVO">
-		<![CDATA[
-			SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
-					IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
-			FROM
-				(SELECT /*+ INDEX_DESC(PRODUCTS PRODUCT_ID) */
-					ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
-					I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
-				FROM PRODUCTS P, PRODUCTIMAGES I
-				WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
-					AND ROWNUM <= #{cri.pageNum} * #{cri.amount}
-					AND P.PRODUCT_CATEGORY = #{productCategory}
-					AND I.IMAGE_CATEGORY = '상품'
-				)
-			WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
-			ORDER BY PRODUCT_ID
-		]]>
-		
+      <![CDATA[
+         SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
+               IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+         FROM
+            (SELECT /*+ INDEX_DESC(PRODUCTS PRODUCT_ID) */
+               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
+               I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+            FROM PRODUCTS P, PRODUCTIMAGES I
+            WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
+               AND ROWNUM <= #{cri.pageNum} * #{cri.amount}
+               AND P.PRODUCT_CATEGORY = #{productCategory}
+               AND I.IMAGE_CATEGORY = '상품'
+            )
+         WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
+         ORDER BY PRODUCT_ID
+      ]]>
+
 	</select>
-	
-	
+
+
 	<!-- getCategoryTotalCount -->
-	<select id="getCategoryTotalCount"
-			resultType="int">
-		<![CDATA[
-			SELECT COUNT(*)
-			FROM PRODUCTS P, PRODUCTIMAGES I
-			WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
-				AND P.PRODUCT_CATEGORY = #{productCategory}
-				AND I.IMAGE_CATEGORY= '상품'
-		]]>
+	<select id="getCategoryTotalCount" resultType="int">
+      <![CDATA[
+         SELECT COUNT(*)
+         FROM PRODUCTS P, PRODUCTIMAGES I
+         WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
+            AND P.PRODUCT_CATEGORY = #{productCategory}
+            AND I.IMAGE_CATEGORY= '상품'
+      ]]>
 	</select>
-	
-	
+
+
 	<!-- getNewBestListWithPaging -->
 	<select id="getNewBestListWithPaging"
 		resultType="com.hyundai.domain.productVO">
-		
-		<![CDATA[
-			SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
-					IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
-			FROM
-				(SELECT /*+ INDEX_DESC(PRODUCTS PRODUCT_ID) */
-					ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
-					I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
-				FROM PRODUCTS P, PRODUCTIMAGES I
-				WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
-						AND ROWNUM <= #{pageNum} * #{amount}
-						AND P.PRODUCT_CLICK >= 5 AND P.PRODUCT_REGDATE >= '2022-12-30'
-						AND I.IMAGE_CATEGORY = '상품'
-				)
-			WHERE RN > (#{pageNum} - 1) * #{amount}
-			ORDER BY PRODUCT_ID
-		]]>
-		
+      
+      <![CDATA[
+         SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
+               IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+         FROM
+            (SELECT /*+ INDEX_DESC(PRODUCTS PRODUCT_ID) */
+               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
+               I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+            FROM PRODUCTS P, PRODUCTIMAGES I
+            WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
+                  AND ROWNUM <= #{pageNum} * #{amount}
+                  AND P.PRODUCT_CLICK >= 5 AND P.PRODUCT_REGDATE >= '2022-12-30'
+                  AND I.IMAGE_CATEGORY = '상품'
+            )
+         WHERE RN > (#{pageNum} - 1) * #{amount}
+         ORDER BY PRODUCT_ID
+      ]]>
+
 	</select>
-	
+
 	<!-- getNewBestTotalCount -->
-	<select id="getNewBestTotalCount"
-		resultType="int">
-		
-		<![CDATA[
-		SELECT COUNT(*)
-		FROM PRODUCTS P, PRODUCTIMAGES I
-		WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
-			AND P.PRODUCT_CLICK >= 5 AND P.PRODUCT_REGDATE >= '2022-12-30'
-			AND I.IMAGE_CATEGORY='상품'
-		]]>	
+	<select id="getNewBestTotalCount" resultType="int">
+      
+      <![CDATA[
+      SELECT COUNT(*)
+      FROM PRODUCTS P, PRODUCTIMAGES I
+      WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
+         AND P.PRODUCT_CLICK >= 5 AND P.PRODUCT_REGDATE >= '2022-12-30'
+         AND I.IMAGE_CATEGORY='상품'
+      ]]>
 	</select>
-	
-	
+
+
 	<!-- 상품상세 조회 -->
 	<!-- 상세페이지 -->
 	<select id="getProductDetail"
 		resultType="com.hyundai.domain.productDetailVO">
-	
-		<![CDATA[
-			SELECT P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY
-        			,I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
-			FROM PRODUCTS P, PRODUCTIMAGES I
-			WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND I.IMAGE_CATEGORY = '상품상세' AND P.PRODUCT_ID = #{productId} 
-			ORDER BY P.PRODUCT_ID 
-		]]>	
+   
+      <![CDATA[
+         SELECT P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY
+                 ,I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+         FROM PRODUCTS P, PRODUCTIMAGES I
+         WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND I.IMAGE_CATEGORY = '상품상세' AND P.PRODUCT_ID = #{productId} 
+         ORDER BY P.PRODUCT_ID 
+      ]]>
 	</select>
-	
-	
+
+
 	<!-- 상세페이지 상품사진 가져오기 -->
-	<select id="getProductImage"
-		resultType = "String">
+	<select id="getProductImage" resultType="String">
 		SELECT IMAGE_PATH
 		FROM PRODUCTIMAGES
-		WHERE PRODUCTS_PRODUCT_ID = #{productId} and IMAGE_CATEGORY = '상품'		
+		WHERE PRODUCTS_PRODUCT_ID = #{productId} and IMAGE_CATEGORY = '상품'
 	</select>
-	
+
 	<!-- 상세페이지 조회수 -->
 	<update id="getProductDetailCount">
 		UPDATE products
@@ -142,12 +139,37 @@
 		from allergies, allergymappers
 		where allergy_id = allergies_allergy_id)
 		where member_id = members_member_id and member_idid = #{id}
-		and (allergy_name in 
-		(select ingredient from ingredients, products_ingredients where ingredients_ingredient_id = ingredient_id
+		and (allergy_name in
+		(select ingredient from ingredients, products_ingredients where
+		ingredients_ingredient_id = ingredient_id
 		and products_product_id = #{productId})
-		or allergy_alter in (select ingredient from ingredients, products_ingredients where ingredients_ingredient_id = ingredient_id
+		or allergy_alter in (select ingredient from ingredients,
+		products_ingredients where ingredients_ingredient_id = ingredient_id
 		and products_product_id = #{productId})
 		)
-		
+
+	</select>
+
+	<!-- 검색처리 -->
+	<select id="getProductSearch"
+		resultType="com.hyundai.domain.productVO">
+      <![CDATA[
+         SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
+                  IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+         FROM
+               (SELECT /*+ INDEX_DESC(PRODUCTS PRODUCT_ID) */
+                  ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
+                  I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+               FROM PRODUCTS P, PRODUCTIMAGES I
+               WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
+                  AND P.PRODUCT_NAME LIKE '%'||#{searchWord}||'%'
+                  AND ROWNUM <= #{cri.pageNum} * #{cri.amount}
+                  AND I.IMAGE_CATEGORY = '상품'
+                       
+               )
+         WHERE RN > (#{cri.pageNum} -1) * #{cri.amount}
+         ORDER BY PRODUCT_ID
+      ]]>
+
 	</select>
 </mapper>
