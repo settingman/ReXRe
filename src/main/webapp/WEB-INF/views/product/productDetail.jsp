@@ -681,7 +681,7 @@ h2.subtitle.img {
 									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 								</div>
 							</div>
-						</div>
+						</div>	
 					</div>
 					<script language="Javascript">
    $(document).ready(function(){

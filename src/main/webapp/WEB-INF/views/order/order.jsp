@@ -185,67 +185,7 @@
 							<!-- //주문상품정보 -->
 							<div class="ord_info">
 								<div class="area_left">
-									<!-- 사은품 -->
-									<div id="gift_area"></div>
-									<!-- //사은품 -->
 
-									<h3 class="title">할인 / 혜택 사용</h3>
-									<table class="tbl_order">
-										<caption class="hidden">할인 / 혜택 사용</caption>
-										<colgroup>
-											<col style="width: 18%" />
-											<col />
-										</colgroup>
-										<tbody>
-											<!-- 쿠폰사용 -->
-
-											<tr>
-												<th scope="row">전체상품 쿠폰</th>
-												<td>
-													<ul class="coupon_list">
-														<li><span class="check"><input type="hidden" id="coupon_stype_18991" value="1" /> <input type="hidden" name="coupon_pay_type" value="1" /> <input type="radio" name="coupon" id="coupon" value="18991" onclick="useCpn(0,'m','5000','30000','0','1','18991','')" /></span>
-															<p class="name">회원가입 감사쿠폰</p>
-															<p class="content">최소주문금액 : 30,000원 이상 / 할인액(율) : 5,000원 / 사용기간 : ~ 2023-01-26</p></li>
-														<li><span class="check"><input type="radio" id="no_cpn" name="coupon" value="" onclick="useCpn(this.form,'','');" /></span>
-															<p class="name">사용안함</p>
-															<p class="content"></p></li>
-													</ul>
-												</td>
-											</tr>
-
-											<input type="hidden" name="off_cpn_price" value="0" />
-											<input type="hidden" name="off_cpn_sale" value="0" />
-											<input type="hidden" name="off_cpn_type" />
-											<input type="hidden" name="off_cpn_min" />
-											<input type="hidden" name="off_cpn_limit" />
-											<input type="hidden" name="off_cpn_use" value="N" />
-											<input type="hidden" name="off_cpn_no" />
-											<input type="hidden" name="off_cpn_pay_type" />
-											<tr>
-												<th scope="row">쿠폰 등록하기</th>
-												<td class="offcpn">
-													<div id="off_cpn_div1">
-														<input type="text" name="cpn_auth_code" placeholder="쿠폰 번호 입력란" class="form_input" />
-														<div class="box_btn">
-															<a href="javascript:;" onclick="cpnAuthCode();">확인</a>
-														</div>
-													</div>
-													<div id="off_cpn_div2">
-														<p id="off_cpn_msg"></p>
-														<p id="off_cpn_img2"></p>
-														<p id="off_cpn_used"></p>
-														<p id="off_cpn_img1" class="offbtn">
-															<span class="box_btn"><a href="javascript:;" onclick="useOffCpn();">쿠폰사용</a></span>
-														</p>
-														<p class="offbtn">
-															<span class="box_btn white"><a href="javascript:;" onclick="cancelOffCpn();">쿠폰사용취소</a></span>
-														</p>
-													</div>
-												</td>
-											</tr>
-											<!--// 쿠폰사용 -->
-										</tbody>
-									</table>
 
 									<h3 class="title">주문자 입력</h3>
 									<table class="tbl_order">
@@ -257,19 +197,19 @@
 										<tbody>
 											<tr>
 												<th scope="row"><label for="order_buyer_name">주문하시는 분</label></th>
-												<td><input type="text" name="buyer_name" value="박성환" id="order_buyer_name" class="form_input" isplaceholderinited="true" /></td>
+												<td><input type="text" name="buyer_name" value="<sec:authentication property="principal.member.userName"/>" id="order_buyer_name" class="form_input" isplaceholderinited="true" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="buyer_phone">전화번호</label></th>
-												<td><input type="text" name="buyer_phone" id="buyer_phone" value="" class="form_input remove_dash" isplaceholderinited="true" /></td>
+												<td><input type="text" name="buyer_phone" id="buyer_phone" value="<sec:authentication property="principal.member.member_phone"/>" class="form_input remove_dash" isplaceholderinited="true" /></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="buyer_cell">휴대전화번호</label></th>
-												<td><input type="text" name="buyer_cell" id="buyer_cell" value="01029270000" class="form_input remove_dash" isplaceholderinited="true" /> <input type="checkbox" name="sms" id="sms" value="Y" checked="" /> <label for="sms" class="msg">주문관련 SMS를 수신합니다.</label></td>
+												<td><input type="text" name="buyer_cell" id="buyer_cell" value="<sec:authentication property="principal.member.member_phone"/>" class="form_input remove_dash" isplaceholderinited="true" /> <input type="checkbox" name="sms" id="sms" value="Y" checked="" /> <label for="sms" class="msg">주문관련 SMS를 수신합니다.</label></td>
 											</tr>
 											<tr>
 												<th scope="row"><label for="order_buyer_email">이메일</label></th>
-												<td><input type="text" name="buyer_email" value="95parksh@naver.com" id="order_buyer_email" class="form_input mail3" isplaceholderinited="true" /></td>
+												<td><input type="text" name="buyer_email" value="<sec:authentication property="principal.member.member_email"/>" id="order_buyer_email" class="form_input mail3" isplaceholderinited="true" /></td>
 											</tr>
 
 										</tbody>
@@ -290,7 +230,11 @@
 												<th scope="row">기존 배송지</th>
 												<td><select name="old_addr_sel" onchange="putOldAddressee(this,''); useMilage(document.ordFrm,3);">
 														<option value="">:: 새로운주소 입력 ::</option>
-														<option selected="" value="박성환<wisamall><wisamall>01029270000<wisamall>08104<wisamall>서울특별시 양천구 신정동 179-1<wisamall>123">박성환 : 서울특별시 양천구 신정동 179-1 123</option>
+														<option selected="" value="<sec:authentication property="principal.member.userName"/>
+														<wisamall><wisamall><sec:authentication property="principal.member.member_phone"/>
+														<wisamall><sec:authentication property="principal.member.member_postNum"/>
+														<wisamall><sec:authentication property="principal.member.member_address1"/>
+														<wisamall><sec:authentication property="principal.member.member_address2"/>"><sec:authentication property="principal.member.userName"/> : <sec:authentication property="principal.member.member_address1"/> <sec:authentication property="principal.member.member_address2"/></option>
 												</select> <label class="msg"><input type="checkbox" name="copy_info" onclick="copyInfo(this.form)" /> 주문인 정보와 동일</label></td>
 											</tr>
 											<tr>
