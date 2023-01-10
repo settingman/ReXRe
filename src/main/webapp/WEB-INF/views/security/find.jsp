@@ -76,7 +76,7 @@
 				 alert("특수문자를 사용 할수 없습니다");
 				 }  else if (exptext.test(email) == false) {
 				 //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
-				 alert("이 메일형식이 올바르지 않습니다.");
+				 alert("이메일형식이 올바르지 않습니다.");
 				 $("#find_id_email").focus();
 				 } else {
 				$.ajax({
@@ -87,7 +87,7 @@
 					 email : email
 					 },
 					 success : function(data) { 
-					 	if (data != null) {  
+					 	if (data != 0) {  
 					 		$('#fixed_email').val(email);
 					 		$('#exampleModal').modal("show");
 						 	id = data;
@@ -125,7 +125,7 @@
 				 alert("특수문자를 사용 할수 없습니다");
 				 }  else if (exptext.test(email) == false) {
 				 //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
-				 alert("이 메일형식이 올바르지 않습니다.");
+				 alert("이메일형식이 올바르지 않습니다.");
 				 $("#find_id_email").focus();
 				 } else {
 				 
@@ -137,14 +137,14 @@
 					 email : email
 					 },
 					 success : function(data) { 
-					 	if (data != null) {  
+					 	if (data != 0) {  
 					 		$('#fixed_email').val(email);
 					 		$('#exampleModal').modal("show");
 					 		pwch = "1";
 						 	id = data;
 				 		} else { 
-						 alert("아이디, 이름 혹은 이메일이 잘못 입력되었습니다");
-						 $('#find_pwd_id').focus();
+							 alert("아이디, 이름 혹은 이메일이 잘못 입력되었습니다");
+						 	$('#find_pwd_id').focus();
 						 }
 					 },
 				 	error : function(request,error) {

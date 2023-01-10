@@ -53,7 +53,9 @@
 				jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 			}
 		});
-
+	 	function alert(){
+	 		alert("변경되었습니다");
+	 	}
 		function checkMID() {
 			var id = $('#join_id').val(); //id값이 "id"인 입력란의 값을 저장
 			var expression = RegExp(/[^a-zA-Z0-9]/);
@@ -64,7 +66,7 @@
 			} else if (checkSpecial(id) == true) {
 				alert("특수문자를 사용 할수 없습니다");
 			} else if (expression.test(id)) {
-				alert("아이디는 영어로만 생성가능합니다");
+				alert("아이디는 영어와 숫자로만 생성가능합니다");
 			} else {
 				$.ajax({
 					url : "./IDCheck.do", //Controller에서 요청 받을 주소
@@ -124,6 +126,9 @@
 			        alert("이 메일형식이 올바르지 않습니다.");
 			        $("#email2").focus();
 			        return false;
+			 }
+			 else{
+				 alert("변경되었습니다");
 			 }
 		}
 		$(document).ready(function(){
