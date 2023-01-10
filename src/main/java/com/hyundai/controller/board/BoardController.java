@@ -82,23 +82,32 @@ public class BoardController {
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
-		log.info(file);
+		
+		System.out.println(imgUploadPath);
+		System.out.println(ymdPath);
+		
 		if (!file.isEmpty()) {
-			log.info("여기왔설");
+			System.out.println("isempty");
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
 		} else {
+			System.out.println("isnoempty");
 			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
 
 		board.setFaqsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		
+		System.out.println("set 아래");
+		
 		board.setFaqsThumbImg(
 				File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
+		System.out.println("섬네일 아래");
 
 		// insert 시작
 		service.insert(board);
 
 		rttr.addFlashAttribute("inserted", board.getBoardId());
-		return "redirect:list";
+		return "redirect:/board/list";
 	}
 
 	// 게시글 조회 및 수정 -> read.jsp 조회하고 싶은 게시글을 클릭하면 boardId과 페이징 정보 자동 바인딩
@@ -155,8 +164,14 @@ public class BoardController {
 	@PostMapping("/delete")
 	public ResponseEntity<String> delete(@RequestParam("boardId") long boardId, RedirectAttributes rttr)
 			throws Exception {
+		
+		System.out.println(boardId);
+		
+		
 		// 받아온 boardId값으로 해당되는 게시글을 삭제한다
 		try {
+			
+			System.out.println(boardId);
 			service.delete(boardId);
 			return new ResponseEntity<>("success", HttpStatus.OK);
 //         return ResponseEntity.status(200).body("success");

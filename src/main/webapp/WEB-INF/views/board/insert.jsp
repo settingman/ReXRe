@@ -20,7 +20,7 @@
 
                <h2 class="subtitle">쇼핑FAQ 등록</h2>
 
-               <form id="faqForm" name="faqForm" method="post" action="insert"
+               <form id="faqForm" name="faqForm" method="post" action="insert?${_csrf.parameterName}=${_csrf.token}"
                   enctype="multipart/form-data">
                   <input type="hidden" name="pageParam" id="pageParam"
                      value="${pageMaker.pageParam}">

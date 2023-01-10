@@ -16,7 +16,7 @@
 	<!-- <bean id="customAccessDenied" class="org.kosa.security.CustomAccessDeniedHandler"></bean> -->
 	<security:http>
 		<security:intercept-url
-			pattern="/security/mypage" access="hasRole('ROLE_MEMBER')"></security:intercept-url>
+			pattern="/security/mypage" access="hasRole('ROLE_MEMBER')"></security:intercept-url>	
 		<security:access-denied-handler
 			ref="customAccessDenied" />
 		<!-- <security:intercept-url pattern="/sample/all" access="permitAll"></security:intercept-url> 

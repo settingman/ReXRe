@@ -23,7 +23,7 @@ pageContext.setAttribute("replaceChar", "\n");
 
 					<h2 class="subtitle">쇼핑FAQ 업데이트</h2>
 
-					<form id="faqForm" name="faqForm" method="post" action="update" enctype="multipart/form-data">
+					<form id="faqForm" name="faqForm" method="post" action="insert?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
 
 						<input type="hidden" name="boardId" value="${board.boardId}">
 						<input type="hidden" name="boardSubcategory" value="${board.boardSubcategory}">
