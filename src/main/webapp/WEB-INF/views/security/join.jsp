@@ -53,9 +53,6 @@
 				jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 			}
 		});
-	 	function alert(){
-	 		alert("변경되었습니다");
-	 	}
 		function checkMID() {
 			var id = $('#join_id').val(); //id값이 "id"인 입력란의 값을 저장
 			var expression = RegExp(/[^a-zA-Z0-9]/);
@@ -512,7 +509,6 @@
 									</div>
 									<div id="selected-pill">
 										<span class="badge text-bg-secondary"></span>
-										<input type="hidden" name="allergies" value="" id="example">
 									</div>
 									<div id="select-pill">
 										<span class="badge rounded-pill text-bg-primary" id="allergy-pill"></span>

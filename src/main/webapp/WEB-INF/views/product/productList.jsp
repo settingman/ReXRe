@@ -136,14 +136,14 @@ if(typeof wcs != 'undefined') {
 								<p class="total">
 									<strong>${total}</strong>개의 상품
 								</p>
-								<div class="sort">
+<!-- 								<div class="sort">
 									<select onchange="if(this.value){location.href=this.value}"><option value="">:: 상품정렬 ::</option>
 										<option value="/shop/big_section.php?sort=1&amp;cno1=1012" selected="">신상품순</option>
 										<option value="/shop/big_section.php?sort=3&amp;cno1=1012">판매량높은순</option>
 										<option value="/shop/big_section.php?sort=4&amp;cno1=1012">높은가격순</option>
 										<option value="/shop/big_section.php?sort=5&amp;cno1=1012">낮은가격순</option>
 										<option value="/shop/big_section.php?sort=9&amp;cno1=1012">판매량낮은순</option></select>
-								</div>
+								</div> -->
 							</div>
 							<!--// 상품정렬 JSP 적용 -->
 							<ul class="prd_basic col3">

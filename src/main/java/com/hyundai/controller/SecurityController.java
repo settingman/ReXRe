@@ -111,6 +111,7 @@ public class SecurityController {
 	@GetMapping("/addal.do")
 	@ResponseBody
 	public void addal(@RequestParam("allergy") String allergy) {
+		System.out.println("addal conroller");
 		service.addal(allergy);
 	}
 

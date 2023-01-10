@@ -36,6 +36,7 @@ public class SecurityServiceImpl implements SecurityService {
 
 	@Override
 	public void addal(String allergy) {
+		System.out.println("service addal" + allergy);
 		mapper.addal(allergy);
 	}
 
@@ -75,6 +76,7 @@ public class SecurityServiceImpl implements SecurityService {
 			AllergyMapperVO avo = new AllergyMapperVO();
 			avo.setAllergy_name(tmp);
 			avo.setMember_idid(member_idid);
+			System.out.println( avo);
 			mapper.addMemAl(avo);
 		}
 	}
