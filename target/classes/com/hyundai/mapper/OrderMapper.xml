@@ -120,7 +120,8 @@
 		from FULLMEMBERORDERS
 		where
 		MEMBERS_MEMBER_ID=#{member_id}
-		order by Order_id
+		order by
+		Order_id desc
 
 	</select>
 
@@ -128,9 +129,11 @@
 	<select id="OrderListItems" resultType="String">
 
 		select PRODUCT_NAME
-		from PRODUCTS inner join ORDERITEMS on PRODUCTS.PRODUCT_ID
+		from
+		PRODUCTS inner join ORDERITEMS on PRODUCTS.PRODUCT_ID
 		=ORDERITEMS.PRODUCTS_PRODUCT_ID
-		where ORDERITEMS.ORDERS_ORDER_ID =#{orderId}
+		where ORDERITEMS.ORDERS_ORDER_ID
+		=#{orderId}
 		order by ORDERITEMS.ORDERS_ORDER_ID
 
 	</select>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <%@ include file="../include/head.jsp"%>
+<meta name="_csrf" content="${_csrf.token}" />
 </head>
 <body>
 
@@ -119,14 +120,37 @@
 	</div>
 
 	<script>
+	
+	
+	
+	
+	
       function boardUpdate(boardId){         
          location.href="update?boardId="+boardId
       }
       
       function boardDelete(boardId){
+    	  
+    	  
+    	  
+    	  
+    	  
          if(confirm("정말 삭제 하시겠습니까?")){
+        	 
+        	        	 
+        	 alert("hi");
+        	 
+        	 var csrfToken = $("meta[name='_csrf']").attr("content");
+        	 $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+        	        if (options['type'].toLowerCase() === "post") {
+        	           jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+        	        }
+        	     });
+        	 
+        	 
+        	 
             $.ajax({
-               url:'delete',
+               url:'/board/delete',
                type:"POST",
                data:{boardId},
                success:function(res){

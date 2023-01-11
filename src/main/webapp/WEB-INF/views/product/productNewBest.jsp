@@ -270,7 +270,7 @@ var google_alanytics_id = 'UA-166260789-1';
 								<p class="total">
 									<strong>${total}</strong>개의 상품
 								</p>
-								<div class="sort">
+<!-- 								<div class="sort">
 									<select onchange="if(this.value){location.href=this.value}"><option
 											value="">:: 상품정렬 ::</option>
 										<option value="/shop/big_section.php?sort=1&amp;cno1=1009"
@@ -280,7 +280,7 @@ var google_alanytics_id = 'UA-166260789-1';
 										<option value="/shop/big_section.php?sort=5&amp;cno1=1009">낮은가격순</option>
 										<option value="/shop/big_section.php?sort=9&amp;cno1=1009">판매량낮은순</option></select>
 
-								</div>
+								</div> -->
 							</div>
 							<!--// 상품정렬 -->
 
