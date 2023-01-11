@@ -31,7 +31,8 @@ public class ProductController {
 	private ProductService productService;
 	private ReviewService2 reviewService;
 
-	// product list
+	// product list 
+	// 전체 출력되는 화면 
 	@GetMapping("/productList")
 	public String productList(Criteria cri, @RequestParam("pageNum") Integer pageNum,
 			@RequestParam("amount") Integer amount, Model model) throws Exception {
@@ -51,6 +52,7 @@ public class ProductController {
 	}
 
 	// product Category 
+	// 카테고리별로 출력
 	@GetMapping("/productCategory")
 	public String productCategory(Criteria cri, @RequestParam("productCategory") String productCategory,
 			@RequestParam("pageNum") Integer pageNum, @RequestParam("amount") Integer amount, Model model)
@@ -70,6 +72,7 @@ public class ProductController {
 	}
 
 	// product NewBest
+	// click 마다 count 수 update + 일정등록기간 이후 등록된 상품, 일정조회수 이상 상품 출력
 	@GetMapping("/productNewBest")
 	public String productNewBest(Criteria cri, @RequestParam("pageNum") Integer pageNum,
 			@RequestParam("amount") Integer amount, Model model) {
@@ -93,6 +96,7 @@ public class ProductController {
 
 	
 	// product Detail
+	//상세페이지(상품 관련 내용, 리뷰 전체 조회)
 	@GetMapping("/productDetail")
 	public String list(Criteria cri, @RequestParam("productId") Long productId, Model model) throws Exception {
 		log.info("  ǰ  ");
@@ -108,6 +112,8 @@ public class ProductController {
 		return "product/productDetail";
 	}
 
+	//Allergy Modal 
+	//member id, product id, 알러지 모달창 연결 
 	@GetMapping("/productDetailid")
 	public String listID(Criteria cri, @RequestParam("productId") Long productId,
 			@RequestParam("member_idid") String id, Model model) throws Exception {
@@ -121,6 +127,7 @@ public class ProductController {
 	}
 
 	// productSearch
+	// 상품명 검색
 	@GetMapping("/productSearch")
 	public String productSearch(Criteria cri, @RequestParam("searchWord") String searchWord, Model model)
 			throws Exception {
