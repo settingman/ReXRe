@@ -17,7 +17,12 @@ import com.hyundai.service.ReviewService2;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-
+/*********************************
+ * @function : ProductController
+ * @author : Seeun Lee
+ * @Date : Jan. 8. 2023.
+ * @description : product Controller Code
+ *********************************/
 @Controller
 @Log4j
 @RequestMapping("/product/*")
@@ -26,13 +31,13 @@ public class ProductController {
 	private ProductService productService;
 	private ReviewService2 reviewService;
 
-	// product ü ǰ
+	// product list
 	@GetMapping("/productList")
 	public String productList(Criteria cri, @RequestParam("pageNum") Integer pageNum,
 			@RequestParam("amount") Integer amount, Model model) throws Exception {
 
-		System.out.println("@@@@@@@@@@@@@@@CRI Ѿ   pageNUM" + pageNum);
-		System.out.println("@@@@@@@@@@@@@@@CRI Ѿ   Amount" + amount);
+		System.out.println("@@@@@@@@@@@@@@@CRI   pageNUM" + pageNum);
+		System.out.println("@@@@@@@@@@@@@@@CRI   Amount" + amount);
 		cri.setPageNum(pageNum);
 		cri.setAmount(amount);
 		int total = productService.getTotalCount();
@@ -45,7 +50,7 @@ public class ProductController {
 		return "product/productList";
 	}
 
-	// product Category
+	// product Category 
 	@GetMapping("/productCategory")
 	public String productCategory(Criteria cri, @RequestParam("productCategory") String productCategory,
 			@RequestParam("pageNum") Integer pageNum, @RequestParam("amount") Integer amount, Model model)
@@ -86,8 +91,8 @@ public class ProductController {
 		return "product/productNewBest";
 	}
 
-	// ǰ
-	// ǰ
+	
+	// product Detail
 	@GetMapping("/productDetail")
 	public String list(Criteria cri, @RequestParam("productId") Long productId, Model model) throws Exception {
 		log.info("  ǰ  ");
