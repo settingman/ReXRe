@@ -364,7 +364,14 @@
 												<div class="box">
 													<div class="img">
 														<div class="prdimg img1226">
-															<a href="/product/productDetail?productId=2" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/2a81785d3198690a505a063c87217b3a.jpg" width="380" height="466" /></a>
+															<sec:authorize access="isAnonymous()">
+																<a href="/product/productDetail?productId=2" tabindex="-1">
+															</sec:authorize>
+															<sec:authorize access="isAuthenticated()">
+																<a href="/product/productDetailid?productId=2&member_idid=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}" tabindex="-1">
+															</sec:authorize>
+															
+															<img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/2a81785d3198690a505a063c87217b3a.jpg" width="380" height="466" /></a>
 														</div>
 														<!-- 상품품절 영역 -->
 														<div class="soldout" onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=076A0C97D09CF1A0EC3E19C7F2529F2B&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD OUT</div>
@@ -416,7 +423,12 @@
 												<div class="box">
 													<div class="img">
 														<div class="prdimg img1226">
-															<a href="/product/productDetail?productId=5" tabindex="0"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/94ffdfb1d7886b83e5cee672dbc11318.jpg" width="380" height="466" /></a>
+																<sec:authorize access="isAnonymous()">
+																<a href="/product/productDetail?productId=5" tabindex="-1">
+															</sec:authorize>
+															<sec:authorize access="isAuthenticated()">
+																<a href="/product/productDetailid?productId=5&member_idid=${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}" tabindex="-1">
+															</sec:authorize><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/94ffdfb1d7886b83e5cee672dbc11318.jpg" width="380" height="466" /></a>
 														</div>
 														<!-- 상품품절 영역 -->
 														<div class="soldout" onclick="location.href='https://www.rexremall.com/shop/detail.php?pno=FFEABD223DE0D4EACB9A3E6E53E5448D&amp;rURL=https%3A%2F%2Fwww.rexremall.com%2F&amp;ctype=1&amp;cno1=1059'">SOLD OUT</div>
