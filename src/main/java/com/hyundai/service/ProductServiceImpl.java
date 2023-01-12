@@ -13,7 +13,11 @@ import com.hyundai.mapper.ProductMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-
+/*********************************
+ * @function : Product Service Implements
+ * @author : Seeun Lee
+ * @Date : Jan. 8. 2023.
+ *********************************/
 @Service
 @Log4j
 public class ProductServiceImpl implements ProductService {
@@ -24,45 +28,55 @@ public class ProductServiceImpl implements ProductService {
 	//product list paging
 	@Override
 	public List<productVO> getListWithPaging(Criteria cri) throws Exception {
-		log.info(">>> 占쏙옙품 占쏙옙占쏙옙징 처占쏙옙 list 占쌀뤄옙占쏙옙占쏙옙" + cri);
+		log.info(">>> getListWithPaging" + cri);
 		return mapper.getListWithPaging(cri);
 	}
 
+	//getProductTotalCount
 	@Override
 	public int getTotalCount() {
-		log.info(">>> 占쏙옙품 占쏙옙체 占쏙옙占쏙옙");
+		log.info(">>> getTotalCount");
 		return mapper.getTotalCount();
 	}
 
+	//getCategoryPaging
 	@Override
 	public List<productVO> getCategoryListWithPaging(Criteria cri, String productCategory) {
-		log.info(">>> 카占쌓곤옙 占쏙옙품 占쏙옙占쏙옙징");
+		log.info(">>> getCategoryListWithPaging");
 		return mapper.getCategoryListWithPaging(cri, productCategory);
 	}
-
+	
+	//getCategoryCount
 	@Override
 	public int getCategoryTotalCount(String productCategory) {
+		log.info(">>>> getCategoryTotalCount");
 		return mapper.getCategoryTotalCount(productCategory);
 	}
-
+	
+	//getNewBestPaging
 	@Override
 	public List<productVO> getNewBestListWithPaging(Criteria cri) {
+		log.info(">>>> getNewBestListWithPaging");
 		return mapper.getNewBestListWithPaging(cri);
 	}
-
+	
+	//getNewBestTotalCount
 	@Override
 	public int getNewBestTotalCount() {
+		log.info(">>>> getNewBestTotalCount");
 		return mapper.getNewBestTotalCount();
 	}
 
-	// Detail + count
+	//Detail + count
 	@Override
 	@Transactional
 	public List<productDetailVO> getProductDetail(Long productId) {
 		int update = mapper.getProductDetailCount(productId);
+		log.info(">>>>> getProductDetail");
 		return mapper.getProductDetail(productId);
 	}
 
+	//memberId, productId getAllergy
 	@Override
 	public List<String> getAllergies(String id, Long productId) {
 		System.out.println("service");
@@ -70,12 +84,14 @@ public class ProductServiceImpl implements ProductService {
 		return list;
 	}
 
+	//product Detail getImage
 	@Override
 	public String getProductImage(Long productId) {
 
 		return mapper.getProductImage(productId);
 	}
-
+	
+	//productName search
 	@Override
 	public List<productVO> getProductSearch(Criteria cri, String searchWord) {
 		// TODO Auto-generated method stub

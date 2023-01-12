@@ -4,8 +4,14 @@ import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+/*********************************
+ * @function : ProductVO
+ * @author : Seeun Lee
+ * @Date : Jan. 8. 2023.
+ *********************************/
 @AllArgsConstructor
 @Data
+//productList에 필요한 변수
 public class productVO {
 
 	public productVO(Long productId, String productName) {
@@ -13,7 +19,8 @@ public class productVO {
 		this.productId = productId;
 		this.productName = productName;
 	}
-	private Long productId; //pk
+
+	private Long productId; // pk
 	private String productName;
 	private int productPrice;
 	private String productVolume;
@@ -25,7 +32,7 @@ public class productVO {
 	private int productQuantity;
 	private String productSummary;
 	private String productCategory;
-	
+
 	private int imageId;
 	private String imageCategory;
 	private String imagePath;

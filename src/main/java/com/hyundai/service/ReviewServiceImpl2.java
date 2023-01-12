@@ -5,12 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hyundai.domain.Criteria;
 import com.hyundai.domain.Review2VO;
 import com.hyundai.mapper.ReviewMapper2;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
+
+/*********************************
+ * @function : Review Service Implements
+ * @author : Seeun Lee
+ * @Date : Jan 8. 2023.
+ *********************************/
 @Service
 @Log4j
 public class ReviewServiceImpl2 implements ReviewService2{
@@ -24,7 +29,6 @@ public class ReviewServiceImpl2 implements ReviewService2{
 
 	@Override
 	public int getReview2TotalCount(Long productId) {
-		// TODO Auto-generated method stub
 		return mapper.getReview2TotalCount(productId);
 	}
 

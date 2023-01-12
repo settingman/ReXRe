@@ -3,6 +3,7 @@ package com.hyundai.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hyundai.domain.OrderCompleteDTO;
 import com.hyundai.domain.OrderDTO;
@@ -22,6 +23,8 @@ public class OrderService {
 	private final OrderMapper orderMapper;
 	private final CartMapper cartMapper;
 
+	
+	@Transactional
 	public OrderCompleteDTO insertOrder(OrderDTO orderDto, Integer member_id) {
 
 		List<Integer> product_id = orderDto.getProduct_id();

@@ -22,14 +22,11 @@ public class OrderDTO2 {
 	private Integer order_category;
 	private Integer total_price;
 	private Integer member_id;
-	
-	
-	
-	public OrderDTO2(String order_name, Integer order_postnum, String ORDER_PHONE,
-			String order_adress1, String order_adress2, String order_ask, String order_payment, Integer total_price,
-			Integer member_id, Integer order_category) {
 
-	
+	public OrderDTO2(String order_name, Integer order_postnum, String ORDER_PHONE, String order_adress1,
+			String order_adress2, String order_ask, String order_payment, Integer total_price, Integer member_id,
+			Integer order_category) {
+
 		this.order_name = order_name;
 		this.order_postnum = order_postnum;
 		this.ORDER_PHONE = ORDER_PHONE;
@@ -42,8 +39,6 @@ public class OrderDTO2 {
 		this.order_category = order_category;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return "OrderDTO2 [orderid=" + orderid + ", order_name=" + order_name + ", order_postnum=" + order_postnum
@@ -52,5 +47,4 @@ public class OrderDTO2 {
 				+ order_category + ", total_price=" + total_price + ", member_id=" + member_id + "]";
 	}
 
-	
 }
