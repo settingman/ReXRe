@@ -21,7 +21,7 @@ public class ProductServiceImpl implements ProductService {
 	@Setter(onMethod_ = @Autowired)
 	private ProductMapper mapper;
 
-	// 占쏙옙품 占쏙옙체 list 占쌀뤄옙占쏙옙占쏙옙
+	//product list paging
 	@Override
 	public List<productVO> getListWithPaging(Criteria cri) throws Exception {
 		log.info(">>> 占쏙옙품 占쏙옙占쏙옙징 처占쏙옙 list 占쌀뤄옙占쏙옙占쏙옙" + cri);
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getNewBestTotalCount();
 	}
 
-	// 占쏙옙占쏙옙占쏙옙占쏙옙 占쏙옙회 + count
+	// Detail + count
 	@Override
 	@Transactional
 	public List<productDetailVO> getProductDetail(Long productId) {

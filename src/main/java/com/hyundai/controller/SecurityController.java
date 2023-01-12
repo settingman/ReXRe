@@ -142,20 +142,26 @@ public class SecurityController {
 		model.addAttribute("orderList", orderList);
 	}
 
+//	@PostMapping("/pwModify")
+//	public String pwmodify(@RequestParam(value = "pwd") String pw, Principal principal, Model model) {
+//
+//		if (service.PWCheck(principal.getName(), pw)) {
+//
+//			System.out.println("pass");
+//
+//			return "security/join";
+//		} else {
+//			System.out.println("nonpass");
+//			model.addAttribute("error", 1);
+//			return "security/pwmodi";
+//
+//		}
+//	}
 	@PostMapping("/pwModify")
-	public String pwmodify(@RequestParam(value = "pwd") String pw, Principal principal, Model model) {
+	public boolean pwmodify(@RequestParam(value = "pwd") String pw, Principal principal) {
+		System.out.println(principal.getName()+"    "+pw);
+		return service.PWCheck(principal.getName(), pw);
 
-		if (service.PWCheck(principal.getName(), pw)) {
-
-			System.out.println("pass");
-
-			return "security/join";
-		} else {
-			System.out.println("nonpass");
-			model.addAttribute("error", 1);
-			return "security/pwmodi";
-
-		}
 	}
 
 	@GetMapping("/pwmodi")

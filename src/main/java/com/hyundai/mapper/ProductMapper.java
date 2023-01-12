@@ -7,33 +7,40 @@ import org.apache.ibatis.annotations.Param;
 import com.hyundai.domain.Criteria;
 import com.hyundai.domain.productDetailVO;
 import com.hyundai.domain.productVO;
-
+/*********************************
+ * @function : ProductMapper
+ * @author : Seeun Lee
+ * @Date : Jan. 8. 2023.
+ * @description : product Mapper interface Code
+ *********************************/
 public interface ProductMapper {
 
-	// 占쏙옙품 占쏙옙체
-	public List<productVO> getListWithPaging(Criteria cri); // 占식띰옙占쏙옙占 占쌨아쇽옙 占쏙옙占쏙옙징 占쏙옙占쏙옙占쏙옙 -> xml 占싸몌옙 占쏙옙
+	//product List paging
+	public List<productVO> getListWithPaging(Criteria cri); 
 
 	public int getTotalCount();
 
-	// 占쏙옙품 카占쌓곤옙
+	// product Category paging
 	public List<productVO> getCategoryListWithPaging(@Param("cri") Criteria cri,
 			@Param("productCategory") String productCategory);
 
 	public int getCategoryTotalCount(@Param("productCategory") String productCategory);
 
-	// NewBest
+	// NewBest 
 	public List<productVO> getNewBestListWithPaging(Criteria cri);
 
 	public int getNewBestTotalCount();
 
-	// 占쏙옙품占쏙옙
+	// Product Detail
 	public List<productDetailVO> getProductDetail(@Param("productId") Long productId);
 
 	public int getProductDetailCount(Long productId);
-
+	
+	//detail allergy
 	public List<String> getAllergies(@Param("id") String id, @Param("productId") Long productId);
 
 	public String getProductImage(@Param("productId") Long productId);
-
+	
+	//product Name search
 	public List<productVO> getProductSearch(@Param("cri") Criteria cri, @Param("searchWord") String searchWord);
 }

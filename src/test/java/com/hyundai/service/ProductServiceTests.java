@@ -14,15 +14,21 @@ import com.hyundai.domain.productVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-
+/*********************************
+ * @function : ProductServiceTests
+ * @author : Seeun Lee
+ * @Date : Jan 8. 2023.
+ * @description : product Service Test Code
+ *********************************/
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
 public class ProductServiceTests {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ProductService service;
 	
+	//product list
 	@Test
 	public void testGetPagingList() throws Exception {
 		
@@ -33,27 +39,31 @@ public class ProductServiceTests {
 		}
 	}
 	
+	//product Total count
 	@Test
 	public void testGetTotalCount() throws Exception {
 		int count = service.getTotalCount();
 		System.out.print(count);
 	}
 	
+	//product CategoryList 
 	@Test
 	public void testGetCategoryList() {
 
-		List<productVO> list = service.getCategoryListWithPaging(new Criteria(1,9), "½ºÅ²ÄÉ¾î");
+		List<productVO> list = service.getCategoryListWithPaging(new Criteria(1,9), "ìŠ¤í‚¨ì¼€ì–´");
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 	}
 	
+	//product category count
 	@Test
 	public void testCategoryCount() {
-		System.out.println(service.getCategoryTotalCount("½ºÅ²ÄÉ¾î"));
+		System.out.println(service.getCategoryTotalCount("ìŠ¤í‚¨ì¼€ì–´"));
 		
 	}
 	
+	//product NewBest
 	@Test
 	public void testNewBestList() {
 		List<productVO> list = service.getNewBestListWithPaging(new Criteria(1,9));
@@ -62,8 +72,8 @@ public class ProductServiceTests {
 		}
 	}
 	
-	//»ó¼¼ÆäÀÌÁö + Á¶È¸¼ö test
-	
+
+	//product Detail
 	@Test
 	public void testGetProductDetail() throws Exception {
 		List<productDetailVO> list = service.getProductDetail(1L);

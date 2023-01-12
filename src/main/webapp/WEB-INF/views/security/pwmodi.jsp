@@ -13,6 +13,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="_csrf" content="${_csrf.token}" />
 <title>리바이리 (ReXRe)</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 부트스트랩 -->
@@ -45,7 +46,36 @@
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 </head>
 <!-- DO NOT MODIFY -->
+<script>
 
+function validate() {
+    var flag = false;
+    var csrf = $('#csrf').val();
+    var	pw = $('#edit_pwd').val();
+	var csrfToken = $("meta[name='_csrf']").attr("content");
+	$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+		if (options['type'].toLowerCase() === "post") {
+			jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+		}
+	});
+    $.ajax({
+      type: "POST",
+      url: "/security/pwModify",
+      data: {pwd : pw
+    },
+      async: false,
+      success: function (res) {
+        if (!res) {
+          alert("비밀번호가 일치하지 않습니다");
+          flag = false;
+        } else {
+          flag = true;
+        }
+      }
+    });
+    return flag;
+  }
+</script>
 
 
 
@@ -132,8 +162,20 @@
 				</div>
 				<div id="edit_pw" class="edit_info">
 					<h3 class="title first">나의정보수정</h3>
-					<form method="post" action="/security/pwModify" style="margin: 0px;">
+<%-- 					<form method="post" action="/security/pwModify" style="margin: 0px;" >
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						<div class="box">
+							<p class="msg">
+								고객님의 안전한 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.<br>비밀번호가 타인에게 노출되지 않도록 주의하여 주세요.
+							</p>
+							<input type="password" id="edit_pwd" name="pwd" class="form_input" placeholder="비밀번호">
+						</div>
+						<div class="btn">
+							<span class="box_btn w150 large"><input type="submit" value="확인"></span> <span class="box_btn w150 large white"><a href="javascript:history.back();">취소</a></span>
+						</div>
+					</form> --%>
+										<form method="post" action="/security/join" style="margin: 0px;" onsubmit="return validate()">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" id="csrf">
 						<div class="box">
 							<p class="msg">
 								고객님의 안전한 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.<br>비밀번호가 타인에게 노출되지 않도록 주의하여 주세요.

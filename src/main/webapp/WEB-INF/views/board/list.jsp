@@ -11,9 +11,9 @@
 
 	<div id="skin_board_index_big_div">
 		<div id="wrapper">
-
+<%@ include file="../include/header.jsp"%>	
 			<!-- 상단 -->
-			<%@ include file="../include/header.jsp"%>
+			
 			<!-- //상단 -->
 
 			<!-- 중앙 -->
