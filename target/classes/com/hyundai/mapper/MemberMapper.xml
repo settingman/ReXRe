@@ -3,9 +3,10 @@
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http:/mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundai.mapper.MemberMapper">
+
+<!-- Members 테이블의 컬럼을 MemberVO에 맞게 컬럼명 변경 -->
 	<resultMap type="com.hyundai.domain.MemberVO" id="memberMap">
 		<id property="useridid" column="member_idid"></id>
-
 		<result property="member_phone" column="member_phone"></result>
 		<result property="member_email" column="member_email"></result>
 		<result property="member_postNum" column="member_postnum"></result>
@@ -20,16 +21,21 @@
 		<result property="userid" column="member_id"></result>
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
+	
+<!-- Auths 테이블과 Members 테이블의 컬럼을 AuthVO에 맞게 컬럼명 변경 -->
 	<resultMap type="com.hyundai.domain.AuthVO" id="authMap">
 		<result property="userid" column="member_idid"></result>
 		<result property="auth" column="auth_name"></result>
 	</resultMap>
+	
+<!-- allergies 테이블 컬럼을 AllergyVO에 맞게 컬럼면 변경 -->
 	<resultMap type="com.hyundai.domain.AllergyVO"
 		id="AllergyMap">
 		<result property="allergy_id" column="allergy_id"></result>
 		<result property="allergy_name" column="allergy_name"></result>
 	</resultMap>
-
+	
+<!-- 회원과 해당 회원의 권한 불러오기 -->
 	<select id="read" resultMap="memberMap">
 		select
 		mem.member_idid,member_id,member_phone, member_email,
@@ -48,20 +54,28 @@
 		mem.member_idid = #{userid}
 		and member_enabled = 1
 	</select>
+	
+<!-- 아이디 중복 체크 -->	
 	<select id="IDCheck" parameterType="String" resultType="int">
 		select
 		count(member_idid) from members where member_idid = #{member_idid}
 	</select>
+
+<!-- 알러지 성분 검색 -->	
 	<select id="allergySearch" parameterType="String"
 		resultType="com.hyundai.domain.AllergyVO"> 
       <![CDATA[select allergy_id, allergy_name from allergies where (allergy_name 
       like '%'||#{allergy}||'%' or allergy_alter like '%'||#{allergy}||'%') and allergy_id >0 and 
       rownum < 6]]>
 	</select>
+	
+<!-- 알러지 성분 추가 -->
 	<insert id="addal" parameterType="String">
 		insert into allergies values
 		(cusallergy_seq.nextval,#{allergy},'')
 	</insert>
+	
+<!-- 회원가입 -->	
 	<insert id="joinUser"
 		parameterType="com.hyundai.domain.MemberVO">
 		insert into members
@@ -70,6 +84,8 @@
 		(memberid_seq.nextval,#{useridid},#{userpw},#{userName},#{member_birthday},
 		#{member_sex},#{member_phone},#{member_email},#{member_postNum},#{member_address1},#{member_address2})
 	</insert>
+	
+<!-- 특정 회원의 알러지 성분 추가 -->
 	<insert id="addMemAl"
 		parameterType="com.hyundai.domain.AllergyMapperVO">
 		insert into allergymappers
@@ -79,25 +95,34 @@
 		from members where member_idid =
 		#{member_idid}))
 	</insert>
+	
+<!-- 아이디 찾기 -->
 	<select id="findID"
 		parameterType="com.hyundai.domain.AllergyMapperVO" resultType="String">
 		select
 		member_idid from members where member_name = #{allergy_name } and
 		member_email = #{member_idid}
 	</select>
+	
+<!-- 비밀번호 변경 -->	
 	<update id="pwChange"
 		parameterType="com.hyundai.domain.AllergyMapperVO">
 		UPDATE members SET member_pw = #{allergy_name} WHERE
 		member_idid = #{member_idid}
 	</update>
 
+<!-- 회원 아이디로 회원 번호 찾기 -->
 	<select id="idid" resultType="Integer">
 		select member_id from members where
 		member_idid = #{member_idid}
 	</select>
+	
+<!-- 비밀번호 확인 -->	
 	<select id="PWCheck" resultType="String">
 		select member_pw from members where member_idid = #{name}
 	</select>
+	
+<!-- 회원정보 수정 -->
 	<update id="updateUser"
 		parameterType="com.hyundai.domain.MemberVO">
 		update members set
@@ -108,6 +133,8 @@
 		#{member_address2}
 		where member_idid = #{useridid}
 	</update>
+	
+<!-- 회원 탈퇴(회원 enabled 컬럼 0으로 변경) -->
 	<update id="out">
 		update members set member_enabled = 0 where member_idid = #{name}
 	</update>

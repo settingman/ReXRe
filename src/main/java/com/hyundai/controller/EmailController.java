@@ -1,3 +1,10 @@
+/*********************************
+ * @function : Security 관련 기능
+ * @author : Ilwoo Jo
+ * @Date : Jan 6. 2023.
+ * @description : 메일 전송 기능
+ *********************************/
+
 package com.hyundai.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +23,10 @@ public class EmailController {
 	@Autowired
 	private MailSendService mailService;
 	
-	//이메일 인증
+	//인증메일 전송 및 전송 숫자 반환 기능
 	@GetMapping("/email.do")
 	@ResponseBody
 	public String mailCheck(String email) {
-		System.out.println("이메일 인증 요청이 들어옴!");
-		System.out.println("이메일 인증 이메일 : " + email);
 		return mailService.joinEmail(email);
-		
-			
 	}
 }
