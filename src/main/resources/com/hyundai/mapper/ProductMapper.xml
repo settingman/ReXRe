@@ -11,16 +11,20 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hyundai.mapper.ProductMapper">
 
-	<!-- getListWithPaging SELECT 부분 -->
+	<!-- getListWithPaging
+		 전체 상품을 조회하고 페이징 처리 한다.
+	-->
 	<select id="getListWithPaging"
 		resultType="com.hyundai.domain.productVO">
       <![CDATA[
-         SELECT  PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
-                 IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+         SELECT  PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, 
+         		 PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, 
+         		 PRODUCT_CATEGORY, IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
          FROM 
             (SELECT /*+ INDEX_DESC(P.PRODUCTS product_id) */
-               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
-                 I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, 
+               P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, 
+               P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY, I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
             FROM PRODUCTS P, PRODUCTIMAGES I 
             WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND I.IMAGE_CATEGORY = '상품' AND
                  ROWNUM <= #{pageNum} * #{amount} 
@@ -40,15 +44,20 @@
 	</select>
 
 
-	<!-- getCategoryListWithPaging -->
+	<!-- getCategoryListWithPaging
+		 카테고리 별로 조회하고 페이징 처리한다.
+	 -->
 	<select id="getCategoryListWithPaging"
 		resultType="com.hyundai.domain.productVO">
       <![CDATA[
-         SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
-               IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+         SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, 
+         		PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
+                IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
          FROM
             (SELECT /*+ INDEX_DESC(PRODUCTS PRODUCT_ID) */
-               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
+               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, 
+               P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, 
+               P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
                I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
             FROM PRODUCTS P, PRODUCTIMAGES I
             WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
@@ -75,17 +84,21 @@
 	</select>
 
 
-	<!-- getNewBestListWithPaging -->
+	<!-- getNewBestListWithPaging 
+		 newBest를 조회하고 페이징 처리한다.
+	-->
 	<select id="getNewBestListWithPaging"
 		resultType="com.hyundai.domain.productVO">
       
       <![CDATA[
-         SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
-               IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
+         SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_VOLUME, PRODUCT_FROM, PRODUCT_DURATION, PRODUCT_MANU, 
+         		PRODUCT_REGDATE, PRODUCT_CLICK, PRODUCT_QUANTITY, PRODUCT_SUMMARY, PRODUCT_CATEGORY,
+                IMAGE_ID, IMAGE_CATEGORY, IMAGE_PATH
          FROM
             (SELECT /*+ INDEX_DESC(PRODUCTS PRODUCT_ID) */
-               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY,
-               I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+               ROWNUM RN, P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, 
+               P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, 
+               P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY, I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
             FROM PRODUCTS P, PRODUCTIMAGES I
             WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID
                   AND ROWNUM <= #{pageNum} * #{amount}
@@ -99,6 +112,9 @@
 	</select>
 
 	<!-- getNewBestTotalCount -->
+	<!-- new상품의 기준 : 2022-12-30일 이후 등록된 상품
+		 best상품의 기준 : 조회수 5 이상의 상품
+	 -->	 
 	<select id="getNewBestTotalCount" resultType="int">
       
       <![CDATA[
@@ -117,8 +133,9 @@
 		resultType="com.hyundai.domain.productDetailVO">
    
       <![CDATA[
-         SELECT P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY
-                 ,I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
+         SELECT P.PRODUCT_ID, P.PRODUCT_NAME, P.PRODUCT_PRICE, P.PRODUCT_VOLUME, P.PRODUCT_FROM, 
+         		P.PRODUCT_DURATION, P.PRODUCT_MANU, P.PRODUCT_REGDATE, P.PRODUCT_CLICK, P.PRODUCT_QUANTITY, 
+         		P.PRODUCT_SUMMARY, P.PRODUCT_CATEGORY ,I.IMAGE_ID, I.IMAGE_CATEGORY, I.IMAGE_PATH
          FROM PRODUCTS P, PRODUCTIMAGES I
          WHERE P.PRODUCT_ID = I.PRODUCTS_PRODUCT_ID AND I.IMAGE_CATEGORY = '상품상세' AND P.PRODUCT_ID = #{productId} 
          ORDER BY P.PRODUCT_ID 
@@ -133,12 +150,18 @@
 		WHERE PRODUCTS_PRODUCT_ID = #{productId} and IMAGE_CATEGORY = '상품'
 	</select>
 
-	<!-- 상세페이지 조회수 -->
+	<!-- 상세페이지를 클릭할때마다 증가하는 조회수 -->
 	<update id="getProductDetailCount">
 		UPDATE products
 		SET product_click = product_click + 1
 		WHERE product_id = #{productId}
 	</update>
+	
+	<!-- 상세페이지 조회 시 알러지 성분 가져와 비교하기 -->
+	<!-- 1. allery 테이블들과 member 테이블 join 하여 고객의 알러지 성분을 들고온다. 
+		 2. 고객이 고른 상품 안에 들어있는 성분들을 모두 들고온다.
+		 3. 고객의 알러지 성분이 상품안에 들어있는지 확인한다.
+	-->
 	<select id="getAllergies" resultType="String">
 		select allergy_name
 		from members,(
@@ -158,6 +181,7 @@
 	</select>
 
 	<!-- 검색처리 -->
+	<!-- 상품명을 통해 검색처리를 한 후, 페이징 처리를 한다. -->
 	<select id="getProductSearch"
 		resultType="com.hyundai.domain.productVO">
       <![CDATA[

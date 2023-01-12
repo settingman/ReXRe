@@ -15,20 +15,25 @@ import com.hyundai.domain.Review2VO;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
-
+/*********************************
+ * @function : ReviewMapper2Tests
+ * @author : Seeun Lee
+ * @Date : Jan 8. 2023.
+ * @description : Review Mapper Test
+ *********************************/
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
 @NoArgsConstructor
 public class ReviewMapper2Tests {
 	@Setter(onMethod_ = @Autowired)
 	private ReviewMapper2 mapper;
 
-	
+	//한 상품 리뷰 전체 조회
 	@Test
-	public void testGetReviewListPaging() {
+	public void testGetReviewList() {
 		List<Review2VO> list = mapper.getReview2WithPaging(1L);
-		System.out.print("�궗�씠利� :  " + list.size());
+		System.out.print("한 상품 리뷰 개수 " + list.size());
 		for(int i = 0; i < list.size(); i++) {
 			System.out.print(list.get(i));
 		}

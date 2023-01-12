@@ -83,7 +83,7 @@ public class ProductMapperTests {
 		}
 	}
 	
-	//product Detail ��ȸ
+	//product Detail
 	@Test
 	public void testGetProductDetail() {
 		System.out.println("getProductDetail");
@@ -102,12 +102,14 @@ public class ProductMapperTests {
 		log.info(count);
 	}
 	
+	//getAllergy
 	@Test
 	public void getAler() throws Exception {
 		List<String> count = mapper.getAllergies("member1",1L);
 		log.info(count);
 	}
 	
+	//getProductImage
 	@Test
 	public void testGetProductImage() {
 		System.out.println("productImage");
