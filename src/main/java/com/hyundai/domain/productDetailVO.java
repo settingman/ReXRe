@@ -21,7 +21,7 @@ public class productDetailVO {
 	private int productQuantity;
 	private String productSummary;
 	private String productCategory;
-	
+
 	private int imageId;
 	private String imageCategory;
 	private String imagePath;

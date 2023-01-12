@@ -24,6 +24,13 @@ import com.hyundai.service.review.ReviewService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
+/**
+ * @FileName: ReviewController.java
+ * @Project : ReXRe
+ * @작성자 : 박성환, 이세은
+ * @설명 : @
+ */
+
 @Controller
 @Log4j
 @RequestMapping("/review/*")
@@ -63,27 +70,24 @@ public class ReviewController {
 
 		if (orderList.isEmpty()) {
 			System.out.println("없어");
-			
+
 			return "redirect:/product/productDetail?productId=" + id;
-			
+
 		} else {
-			
+
 			model.addAttribute("id", id);
 			return "/review/insert";
 		}
 
-		
-
 	}
 
+	// 리뷰 작성
 	@PostMapping("/insert")
 	public String insert(Principal principal, @RequestParam("product_id") Integer porductid,
 			@RequestParam("boardTitle") String title, @RequestParam("boardContent") String content, Model model)
 			throws Exception {
 
 		Integer memberId = memberMapper.idid(principal.getName());
-
-		
 
 		reviewmapper.insertReview2(porductid, title, content, memberId);
 
@@ -103,13 +107,6 @@ public class ReviewController {
 		return "redirect:read?boardId=" + review.getReviewId();
 	}
 
-	/**
-	 * 
-	 * @param boardId
-	 * @param rttr
-	 * @return
-	 * @throws Exception
-	 */
 	@PostMapping("/delete")
 	public ResponseEntity<?> delete(@RequestParam("reviewId") long reviewId, RedirectAttributes rttr) throws Exception {
 		try {

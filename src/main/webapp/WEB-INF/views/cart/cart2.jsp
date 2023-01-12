@@ -1,4 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <html>
 <head>
@@ -183,7 +187,7 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th scope="col"><input type="checkbox" onclick="cartCheckAll(this.checked)" id="allCheck"  checked="on"/></th>
+										<th scope="col"><input type="checkbox" onclick="cartCheckAll(this.checked)" id="allCheck" checked="on" /></th>
 										<th scope="col" colspan="2">상품명</th>
 										<th scope="col"></th>
 										<th scope="col"></th>
@@ -196,8 +200,8 @@
 								<tbody class="test">
 
 									<c:forEach var="cartItem" items="${cartItems}" varStatus="status">
-										<tr class="checked" id="itemNum${status.count}" >
-											<td><input type="checkbox" name="chBox" class="chBox" data-product_id="${cartItem.PRODUCT_ID}" data-status="itemNum${status.count}" data-price="item_p${status.count}" checked="on"/></td>
+										<tr class="checked" id="itemNum${status.count}">
+											<td><input type="checkbox" name="chBox" class="chBox" data-product_id="${cartItem.PRODUCT_ID}" data-status="itemNum${status.count}" data-price="item_p${status.count}" checked="on" /></td>
 											<td><a href="#"><img src="${cartItem.IMAGE_PATH}" width="82" height="100" barder="0" /></a></td>
 											<td class="name tal"><a href="상품디테일주소뿌려주기">${cartItem.PRODUCT_NAME}</a></td>
 											<td>
@@ -292,8 +296,6 @@
                     $("#allCheck").prop("checked", false);
                     total_price_calc();
                    });
-                
-                
                 
                 
                 //선택삭제

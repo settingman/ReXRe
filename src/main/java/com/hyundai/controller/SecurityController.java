@@ -190,7 +190,7 @@ public class SecurityController {
 
 		if (service.PWCheck(principal.getName(), pw)) {
 			service.out(principal.getName());
-			
+
 			System.out.println("머야");
 			return "shop/cart2";
 		} else {

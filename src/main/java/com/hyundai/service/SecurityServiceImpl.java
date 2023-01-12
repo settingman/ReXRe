@@ -25,7 +25,7 @@ public class SecurityServiceImpl implements SecurityService {
 	@Override
 	public int IDCheck(String member_idid) {
 		int cnt = mapper.IDCheck(member_idid);
-		return cnt;
+		return cnt;	
 	}
 
 	@Override

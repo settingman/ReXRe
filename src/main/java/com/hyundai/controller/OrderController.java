@@ -22,8 +22,12 @@ import com.hyundai.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-// 박성환
-// OrderController
+/**
+ * @FileName: OrderController.java
+ * @Project : ReXRe
+ * @작성자 : 박성환
+ * @설명 : 주문 처리
+ */
 
 @Slf4j
 @Controller
@@ -34,16 +38,10 @@ public class OrderController {
 	private final OrderService orderService;
 	private final MemberMapper memberMapper;
 
+	// 주문서 요청
 	@GetMapping("/shop/order")
 	public String CartToOrder(@RequestParam List<Integer> id, Model model, Principal principal) {
 
-		System.out.println("뿌리기");
-
-		for (Integer a : id) {
-			System.out.println(a);
-		}
-
-		// principle 로 받거나, or Session
 		Integer member_id = memberMapper.idid(principal.getName());
 
 		List<CartItem> cartItems = cartService.CartToOrder(id, member_id);
@@ -54,17 +52,13 @@ public class OrderController {
 
 	}
 
+	// 주문완료 요청
 	@PostMapping("/shop/oredercomplete")
 	public String OrederComplete(OrderDTO orderDTO, Model model, Principal principal) {
 
-		System.out.println("ordercomplete");
-
-		// 세션에서 맴버 받아오기.
 		Integer member_id = memberMapper.idid(principal.getName());
 
 		OrderCompleteDTO orderCompleteDTO = orderService.insertOrder(orderDTO, member_id);
-
-		System.out.println(orderCompleteDTO);
 
 		model.addAttribute("orderCompleteDTO", orderCompleteDTO);
 
@@ -72,21 +66,17 @@ public class OrderController {
 
 	}
 
-	// 주문 조회ㅍ
+	// 주문내역 조회
 	@GetMapping("/shop/orederlist")
 	public String OrederList(Model model, Principal principal) {
 
-		System.out.println("orderList");
-
-		// 세션에서 맴버 받아오기.
 		Integer member_id = memberMapper.idid(principal.getName());
-
-		System.out.println(member_id);
 
 		List<OrderList> orderList = orderService.OrderList(member_id);
 
 		List<String> itemList = new ArrayList<String>();
 
+		// 주문내역 내용 설정
 		for (OrderList i : orderList) {
 
 			List<String> orderListItem = orderService.OrderListItems(i.getOrderId());
@@ -100,10 +90,6 @@ public class OrderController {
 				itemList.add(orderListItem.get(0));
 			}
 
-		}
-
-		for (String i : itemList) {
-			System.out.println(i);
 		}
 
 		model.addAttribute("orderList", orderList);

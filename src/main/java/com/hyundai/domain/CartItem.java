@@ -3,6 +3,13 @@ package com.hyundai.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @FileName: CartItem.java
+ * @Project : ReXRe
+ * @작성자 : 박성환
+ * @설명 : 장바구니 아이템 목록을 위한 객체.
+ */
+
 @Getter
 @Setter
 public class CartItem {

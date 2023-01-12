@@ -5,6 +5,13 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @FileName: OrderDTO.java
+ * @Project : ReXRe
+ * @작성자 : 박성환
+ * @설명 : 주문서 입력 데이터를 저장하기 위한 객체
+ */
+
 @Getter
 @Setter
 public class OrderDTO {
@@ -20,10 +27,7 @@ public class OrderDTO {
 	private String order_payment;
 	private Integer items_price;
 	private Integer deliver_price;
-	
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "OrderDTO [product_id=" + product_id + ", product_Quntity=" + product_Quntity + ", order_name="
@@ -32,13 +36,10 @@ public class OrderDTO {
 				+ order_payment + ", items_price=" + items_price + ", deliver_price=" + deliver_price + "]";
 	}
 
-
-
-
 	public OrderDTO(List<Integer> product_id, List<Integer> product_Quntity, String order_name, Integer order_postnum,
 			String ORDER_PHONE, String order_adress1, String order_adress2, String order_ask, String order_payment,
 			Integer items_price, Integer deliver_price) {
-		
+
 		this.product_id = product_id;
 		this.product_Quntity = product_Quntity;
 		this.order_name = order_name;
@@ -51,14 +52,5 @@ public class OrderDTO {
 		this.items_price = items_price;
 		this.deliver_price = deliver_price;
 	}
-	
-	
-	
-	
-	
-	
-	
-
-	
 
 }

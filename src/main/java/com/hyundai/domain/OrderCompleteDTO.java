@@ -3,6 +3,13 @@ package com.hyundai.domain;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * @FileName: OrderCompleteDTO.java
+ * @Project : ReXRe
+ * @작성자 : 박성환
+ * @설명 : 주문완료 페이지 객체
+ */
+
 @Getter
 @Setter
 public class OrderCompleteDTO {
