@@ -28,7 +28,7 @@ public class ProductServiceTests {
 	@Setter(onMethod_ = @Autowired)
 	private ProductService service;
 	
-	//product list
+	//product list 페이징 처리 테스트
 	@Test
 	public void testGetPagingList() throws Exception {
 		
@@ -47,6 +47,7 @@ public class ProductServiceTests {
 	}
 	
 	//product CategoryList 
+	//스킨케어에 해당하는 상품의 1페이지 9개의 항목만 출력
 	@Test
 	public void testGetCategoryList() {
 
@@ -82,5 +83,11 @@ public class ProductServiceTests {
 		}
 	}
 	
+	//getAllergy member1이 1번 상품에 대해 가지고 있는 알러지 정보 추출
+	@Test
+	public void testGetAllergy() throws Exception {
+		List<String> count = service.getAllergies("member1", 1L);
+		log.info(count);
+	}
 	
 }

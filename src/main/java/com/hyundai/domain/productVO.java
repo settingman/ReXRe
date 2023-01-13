@@ -4,9 +4,14 @@ import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
+/*********************************
+ * @function : ProductVO
+ * @author : Seeun Lee
+ * @Date : Jan. 8. 2023.
+ *********************************/
 @AllArgsConstructor
 @Data
+//productList에 필요한 변수
 public class productVO {
 
 	public productVO(Long productId, String productName) {

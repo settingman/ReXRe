@@ -12,7 +12,7 @@ public class Criteria {
 	private int amount;
 	
 	public Criteria() {
-		this(1, 9); //기본값을 1페이지, 9개
+		this(1, 9);
 	}
 	
 	public Criteria(int pageNum, int amount) {

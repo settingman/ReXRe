@@ -1,3 +1,15 @@
+/*********************************
+ * @function : Security 관련 기능
+ * @author : Ilwoo Jo
+ * @Date : Dec 31. 2022.
+ * @description : 로그인 기능 추가
+ * 로그아웃 기능 추가
+ * 회원가입 기능 추가
+ * 회원 정보 수정 기능 추가
+ * 알러지 성분 기능 추가
+ * 회원 찾기 기능 추가
+ * 회원 탈퇴 기능 추가
+ *********************************/
 package com.hyundai.controller;
 
 import java.security.Principal;
@@ -32,7 +44,7 @@ public class SecurityController {
 	private MemberMapper mapper;
 	@Autowired
 	private OrderService orderService;
-
+//로그인 기능
 	@GetMapping("/login")
 	public void loginInput(String error, String logout, Model model) {
 		log.info("error : " + error);
@@ -45,28 +57,28 @@ public class SecurityController {
 			model.addAttribute("logout", "true");
 		}
 	}
-
+//로그인 후 홈페이지 이동
 	@PostMapping("/login")
 	public String loginPost() {
 		return "/home";
 	}
-
+//로그아웃 기능
 	@PostMapping("/logout")
 	public String logoutPost() {
 		log.info("logout");
 		return "/home";
 	}
-
+//회원가입 기능
 	@GetMapping("/join")
 	public void join() {
 
 	}
-
+//아이디 찾기 페이지 이동 기능
 	@GetMapping("/find")
 	public void findget() {
 
 	}
-
+//아이디 중복 검사 기능
 	@PostMapping("/findID.do")
 	@ResponseBody
 	public String findpost(@RequestParam("id") String id, @RequestParam("email") String email) {
@@ -77,7 +89,7 @@ public class SecurityController {
 		System.out.println(cnt);
 		return cnt;
 	}
-
+//회원가입 기능
 	@PostMapping("/join")
 	public String joinPOST(@RequestParam("member_idid") String member_idid, @RequestParam("member_pw") String member_pw,
 			@RequestParam("member_name") String member_name, @RequestParam("birth1") String birth1,
@@ -93,48 +105,47 @@ public class SecurityController {
 
 		return "security/welcome";
 	}
-
+//아이디 중복 검사 기능
 	@PostMapping("/IDCheck.do")
 	@ResponseBody
 	public int IDCheck(@RequestParam("id") String member_idid) {
 		int cnt = service.IDCheck(member_idid);
 		return cnt;
 	}
-
+//알러지 성분 찾기 기능
 	@GetMapping("/alsear.do")
 	@ResponseBody
 	public List<AllergyVO> allergySearch(@RequestParam("allergy") String allergy) {
 		List<AllergyVO> list = service.allergySearch(allergy);
 		return list;
 	}
-
+//임의의 알러지 추가 기능
 	@GetMapping("/addal.do")
 	@ResponseBody
 	public void addal(@RequestParam("allergy") String allergy) {
 		System.out.println("addal conroller");
 		service.addal(allergy);
 	}
-
+// 비밀번호 변경 페이지 이동 기능
 	@GetMapping("/pwChange")
 	public void pwchange(@RequestParam("id") String id, Model model) {
 
 		model.addAttribute("id", id);
 	}
-
+// 비밀번호 변경 기능
 	@PostMapping("/changePW")
 	public String changPW(@RequestParam("id") String id, @RequestParam("pwd1") String pw) {
 		service.pwChange(id, pw);
 		return "security/pwChanged";
 	}
-
+//회원가입 축하 페이지 이동 기능
 	@GetMapping("/welcome")
 	public void welcome() {
 
 	}
-
+//마이페이지 이동 기능
 	@GetMapping("/mypage")
 	public void OrederList1(Model model, Principal principal) {
-		// 세션에서 맴버 받아오기.
 		Integer member_id = mapper.idid(principal.getName());
 
 		List<OrderList> orderList = orderService.OrderList(member_id);
@@ -157,18 +168,19 @@ public class SecurityController {
 //
 //		}
 //	}
+	//마이페이지에서 비밀번호 변경페이지 이동 기능
 	@PostMapping("/pwModify")
 	public boolean pwmodify(@RequestParam(value = "pwd") String pw, Principal principal) {
 		System.out.println(principal.getName()+"    "+pw);
 		return service.PWCheck(principal.getName(), pw);
 
 	}
-
+//마이페이지에서 회원정보 수정 페이지로 이동하기전 비밀번호 입력하는 페이지로 이동 기능
 	@GetMapping("/pwmodi")
 	public void pwmodi() {
 
 	}
-
+//회원정보 수정 기능
 	@PostMapping("/update")
 	public String pwdkfs(@RequestParam("member_idid") String member_idid, @RequestParam("member_pw") String member_pw,
 			@RequestParam("member_name") String member_name, @RequestParam("birth1") String birth1,
@@ -185,12 +197,12 @@ public class SecurityController {
 
 		return "home";
 	}
-
+//회원 탈퇴 페이지 이동 기능
 	@GetMapping("/memberout")
 	public void outout() {
 
 	}
-
+//회원 탈퇴 기능 
 	@PostMapping("/out")
 	public String out(@RequestParam(value = "pwd") String pw, Principal principal, Model model) {
 
