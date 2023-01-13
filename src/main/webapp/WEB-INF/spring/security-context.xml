@@ -51,7 +51,5 @@
 	</security:authentication-manager>
 
 
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
 	<!-- <context:component-scan base-package="com.hyundai.security"></context:component-scan> -->
 </beans>

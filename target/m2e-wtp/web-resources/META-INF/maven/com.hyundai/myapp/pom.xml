@@ -10,9 +10,9 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>11</java-version>
-		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
-		<org.slf4j-version>1.7.25</org.slf4j-version>
-		<org.aspectj-version>1.9.0</org.aspectj-version>
+		<org.springframework-version>5.3.24</org.springframework-version>
+		<org.aspectj-version>1.9.9.1</org.aspectj-version>
+		<org.slf4j-version>2.0.5</org.slf4j-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -78,13 +78,6 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
-		<!-- AOP lib -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
@@ -92,15 +85,10 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 
+		<!-- aspectjweaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>${org.aspectj-version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjtools</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>
 

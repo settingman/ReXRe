@@ -1,23 +1,18 @@
 package com.hyundai.mapper;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hyundai.domain.CartItem;
 import com.hyundai.service.CartService;
 
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/root-context.xml", "file:src/main/webapp/WEB-INF/spring/security-context.xml" })
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/spring/root-context.xml",
+		"file:src/main/webapp/WEB-INF/spring/security-context.xml" })
 @Log4j
 public class CartMapperTest {
 
@@ -26,14 +21,11 @@ public class CartMapperTest {
 
 	@Autowired
 	CartMapper cartMapper;
-	
-	
-	
 
 	// 상품이름 조회
 	@Test
 	public void find() {
-		
+
 		String productName = cartMapper.find(1);
 		log.info(productName);
 
@@ -42,7 +34,6 @@ public class CartMapperTest {
 	// 장바구니 리스트 조회
 	@Test
 	public void findCart() {
-		
 
 	}
 
@@ -81,7 +72,5 @@ public class CartMapperTest {
 	public void updateChecked() {
 
 	}
-
-
 
 }
