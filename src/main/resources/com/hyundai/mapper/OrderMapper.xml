@@ -39,6 +39,13 @@
 
 	</insert>
 
+	<delete id="deleteOrder">
+
+		delete from Orders where order_name =
+		#{order_name}
+
+	</delete>
+
 
 	<insert id="insertOrder3"
 		parameterType="com.hyundai.domain.OrderDTO2">
@@ -51,67 +58,6 @@
 		#{total_price}, #{order_payment}, #{order_category})
 
 	</insert>
-
-
-
-
-
-	<select id="find" resultType="String">
-		select PRODUCT_NAME from PRODUCTS
-		where PRODUCT_ID=#{PRODUCT_ID}
-	</select>
-
-
-	<select id="findCart" resultType="com.hyundai.domain.CartItem">
-		select
-		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY, CART_CHECK
-		,IMAGE_PATH
-		from carts inner join products on carts.PRODUCTS_PRODUCT_ID
-		=
-		products.PRODUCT_ID inner join PRODUCTIMAGES on products.PRODUCT_ID
-		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
-		where MEMBERS_MEMBER_ID=#{member_id}
-		and IMAGE_CATEGORY='상품'
-	</select>
-
-
-	<select id="findCartItem"
-		resultType="com.hyundai.domain.CartItem">
-		select
-		PRODUCT_ID,PRODUCT_NAME,PRODUCT_PRICE, CART_QUANTITY,
-		CART_CHECK
-		,IMAGE_PATH
-		from carts inner join products on
-		carts.PRODUCTS_PRODUCT_ID
-		=
-		products.PRODUCT_ID inner join PRODUCTIMAGES
-		on products.PRODUCT_ID
-		=PRODUCTIMAGES.PRODUCTS_PRODUCT_ID
-		where
-		MEMBERS_MEMBER_ID=#{member_id} and
-		Carts.PRODUCTS_PRODUCT_ID=#{product_id}
-		and IMAGE_CATEGORY='상품'
-	</select>
-
-
-	<delete id="deleteOne">
-		delete from Carts where MEMBERS_MEMBER_ID =
-		#{member_id}
-		and products_product_id = #{product_id}
-	</delete>
-
-	<delete id="deleteAll">
-		delete from Carts where MEMBERS_MEMBER_ID =
-		#{member_id}
-	</delete>
-
-
-	<update id="updateQuantity">
-		update Carts set CART_QUANTITY = #{product_qauntity}
-		where MEMBERS_MEMBER_ID =#{member_id} and PRODUCTS_PRODUCT_ID =
-		#{product_id}
-	</update>
-
 
 	<select id="OrderList" resultType="com.hyundai.domain.OrderList">
 

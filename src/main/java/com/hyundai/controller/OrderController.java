@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
  * @FileName: OrderController.java
  * @Project : ReXRe
  * @작성자 : 박성환
- * @설명 : 주문 처리
+ * @설명 : 주문 처리기능 컨트롤러
  */
 
 @Slf4j

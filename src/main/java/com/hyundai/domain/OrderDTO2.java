@@ -7,6 +7,14 @@ import org.apache.ibatis.annotations.Param;
 import lombok.Getter;
 import lombok.Setter;
 
+
+
+/**
+  * @FileName: OrderDTO2.java
+  * @Project : ReXRe
+  * @작성자  : 박성환
+  * @설명    : 주문처리를 위한 DTO
+  */
 @Getter
 @Setter
 public class OrderDTO2 {

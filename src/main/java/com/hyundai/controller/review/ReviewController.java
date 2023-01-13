@@ -28,7 +28,7 @@ import lombok.extern.log4j.Log4j;
  * @FileName: ReviewController.java
  * @Project : ReXRe
  * @작성자 : 박성환, 이세은
- * @설명 : @
+ * @설명 : 리뷰 컨트롤러
  */
 
 @Controller

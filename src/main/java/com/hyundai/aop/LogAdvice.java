@@ -8,6 +8,12 @@ import org.springframework.stereotype.Component;
 
 import lombok.extern.log4j.Log4j;
 
+/**
+  * @FileName: LogAdvice.java
+  * @Project : ReXRe
+  * @작성자  : 박성환
+  * @설명    : 각 서비스 method time 및 param 출력 AOP
+  */
 @Aspect
 @Log4j
 @Component
@@ -18,7 +24,6 @@ public class LogAdvice {
 	public void logBefore() {
 
 		log.info("========================");
-		log.info("왜 이제아 오셨어요");
 	}
 
 	@AfterThrowing(pointcut = "execution(* com.hyundai.service.*.*(..))", throwing = "exception")

@@ -11,10 +11,15 @@ import com.hyundai.mapper.CartMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * @FileName: CartService.java
+ * @Project : ReXRe
+ * @작성자 : 박성환
+ * @설명 : 장바구니 기능을 위한 서비스 Service
+ */
 @Service
 @RequiredArgsConstructor
 public class CartService {
-
 
 	private final CartMapper cartMapper;
 
@@ -47,15 +52,11 @@ public class CartService {
 
 	}
 
-	public void insertCart(Integer product_id, Integer member_id, Integer qty ) {
-
-
+	public void insertCart(Integer product_id, Integer member_id, Integer qty) {
 
 		cartMapper.insertCart(member_id, product_id, qty);
 
 	}
-
-	
 
 	public void deleteOne(Integer member_id, Integer product_id) {
 
@@ -63,7 +64,6 @@ public class CartService {
 		return;
 
 	}
-
 
 	public void deleteAll(Integer member_id) {
 
@@ -75,6 +75,5 @@ public class CartService {
 		cartMapper.updateQuantity(product_qauntity, product_id, member_id);
 
 	}
-
 
 }

@@ -10,7 +10,7 @@ import com.hyundai.domain.CartItem;
  * @FileName: CartMapper.java
  * @Project : ReXRe
  * @작성자 : 박성환
- * @설명 : 장바구니 데이터 관리
+ * @설명 : 장바구니 데이터 관리 Mapper
  */
 
 public interface CartMapper {

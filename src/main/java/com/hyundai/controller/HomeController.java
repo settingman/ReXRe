@@ -17,36 +17,20 @@ import lombok.extern.slf4j.Slf4j;
  * Handles requests for the application home page.
  */
 
+
+/**
+  * @FileName: HomeController.java
+  * @Project : ReXRe
+  * @작성자  : 박성환
+  * @설명    : 메인화면 출력 홈컨트롤러
+  */
+
 @Slf4j
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	
-
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) throws InterruptedException{
-
-		logger.info("Welcome home! The client locale is {}.", locale);
-		log.info("hi");
-		log.trace("Hi I'm {} log", "TRACE");
-        log.debug("Hi I'm {} log", "DEBUG");
-        log.info("Hi I'm {} log", "INFO");
-        log.warn("Hi I'm {} log", "WARN");
-        log.error("Hi I'm {} log", "ERROR");
-        Thread.sleep(1000);
-		
-		System.out.println("12");
-
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-
-		String formattedDate = dateFormat.format(date);
+	public String home(Locale locale, Model model) throws InterruptedException {
 
 		return "home";
 	}
