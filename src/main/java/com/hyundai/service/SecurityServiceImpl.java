@@ -21,25 +21,25 @@ public class SecurityServiceImpl implements SecurityService {
 
 	@Setter(onMethod_ = @Autowired)
 	private PasswordEncoder pwencoder;
-
+//아이디 중복 검사 (반환값 해당 아이디 갯수)
 	@Override
 	public int IDCheck(String member_idid) {
 		int cnt = mapper.IDCheck(member_idid);
 		return cnt;	
 	}
-
+//알러지 성분 검색(반환값 알러지 성분 리스트)
 	@Override
 	public List<AllergyVO> allergySearch(String allergy) {
 		List<AllergyVO> list = mapper.allergySearch(allergy);
 		return list;
 	}
-
+//임의의 알러지 성분 추가
 	@Override
 	public void addal(String allergy) {
 		System.out.println("service addal" + allergy);
 		mapper.addal(allergy);
 	}
-
+//회원가입 기능
 	@Override
 	public void joinUser(String member_idid, String member_pw, String member_name, String birth1, String birth2,
 			String birth3, String sex, String member_phone, String member_email1, String member_email2,
@@ -80,7 +80,7 @@ public class SecurityServiceImpl implements SecurityService {
 			mapper.addMemAl(avo);
 		}
 	}
-
+//아이디 찾기 기능(반환값 해당 아이디 갯수)
 	@Override
 	public String findID(String id, String email) {
 		AllergyMapperVO vo = new AllergyMapperVO();
@@ -90,7 +90,7 @@ public class SecurityServiceImpl implements SecurityService {
 		System.out.println(cnt);
 		return cnt;
 	}
-
+//비밀번호 변경
 	@Override
 	public void pwChange(String id, String pw) {
 		AllergyMapperVO vo = new AllergyMapperVO();
@@ -98,13 +98,13 @@ public class SecurityServiceImpl implements SecurityService {
 		vo.setMember_idid(id);
 		mapper.pwChange(vo);
 	}
-
+//비밀번호가 맞는지 체크 기능
 	@Override
 	public boolean PWCheck(String name, String pw) {
 		boolean check = pwencoder.matches(pw, mapper.PWCheck(name));
 		return check;
 	}
-
+//회원정보 수정
 	@Override
 	public void updateUser(String member_idid, String member_pw, String member_name, String birth1, String birth2,
 			String birth3, String sex, String member_phone, String member_email1, String member_email2,
@@ -144,7 +144,7 @@ public class SecurityServiceImpl implements SecurityService {
 			mapper.addMemAl(avo);
 		}
 	}
-
+//회원탈퇴
 	@Override
 	public void out(String name) {
 		mapper.out(name);

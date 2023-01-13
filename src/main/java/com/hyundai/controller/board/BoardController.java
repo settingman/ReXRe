@@ -82,10 +82,10 @@ public class BoardController {
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
-		
+
 		System.out.println(imgUploadPath);
 		System.out.println(ymdPath);
-		
+
 		if (!file.isEmpty()) {
 			System.out.println("isempty");
 			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
@@ -95,12 +95,12 @@ public class BoardController {
 		}
 
 		board.setFaqsImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		
+
 		System.out.println("set 아래");
-		
+
 		board.setFaqsThumbImg(
 				File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		
+
 		System.out.println("섬네일 아래");
 
 		// insert 시작
@@ -164,13 +164,12 @@ public class BoardController {
 	@PostMapping("/delete")
 	public ResponseEntity<String> delete(@RequestParam("boardId") long boardId, RedirectAttributes rttr)
 			throws Exception {
-		
+
 		System.out.println(boardId);
-		
-		
+
 		// 받아온 boardId값으로 해당되는 게시글을 삭제한다
 		try {
-			
+
 			System.out.println(boardId);
 			service.delete(boardId);
 			return new ResponseEntity<>("success", HttpStatus.OK);
