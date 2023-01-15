@@ -1,3 +1,8 @@
+/*********************************
+ * @function : Security 관련 Mapper
+ * @author : Ilwoo Jo
+ * @Date : Dec 31. 2022.
+ *********************************/
 package com.hyundai.mapper;
 
 import java.util.List;

@@ -1,3 +1,8 @@
+/*********************************
+ * @function : 접근 거부 처리
+ * @author : Ilwoo Jo
+ * @Date : Jan 2. 2023.
+ *********************************/
 package com.hyundai.security;
 
 import java.io.IOException;

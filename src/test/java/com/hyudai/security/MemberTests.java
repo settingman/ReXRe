@@ -1,4 +1,12 @@
+/*********************************
+ * @function : Security 관련 tests
+ * @author : Ilwoo Jo
+ * @Date : Dec 31. 2022.
+ *********************************/
 package com.hyudai.security;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 import javax.sql.DataSource;
 
@@ -28,96 +36,96 @@ public class MemberTests {
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
 
-//	@Test
-//	public void testInsertMember() {
-//		String sql = "insert into members(member_id,member_idid,member_pw,member_name,member_sex,member_phone,member_email,member_address1,member_address2,member_postnum) "
-//				+ "values (memberid_seq.nextval,?,?,?,1,'010-0000-0000','member@member.mem','seoul','dobonggu',12345)";
-//
-//		for (int i = 0; i < 101; i++) {
-//			Connection con = null;
-//			PreparedStatement pstmt = null;
-//
-//			try {
-//				con = ds.getConnection();
-//				pstmt = con.prepareStatement(sql);
-//
-//				pstmt.setString(2, pwencoder.encode("pw" + i));
-//
-//				if (i < 80) {
-//					pstmt.setString(1, "member" + i);
-//					pstmt.setString(3, "일반사용자" + i);
-//
-//				} else {
-//					pstmt.setString(1, "manager" + i);
-//					pstmt.setString(3, "운영자" + i);
-//				}
-//				pstmt.executeUpdate();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			} finally {
-//				if (pstmt != null) {
-//					try {
-//						pstmt.close();
-//
-//					} catch (Exception e) {
-//
-//					}
-//				}
-//				if (con != null) {
-//					try {
-//						con.close();
-//					} catch (Exception e) {
-//
-//					}
-//				}
-//			}
-//		}
-//	}
-//
-//	@Test
-//	public void testInsertMemberAuth() {
-//		String sql = "insert into membergrade values (?,?)";
-//
-//		for (int i = 0; i < 101; i++) {
-//			Connection con = null;
-//			PreparedStatement pstmt = null;
-//
-//			try {
-//				con = ds.getConnection();
-//				pstmt = con.prepareStatement(sql);
-//
-//
-//				if (i < 80) {
-//					pstmt.setInt(1, i+253);
-//					pstmt.setInt(2, 1);
-//
-//				} else {
-//					pstmt.setInt(1, i+253);
-//					pstmt.setInt(2, 2);
-//				}
-//
-//				pstmt.executeUpdate();
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			} finally {
-//				if (pstmt != null) {
-//					try {
-//						pstmt.close();
-//
-//					} catch (Exception e) {
-//
-//					}
-//				}
-//				if (con != null) {
-//					try {
-//						con.close();
-//					} catch (Exception e) {
-//
-//					}
-//				}
-//			}
-//		}
-//	}
+	@Test
+	public void testInsertMember() {
+		String sql = "insert into members(member_id,member_idid,member_pw,member_name,member_sex,member_phone,member_email,member_address1,member_address2,member_postnum) "
+				+ "values (memberid_seq.nextval,?,?,?,1,'010-0000-0000','member@member.mem','seoul','dobonggu',12345)";
+
+		for (int i = 0; i < 101; i++) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+
+				pstmt.setString(2, pwencoder.encode("pw" + i));
+
+				if (i < 80) {
+					pstmt.setString(1, "member" + i);
+					pstmt.setString(3, "일반사용자" + i);
+
+				} else {
+					pstmt.setString(1, "manager" + i);
+					pstmt.setString(3, "운영자" + i);
+				}
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+
+					} catch (Exception e) {
+
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+
+					}
+				}
+			}
+		}
+	}
+
+	@Test
+	public void testInsertMemberAuth() {
+		String sql = "insert into membergrade values (?,?)";
+
+		for (int i = 0; i < 101; i++) {
+			Connection con = null;
+			PreparedStatement pstmt = null;
+
+			try {
+				con = ds.getConnection();
+				pstmt = con.prepareStatement(sql);
+
+
+				if (i < 80) {
+					pstmt.setInt(1, i+253);
+					pstmt.setInt(2, 1);
+
+				} else {
+					pstmt.setInt(1, i+253);
+					pstmt.setInt(2, 2);
+				}
+
+				pstmt.executeUpdate();
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+
+					} catch (Exception e) {
+
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+
+					}
+				}
+			}
+		}
+	}
 	@Test
 	public void testPWChange() {
 		mapper.pwChange("joilwoo", pwencoder.encode("12312312"));

@@ -18,21 +18,26 @@ import javax.servlet.http.HttpServletRequest;
  *********************************/
 
 public class CrossScriptingFilter implements Filter {
-	
-	public FilterConfig filterConfig;
-	
-	public void init(FilterConfig filterConfig) throws ServletException {
-		this.filterConfig = filterConfig;
-	}
+   
+   public FilterConfig filterConfig;
+   
+   // 필터 초기화
+   public void init(FilterConfig filterConfig) throws ServletException {
+      this.filterConfig = filterConfig;
+   }
 
-	public void destroy() {
-		this.filterConfig = null;
-	}
+   // 필터가 사용한 자원 반납
+   public void destroy() {
+      this.filterConfig = null;
+   }
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+   /* request param을 이용하여 필터 작업 수행
+    * 체인의 다음 필터 처리
+    * response를 이용하여 응답의 필터링 작업 수행
+    */
+   public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
         throws IOException, ServletException { 
         chain.doFilter(new RequestWrapper((HttpServletRequest) request), response);
     }
-	
+   
 }
-

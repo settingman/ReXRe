@@ -1,3 +1,8 @@
+/*********************************
+ * @function : 회원 정보
+ * @author : Ilwoo Jo
+ * @Date : Jan 2. 2023.
+ *********************************/
 package com.hyundai.security;
 
 import org.springframework.beans.factory.annotation.Autowired;

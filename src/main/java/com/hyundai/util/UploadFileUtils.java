@@ -7,59 +7,69 @@ import java.util.UUID;
 
 import org.springframework.util.FileCopyUtils;
 import net.coobird.thumbnailator.Thumbnails;
-
+/*********************************
+ * @function : UploadFileUtils
+ * @author : Taeseung Choi
+ * @Date : Jan 08. 2023.
+ * 파일 업로드를 위한 class
+*********************************/
 public class UploadFileUtils {
 
-	static final int THUMB_WIDTH = 300;
-	static final int THUMB_HEIGHT = 300;
+   // 썸네일 이미지 크기 설정
+   static final int THUMB_WIDTH = 300;
+   static final int THUMB_HEIGHT = 300;
 
-	public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath)
-			throws Exception {
+   // 파일 업로드
+   public static String fileUpload(String uploadPath, String fileName, byte[] fileData, String ymdPath)
+         throws Exception {
 
-		UUID uid = UUID.randomUUID();
+      UUID uid = UUID.randomUUID();
 
-		String newFileName = uid + "_" + fileName;
-		String imgPath = uploadPath + ymdPath;
+      String newFileName = uid + "_" + fileName;
+      String imgPath = uploadPath + ymdPath;
 
-		File target = new File(imgPath, newFileName);
-		FileCopyUtils.copy(fileData, target);
+      File target = new File(imgPath, newFileName);
+      FileCopyUtils.copy(fileData, target);
 
-		String thumbFileName = "s_" + newFileName;
-		File image = new File(imgPath + File.separator + newFileName);
+      // 썸네일 파일 이름 설정
+      String thumbFileName = "s_" + newFileName;
+      File image = new File(imgPath + File.separator + newFileName);
 
-		File thumbnail = new File(imgPath + File.separator + "s" + File.separator + thumbFileName);
+      File thumbnail = new File(imgPath + File.separator + "s" + File.separator + thumbFileName);
 
-		if (image.exists()) {
-			thumbnail.getParentFile().mkdirs();
-			Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);
-		}
-		return newFileName;
-	}
+      if (image.exists()) {
+         thumbnail.getParentFile().mkdirs();
+         Thumbnails.of(image).size(THUMB_WIDTH, THUMB_HEIGHT).toFile(thumbnail);
+      }
+      return newFileName;
+   }
 
-	public static String calcPath(String uploadPath) {
-		Calendar cal = Calendar.getInstance();
-		String yearPath = File.separator + cal.get(Calendar.YEAR);
-		String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
-		String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
+   // 폴더 이름 및 폴더 생성
+   public static String calcPath(String uploadPath) {
+      Calendar cal = Calendar.getInstance();
+      String yearPath = File.separator + cal.get(Calendar.YEAR);
+      String monthPath = yearPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+      String datePath = monthPath + File.separator + new DecimalFormat("00").format(cal.get(Calendar.DATE));
 
-		makeDir(uploadPath, yearPath, monthPath, datePath);
-		makeDir(uploadPath, yearPath, monthPath, datePath + "\\s");
+      makeDir(uploadPath, yearPath, monthPath, datePath);
+      makeDir(uploadPath, yearPath, monthPath, datePath + "\\s");
 
-		return datePath;
-	}
+      return datePath;
+   }
+   
+   // 폴더 생성
+   private static void makeDir(String uploadPath, String... paths) {
 
-	private static void makeDir(String uploadPath, String... paths) {
+      if (new File(paths[paths.length - 1]).exists()) {
+         return;
+      }
 
-		if (new File(paths[paths.length - 1]).exists()) {
-			return;
-		}
+      for (String path : paths) {
+         File dirPath = new File(uploadPath + path);
 
-		for (String path : paths) {
-			File dirPath = new File(uploadPath + path);
-
-			if (!dirPath.exists()) {
-				dirPath.mkdir();
-			}
-		}
-	}
+         if (!dirPath.exists()) {
+            dirPath.mkdir();
+         }
+      }
+   }
 }
