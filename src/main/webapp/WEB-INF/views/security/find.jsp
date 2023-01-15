@@ -126,14 +126,15 @@
 				 }  else if (exptext.test(email) == false) {
 				 //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
 				 alert("이메일형식이 올바르지 않습니다.");
-				 $("#find_id_email").focus();
+				 $("#find_pwd_email").focus();
 				 } else {
 				 
 				$.ajax({
-					 url : "./findID.do", //Controller에서 요청 받을 주소
+					 url : "./findPW.do", //Controller에서 요청 받을 주소
 					 type : "POST", //POST 방식으로 전달
 					 data : {
-					 id : name,
+						 id : id,
+					 name : name,
 					 email : email
 					 },
 					 success : function(data) { 
@@ -162,7 +163,7 @@
 					 data : {
 						 email : email
 					},
-					url : '/email.do', // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+					url : '/email.do', 
 					success : function (data) {
 						console.log("data : " +  data);
 						code = data;

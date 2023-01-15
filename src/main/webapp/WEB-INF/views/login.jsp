@@ -17,33 +17,6 @@
 <link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_data/wing_skbioland_200731_temp.css">
 <link rel="stylesheet" type="text/css" href="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui.min.css">
 <link rel="stylesheet" type="text/css" href="https://www.rexremall.com/wm_engine_SW/_engine/common/loading.css??202212301203">
-<script type="text/javascript">
-	var hid_frame = 'hidden1672369396';
-	var mlv = '10';
-	var alv = '';
-	var root_url = 'https://www.rexremall.com';
-	var engine_url = 'https://www.rexremall.com/wm_engine_SW';
-	var this_url = 'https://www.rexremall.com/member/login.php';
-	var ssl_url = 'https://www.rexremall.com/main/exec.php';
-	var soldout_name = '품절';
-	var ace_counter_gcode = '';
-	var uip = "112.221.225.164";
-	var currency = "원";
-	var currency_type = "원";
-	var currency_decimal = '0';
-	var r_currency_type = "";
-	var r_currency_decimal = '0';
-	var exchangeRate = '';
-	var juso_api_use = 'Y';
-	var browser_type = 'pc';
-	var mobile_browser = '';
-	var ssl_type = 'Y';
-
-	var click_prd = new Array();
-	var click_prd_limit = 2;
-	var click_prd_start = 1;
-	var click_prd_finish = click_prd_limit + 1;
-</script>
 <script type="text/javascript" src='https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-1.11.3.min.js'></script>
 <script type="text/javascript" src='https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui-1.11.3.min.js'></script>
 <script type="text/javascript" src='https://www.rexremall.com/wm_engine_SW/_engine/common/jquery.serializeObject.js'></script>
@@ -53,41 +26,10 @@
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.review.js?202212301203"></script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/R2Na/R2Na.js"></script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/smartEditor/js/HuskyEZCreator.js"></script>
-<script type="text/javascript">
-	var date_picker_default = {
-		'monthNamesShort' : [ '1', '2', '3', '4', '5', '6', '7', '8', '9',
-				'10', '11', '12' ],
-		'dayNamesMin' : [ _lang_pack.data_week_sun, _lang_pack.data_week_mon,
-				_lang_pack.data_week_tue, _lang_pack.data_week_wed,
-				_lang_pack.data_week_thu, _lang_pack.data_week_fri,
-				_lang_pack.data_week_sat ],
-		'weekHeader' : 'Wk',
-		'dateFormat' : 'yy-mm-dd',
-		'autoSize' : false,
-		'changeYear' : true,
-		'changeMonth' : true,
-		'showButtonPanel' : true,
-		'currentText' : _lang_pack.common_info_today + '2022-12-30',
-		'closeText' : _lang_pack.coommon_info_close
-	}
-
-	/* Timer */
-	const use_ts_mark_1 = 'Y';
-	const ts_mark_1 = '일';
-	const use_ts_mark_2 = 'Y';
-	const ts_mark_2 = ' :';
-	const use_ts_mark_3 = 'Y';
-	const ts_mark_3 = ' :';
-	const use_ts_mark_4 = 'Y';
-	const ts_mark_4 = '';
-</script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/sec.js"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 <!-- DO NOT MODIFY -->
 <body>
-	<c:if test="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username != null}">
-		<c:redirect url="/"></c:redirect>
-	</c:if>
 	<script type="text/javascript" defer='defer'>
 		$(document).ready(function() {
 			setInterval("wingQuickSlide(228, 0, 0, 5)", 10);
@@ -181,15 +123,5 @@
 	</div>
 	</div>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js" defer='defer'></script>
-	<script type="text/javascript">
-		if (typeof wcs != 'undefined') {
-			if (typeof cpa == 'undefined')
-				var cpa = {};
-			if (cpa['order']) {
-				cpa['cnv'] = wcs.cnv("1", "0");
-			}
-			wcs_do(cpa);
-		}
-	</script>
 </body>
 </html>
