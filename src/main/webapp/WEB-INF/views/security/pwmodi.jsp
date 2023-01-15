@@ -1,10 +1,8 @@
 <!-- /*********************************
- * @function : 로그인
- * @author : 조일우
- * @Date : Dec 31. 2022.
- * 로그인 기능 구현
- * 로그인 실패 구현
- * 아이디 비밀번호 저장 구현
+ * @function : 회원 정보 수정 전 확인 페이지
+ * @author : ILWOO JO
+ * @Date : Jan 4. 2023.
+ * 회원 정보 수정 전 확인 구현
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -48,7 +46,7 @@
 </head>
 <!-- DO NOT MODIFY -->
 <script>
-
+//회원 비밀번호 확인 기능
 function validate() {
     var flag = false;
     var csrf = $('#csrf').val();

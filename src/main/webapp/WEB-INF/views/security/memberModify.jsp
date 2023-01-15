@@ -1,3 +1,11 @@
+<!-- /*********************************
+ * @function : 회원 정보 변경
+ * @author : ILWOO JO
+ * @Date : Jan 7. 2023.
+ * 회원 정보 변경 구현
+ * 현재 회원정보 값 미리 대입 구현
+ * 회원 알러지 정보 연동 구현
+ *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
@@ -58,6 +66,7 @@
 		var emails2 = emails[1].split('&#46;');
 		var birthday1 = birthday.split('&#45;');
 		var birthday2 = birthday1[2].split('&#32;');
+		//이메일, 생일, 성 현재 정보로 미리 선택 기능
 		$(document).ready(function() {
 			$('#email2').val(emails2[0] + '.' + emails2[1]);
 			$('#select1').val(birthday1[0]).prop("selected", true);
@@ -77,42 +86,7 @@
 				jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 			}
 		});
-		function checkMID() {
-			var id = $('#join_id').val(); //id값이 "id"인 입력란의 값을 저장
-			var expression = RegExp(/[^a-zA-Z0-9]/);
-			if (id.length < 6) {
-				alert("아이디는 6자 이상이여야 합니다");
-			} else if (checkSpace(id) == true) {
-				alert("아이디에 공백이 없어야 합니다");
-			} else if (checkSpecial(id) == true) {
-				alert("특수문자를 사용 할수 없습니다");
-			} else if (expression.test(id)) {
-				alert("아이디는 영어와 숫자로만 생성가능합니다");
-			} else {
-				$.ajax({
-					url : "./IDCheck.do", //Controller에서 요청 받을 주소
-					type : "POST", //POST 방식으로 전달
-					data : {
-						id : id
-					},
-					dataType : "json",
-					success : function(data) {
-						if (data == '0') { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
-							alert("사용가능한 아이디입니다");
-							$('#id_check').val('1');
-						} else { // cnt가 1일 경우 -> 이미 존재하는 아이디
-							alert("사용 중인 아이디 입니다, 아이디를 다시 입력해주세요");
-							$('#join_id').val('');
-							$('#join_id').focus();
-						}
-					},
-					error : function() {
-						alert("에러: 잠시후 다시 시도해주세요");
-					}
-				});
-			}
-
-		};
+		//회원 정보가 정합한지 검사
 		function validate() {
 			var idcheck = $('#id_check').val();
 			var pwcheck = $('#pw_check').val();
@@ -131,25 +105,9 @@
 				return false;
 			}
 		}
-		function validate2() {
-			var idcheck = $('#id_check').val();
-			var pwcheck = $('#pw_check').val();
-			var email = $("#email2").val();
-			var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			if (pwcheck == "0") {
-				alert("비밀번호를 올바르게 입력해주세요");
-				return false;
-			} else if (exptext.test(email) == false) {
-				//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
-				alert("이 메일형식이 올바르지 않습니다.");
-				$("#email2").focus();
-				return false;
-			} else {
-				alert("변경되었습니다");
-			}
-		}
+
 		$(document)
-				.ready(
+				.ready(		// 비밀번호 검사
 						function() {
 							$('#join_pw')
 									.on(
@@ -184,6 +142,7 @@
 													$("#pw_check").val("1");
 												}
 											});
+							
 							$('#join_pw2').on(
 									'keyup',
 									function() {
@@ -211,6 +170,7 @@
 											}
 										}
 									});
+							//알러지 성분 검색
 							$('#join_allergy')
 									.on(
 											'keyup',
@@ -256,6 +216,7 @@
 															}
 														});
 											});
+							//알러지 성분 추가 
 							$(document)
 									.on(
 											"click",
@@ -302,6 +263,7 @@
 													alert("이미 존재하는 항목입니다");
 												}
 											});
+							//현재 회원 알러지 삭제
 							$(document).on("click", "#allergy-pill2",
 									
 									function() {
@@ -330,6 +292,7 @@
 								});
 
 									});
+							// 현재회원 알러지 추가 
 							$(document)
 									.on(
 											"click",

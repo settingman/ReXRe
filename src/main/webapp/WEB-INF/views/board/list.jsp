@@ -11,9 +11,9 @@
 
 	<div id="skin_board_index_big_div">
 		<div id="wrapper">
-<%@ include file="../include/header.jsp"%>	
+			<%@ include file="../include/header.jsp"%>
 			<!-- 상단 -->
-			
+
 			<!-- //상단 -->
 
 			<!-- 중앙 -->
@@ -37,16 +37,14 @@
 
 						<div class="board_search">
 							<form method="get">
-								<input type="hidden" name="boardSubcategory" value="FAQ">
-								<input type="hidden" name="boardCategory" value="${param.boardCategory}">
+								<input type="hidden" name="boardSubcategory" value="FAQ"> <input type="hidden" name="boardCategory" value="${param.boardCategory}">
 
 								<div class="box">
 									<select name="searchType" id="searchType">
 										<option value="boardtitle" ${param.searchType eq 'boardtitle' ? 'selected' :'' }>제목</option>
 										<option value="boardcontent" ${param.searchType eq 'boardcontent' ? 'selected' :'' }>내용</option>
-									</select>
-									<input type="search" name="keyword" value="${param.keyword}" class="form_input block basic_search" placeholder="FAQ SEARCH">
-									<input type="image" src="${pageContext.request.contextPath}/resources/assets/_skin/basic_faq/img/btn_search.png" alt="검색" class="btn">
+									</select> <input type="search" name="keyword" value="${param.keyword}" class="form_input block basic_search" placeholder="FAQ SEARCH"> <input
+										type="image" src="${pageContext.request.contextPath}/resources/assets/_skin/basic_faq/img/btn_search.png" alt="검색" class="btn">
 								</div>
 							</form>
 						</div>
@@ -80,6 +78,7 @@
                                     <p>썸네일</p> --%>
 												<img src="${board.faqsThumbImg}" class="thumbImg" />
 											</div>
+											<sec:authorize access="hasRole('ROLE_ADMIN')">
 											<div class="btn">
 												<span class="box_btn w100 white">
 													<button class="btn-update" onclick="boardUpdate('${board.boardId}')" style="display:;">수정</button>
@@ -87,6 +86,8 @@
 													<button onclick="boardDelete('${board.boardId}')" class="btn-delete" style="display:;">삭제</button>
 												</span>
 											</div>
+</sec:authorize>
+
 										</td>
 									</tr>
 								</c:forEach>
@@ -96,10 +97,12 @@
 
 						<div class="page_write">
 							${pagination}
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<div class="box_btn w100 write">
+									<a href="${pageContext.request.contextPath}/board/insert">글쓰기</a>
+								</div>
+							</sec:authorize>
 
-							<div class="box_btn w100 write">
-								<a href="${pageContext.request.contextPath}/board/insert">글쓰기</a>
-							</div>
 						</div>
 					</div>
 

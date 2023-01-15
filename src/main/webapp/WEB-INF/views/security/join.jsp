@@ -1,3 +1,12 @@
+<!-- /*********************************
+ * @function : 회원가입
+ * @author : ILWOO JO
+ * @Date : Jan 1. 2023.
+ * 아이디 중복 검사 구현
+ * 비밀번호 인증 구현
+ * 알러지 추가 삭제 구현
+ * 회원 데이터 확인 기능 구현
+ *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,14 +53,14 @@
 	</c:if>  --%>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/emailAutoComplete.js"></script>
 	<script type="text/javascript" defer="defer">
-		$(document).ready(function() {
-		});
-		var csrfToken = $("meta[name='_csrf']").attr("content");
+	//csrf토큰 값 ajax 통신 할때 넘겨주는 기능	
+	var csrfToken = $("meta[name='_csrf']").attr("content");
 		$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 			if (options['type'].toLowerCase() === "post") {
 				jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 			}
 		});
+		//아이디 중복 검사 기능
 		function checkMID() {
 			var id = $('#join_id').val(); //id값이 "id"인 입력란의 값을 저장
 			var expression = RegExp(/[^a-zA-Z0-9]/);
@@ -65,17 +74,17 @@
 				alert("아이디는 영어와 숫자로만 생성가능합니다");
 			} else {
 				$.ajax({
-					url : "./IDCheck.do", //Controller에서 요청 받을 주소
-					type : "POST", //POST 방식으로 전달
+					url : "./IDCheck.do", 
+					type : "POST", 
 					data : {
 						id : id
 					},
 					dataType : "json",
-					success : function(data) { //컨트롤러에서 넘어온 cnt값을 받는다 
-						if (data == '0') { //cnt가 1이 아니면(=0일 경우) -> 사용 가능한 아이디 
+					success : function(data) { 
+						if (data == '0') { 
 							alert("사용가능한 아이디입니다");
 							$('#id_check').val('1');
-						} else { // cnt가 1일 경우 -> 이미 존재하는 아이디
+						} else { 
 							alert("사용 중인 아이디 입니다, 아이디를 다시 입력해주세요");
 							$('#join_id').val('');
 							$('#join_id').focus();
@@ -88,6 +97,7 @@
 			}
 
 		};
+		//회원가입전 각 요소가 올바르게 입력됬는지 중복검사 했는지 검사하는 기능
 		function validate(){
 			var idcheck = $('#id_check').val();
 			var pwcheck = $('#pw_check').val();
@@ -108,25 +118,7 @@
 			        return false;
 			 }
 		}
-		function validate2(){
-			var idcheck = $('#id_check').val();
-			var pwcheck = $('#pw_check').val();
-			 var email =$("#email2").val();
-			 var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			if(pwcheck == "0"){
-				 alert("비밀번호를 올바르게 입력해주세요");
-				 return false;
-			 }
-			 else if(exptext.test(email)==false){
-			        //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
-			        alert("이 메일형식이 올바르지 않습니다.");
-			        $("#email2").focus();
-			        return false;
-			 }
-			 else{
-				 alert("변경되었습니다");
-			 }
-		}
+		//비밀번호 확인 기능
 		$(document).ready(function(){
 			$('#join_pw').on('keyup',function(){
 		        var pwd1 = $("#join_pw").val();
@@ -147,6 +139,7 @@
 	                $("#pw_check").val("1");
 		        }
 			});
+			//비밀번호 일치 확인 기능
 			$('#join_pw2').on('keyup',function(){
 		        var pwd1 = $("#join_pw").val();
 		        var pwd2 = $("#join_pw2").val();
@@ -165,11 +158,12 @@
 		            }
 		        }
 			});
+			//알러지 검색 기능
 			$('#join_allergy').on('keyup',function(){
 		        var allergy = $("#join_allergy").val();
 				$.ajax({
-					url : "./alsear.do", //Controller에서 요청 받을 주소
-					type : "GET", //POST 방식으로 전달
+					url : "./alsear.do", 
+					type : "GET", 
 					data : {
 						allergy : allergy
 					},
@@ -190,6 +184,7 @@
 					}
 				});
 			});
+			// 알러지 추가 기능
 			$(document).on("click","#allergy-pill",function(){
 				var tmp = $(this).text();
 				var find = $('input[value='+tmp+']').val();
@@ -201,10 +196,12 @@
 					alert("이미 존재하는 항목입니다");
 				}
 			});
+			// 알러지 삭제 기능
 			$(document).on("click","#allergy-pill2",function(){
 				$(this).next().remove();
 				$(this).remove();
 			});
+			//임의의 알러지 추가 기능
 			$(document).on("click","#addal",function(){
 				var allergy = $('#join_allergy').val();
 				var result = confirm(allergy+'를 추가하시겠습니까?');
@@ -215,9 +212,11 @@
 						data : {
 							allergy : allergy
 						},
-						success : function() { //컨트롤러에서 넘어온 cnt값을 받는다 
+						success : function() { 
 							alert("추가되었습니다");
+							
 							$('#selected-pill').append('<span class="badge rounded-pill text-bg-secondary" id="allergy-pill2">'+allergy+'</span>')
+							$('#selected-pill').append('<input type="hidden" name="allergies" value="'+allergy+'" >')
 						},
 						error : function() {
 							alert("에러: 잠시후 다시 시도해주세요");
