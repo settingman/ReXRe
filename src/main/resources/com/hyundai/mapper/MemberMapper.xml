@@ -93,17 +93,7 @@
 		parameterType="String">
 		insert into membergrade values (1, (select member_id from members where member_idid = #{member_idid}))
 	</insert>
-	
-<!-- 특정 회원의 알러지 성분 추가 -->
-	<insert id="addMemAl"
-		parameterType="com.hyundai.domain.AllergyMapperVO">
-		insert into allergymappers
-		values ((select allergy_id
-		from allergies where allergy_name =
-		#{allergy_name}),(select member_id
-		from members where member_idid =
-		#{member_idid}))
-	</insert>
+
 	
 <!-- 아이디 찾기 -->
 	<select id="findID"
@@ -133,11 +123,7 @@
 		member_idid = #{member_idid}
 	</select>
 	
-<!-- 회원의 알러지 성분 가져오기 -->
-	<select id="findMemAl" resultType="String">
-		select allergy_name from AllergyMappers, allergies where allergy_id = allergies_allergy_id and
-		members_member_id = (select member_id from members where member_idid = #{member_idid})
-	</select>
+
 <!-- 비밀번호 확인 -->	
 	<select id="PWCheck" resultType="String">
 		select member_pw from members where member_idid = #{name}
@@ -154,13 +140,12 @@
 		#{member_address2}
 		where member_idid = #{useridid}
 	</update>
+<!-- 회원의 알러지 성분 가져오기 -->
+	<select id="findMemAl" resultType="String">
+		select allergy_name from AllergyMappers, allergies where allergy_id = allergies_allergy_id and
+		members_member_id = (select member_id from members where member_idid = #{member_idid})
+	</select>
 	
-<!-- 회원 탈퇴(회원 enabled 컬럼 0으로 변경) -->
-	<update id="out">
-		update members set member_enabled = 0, member_pw = 0, member_phone = 'memberout',
-		member_sex = 0, member_email = 'memberout', member_address1 = 'memberout', member_address2 = 'memberout',
-		member_postnum = 0, member_birthday = sysdate where member_idid = #{name}
-	</update>
 <!-- 특정 회원의 알러지 성분 제거 -->
 	<delete id="deleteMemAl"
 		parameterType="com.hyundai.domain.AllergyMapperVO">
@@ -170,4 +155,23 @@
 		from members where member_idid =
 		#{member_idid}) = members_member_id
 	</delete>
+		
+<!-- 특정 회원의 알러지 성분 추가 -->
+	<insert id="addMemAl"
+		parameterType="com.hyundai.domain.AllergyMapperVO">
+		insert into allergymappers
+		values ((select allergy_id
+		from allergies where allergy_name =
+		#{allergy_name}),(select member_id
+		from members where member_idid =
+		#{member_idid}))
+	</insert>
+	
+<!-- 회원 탈퇴(회원 enabled 컬럼 0으로 변경) -->
+	<update id="out">
+		update members set member_enabled = 0, member_pw = 0, member_phone = 'memberout',
+		member_sex = 0, member_email = 'memberout', member_address1 = 'memberout', member_address2 = 'memberout',
+		member_postnum = 0, member_birthday = sysdate where member_idid = #{name}
+	</update>
+
 </mapper>
