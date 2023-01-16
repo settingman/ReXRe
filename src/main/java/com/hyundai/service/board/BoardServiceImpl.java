@@ -11,7 +11,12 @@ import com.hyundai.mapper.BoardMapper;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-
+/*********************************
+ * @function : BoardServiceImpl
+ * @author : Taeseung Choi
+ * @Date : Dec 26. 2022. 
+ * for loose coupling
+ *********************************/
 @Log4j
 @Service
 @AllArgsConstructor
