@@ -44,10 +44,15 @@
  * 역할: 게시판
  * E-mail: 
  ```
+ - 이세은
+ 
+ ```
+ * 역할: 상품
+ * E-mail: 
+ ```
 
 ## 4. 프로젝트 요구사항 및 사용 기술 
 
-2. 
 - JAVA 11
 - Spring Framework 
 - Spring Tool Suite 
@@ -65,4 +70,4 @@
 - jQuery & Ajax 
 
 ## 5. UI
- - ![image](https://user-images.githubusercontent.com/65829111/206622331-b5be3cf1-fc5c-4159-a2d4-e9fae4dfe73a.png)
+ 
