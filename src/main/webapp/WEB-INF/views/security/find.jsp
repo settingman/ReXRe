@@ -1,10 +1,11 @@
 <!-- /*********************************
- * @function : 로그인
- * @author : 조일우
- * @Date : Dec 31. 2022.
- * 로그인 기능 구현
- * 로그인 실패 구현
- * 아이디 비밀번호 저장 구현
+ * @function : 아이디 비밀번호 찾기 
+ * @author : ILWOO JO
+ * @Date : Jan 5. 2023.
+ * 아이디 찾기 구현
+ * 모달창 인증 구현
+ * 이메일 인증 구현
+ * 비밀번호 찾기 구현
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -58,13 +59,14 @@
 	var email;
 	var pwch;
 		$(document).ready(function() {
-			
+			//csrf토큰 값 ajax 통신 할때 넘겨주는 기능
 			var csrfToken = $("meta[name='_csrf']").attr("content");
 			$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 				if (options['type'].toLowerCase() === "post") {
 					jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 				}
 			});
+			//아이디 찾기 기능
 			$('#find_id_submit').on("click", function() {
 				 name = $('#find_id_name').val(); //id값이 "id"인 입력란의 값을 저장
 				 email = $("#find_id_email").val();
@@ -80,8 +82,8 @@
 				 $("#find_id_email").focus();
 				 } else {
 				$.ajax({
-					 url : "./findID.do", //Controller에서 요청 받을 주소
-					 type : "POST", //POST 방식으로 전달
+					 url : "./findID.do", 
+					 type : "POST", 
 					 data : {
 					 id : name,
 					 email : email
@@ -104,6 +106,7 @@
 					
 				 }
 			});
+			//비밀 번호 찾기 기능
 			$('#find_pw_submit').on("click", function() {
 				 id = $('#find_pwd_id').val(); //id값이 "id"인 입력란의 값을 저장
 				 var name = $("#find_pwd_name").val();
@@ -126,14 +129,15 @@
 				 }  else if (exptext.test(email) == false) {
 				 //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
 				 alert("이메일형식이 올바르지 않습니다.");
-				 $("#find_id_email").focus();
+				 $("#find_pwd_email").focus();
 				 } else {
 				 
 				$.ajax({
-					 url : "./findID.do", //Controller에서 요청 받을 주소
+					 url : "./findPW.do", //Controller에서 요청 받을 주소
 					 type : "POST", //POST 방식으로 전달
 					 data : {
-					 id : name,
+						 id : id,
+					 name : name,
 					 email : email
 					 },
 					 success : function(data) { 
@@ -156,13 +160,14 @@
 				 }
 				
 			});
+			//이메일 인증 기능
 			$('#veri_send').on('click',function(){
 				$.ajax({
 					type : 'get',
 					 data : {
 						 email : email
 					},
-					url : '/email.do', // GET방식이라 Url 뒤에 email을 뭍힐수있다.
+					url : '/email.do', 
 					success : function (data) {
 						console.log("data : " +  data);
 						code = data;
@@ -173,7 +178,7 @@
 						 }
 					 });
 				});
-			
+			// 아이디 찾기 이메일 인증 확인 기능
 			$('#veri_btn').on('click',function () {
 				var inputCode = $('#veri_num').val();
 				console.log(code);
@@ -188,6 +193,7 @@
 					alert("인증번호가 일치하지 않습니다");
 				}
 			});
+			// 비밀번호 찾기 이메일 인증 확인 기능
 			$('#btn-confirm').on('click', function(){
 				var verifyed = $('#verifyed').val(); 
 				console.log(id);
@@ -251,7 +257,7 @@
 			</div>
 		</div>
 	</div>
-
+<!-- 모달 창 -->
 	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- /*********************************
+ * @function : MemberMapper 관련 xml
+ * @author : Ilwoo Jo
+ * @Date : Dec 31. 2022.
+ *********************************/ -->
 <!DOCTYPE mapper
    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http:/mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -9,6 +14,8 @@
 		<id property="useridid" column="member_idid"></id>
 		<result property="member_phone" column="member_phone"></result>
 		<result property="member_email" column="member_email"></result>
+		<result property="member_sex" column="member_sex"></result>
+		<result property="member_birthday" column="member_birthday"></result>
 		<result property="member_postNum" column="member_postnum"></result>
 		<result property="member_address1" column="member_address1"></result>
 		<result property="member_address2" column="member_address2"></result>
@@ -44,15 +51,15 @@
 		member_name,
 		member_enabled, member_regdate,
 		member_updatedate,
-		auth_name
-		from members
-		mem, (select * from
-		membergrade, auth where
+		auth_name,
+		member_birthday,
+		member_sex
+		from members mem, (select * from membergrade, auth where
 		auth_auth_id = auth_id)
-		where mem.member_id =
-		members_member_id and
+		where mem.member_id = members_member_id and
 		mem.member_idid = #{userid}
 		and member_enabled = 1
+		
 	</select>
 	
 <!-- 아이디 중복 체크 -->	
@@ -79,36 +86,40 @@
 	<insert id="joinUser"
 		parameterType="com.hyundai.domain.MemberVO">
 		insert into members
-		(member_id,member_idid,member_pw,member_name,member_birthday,member_sex,member_phone,member_email,member_postNum,member_address1,member_address2)
+		(member_id,member_idid,member_pw,member_name,member_birthday,member_sex,
+		member_phone,member_email,member_postNum,member_address1,member_address2)
 		values
 		(memberid_seq.nextval,#{useridid},#{userpw},#{userName},#{member_birthday},
 		#{member_sex},#{member_phone},#{member_email},#{member_postNum},#{member_address1},#{member_address2})
 	</insert>
 	
-<!-- 특정 회원의 알러지 성분 추가 -->
-	<insert id="addMemAl"
-		parameterType="com.hyundai.domain.AllergyMapperVO">
-		insert into allergymappers
-		values ((select allergy_id
-		from allergies where allergy_name =
-		#{allergy_name}),(select member_id
-		from members where member_idid =
-		#{member_idid}))
+<!-- 회원가입 후 권한 부여-->	
+	<insert id="joinUserAuth"
+		parameterType="String">
+		insert into membergrade values (1, (select member_id from members where member_idid = #{member_idid}))
 	</insert>
+
 	
 <!-- 아이디 찾기 -->
 	<select id="findID"
-		parameterType="com.hyundai.domain.AllergyMapperVO" resultType="String">
+		 resultType="String">
 		select
-		member_idid from members where member_name = #{allergy_name } and
-		member_email = #{member_idid}
+		member_idid from members where member_name = #{name } and
+		member_email = #{email}
+	</select>
+	
+<!-- 비밀번호 찾기 -->
+		<select id="findPW"
+		 resultType="String">
+		select
+		member_idid from members where member_name = #{name } and
+		member_email = #{email} and member_idid = #{id}
 	</select>
 	
 <!-- 비밀번호 변경 -->	
-	<update id="pwChange"
-		parameterType="com.hyundai.domain.AllergyMapperVO">
-		UPDATE members SET member_pw = #{allergy_name} WHERE
-		member_idid = #{member_idid}
+	<update id="pwChange">
+		UPDATE members SET member_pw = #{pw} WHERE
+		member_idid = #{id}
 	</update>
 
 <!-- 회원 아이디로 회원 번호 찾기 -->
@@ -117,6 +128,7 @@
 		member_idid = #{member_idid}
 	</select>
 	
+
 <!-- 비밀번호 확인 -->	
 	<select id="PWCheck" resultType="String">
 		select member_pw from members where member_idid = #{name}
@@ -133,9 +145,38 @@
 		#{member_address2}
 		where member_idid = #{useridid}
 	</update>
+<!-- 회원의 알러지 성분 가져오기 -->
+	<select id="findMemAl" resultType="String">
+		select allergy_name from AllergyMappers, allergies where allergy_id = allergies_allergy_id and
+		members_member_id = (select member_id from members where member_idid = #{member_idid})
+	</select>
+	
+<!-- 특정 회원의 알러지 성분 제거 -->
+	<delete id="deleteMemAl"
+		parameterType="com.hyundai.domain.AllergyMapperVO">
+		delete from allergymappers
+		where (select allergy_id from allergies where allergy_name =
+		#{allergy_name}) = allergies_allergy_id and (select member_id
+		from members where member_idid =
+		#{member_idid}) = members_member_id
+	</delete>
+		
+<!-- 특정 회원의 알러지 성분 추가 -->
+	<insert id="addMemAl"
+		parameterType="com.hyundai.domain.AllergyMapperVO">
+		insert into allergymappers
+		values ((select allergy_id
+		from allergies where allergy_name =
+		#{allergy_name}),(select member_id
+		from members where member_idid =
+		#{member_idid}))
+	</insert>
 	
 <!-- 회원 탈퇴(회원 enabled 컬럼 0으로 변경) -->
 	<update id="out">
-		update members set member_enabled = 0 where member_idid = #{name}
+		update members set member_enabled = 0, member_pw = 0, member_phone = 'memberout',
+		member_sex = 0, member_email = 'memberout', member_address1 = 'memberout', member_address2 = 'memberout',
+		member_postnum = 0, member_birthday = sysdate where member_idid = #{name}
 	</update>
+
 </mapper>

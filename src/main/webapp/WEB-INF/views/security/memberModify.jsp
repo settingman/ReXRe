@@ -1,13 +1,16 @@
 <!-- /*********************************
- * @function : 회원가입
+ * @function : 회원 정보 변경
  * @author : ILWOO JO
- * @Date : Jan 1. 2023.
- * 아이디 중복 검사 구현
- * 비밀번호 인증 구현
- * 알러지 추가 삭제 구현
- * 회원 데이터 확인 기능 구현
+ * @Date : Jan 7. 2023.
+ * 회원 정보 변경 구현
+ * 현재 회원정보 값 미리 대입 구현
+ * 회원 알러지 정보 연동 구현
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +21,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- 부트스트랩 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/security.css">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
@@ -47,184 +51,281 @@
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 </head>
 <body class="vsc-initialized">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 	<%--  	<c:if test="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username != null}">
 		<c:redirect url="/"></c:redirect>
 	</c:if>  --%>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/emailAutoComplete.js"></script>
 	<script type="text/javascript" defer="defer">
-	//csrf토큰 값 ajax 통신 할때 넘겨주는 기능	
-	var csrfToken = $("meta[name='_csrf']").attr("content");
+		var str = '<sec:authentication property="principal.member.member_email" />';
+		var birthday = '<sec:authentication property="principal.member.member_birthday" />';
+		var sex = '<sec:authentication property="principal.member.member_sex" />';
+
+		var emails = str.split('&#64;');
+		var emails2 = emails[1].split('&#46;');
+		var birthday1 = birthday.split('&#45;');
+		var birthday2 = birthday1[2].split('&#32;');
+		//이메일, 생일, 성 현재 정보로 미리 선택 기능
+		$(document).ready(function() {
+			$('#email2').val(emails2[0] + '.' + emails2[1]);
+			$('#select1').val(birthday1[0]).prop("selected", true);
+			$('#select2').val(birthday1[1]).prop("selected", true);
+			$('#select3').val(birthday2[0]).prop("selected", true);
+			if (sex == "1") {
+				$("#sex_male").prop("checked", true)
+
+			} else {
+				$("#sex_female").prop("checked", true)
+
+			}
+		});
+		var csrfToken = $("meta[name='_csrf']").attr("content");
 		$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
 			if (options['type'].toLowerCase() === "post") {
 				jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
 			}
 		});
-		//아이디 중복 검사 기능
-		function checkMID() {
-			var id = $('#join_id').val(); //id값이 "id"인 입력란의 값을 저장
-			var expression = RegExp(/[^a-zA-Z0-9]/);
-			if (id.length < 6) {
-				alert("아이디는 6자 이상이여야 합니다");
-			} else if (checkSpace(id) == true) {
-				alert("아이디에 공백이 없어야 합니다");
-			} else if (checkSpecial(id) == true) {
-				alert("특수문자를 사용 할수 없습니다");
-			} else if (expression.test(id)) {
-				alert("아이디는 영어와 숫자로만 생성가능합니다");
-			} else {
-				$.ajax({
-					url : "./IDCheck.do", 
-					type : "POST", 
-					data : {
-						id : id
-					},
-					dataType : "json",
-					success : function(data) { 
-						if (data == '0') { 
-							alert("사용가능한 아이디입니다");
-							$('#id_check').val('1');
-						} else { 
-							alert("사용 중인 아이디 입니다, 아이디를 다시 입력해주세요");
-							$('#join_id').val('');
-							$('#join_id').focus();
-						}
-					},
-					error : function() {
-						alert("에러: 잠시후 다시 시도해주세요");
-					}
-				});
-			}
-
-		};
-		//회원가입전 각 요소가 올바르게 입력됬는지 중복검사 했는지 검사하는 기능
-		function validate(){
+		//회원 정보가 정합한지 검사
+		function validate() {
 			var idcheck = $('#id_check').val();
 			var pwcheck = $('#pw_check').val();
-			 var email =$("#email2").val();
-			 var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-			 if (idcheck == "0"){
-				  alert("아이디 중복확인을 실시해주세요");
-				  return false;
-			 }
-			 else if(pwcheck == "0"){
-				 alert("비밀번호를 올바르게 입력해주세요");
-				 return false;
-			 }
-			 else if(exptext.test(email)==false){
-			        //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
-			        alert("이 메일형식이 올바르지 않습니다.");
-			        $("#email2").focus();
-			        return false;
-			 }
+			var email = $("#email2").val();
+			var exptext = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+			if (idcheck == "0") {
+				alert("아이디 중복확인을 실시해주세요");
+				return false;
+			} else if (pwcheck == "0") {
+				alert("비밀번호를 올바르게 입력해주세요");
+				return false;
+			} else if (exptext.test(email) == false) {
+				//이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우         
+				alert("이 메일형식이 올바르지 않습니다.");
+				$("#email2").focus();
+				return false;
+			}
 		}
-		//비밀번호 확인 기능
-		$(document).ready(function(){
-			$('#join_pw').on('keyup',function(){
-		        var pwd1 = $("#join_pw").val();
-				if ( pwd1.length < 8 ) {
-		                $("#join_pw").css("border","solid 1px red")
-		                $("#join_pwpw").css("color","red")
-		                $("#join_pwpw").text("비밀번호는 8자 이상이어야 합니다");
-		                $("#pw_check").val("0");
-		        } else if (checkSpace(pwd1)) {
-		        	$("#join_pw").css("border","solid 1px red")
-	                $("#join_pwpw").css("color","red")
-		                $("#join_pwpw").text("사용할수 없는 특수 문자를 포함합니다");
-		                $("#pw_check").val("0");
-		        }else{
-		        	$("#join_pw").css("border","solid 1px green");
-	                $("#join_pwpw").css("color","green")
-	                $("#join_pwpw").text("적합한 비밀번호입니다");
-	                $("#pw_check").val("1");
-		        }
-			});
-			//비밀번호 일치 확인 기능
-			$('#join_pw2').on('keyup',function(){
-		        var pwd1 = $("#join_pw").val();
-		        var pwd2 = $("#join_pw2").val();
-				if (pwd1 != "" || pwd2 != "") {
-		            if (pwd1 == pwd2) {
-		                $("#join_pw2").css("border","solid 1px green");
-		                $("#join_pwpw2").css("color","green")
-		                $("#join_pwpw2").text("비밀번호 일치");
-		                $("#join_pwpw2").text("비밀번호 일치");
-		                $("#pw2_check").val("1");
-		            } else {
-		                $("#join_pw2").css("border","solid 1px red")
-		                $("#join_pwpw2").css("color","red")
-		                $("#join_pwpw2").text("비밀번호 일치하지 않습니다");
-		                $("#pw2_check").val("0");
-		            }
-		        }
-			});
-			//알러지 검색 기능
-			$('#join_allergy').on('keyup',function(){
-		        var allergy = $("#join_allergy").val();
-				$.ajax({
-					url : "./alsear.do", 
-					type : "GET", 
-					data : {
-						allergy : allergy
-					},
-					dataType : "json",
-					success : function(data) {
-						if(data.length == 0 ){
-							$('#select-pill').html("");
-							$('#select-pill').append('<a herf="#" id="addal">찾으시는 성분이 없나요? 임의 성분 추가</a>');
-						}else{
-							$('#select-pill').html("");
-							for(var i=0; i < data.length; i++) {
-								$('#select-pill').append('<span class="badge rounded-pill text-bg-primary" id="allergy-pill">'+data[i].allergy_name+'</span>')
-							}
-						}
-					},
-					error : function() {
-						alert("에러: 잠시후 다시 시도해주세요");
-					}
-				});
-			});
-			// 알러지 추가 기능
-			$(document).on("click","#allergy-pill",function(){
-				var tmp = $(this).text();
-				var find = $('input[value='+tmp+']').val();
-				if(find == null	){
-					$('#selected-pill').append('<span class="badge rounded-pill text-bg-secondary" id="allergy-pill2">'+tmp+'</span>')
-					$('#selected-pill').append('<input type="hidden" name="allergies" value="'+tmp+'" >')
-				}
-				else{
-					alert("이미 존재하는 항목입니다");
-				}
-			});
-			// 알러지 삭제 기능
-			$(document).on("click","#allergy-pill2",function(){
-				$(this).next().remove();
-				$(this).remove();
-			});
-			//임의의 알러지 추가 기능
-			$(document).on("click","#addal",function(){
-				var allergy = $('#join_allergy').val();
-				var result = confirm(allergy+'를 추가하시겠습니까?');
-		        if(result) {
-					$.ajax({
-						url : "./addal.do",
-						type : "GET", 
-						data : {
-							allergy : allergy
-						},
-						success : function() { 
-							alert("추가되었습니다");
+
+		$(document)
+				.ready(		// 비밀번호 검사
+						function() {
+							$('#join_pw')
+									.on(
+											'keyup',
+											function() {
+												var pwd1 = $("#join_pw").val();
+												if (pwd1.length < 8) {
+													$("#join_pw").css("border",
+															"solid 1px red")
+													$("#join_pwpw").css(
+															"color", "red")
+													$("#join_pwpw")
+															.text(
+																	"비밀번호는 8자 이상이어야 합니다");
+													$("#pw_check").val("0");
+												} else if (checkSpace(pwd1)) {
+													$("#join_pw").css("border",
+															"solid 1px red")
+													$("#join_pwpw").css(
+															"color", "red")
+													$("#join_pwpw")
+															.text(
+																	"사용할수 없는 특수 문자를 포함합니다");
+													$("#pw_check").val("0");
+												} else {
+													$("#join_pw").css("border",
+															"solid 1px green");
+													$("#join_pwpw").css(
+															"color", "green")
+													$("#join_pwpw").text(
+															"적합한 비밀번호입니다");
+													$("#pw_check").val("1");
+												}
+											});
 							
-							$('#selected-pill').append('<span class="badge rounded-pill text-bg-secondary" id="allergy-pill2">'+allergy+'</span>')
-							$('#selected-pill').append('<input type="hidden" name="allergies" value="'+allergy+'" >')
-						},
-						error : function() {
-							alert("에러: 잠시후 다시 시도해주세요");
-						}
-					});
-		         }
-			});
-		});
+							$('#join_pw2').on(
+									'keyup',
+									function() {
+										var pwd1 = $("#join_pw").val();
+										var pwd2 = $("#join_pw2").val();
+										if (pwd1 != "" || pwd2 != "") {
+											if (pwd1 == pwd2) {
+												$("#join_pw2").css("border",
+														"solid 1px green");
+												$("#join_pwpw2").css("color",
+														"green")
+												$("#join_pwpw2")
+														.text("비밀번호 일치");
+												$("#join_pwpw2")
+														.text("비밀번호 일치");
+												$("#pw2_check").val("1");
+											} else {
+												$("#join_pw2").css("border",
+														"solid 1px red")
+												$("#join_pwpw2").css("color",
+														"red")
+												$("#join_pwpw2").text(
+														"비밀번호 일치하지 않습니다");
+												$("#pw2_check").val("0");
+											}
+										}
+									});
+							//알러지 성분 검색
+							$('#join_allergy')
+									.on(
+											'keyup',
+											function() {
+												var allergy = $("#join_allergy")
+														.val();
+												$
+														.ajax({
+															url : "./alsear.do",
+															type : "GET",
+															data : {
+																allergy : allergy
+															},
+															dataType : "json",
+															success : function(
+																	data) {
+																if (data.length == 0) {
+																	$(
+																			'#select-pill')
+																			.html(
+																					"");
+																	$(
+																			'#select-pill')
+																			.append(
+																					'<a herf="#" id="addal">찾으시는 성분이 없나요? 임의 성분 추가</a>');
+																} else {
+																	$(
+																			'#select-pill')
+																			.html(
+																					"");
+																	for (var i = 0; i < data.length; i++) {
+																		$(
+																				'#select-pill')
+																				.append(
+																						'<span class="badge rounded-pill text-bg-primary" id="allergy-pill">'
+																								+ data[i].allergy_name
+																								+ '</span>')
+																	}
+																}
+															},
+															error : function() {
+																alert("에러: 잠시후 다시 시도해주세요");
+															}
+														});
+											});
+							//알러지 성분 추가 
+							$(document)
+									.on(
+											"click",
+											"#allergy-pill",
+											function() {
+												var csrfToken = $("meta[name='_csrf']").attr("content");
+												$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+													if (options['type'].toLowerCase() === "post") {
+														jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+													}
+												});
+												var tmp = $(this).text();
+												var find = $(
+														'input[value=' + tmp
+																+ ']').val();
+												if (find == null) {
+													$
+															.ajax({
+																url : "./addMemAl.do", 
+																type : "POST",
+																data : {
+																	allergy : tmp
+																},
+																success : function(data
+																		) { 
+																	$(
+																			'#selected-pill')
+																			.append(
+																					'<span class="badge rounded-pill text-bg-secondary" id="allergy-pill2">'
+																							+ tmp
+																							+ '</span>');
+																	$(
+																			'#selected-pill')
+																			.append(
+																					'<input type="hidden" name="allergies" value="'+tmp+'" >');
+																},
+																error : 
+																	function(request,status,error){ 
+															        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+															       } 
+															});
+
+												} else {
+													alert("이미 존재하는 항목입니다");
+												}
+											});
+							//현재 회원 알러지 삭제
+							$(document).on("click", "#allergy-pill2",
+									
+									function() {
+								var tmp = $(this).text();
+								var csrfToken = $("meta[name='_csrf']").attr("content");
+								$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+									if (options['type'].toLowerCase() === "post") {
+										jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+									}
+								});
+								$.ajax({
+									url : "./deleteMemAl.do", //Controller에서 요청 받을 주소
+									type : "POST", //POST 방식으로 전달
+									data : {
+										allergy : tmp
+									},
+									context: this , 
+									success : function(data
+											) { //컨트롤러에서 넘어온 cnt값을 받는다 
+										$(this).next().remove();
+										$(this).remove();
+									},
+									error : function(request,status,error){ 
+								        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error); 
+								       } 
+								});
+
+									});
+							// 현재회원 알러지 추가 
+							$(document)
+									.on(
+											"click",
+											"#addal",
+											function() {
+												var allergy = $('#join_allergy')
+														.val();
+												var result = confirm(allergy
+														+ '를 추가하시겠습니까?');
+												if (result) {
+													$
+															.ajax({
+																url : "./addal.do",
+																type : "GET",
+																data : {
+																	allergy : allergy
+																},
+																success : function() {
+																	alert("추가되었습니다");
+																	$(
+																			'#selected-pill')
+																			.append(
+																					'<span class="badge rounded-pill text-bg-secondary" id="allergy-pill2">'
+																							+ allergy
+																							+ '</span>')
+																},
+																error : function() {
+																	alert("에러: 잠시후 다시 시도해주세요");
+																}
+															});
+												}
+											});
+						});
 	</script>
 	<div id="skin_member_join_frm_big_div">
 
@@ -240,53 +341,48 @@
 			<div id="cnt">
 				<div class="cntbody">
 					<h2 class="subtitle" style="user-select: auto;">회원정보 입력</h2>
+
 					<div id="join_input">
-						<form name="joinFrm" method="post" action="./join" onsubmit="return validate()">
-							<input type="hidden" name="member_id_checked" value="0" id="id_check">
-							<input type="hidden" name="pw_checked" value="0" id="pw_check">
-							<input type="hidden" name="pw_check" value="" id-="pw2_check">
-							<input type="hidden" name="ipin_num" value="">
-							
-							<input type="hidden" name="${_csrf.parameterName}" id="_csrf_header" value="${_csrf.token}">
+						<form name="joinFrm" method="post" action="./update" onsubmit="return validate2()">
+							<input type="hidden" name="member_id_checked" value="0" id="id_check"> <input type="hidden" name="pw_checked" value="0" id="pw_check"> <input
+								type="hidden" name="pw_check" value="" id-="pw2_check"> <input type="hidden" name="ipin_num" value=""> <input type="hidden"
+								name="${_csrf.parameterName}" id="_csrf_header" value="${_csrf.token}">
 
 							<fieldset>
 								<legend>필수정보 입력</legend>
 								<div class="box" style="padding-bottom: 20px; border-bottom: 3px solid #000;">
 									<div>
-										<label for="join_id">아이디</label>
-										<p class="addbtn">
-											<input type="text" name="member_idid" value="" maxlength="16" id="join_id" class="form_input block" placeholder="아이디">
-											<span class="box_btn w115 h50 fs15 light gray kor"><a href="javascript:checkMID()">중복확인</a></span>
-										</p>
+										<label for="join_id">아이디</label> <input type="text" name="member_idid" value="<sec:authentication property="principal.member.useridid"/>"
+											maxlength="16" readonly id="join_id" class="form_input block" placeholder="아이디">
 									</div>
 
 									<div>
-										<label for="join_pw">비밀번호</label>
-										<input type="password" name="member_pw" id="join_pw" class="form_input block" placeholder="비밀번호" autocomplete="new-password">
+										<label for="join_pw">비밀번호</label> <input type="password" name="member_pw" id="join_pw" class="form_input block" placeholder="비밀번호"
+											autocomplete="new-password">
 									</div>
 									<div>
 										<label for="join_pwpw"></label>
-										<h4 id="join_pwpw" ></h4>
+										<h4 id="join_pwpw"></h4>
 									</div>
 									<div>
-										<label for="join_pw2">비밀번호 확인</label>
-										<input type="password" name="member_pw2" id="join_pw2" class="form_input block" placeholder="비밀번호 확인" autocomplete="new-password">
+										<label for="join_pw2">비밀번호 확인</label> <input type="password" name="member_pw2" id="join_pw2" class="form_input block" placeholder="비밀번호 확인"
+											autocomplete="new-password">
 									</div>
 									<div>
 										<label for="join_pwpw"></label>
 										<h4 id="join_pwpw2"></h4>
 									</div>
 									<div>
-										<label for="join_name">이름</label>
-										<input type="text" name="member_name" value="" id="join_name"  class="form_input block" placeholder="이름" required="required">
+										<label for="join_name">이름</label> <input type="text" name="member_name" readonly value="<sec:authentication property="principal.member.userName"/>"
+											id="join_name" class="form_input block" placeholder="이름" required="required">
 									</div>
 
 									<div class="birth">
-										<label>생년월일</label>
-										<select name="birth1" onchange="" required="required">
+										<label>생년월일</label> <select name="birth1" onchange="" required="required" id="select1">
 											<option value="">Year</option>
+											<option value="2023">2023</option>
 											<option value="2022">2022</option>
-											<option value="2021" selected>2021</option>
+											<option value="2021">2021</option>
 											<option value="2020">2020</option>
 											<option value="2019">2019</option>
 											<option value="2018">2018</option>
@@ -408,7 +504,7 @@
 											<option value="1902">1902</option>
 											<option value="1901">1901</option>
 											<option value="1900">1900</option>
-										</select> <span class="bar">년</span><select name="birth2" onchange="" required="required">
+										</select> <span class="bar">년</span><select name="birth2" onchange="" required="required" id="select2">
 											<option value="">Month</option>
 											<option value="01">01</option>
 											<option value="02">02</option>
@@ -422,7 +518,7 @@
 											<option value="10">10</option>
 											<option value="11">11</option>
 											<option value="12">12</option>
-										</select> <span class="bar">월</span><select name="birth3" onchange="" required="required">
+										</select> <span class="bar">월</span><select name="birth3" onchange="" required="required" id="select3">
 											<option value="">Day</option>
 											<option value="01">01</option>
 											<option value="02">02</option>
@@ -460,22 +556,19 @@
 									<div class="sex">
 										<label>성별</label>
 										<div class="select sl">
-											<input type="radio" name="sex" value="남" id="sex_male" checked>
-											<label for="sex_male">남성</label>
-											<input type="radio" name="sex" value="여" id="sex_female">
-											<label for="sex_female">여성</label>
+											<input type="radio" name="sex" value="남" id="sex_male" required="required"> <label for="sex_male">남성</label> <input type="radio" name="sex"
+												value="여" id="sex_female"> <label for="sex_female">여성</label>
 										</div>
 									</div>
 									<div>
-										<label for="join_cell">휴대전화번호</label>
-										<input type="text" name="member_phone" value="" id="join_cell" class="form_input block remove_dash" placeholder="휴대전화번호" required="required">
+										<label for="join_cell">휴대전화번호</label> <input type="text" name="member_phone" value="<sec:authentication property="principal.member.member_phone"/>"
+											id="join_cell" class="form_input block remove_dash" placeholder="휴대전화번호" required="required">
 									</div>
 									<div class="email">
-										<label for="join_email">이메일</label>
-										<input type="text" name="email1" value="" id="join_email" class="form_input first" placeholder="이메일" required="required">
-										<span>@</span>
-										<input type="text" name="email2" value="" class="form_input second" id="email2" isplaceholderinited="true" required="required">
-										<select name="email3" onchange="chgEmail(this.form.email2,this,'')">
+										<label for="join_email">이메일</label> <input type="text" name="email1" value="<sec:authentication property="principal.member.useridid"/>"
+											id="join_email" class="form_input first" placeholder="이메일" required="required"> <span>@</span> <input type="text" name="email2" value=""
+											class="form_input second" id="email2" isplaceholderinited="true" required="required"> <select name="email3"
+											onchange="chgEmail(this.form.email2,this,'')">
 											<option value="">이메일 선택</option>
 											<option value="gmail.com">gmail.com</option>
 											<option value="naver.com">naver.com</option>
@@ -488,24 +581,30 @@
 											<option value="korea.com">korea.com</option>
 											<option value="yahoo.co.kr">yahoo.co.kr</option>
 											<option value="dreamwiz.com">dreamwiz.com</option>
-											<option value="" selected="">직접 입력</option>
+											<option id="email-selected" value="" selected="">직접 입력</option>
 										</select>
 									</div>
 									<div class="addr">
 										<label for="join_address">주소</label>
 										<p class="addbtn">
-											<input type="text" name="zip" value="" id="join_address" class="form_input block" readonly="" placeholder="우편번호" required="required">
-											<span class="box_btn w115 h50 gray light fs15 kor"><a id="address_kakao">우편번호 검색</a></span>
+											<input type="text" name="zip" value="<sec:authentication property="principal.member.member_postNum"/>" id="join_address" class="form_input block"
+												readonly="" placeholder="우편번호" required="required"> <span class="box_btn w115 h50 gray light fs15 kor"><a id="address_kakao">우편번호
+													검색</a></span>
 										</p>
-										<input type="text" name="addr1" value="" maxlength="50" class="form_input middle_address block" readonly="" placeholder="기본주소" id="addr1" required="required">
-										<input type="text" name="addr2" value="" maxlength="100" class="form_input block" placeholder="나머지 주소" required="required">
+										<input type="text" name="addr1" value="<sec:authentication property="principal.member.member_address1"/>" maxlength="50"
+											class="form_input middle_address block" readonly="" placeholder="기본주소" id="addr1" required="required"> <input type="text" name="addr2"
+											value="<sec:authentication property="principal.member.member_address2"/>" maxlength="100" class="form_input block" placeholder="나머지 주소"
+											required="required">
 									</div>
 									<div class="allergy">
-										<label for="join_allergy">알러지</label>
-										<input type="text" name="allergy" value="" id="join_allergy" class="form_input block" placeholder="알러지">
+										<label for="join_allergy">알러지</label> <input type="text" name="allergy" value="" id="join_allergy" class="form_input block" placeholder="알러지">
 									</div>
 									<div id="selected-pill">
 										<span class="badge text-bg-secondary"></span>
+										<c:forEach items="${AllergyList }" var="allist">
+											<span class="badge rounded-pill text-bg-secondary" id="allergy-pill2">${allist }</span>
+											<input type="hidden" name="allergies" value="${allist }">
+										</c:forEach>
 									</div>
 									<div id="select-pill">
 										<span class="badge rounded-pill text-bg-primary" id="allergy-pill"></span>
@@ -514,15 +613,14 @@
 							</fieldset>
 							<div class="btn" style="margin-top: 0; display: block;">
 								<span id="testBtn" class="box_btn w167 h55 fs15 kor white"><a href="#">취소</a></span> <span class="box_btn w167 h55 fs15 kor"><input type="submit"
-										value="확인"></span>
+									value="확인"></span>
 							</div>
 						</form>
 					</div>
 
-				
 				</div>
 			</div>
-			
+
 			<!-- //중앙 -->
 			<!-- 하단 -->
 			<%@include file="../include/footer.jsp"%>
@@ -535,7 +633,7 @@
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js" defer="defer"></script>
 	<span itemscope="" itemtype="http://schema.org/Organization">
 		<link itemprop="url" href="https://www.rexremall.com"> <a itemprop="sameAs" href="https://www.facebook.com/officialrexre/"></a> <a itemprop="sameAs"
-			href="https://pf.kakao.com/_xjFMxbT"></a> <a itemprop="sameAs" href="https://www.instagram.com/rexre.official"></a>
+		href="https://pf.kakao.com/_xjFMxbT"></a> <a itemprop="sameAs" href="https://www.instagram.com/rexre.official"></a>
 	</span>
 
 </body>

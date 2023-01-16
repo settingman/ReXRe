@@ -15,30 +15,26 @@
 		class="com.hyundai.security.CustomUserDetailsService"></bean>
 	<bean id="customAccessDenied"
 		class="com.hyundai.security.CustomAccessDeniedHandler"></bean>
-	<!-- <bean id="customAccessDenied" class="org.kosa.security.CustomAccessDeniedHandler"></bean> -->
 	<security:http>
-		<security:intercept-url
-			pattern="/security/mypage" access="hasRole('ROLE_MEMBER')"></security:intercept-url>
+		<security:intercept-url pattern="/security/login" access="isAnonymous()"></security:intercept-url>
+		<security:intercept-url pattern="/security/find" access="isAnonymous()"></security:intercept-url>
+		<security:intercept-url pattern="/security/memberModify" access="isAuthenticated()"></security:intercept-url>
+		<security:intercept-url pattern="/security/memberout" access="isAuthenticated()"></security:intercept-url>
+		<security:intercept-url pattern="/security/pwChange" access="isAnonymous()"></security:intercept-url>
+		<security:intercept-url pattern="/security/pwmodi" access="isAuthenticated()"></security:intercept-url>
+		<security:intercept-url pattern="/security/mypage" access="isAuthenticated()"></security:intercept-url>
+		<security:intercept-url pattern="/shop/*" access="isAuthenticated()"></security:intercept-url>
+		<security:intercept-url pattern="/board/insert" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
+		<security:intercept-url pattern="/board/update" access="hasRole('ROLE_ADMIN')"></security:intercept-url>
 		<security:access-denied-handler
 			ref="customAccessDenied" />
-		<!-- <security:intercept-url pattern="/sample/all" access="permitAll"></security:intercept-url> 
-			<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"></security:intercept-url> 
-			<security:intercept-url pattern="/sample/admin" access="hasRole('ROLE_ADMIN')" 
-			/> <security:access-denied-handler error-page="/accessError"></security:access-denied-handler> 
-			<security:access-denied-handler ref="customAccessDenied"/> <security:form-login 
-			login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/> 
-			<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remmeber-me,JSESSION_ID"/> -->
 		<security:form-login login-page="/security/login"
 			authentication-success-handler-ref="LoginSuccess" />
 		<security:logout logout-url="/security/logout"
 			invalidate-session="true" />
-		<security:logout logout-url="/security/out"
-			invalidate-session="true" />
 		<security:remember-me
 			data-source-ref="dataSource" token-validity-seconds="604800"></security:remember-me>
 		<security:logout logout-url="/security/logout"
-			invalidate-session="true" delete-cookies="remmeber-me,JSESSION_ID" />
-		<security:logout logout-url="/security/out"
 			invalidate-session="true" delete-cookies="remmeber-me,JSESSION_ID" />
 	</security:http>
 	<security:authentication-manager>
@@ -51,5 +47,4 @@
 	</security:authentication-manager>
 
 
-	<!-- <context:component-scan base-package="com.hyundai.security"></context:component-scan> -->
 </beans>

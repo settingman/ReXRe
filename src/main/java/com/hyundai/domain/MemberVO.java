@@ -1,3 +1,9 @@
+/*********************************
+ * @function : 회원 도메인
+ * @author : Ilwoo Jo
+ * @Date : Dec 31. 2022.
+ * @description : 회원 상세
+ *********************************/
 package com.hyundai.domain;
 
 import java.util.Date;

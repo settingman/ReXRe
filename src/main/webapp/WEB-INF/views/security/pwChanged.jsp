@@ -1,10 +1,7 @@
 <!-- /*********************************
- * @function : 로그인
- * @author : 조일우
- * @Date : Dec 31. 2022.
- * 로그인 기능 구현
- * 로그인 실패 구현
- * 아이디 비밀번호 저장 구현
+ * @function : 비밀번호 변경 완료 페이지
+ * @author : ILWOO JO
+ * @Date : Jan 8. 2023.
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

@@ -1,10 +1,9 @@
 <!-- /*********************************
- * @function : 로그인
- * @author : 조일우
- * @Date : Dec 31. 2022.
- * 로그인 기능 구현
- * 로그인 실패 구현
- * 아이디 비밀번호 저장 구현
+ * @function : 회원 탈퇴
+ * @author : ILWOO JO
+ * @Date : Jan 4. 2023.
+ * 회원 탈퇴  구현
+ * 탈퇴후 쿠키 삭제 구현
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,6 +12,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="_csrf" content="${_csrf.token}" />
 <title>리바이리 (ReXRe)</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 부트스트랩 -->
@@ -44,6 +44,64 @@
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 </head>
 <!-- DO NOT MODIFY -->
+<script>
+// 쿠키 삭제 기능
+function deleteCookie(cookieName) {
+	var expireDate = new Date();
+	expireDate.setDate(expireDate.getDate() - 1);
+	document.cookie = cookieName + "= " + "; expires="
+			+ expireDate.toGMTString();
+}
+ // 탈퇴전 입력 비밀번호 확인 기능
+function validate() {
+    var flag = false;
+    var csrf = $('#csrf').val();
+    var	pw = $('#edit_pwd').val();
+	var csrfToken = $("meta[name='_csrf']").attr("content");
+	$.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+		if (options['type'].toLowerCase() === "post") {
+			jqXHR.setRequestHeader('X-CSRF-TOKEN', csrfToken);
+		}
+	});
+    $.ajax({
+      type: "POST",
+      url: "/security/pwModify",
+      data: {pwd : pw
+    },
+    async: false,
+      success: function (res) {
+        if (res == "0") {
+          alert("비밀번호가 일치하지 않습니다");
+          flag = false;
+        } else {
+         //회원 탈퇴후 쿠키 삭제 
+          $.ajax({
+              type: "POST",
+              url: "/security/out",
+              async: false,
+              success: function (res) {
+				alert("회원 탈퇴 완료"); 
+		          flag = true;
+		          deleteCookie("idKey");
+		          deleteCookie("pwKey");
+		          deleteCookie("remember");
+              },
+            error : function() {
+        		alert("에러: 잠시후 다시 시도해주세요");
+        	}
+            });
+
+        }
+		
+      },
+    error : function() {
+		alert("에러: 잠시후 다시 시도해주세요");
+	}
+    });
+    return flag;
+  }
+  
+</script>
 <body>
 	<%--  	<c:if test="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username != null}">
 		<c:redirect url="/"></c:redirect>
@@ -127,15 +185,15 @@
 				</div>
 				<div id="draw_input" class="withdraw">
 					<h3 class="title first">회원 탈퇴</h3>
-					<form method="post" action="/security/out" style="margin: 0px; text-align: center;">
+					<form method="post" action="/security/logout" style="margin: 0px; text-align: center;" onsubmit="return validate()">
 					
-						<input type="hidden" name="${_csrf.parameterName}" id="_csrf_header" value="${_csrf.token}">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" id="csrf">
 						<div class="box">
 							<p class="msg">
 								탈퇴하실 경우 구매내역 확인은 물론 로그인 후 가능한 모든 기능은 사용하실 수 없습니다.<br> 탈퇴하신 후에 회원 정보의 복구는 불가능하며, 보유하신 쿠폰이나 적립금도 모두 무효화됩니다.
 							</p>
 							<div class="frame">
-								<input type="password" name="pwd" class="form_input block" placeholder="비밀번호">
+								<input type="password" id="edit_pwd" name="pwd" class="form_input" placeholder="비밀번호">
 							</div>
 						</div>
 						<div class="btn">
@@ -154,13 +212,5 @@
 	</div>
 	</div>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js" defer='defer'></script>
-	<script>
-			<c:if test="${error != null}">
-			var error = ${error} ;
-			</c:if>
-			if(error == 1){ 
-				alert("비밀번호를 확인해 주세요");
-			}
-	</script>
 </body>
 </html>

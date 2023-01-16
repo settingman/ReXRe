@@ -1,4 +1,9 @@
-package org.kosa.security;
+/*********************************
+ * @function : Security 관련 tests
+ * @author : Ilwoo Jo
+ * @Date : Dec 31. 2022.
+ *********************************/
+package com.hyudai.security;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,6 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.hyundai.domain.AllergyMapperVO;
+import com.hyundai.mapper.MemberMapper;
+
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -24,6 +32,9 @@ public class MemberTests {
 
 	@Setter(onMethod_ = @Autowired)
 	private DataSource ds;
+	
+	@Setter(onMethod_ = @Autowired)
+	private MemberMapper mapper;
 
 	@Test
 	public void testInsertMember() {
@@ -114,5 +125,33 @@ public class MemberTests {
 				}
 			}
 		}
+	}
+	@Test
+	public void testPWChange() {
+		mapper.pwChange("joilwoo", pwencoder.encode("12312312"));
+	}
+	
+	@Test
+	public void read() {
+		System.out.println(mapper.read("123123123"));
+	}
+	
+	@Test
+	public void joinUserAuth123() {
+		
+		mapper.joinUserAuth("joilwoo");
+	}
+	@Test
+	public void findMemAltest() {
+		System.out.println(mapper.findMemAl("member1"));
+		
+	}
+	@Test
+	public void deleteMemAltest() {
+		AllergyMapperVO vo = new AllergyMapperVO();
+		vo.setAllergy_name("나트륨");
+		vo.setMember_idid("member1");
+		mapper.deleteMemAl(vo);
+		
 	}
 }

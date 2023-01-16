@@ -72,15 +72,7 @@
 						<li class="txt"><a href="javascript:goPost('${_csrf.parameterName}','${_csrf.token }')">LOGOUT</a></li>
 						<!-- //gnb 로그인 메뉴부분에 사용됩니다. 삭제시 문제가 발생할 수 있습니다. -->
 						<li class="viewsub"><a href="/security/mypage">MYPAGE</a>
-							<ul class="list">
-								<li><a href="/shop/orederlist">주문 조회</a></li>
-								<li><a href="/mypage/coupon_down_list.php">쿠폰현황</a></li>
-								<li><a href="/mypage/wish_list.php">위시리스트</a></li>
-								<li><a href="/member/edit_step1.php">정보수정</a></li>
-								<li><a href="/shop/product_review_list.php">상품후기</a></li>
-								<li><a href="/mypage/counsel_list.php">1:1문의</a></li>
-								<li><a href="/board/?db=basic_2">쇼핑 FAQ</a></li>
-							</ul></li>
+
 						<li><a href="/shop/cart" class="cart">장바구니 <span class="ea_cart front_cart_rows quick_cart_cnt"> </span><span class="balloon">장바구니</span>
 						</a></li>
 					</sec:authorize>

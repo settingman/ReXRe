@@ -1,10 +1,7 @@
 <!-- /*********************************
- * @function : 로그인
- * @author : 조일우
- * @Date : Dec 31. 2022.
- * 로그인 기능 구현
- * 로그인 실패 구현
- * 아이디 비밀번호 저장 구현
+ * @function : 마이페이지
+ * @author : ILWOO JO
+ * @Date : Jan 2. 2023.
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -45,11 +42,7 @@
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/sec.js"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
 </head>
-<!-- DO NOT MODIFY -->
 <body>
-	<%--  	<c:if test="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username != null}">
-		<c:redirect url="/"></c:redirect>
-	</c:if>  --%>
 	<script src="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.css">
 	<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_skin/skbioland_200731/img/../animate.css">

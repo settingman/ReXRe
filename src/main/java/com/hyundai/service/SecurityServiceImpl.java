@@ -1,5 +1,11 @@
+/*********************************
+ * @function : Security 관련 Service Implement
+ * @author : Ilwoo Jo
+ * @Date : Dec 31. 2022.
+ *********************************/
 package com.hyundai.service;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,24 +85,19 @@ public class SecurityServiceImpl implements SecurityService {
 			System.out.println( avo);
 			mapper.addMemAl(avo);
 		}
+		mapper.joinUserAuth(member_idid);
 	}
 //아이디 찾기 기능(반환값 해당 아이디 갯수)
 	@Override
-	public String findID(String id, String email) {
-		AllergyMapperVO vo = new AllergyMapperVO();
-		vo.setAllergy_name(id);
-		vo.setMember_idid(email);
-		String cnt = mapper.findID(vo);
-		System.out.println(cnt);
+	public String findID(String name, String email) {
+		String cnt = mapper.findID(name, email);
 		return cnt;
 	}
 //비밀번호 변경
 	@Override
 	public void pwChange(String id, String pw) {
-		AllergyMapperVO vo = new AllergyMapperVO();
-		vo.setAllergy_name(pwencoder.encode(pw));
-		vo.setMember_idid(id);
-		mapper.pwChange(vo);
+		String pwd1 = pwencoder.encode(pw);
+		mapper.pwChange(id, pwd1);
 	}
 //비밀번호가 맞는지 체크 기능
 	@Override
@@ -108,8 +109,8 @@ public class SecurityServiceImpl implements SecurityService {
 	@Override
 	public void updateUser(String member_idid, String member_pw, String member_name, String birth1, String birth2,
 			String birth3, String sex, String member_phone, String member_email1, String member_email2,
-			String member_email3, String member_postNum, String member_address1, String member_address2,
-			List<String> allergies) {
+			String member_email3, String member_postNum, String member_address1, String member_address2
+			) {
 		MemberVO vo = new MemberVO();
 		String pw = pwencoder.encode(member_pw);
 		String member_birthday = birth1 + "-" + birth2 + "-" + birth3;
@@ -135,19 +136,22 @@ public class SecurityServiceImpl implements SecurityService {
 		vo.setMember_address1(member_address1);
 		vo.setMember_address2(member_address2);
 		System.out.println("service");
-		System.out.println(allergies.toString());
 		mapper.updateUser(vo);
-		for (String tmp : allergies) {
-			AllergyMapperVO avo = new AllergyMapperVO();
-			avo.setAllergy_name(tmp);
-			avo.setMember_idid(member_idid);
-			mapper.addMemAl(avo);
-		}
 	}
 //회원탈퇴
 	@Override
 	public void out(String name) {
 		mapper.out(name);
+	}
+	@Override
+	public String findPW(String id, String name, String email) {
+		
+		return mapper.findPW(id, name,email);
+	}
+	@Override
+	public List<String> findMemAl(Principal principal) {
+		List<String> list = mapper.findMemAl(principal.getName());
+		return list;
 	}
 
 }

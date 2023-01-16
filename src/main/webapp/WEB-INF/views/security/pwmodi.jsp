@@ -1,13 +1,12 @@
 <!-- /*********************************
- * @function : 로그인
- * @author : 조일우
- * @Date : Dec 31. 2022.
- * 로그인 기능 구현
- * 로그인 실패 구현
- * 아이디 비밀번호 저장 구현
+ * @function : 회원 정보 수정 전 확인 페이지
+ * @author : ILWOO JO
+ * @Date : Jan 4. 2023.
+ * 회원 정보 수정 전 확인 구현
  *********************************/ -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,8 +16,8 @@
 <title>리바이리 (ReXRe)</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- 부트스트랩 -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-	crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/security.css">
 <%-- <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/bootstrap.min.css">
@@ -47,7 +46,7 @@
 </head>
 <!-- DO NOT MODIFY -->
 <script>
-
+//회원 비밀번호 확인 기능
 function validate() {
     var flag = false;
     var csrf = $('#csrf').val();
@@ -63,15 +62,19 @@ function validate() {
       url: "/security/pwModify",
       data: {pwd : pw
     },
-      async: false,
+    async: false,
       success: function (res) {
-        if (!res) {
+        if (res == "0") {
           alert("비밀번호가 일치하지 않습니다");
           flag = false;
         } else {
           flag = true;
         }
-      }
+		
+      },
+    error : function() {
+		alert("에러: 잠시후 다시 시도해주세요");
+	}
     });
     return flag;
   }
@@ -80,9 +83,6 @@ function validate() {
 
 
 <body>
-	<%--  	<c:if test="${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username != null}">
-		<c:redirect url="/"></c:redirect>
-	</c:if>  --%>
 	<script src="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_skin/skbioland_200731/img/../slick.css">
 	<link rel="stylesheet" type="text/css" href="https://www.rexremall.com/_skin/skbioland_200731/img/../animate.css">
@@ -162,7 +162,7 @@ function validate() {
 				</div>
 				<div id="edit_pw" class="edit_info">
 					<h3 class="title first">나의정보수정</h3>
-<%-- 					<form method="post" action="/security/pwModify" style="margin: 0px;" >
+					<%-- 					<form method="post" action="/security/pwModify" style="margin: 0px;" >
 					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
 						<div class="box">
 							<p class="msg">
@@ -174,8 +174,8 @@ function validate() {
 							<span class="box_btn w150 large"><input type="submit" value="확인"></span> <span class="box_btn w150 large white"><a href="javascript:history.back();">취소</a></span>
 						</div>
 					</form> --%>
-										<form method="post" action="/security/join" style="margin: 0px;" onsubmit="return validate()">
-					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" id="csrf">
+					<form method="post" action="/security/memberModify" style="margin: 0px;" onsubmit="return validate()">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }" id="csrf">
 						<div class="box">
 							<p class="msg">
 								고객님의 안전한 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.<br>비밀번호가 타인에게 노출되지 않도록 주의하여 주세요.
@@ -183,7 +183,8 @@ function validate() {
 							<input type="password" id="edit_pwd" name="pwd" class="form_input" placeholder="비밀번호">
 						</div>
 						<div class="btn">
-							<span class="box_btn w150 large"><input type="submit" value="확인"></span> <span class="box_btn w150 large white"><a href="javascript:history.back();">취소</a></span>
+						<span class="box_btn large w150"><input type="submit" value="확인"></span>
+							 <span class="box_btn large w150 white"><a href="/">취소</a></span>
 						</div>
 					</form>
 				</div>
@@ -197,7 +198,7 @@ function validate() {
 	</div>
 	</div>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/auto_scroll.js" defer='defer'></script>
-		<script>
+	<script>
 			<c:if test="${error != null}">
 			var error = ${error} ;
 			</c:if>

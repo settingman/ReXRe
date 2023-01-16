@@ -2,13 +2,13 @@
  * @function : Security 관련 기능
  * @author : Ilwoo Jo
  * @Date : Dec 31. 2022.
- * @description : 로그인 기능 추가
- * 로그아웃 기능 추가
- * 회원가입 기능 추가
- * 회원 정보 수정 기능 추가
- * 알러지 성분 기능 추가
- * 회원 찾기 기능 추가
- * 회원 탈퇴 기능 추가
+ * @description : 로그인 기능 
+ * 로그아웃 기능 
+ * 회원가입 기능 
+ * 회원 정보 수정 기능 
+ * 알러지 성분 기능 
+ * 회원 찾기 기능 
+ * 회원 탈퇴 기능 
  *********************************/
 package com.hyundai.controller;
 
@@ -26,10 +26,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.hyundai.domain.AllergyMapperVO;
 import com.hyundai.domain.AllergyVO;
 import com.hyundai.domain.OrderList;
 import com.hyundai.mapper.MemberMapper;
 import com.hyundai.service.OrderService;
+import com.hyundai.service.ProductService;
 import com.hyundai.service.SecurityService;
 
 import lombok.extern.log4j.Log4j;
@@ -44,6 +46,8 @@ public class SecurityController {
 	private MemberMapper mapper;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private ProductService productService;
 //로그인 기능
 	@GetMapping("/login")
 	public void loginInput(String error, String logout, Model model) {
@@ -56,11 +60,6 @@ public class SecurityController {
 		if (logout != null) {
 			model.addAttribute("logout", "true");
 		}
-	}
-//로그인 후 홈페이지 이동
-	@PostMapping("/login")
-	public String loginPost() {
-		return "/home";
 	}
 //로그아웃 기능
 	@PostMapping("/logout")
@@ -82,12 +81,20 @@ public class SecurityController {
 	@PostMapping("/findID.do")
 	@ResponseBody
 	public String findpost(@RequestParam("id") String id, @RequestParam("email") String email) {
-		String cnt = service.findID(id, email);
-		if (cnt == "") {
-			cnt = "error";
+		String id1 = service.findID(id, email);
+		if (id1 == "") {
+			id1 = "error";
 		}
-		System.out.println(cnt);
-		return cnt;
+		return id1;
+	}
+	@PostMapping("/findPW.do")
+	@ResponseBody
+	public String findPWpost(@RequestParam("id") String id,@RequestParam("name")String name, @RequestParam("email") String email) {
+		String id1 = service.findPW(id,name, email);
+		if (id1 == "") {
+			id1 = "error";
+		}
+		return id1;
 	}
 //회원가입 기능
 	@PostMapping("/join")
@@ -126,6 +133,25 @@ public class SecurityController {
 		System.out.println("addal conroller");
 		service.addal(allergy);
 	}
+//회원 알러지 추가 기능
+		@PostMapping("/addMemAl.do")
+		@ResponseBody
+		public void addMemAl(@RequestParam("allergy") String allergy, Principal principal) {
+				AllergyMapperVO vo = new AllergyMapperVO();
+				vo.setAllergy_name(allergy);
+				vo.setMember_idid(principal.getName());
+				mapper.addMemAl(vo);
+				System.out.println(vo);
+		}	
+//회원 알러지 삭제 기능
+		@PostMapping("/deleteMemAl.do")
+		@ResponseBody
+		public void deleteMemAl(@RequestParam("allergy") String allergy, Principal principal) {
+			AllergyMapperVO vo = new AllergyMapperVO();
+			vo.setAllergy_name(allergy);
+			vo.setMember_idid(principal.getName());
+			mapper.deleteMemAl(vo);
+		}
 // 비밀번호 변경 페이지 이동 기능
 	@GetMapping("/pwChange")
 	public void pwchange(@RequestParam("id") String id, Model model) {
@@ -147,32 +173,24 @@ public class SecurityController {
 	@GetMapping("/mypage")
 	public void OrederList1(Model model, Principal principal) {
 		Integer member_id = mapper.idid(principal.getName());
-
 		List<OrderList> orderList = orderService.OrderList(member_id);
 
 		model.addAttribute("orderList", orderList);
 	}
 
-//	@PostMapping("/pwModify")
-//	public String pwmodify(@RequestParam(value = "pwd") String pw, Principal principal, Model model) {
-//
-//		if (service.PWCheck(principal.getName(), pw)) {
-//
-//			System.out.println("pass");
-//
-//			return "security/join";
-//		} else {
-//			System.out.println("nonpass");
-//			model.addAttribute("error", 1);
-//			return "security/pwmodi";
-//
-//		}
-//	}
 	//마이페이지에서 비밀번호 변경페이지 이동 기능
 	@PostMapping("/pwModify")
-	public boolean pwmodify(@RequestParam(value = "pwd") String pw, Principal principal) {
+	@ResponseBody
+	public String pwmodify(@RequestParam(value = "pwd") String pw, Principal principal) {
 		System.out.println(principal.getName()+"    "+pw);
-		return service.PWCheck(principal.getName(), pw);
+		if(!service.PWCheck(principal.getName(), pw))
+		{
+			return "0";
+		}
+		else
+		{
+			return "1";
+		}
 
 	}
 //마이페이지에서 회원정보 수정 페이지로 이동하기전 비밀번호 입력하는 페이지로 이동 기능
@@ -188,12 +206,11 @@ public class SecurityController {
 			@RequestParam("sex") String member_sex, @RequestParam("member_phone") String member_phone,
 			@RequestParam("email1") String member_email, @RequestParam("email2") String member_email2,
 			@RequestParam("email3") String member_email3, @RequestParam("zip") String member_postNum,
-			@RequestParam("addr1") String member_address1, @RequestParam("addr2") String member_address2,
-			@RequestParam("allergies") List<String> allergies) {
+			@RequestParam("addr1") String member_address1, @RequestParam("addr2") String member_address2
+			) {
 		System.out.println("update");
 		service.updateUser(member_idid, member_pw, member_name, birth1, birth2, birth3, member_sex, member_phone,
-				member_email, member_email2, member_email3, member_postNum, member_address1, member_address2,
-				allergies);
+				member_email, member_email2, member_email3, member_postNum, member_address1, member_address2);
 
 		return "home";
 	}
@@ -204,18 +221,19 @@ public class SecurityController {
 	}
 //회원 탈퇴 기능 
 	@PostMapping("/out")
-	public String out(@RequestParam(value = "pwd") String pw, Principal principal, Model model) {
-
-		if (service.PWCheck(principal.getName(), pw)) {
+	@ResponseBody
+	public void out(Principal principal, Model model) {
 			service.out(principal.getName());
-
-			System.out.println("머야");
-			return "shop/cart2";
-		} else {
 			System.out.println("nonpass");
-			model.addAttribute("error", 1);
-			return "security/memberout";
-
-		}
 	}
+//회원 정보 변경 기능
+	@PostMapping("/memberModify")
+	public void memberModify( Principal principal, Model model) {
+		List<String> list = service.findMemAl(principal);
+		for(String tmp : list) {
+			System.out.println(tmp);
+		}
+		model.addAttribute("AllergyList",list);
+	}
+	
 }
