@@ -13,35 +13,6 @@
 <link rel="stylesheet" type="text/css" href="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui.min.css" />
 <link rel="stylesheet" type="text/css" href="https://www.rexremall.com/wm_engine_SW/_engine/common/loading.css??202212281151" />
 
-<script type="text/javascript">
-   var hid_frame = "hidden1672195870";
-   var mlv = "9";
-   var alv = "";
-   var root_url = "https://www.rexremall.com";
-   var engine_url = "https://www.rexremall.com/wm_engine_SW";
-   var this_url = "https://www.rexremall.com/shop/cart.php";
-   var ssl_url = "https://www.rexremall.com/main/exec.php";
-   var soldout_name = "품절";
-   var ace_counter_gcode = "";
-   var uip = "112.221.225.164";
-   var currency = "원";
-   var currency_type = "원";
-   var currency_decimal = "0";
-   var r_currency_type = "";
-   var r_currency_decimal = "0";
-   var exchangeRate = "";
-   var juso_api_use = "Y";
-   var browser_type = "pc";
-   var mobile_browser = "";
-   var ssl_type = "Y";
-
-   var click_prd = new Array();
-   click_prd[1] = '<a href="https://www.rexremall.com/shop/detail.php?pno=58D4D1E7B1E97B258C9ED0B37E02D087&cno1=1001"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/08/9d67faf5de5906f682b3bb52fef7a3dc.jpg" width="51" height="62" alt="리바이리 콤부차 배리옴 릴리프 마스크 1매-6,500" title=""></a>';
-   click_prd[2] = '<a href="https://www.rexremall.com/shop/detail.php?pno=B2EEB7362EF83DEFF5C7813A67E14F0A&cno1=1001"><img src="https://skbiolandmall.wisacdn.com/_data/product/202208/22/d52eed1ad2c623bd89d0363b846c1365.jpg" width="51" height="62" alt="리바이리 콤부차 배리옴 스킨케어 5종 기획-170,000" title=""></a>';
-   var click_prd_limit = 2;
-   var click_prd_start = 1;
-   var click_prd_finish = click_prd_limit + 1;
-</script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery/jquery-ui-1.11.3.min.js"></script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/jquery.serializeObject.js"></script>
@@ -51,39 +22,8 @@
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.review.js?202212281151"></script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/R2Na/R2Na.js"></script>
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/smartEditor/js/HuskyEZCreator.js"></script>
-<script type="text/javascript">
-   var date_picker_default = {
-      monthNamesShort : [ "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "11", "12", ],
-      dayNamesMin : [ _lang_pack.data_week_sun, _lang_pack.data_week_mon,
-            _lang_pack.data_week_tue, _lang_pack.data_week_wed,
-            _lang_pack.data_week_thu, _lang_pack.data_week_fri,
-            _lang_pack.data_week_sat, ],
-      weekHeader : "Wk",
-      dateFormat : "yy-mm-dd",
-      autoSize : false,
-      changeYear : true,
-      changeMonth : true,
-      showButtonPanel : true,
-      currentText : _lang_pack.common_info_today + "2022-12-28",
-      closeText : _lang_pack.coommon_info_close,
-   };
-
-   /* Timer */
-   const use_ts_mark_1 = "Y";
-   const ts_mark_1 = "일";
-   const use_ts_mark_2 = "Y";
-   const ts_mark_2 = " :";
-   const use_ts_mark_3 = "Y";
-   const ts_mark_3 = " :";
-   const use_ts_mark_4 = "Y";
-   const ts_mark_4 = "";
-</script>
-
 <script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/sec.js"></script>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-
-
 
 <link rel="canonical" href="https://rexremall.com/" />
 
@@ -92,29 +32,11 @@
 
 <body>
 
-
-
-
-
 	<iframe name="hidden1672195870" src="about:blank" width="0" height="0" scrolling="no" frameborder="0" style="display: none"></iframe>
 
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.js?20200630"></script>
 	<script type="text/javascript" src="https://www.rexremall.com/wm_engine_SW/_engine/common/shop.prdcpn.js?20200630"></script>
-	<script type="text/javascript">
-      var ace_counter_cart = "";
-      var order_cpn_paytype = "1";
-      var order_milage_paytype = "1";
-      var order_cpn_milage = "1";
-      var usable_emoney = 0;
-      var prdprc_sale = 0;
-      var delivery_type = "3";
-      var exchangeRate = "";
-   </script>
-	<script type="text/javascript" defer="defer">
-      $(document).ready(function() {
-         setInterval("wingQuickSlide(228, 0, 0, 5)", 10);
-      });
-   </script>
+	
 	<style type="text/css">
 <!--
 #skin_shop_cart_big_div {
@@ -394,8 +316,6 @@
                        
                        if(confirm_val) {
                      
-                     
-                     
                      $.ajax({
                          
                          
@@ -431,16 +351,12 @@
                         }
                   
                   
-                  
-                  
                   // 아이템을 담고있는 tr id를 돌면서 모두 삭제. $( "[id^='itemNum']" ).remove() : id가  itemNum으로 시작하는 객체들 선택
                   function deleteAllCartAjax2() {   
                      
                      var confirm_val = confirm("정말 삭제하시겠습니까?");
                        
                        if(confirm_val) {
-                     
-                     
                      
                         $.ajax({                         
                          
@@ -466,13 +382,7 @@
                         });
                        }
                      
-                     
-                     
-                     
-                     
                      }
-                  
-                  
                   
                    // 총 가격 계산
                    function total_price_calc(){
@@ -504,22 +414,14 @@
                                   
                                }
                                );
-                       
-                       
-                       
-                       
-                       
                       
                              
                         /* 최종 가격 */
                         
                         //배송비
                         let delivery = 0;
-                        
-
                        
-                        $(".total_prd_prc").text(final_price.toLocaleString());
-                       
+                        $(".total_prd_prc").text(final_price.toLocaleString());                       
                         
                         if(final_price < 150000){
                            
@@ -533,13 +435,9 @@
                            $(".total_order_price_cartlist").text(final_price.toLocaleString());
                         }
                         
-                        
-                        
                         console.log(final_price);
                        
                     }   
-                  
-                                     
                   
                    
                    // this 객체의 status 값을 가지고 찾아 변경해주기
@@ -564,8 +462,6 @@
                           let p_id ='item_p' + $(this).attr('id');                        
                           
                           $('#'+ p_id).text(intToWon(price));
-                          
-                          
                           
                           console.log(og_price);
                           console.log(product_id);
@@ -605,11 +501,8 @@
                      function updateQuantity(product_id, product_qauntity,member_id,update_num, status){
                         
                         
-                        console.log(product_qauntity);
-                        
-                     
-                         let og_price = $('#og_price'+status).val();
-                         
+                        console.log(product_qauntity);                     
+                         let og_price = $('#og_price'+status).val();                         
                          console.log(og_price);
                          
                       
@@ -632,10 +525,7 @@
                           let quan_val_id = 'buy_ea' + status;
                           
                           console.log(quantity);
-                        
-                      
-                        
-                        
+                                   
                          $.ajax({
                                
                          
@@ -676,11 +566,8 @@
                             console.log(Cart_Num);
                          
                              $(".quick_cart_cnt").text(Cart_Num);
-                            
-                         
                       
-                      }
-                     
+                      }       
                      
                      
                      

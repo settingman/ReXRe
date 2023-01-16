@@ -38,7 +38,5 @@ public interface CartMapper {
 	public void updateQuantity(@Param("product_qauntity") Integer product_qauntity,
 			@Param("product_id") Integer product_id, @Param("member_id") Integer member_id);
 
-	// 장바구니 체크 변경
-	public void updateChecked(Integer member_id, Integer product_id, int check);
-
+	
 }

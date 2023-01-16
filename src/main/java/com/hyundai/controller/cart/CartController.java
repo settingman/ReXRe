@@ -23,10 +23,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * @FileName : CartController.java
+ * @FileName: CartController.java
  * @Project : ReXRe
  * @작성자 : 박성환
- **/
+ * @설명 : 장바구니 기능 컨트롤러
+ */
 
 @Slf4j
 @Controller

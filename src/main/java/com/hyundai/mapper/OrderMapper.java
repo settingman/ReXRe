@@ -34,6 +34,5 @@ public interface OrderMapper {
 
 	public List<String> OrderListItems(Integer orderId);
 
-	public Integer deleteOrder(@Param("order_name") String order_name);
 
 }
