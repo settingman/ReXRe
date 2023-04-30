@@ -41,8 +41,8 @@
 - 최태승
  
  ```
- * 역할: 게시판
- * E-mail: 
+ * 역할: 게시판(CRUD, 파일첨부, 검색, 페이징, XSS)
+ * E-mail: purehug@hanmail.net
  ```
  - 이세은
  
